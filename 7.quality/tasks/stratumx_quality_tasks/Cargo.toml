@@ -1,0 +1,24 @@
+[package]
+name = "stratumx_quality_tasks"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+repo_hygiene = { path = "../../suites/repo_hygiene" }
+stratumx_repo_hygiene_support = { path = "../../support/stratumx_repo_hygiene_support" }
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+clap = { version = "4.0", features = ["derive"] }
+serde_json.workspace = true
+regex = "1.0"
+
+[dev-dependencies]
+tempfile = "3.0"
+
+[[bin]]
+name = "stratumx_quality_tasks"
+path = "src/main.rs"

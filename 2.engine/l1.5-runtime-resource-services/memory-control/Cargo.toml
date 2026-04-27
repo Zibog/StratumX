@@ -1,0 +1,22 @@
+[package]
+name = "engine_memory_control"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Memory control and budgeting for runtime"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["memory", "control", "stratumx"]
+categories = ["game-development", "memory-management"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_storage_layout = { path = "../../l-0.7-storage-layout" }
+engine_world = { path = "../../l0-world-truth" }
+engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_memory_control.rs"

@@ -1,0 +1,13 @@
+[package]
+name = "stratumx_quality_sdk_egress_matrix"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+link_egress_observations = { path = "../../../3.sdk/l5.2-link-egress-observations" }
+link_egress_metrics = { path = "../../../3.sdk/l5.3-link-egress-metrics" }
+engine_handle_refs = { path = "../../../3.sdk/l5.10-engine-handle-refs" }
+sdk_compat = { path = "../../../3.sdk/l5-compat" }
+
+[dev-dependencies]
+serde_json = { workspace = true }

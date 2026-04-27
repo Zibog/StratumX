@@ -1,0 +1,17 @@
+# Budget Envelope
+
+This contract belongs specifically to the l6.f11 performance governance authoring family and describes family-only coordination.
+
+
+## Family budget rule for `performance_governance_authoring_family`
+- speculative preview or cache work around performance governance authoring, budget policies, and degradation policy authoring, authority-facing minimal truth: budget/governance edit intents, snapshot classes: budget/governance snapshots degrades before correctness and authority ordering
+- family-local diagnostics required to explain degradation may not be dropped silently
+
+## Operational note
+This file remains active and package-specific for `l6.f26-performance-governance-authoring-family` / `43_BUDGET_ENVELOPE.md`.
+
+## Scope note
+The authority, dependency, and audit meaning of 43 BUDGET ENVELOPE is defined by the surrounding package and may not be inferred from another file with a similar filename.
+
+## Review use
+A reviewer should be able to use this document as part of an implementation checklist, not as decorative filler.

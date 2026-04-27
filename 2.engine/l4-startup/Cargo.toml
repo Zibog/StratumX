@@ -1,0 +1,25 @@
+[package]
+name = "engine_startup"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Startup and bootstrap for engine initialization"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["startup", "bootstrap", "stratumx"]
+categories = ["game-development", "data-structures"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_world = { path = "../l0-world-truth" }
+engine_material = { path = "../l0.5-shared-world-property-substrate" }
+engine_runtime = { path = "../l1-runtime-kernel/runtime" }
+engine_runtime_headless = { path = "../l1-runtime-kernel/runtime-headless" }
+engine_runtime_realtime = { path = "../l1-runtime-kernel/runtime-realtime" }
+engine_content = { path = "../l3.2-resource-systems" }
+serde.workspace = true
+serde_json.workspace = true
+
+[lib]
+path = "src/engine_startup.rs"

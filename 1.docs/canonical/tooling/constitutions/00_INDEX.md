@@ -1,0 +1,21 @@
+# Constitution Index
+
+## Purpose
+This index enumerates the active constitutions for this canonical package.
+
+## Active constitutions
+- `STRATUMX_L6A_ASSISTANT_RUNTIME_CONSTITUTION.md`
+- `STRATUMX_L6_ACTIVATION_CONSTITUTION.md`
+- `STRATUMX_L6_AUTHORITY_AND_TRANSACTION_CONSTITUTION.md`
+- `STRATUMX_L6_CONCURRENCY_CONSTITUTION.md`
+- `STRATUMX_L6_DEPENDENCY_CONSTITUTION.md`
+- `STRATUMX_L6_FAMILY_COMPOSITION_LAW.md`
+- `STRATUMX_L6_NON_INTERFERENCE_LAW.md`
+- `STRATUMX_L6_TOOLING_CONSTITUTION.md`
+- `STRATUMX_L7A_ASSISTANT_BRAIN_CONSTITUTION.md`
+- `STRATUMX_L7_STUDIO_ORCHESTRATION_CONSTITUTION.md`
+- `STRATUMX_MEMORY_GPU_DISK_CONSTITUTION.md`
+- `STRATUMX_TOOLS_STACK_CONSTITUTION.md`
+
+## Law
+Every constitution listed here is binding and must remain aligned with acceptance, evidence, and readiness contours.

@@ -1,0 +1,2533 @@
+{
+  "manifest_version": "phase4.v1",
+  "authoritative_doc": "1.docs/canonical/editor/110_EXACT_BUTTON_TO_ROUTE_MANIFEST_CANON.md",
+  "route_count": 85,
+  "routes": [
+    {
+      "button_id": "btn.world.validate_world",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > World",
+      "action_id": "world.validate_world.requested",
+      "command_id": "command.world.validate_world",
+      "envelope_type": "WorldCommandEnvelope",
+      "executor_module": "diagnostics::executor_diagnostics",
+      "owner_service": "DiagnosticsService",
+      "owner_state": "WorldValidationState",
+      "publication_kinds": [
+        "DiagnosticsChanged",
+        "WorldChanged"
+      ],
+      "persistence_kind": "validation_artifact",
+      "diagnostics_kind": "world_validation",
+      "focus_success": "diagnostics",
+      "focus_retry": "diagnostics",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.world.last_good_validation",
+      "evidence_family": "validation_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.world.validate_world"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.viewport",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.viewport.requested",
+      "command_id": "command.view.viewport",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "viewport",
+      "focus_retry": "viewport",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.viewport",
+        "editor_shell_matrix::viewport"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.outliner",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.outliner.requested",
+      "command_id": "command.view.outliner",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "outliner",
+      "focus_retry": "outliner",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.outliner",
+        "editor_shell_matrix::outliner"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.inspector",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.inspector.requested",
+      "command_id": "command.view.inspector",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "inspector",
+      "focus_retry": "inspector",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.inspector",
+        "editor_shell_matrix::inspector"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.content_browser",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.content_browser.requested",
+      "command_id": "command.view.content_browser",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "content_browser",
+      "focus_retry": "content_browser",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.content_browser",
+        "editor_shell_matrix::content_browser"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.material_lab",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.material_lab.requested",
+      "command_id": "command.view.material_lab",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.material_lab",
+        "editor_shell_matrix::material_lab"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.terrain_lab",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.terrain_lab.requested",
+      "command_id": "command.view.terrain_lab",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.terrain_lab",
+        "editor_shell_matrix::terrain_lab"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.sky_lab",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > View",
+      "action_id": "view.sky_lab.requested",
+      "command_id": "command.view.sky_lab",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "shell_focus_diagnostics",
+      "focus_success": "sky",
+      "focus_retry": "sky",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.sky_lab",
+        "editor_shell_matrix::sky_lab"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.smooth_patch",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > Terrain",
+      "action_id": "terrain.smooth_patch.requested",
+      "command_id": "command.terrain.smooth_patch",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_mutation_diagnostics",
+      "focus_success": "viewport",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain.pre_smooth",
+      "evidence_family": "terrain_mutation_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.smooth_patch",
+        "terrain_authoring_matrix::smooth"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.duplicate_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Material Surface > Identity",
+      "action_id": "material.duplicate_profile.requested",
+      "command_id": "command.material.duplicate_profile",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_profile_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.duplicate_profile",
+      "evidence_family": "material_lineage_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.duplicate_profile",
+        "material_authoring_matrix::duplicate_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_microdetail_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Visual",
+      "action_id": "material.bind_microdetail_profile.requested",
+      "command_id": "command.material.bind_microdetail_profile",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_visual_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.pre_bind_microdetail",
+      "evidence_family": "material_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_microdetail_profile",
+        "material_authoring_matrix::bind_microdetail_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_weather_modulation",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > State and Modulation",
+      "action_id": "material.bind_weather_modulation.requested",
+      "command_id": "command.material.bind_weather_modulation",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_modulation_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.pre_bind_weather_modulation",
+      "evidence_family": "material_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_weather_modulation",
+        "material_authoring_matrix::bind_weather_modulation"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.preview_burn",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Physical",
+      "action_id": "material.preview_burn.requested",
+      "command_id": "command.material.preview_burn",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialPreviewState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "transient_preview",
+      "diagnostics_kind": "material_preview_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.last_saved_profile",
+      "evidence_family": "material_preview_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.preview_burn",
+        "material_authoring_matrix::preview_burn"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.sky.bind_sky_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "Main Menu > Sky",
+      "action_id": "sky.bind_sky_profile.requested",
+      "command_id": "command.sky.bind_sky_profile",
+      "envelope_type": "EnvironmentCommandEnvelope",
+      "executor_module": "environment::executor_environment",
+      "owner_service": "EnvironmentAuthoringService",
+      "owner_state": "EnvironmentBindingState",
+      "publication_kinds": [
+        "EnvironmentChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "environment_binding_diagnostics",
+      "focus_success": "sky",
+      "focus_retry": "sky",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.sky.pre_bind_profile",
+      "evidence_family": "world_environment_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.sky.bind_sky_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.sky.set_time_of_day",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > Sky",
+      "action_id": "sky.set_time_of_day.requested",
+      "command_id": "command.sky.set_time_of_day",
+      "envelope_type": "EnvironmentCommandEnvelope",
+      "executor_module": "environment::executor_environment",
+      "owner_service": "EnvironmentAuthoringService",
+      "owner_state": "EnvironmentBindingState",
+      "publication_kinds": [
+        "EnvironmentChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "environment_parameter_diagnostics",
+      "focus_success": "sky",
+      "focus_retry": "sky",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.sky.pre_time_change",
+      "evidence_family": "world_environment_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.sky.set_time_of_day"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.sky.set_weather_regime",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > Sky",
+      "action_id": "sky.set_weather_regime.requested",
+      "command_id": "command.sky.set_weather_regime",
+      "envelope_type": "EnvironmentCommandEnvelope",
+      "executor_module": "environment::executor_environment",
+      "owner_service": "EnvironmentAuthoringService",
+      "owner_state": "EnvironmentBindingState",
+      "publication_kinds": [
+        "EnvironmentChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "environment_parameter_diagnostics",
+      "focus_success": "sky",
+      "focus_retry": "sky",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.sky.pre_weather_change",
+      "evidence_family": "world_environment_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.sky.set_weather_regime"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.sky.bind_cloud_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "Main Menu > Sky",
+      "action_id": "sky.bind_cloud_profile.requested",
+      "command_id": "command.sky.bind_cloud_profile",
+      "envelope_type": "EnvironmentCommandEnvelope",
+      "executor_module": "environment::executor_environment",
+      "owner_service": "EnvironmentAuthoringService",
+      "owner_state": "EnvironmentBindingState",
+      "publication_kinds": [
+        "EnvironmentChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "environment_binding_diagnostics",
+      "focus_success": "sky",
+      "focus_retry": "sky",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.sky.pre_bind_cloud_profile",
+      "evidence_family": "world_environment_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.sky.bind_cloud_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.assign_emitter_class_world_source",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "Audio Surface > World Source",
+      "action_id": "audio.assign_emitter_class_world_source.requested",
+      "command_id": "command.audio.assign_emitter_class_world_source",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioAuthoringState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "audio_binding_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.pre_assign_emitter_class",
+      "evidence_family": "audio_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.assign_emitter_class_world_source"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.bind_zone_profile_world_surface",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "Audio Surface > World Zone",
+      "action_id": "audio.bind_zone_profile_world_surface.requested",
+      "command_id": "command.audio.bind_zone_profile_world_surface",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioAuthoringState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "audio_binding_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.pre_bind_zone_profile",
+      "evidence_family": "audio_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.bind_zone_profile_world_surface"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.bind_priority_ducking_policy",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "Audio Surface > Mixer",
+      "action_id": "audio.bind_priority_ducking_policy.requested",
+      "command_id": "command.audio.bind_priority_ducking_policy",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioAuthoringState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "audio_profile",
+      "diagnostics_kind": "audio_policy_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.pre_bind_ducking_policy",
+      "evidence_family": "audio_policy_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.bind_priority_ducking_policy"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.preview_audibility_free_camera",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "Audio Surface > Preview",
+      "action_id": "audio.preview_audibility_free_camera.requested",
+      "command_id": "command.audio.preview_audibility_free_camera",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioPreviewState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "transient_preview",
+      "diagnostics_kind": "audio_preview_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.last_saved_profile",
+      "evidence_family": "audio_preview_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.preview_audibility_free_camera"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.preview_obstruction_vs_occlusion",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "Audio Surface > Preview",
+      "action_id": "audio.preview_obstruction_vs_occlusion.requested",
+      "command_id": "command.audio.preview_obstruction_vs_occlusion",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioPreviewState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "transient_preview",
+      "diagnostics_kind": "audio_preview_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.last_saved_profile",
+      "evidence_family": "audio_preview_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.preview_obstruction_vs_occlusion"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.preview_indoor_outdoor_transition",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "Audio Surface > Preview",
+      "action_id": "audio.preview_indoor_outdoor_transition.requested",
+      "command_id": "command.audio.preview_indoor_outdoor_transition",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioPreviewState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "transient_preview",
+      "diagnostics_kind": "audio_preview_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.last_saved_profile",
+      "evidence_family": "audio_preview_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.preview_indoor_outdoor_transition"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.preview_voice_subtitle_legality",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "Audio Surface > Legality",
+      "action_id": "audio.preview_voice_subtitle_legality.requested",
+      "command_id": "command.audio.preview_voice_subtitle_legality",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioLegalityState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "legality_artifact",
+      "diagnostics_kind": "audio_legality_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio.last_dialogue_context",
+      "evidence_family": "audio_legality_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.preview_voice_subtitle_legality"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_visual_response_family",
+      "source_docs": [
+        "editor/110",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Visual",
+      "action_id": "material.bind_visual_response_family.requested",
+      "command_id": "command.material.bind_visual_response_family",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_visual_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.pre_bind_visual_response_family",
+      "evidence_family": "material_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_visual_response_family",
+        "material_authoring_matrix::bind_visual_response_family"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_acoustic_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Audio",
+      "action_id": "material.bind_acoustic_profile.requested",
+      "command_id": "command.material.bind_acoustic_profile",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_acoustic_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.pre_bind_acoustic_profile",
+      "evidence_family": "material_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_acoustic_profile",
+        "material_authoring_matrix::bind_acoustic_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_light_response",
+      "source_docs": [
+        "editor/110",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Light",
+      "action_id": "material.bind_light_response.requested",
+      "command_id": "command.material.bind_light_response",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_light_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.pre_bind_light_response",
+      "evidence_family": "material_binding_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_light_response",
+        "material_authoring_matrix::bind_light_response"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.inspect_branch_coverage",
+      "source_docs": [
+        "editor/110",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Runtime, Persistence, and Proof",
+      "action_id": "material.inspect_branch_coverage.requested",
+      "command_id": "command.material.inspect_branch_coverage",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialCoverageState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "coverage_artifact",
+      "diagnostics_kind": "material_coverage_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.coverage_view",
+      "evidence_family": "material_coverage_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.inspect_branch_coverage",
+        "material_authoring_matrix::inspect_branch_coverage"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.set_cheap_runtime_rung",
+      "source_docs": [
+        "editor/110",
+        "editor/113"
+      ],
+      "ui_location": "Material Surface > Runtime, Persistence, and Proof",
+      "action_id": "material.set_cheap_runtime_rung.requested",
+      "command_id": "command.material.set_cheap_runtime_rung",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRuntimePostureState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_runtime_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material.pre_set_cheap_runtime_rung",
+      "evidence_family": "material_runtime_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.set_cheap_runtime_rung",
+        "material_authoring_matrix::set_cheap_runtime_rung"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.workspace.open_stage_world",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "open.workspace_stage_world.requested",
+      "command_id": "command.open.workspace_stage_world",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor workspace truth",
+      "owner_state": "editor workspace truth",
+      "publication_kinds": [
+        "ShellChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "no save; shell state only",
+      "diagnostics_kind": "workspace_open_stage_world_diagnostics",
+      "focus_success": "world stage workspace",
+      "focus_retry": "previous stage with same project/world",
+      "focus_failure": "shell with disabled-stage message",
+      "recovery_anchor": "anchor.shell.previous_stage",
+      "evidence_family": "workspace_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.workspace.open_stage_world"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.workspace.open_stage_simulation",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "open.workspace_stage_simulation.requested",
+      "command_id": "command.open.workspace_stage_simulation",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor workspace truth",
+      "owner_state": "editor workspace truth",
+      "publication_kinds": [
+        "ShellChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "no save; shell state only",
+      "diagnostics_kind": "workspace_open_stage_simulation_diagnostics",
+      "focus_success": "simulation stage workspace",
+      "focus_retry": "previous stage with same project/world",
+      "focus_failure": "shell with disabled-stage message",
+      "recovery_anchor": "anchor.shell.previous_stage",
+      "evidence_family": "workspace_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.workspace.open_stage_simulation"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.workspace.open_stage_capture",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "open.workspace_stage_capture.requested",
+      "command_id": "command.open.workspace_stage_capture",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor workspace truth",
+      "owner_state": "editor workspace truth",
+      "publication_kinds": [
+        "ShellChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "no save; shell state only",
+      "diagnostics_kind": "workspace_open_stage_capture_diagnostics",
+      "focus_success": "capture stage workspace",
+      "focus_retry": "previous stage with same project/world",
+      "focus_failure": "shell with disabled-stage message",
+      "recovery_anchor": "anchor.shell.previous_stage",
+      "evidence_family": "workspace_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.workspace.open_stage_capture"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.window.load_workspace_layout",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "load.window_layout.requested",
+      "command_id": "command.load.window_layout",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor layout truth",
+      "owner_state": "editor layout truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no direct save; restored shell layout only",
+      "diagnostics_kind": "window_load_workspace_layout_diagnostics",
+      "focus_success": "shell on restored layout",
+      "focus_retry": "previous layout kept",
+      "focus_failure": "shell with layout-restore blocker",
+      "recovery_anchor": "anchor.shell.last_good_layout",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.window.load_workspace_layout"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.window.save_workspace_layout",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "save.window_layout.requested",
+      "command_id": "command.save.window_layout",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor layout truth",
+      "owner_state": "editor layout truth",
+      "publication_kinds": [
+        "ShellChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "persists editor-local layout only",
+      "diagnostics_kind": "window_save_workspace_layout_diagnostics",
+      "focus_success": "shell with saved layout badge",
+      "focus_retry": "current shell with validation errors if save blocked",
+      "focus_failure": "shell with layout-save blocker",
+      "recovery_anchor": "anchor.shell.last_good_layout",
+      "evidence_family": "window_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.window.save_workspace_layout"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.window.reset_workspace_layout",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "reset.window_layout.requested",
+      "command_id": "command.reset.window_layout",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor layout truth",
+      "owner_state": "editor layout truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no direct save unless operator persists afterward",
+      "diagnostics_kind": "window_reset_workspace_layout_diagnostics",
+      "focus_success": "shell on default layout",
+      "focus_retry": "previous layout kept",
+      "focus_failure": "shell with layout-reset blocker",
+      "recovery_anchor": "anchor.shell.last_good_layout",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.window.reset_workspace_layout"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.window.detach_panel",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor shell",
+      "action_id": "detach.panel.requested",
+      "command_id": "command.detach.panel",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor layout truth",
+      "owner_state": "editor layout truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no direct save unless operator persists layout",
+      "diagnostics_kind": "window_detach_panel_diagnostics",
+      "focus_success": "detached panel host",
+      "focus_retry": "shell before detach",
+      "focus_failure": "shell with detach blocker",
+      "recovery_anchor": "anchor.shell.last_good_layout",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.window.detach_panel"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.viewport_split_vertical",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 115",
+      "action_id": "split.viewport.vertical.requested",
+      "command_id": "command.split.viewport.vertical",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "view_viewport_split_vertical_diagnostics",
+      "focus_success": "split viewport shell",
+      "focus_retry": "single-viewport shell",
+      "focus_failure": "split-view blocker in viewport rail",
+      "recovery_anchor": "anchor.viewport.primary_only",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.viewport_split_vertical"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.view.viewport_split_horizontal",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 115",
+      "action_id": "split.viewport.horizontal.requested",
+      "command_id": "command.split.viewport.horizontal",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "WorkspaceLayoutManager",
+      "owner_state": "ShellLayoutState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "none",
+      "diagnostics_kind": "view_viewport_split_horizontal_diagnostics",
+      "focus_success": "split viewport shell",
+      "focus_retry": "single-viewport shell",
+      "focus_failure": "split-view blocker in viewport rail",
+      "recovery_anchor": "anchor.viewport.primary_only",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.view.viewport_split_horizontal"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.extensions.open_extension_manager",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor 116",
+      "action_id": "open.extension_manager.requested",
+      "command_id": "command.open.extension_manager",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "ExtensionRegistryService",
+      "owner_state": "ExtensionRegistryState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "no save; shell state only",
+      "diagnostics_kind": "extensions_open_extension_manager_diagnostics",
+      "focus_success": "extension manager surface",
+      "focus_retry": "previous surface with same project/world",
+      "focus_failure": "shell with disabled-surface message",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "extensions_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.extensions.open_extension_manager"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.extensions.install_extension_bundle",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor 116",
+      "action_id": "install.extension_bundle.requested",
+      "command_id": "command.install.extension_bundle",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "ExtensionRegistryService",
+      "owner_state": "ExtensionRegistryState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "persists extension bundle metadata; mount remains separate step",
+      "diagnostics_kind": "extensions_install_extension_bundle_diagnostics",
+      "focus_success": "extension manager on installed bundle",
+      "focus_retry": "extension manager before install",
+      "focus_failure": "extension manager with install blocker",
+      "recovery_anchor": "anchor.extension.pre_install",
+      "evidence_family": "extensions_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.extensions.install_extension_bundle"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.extensions.toggle_extension_mount",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor 116",
+      "action_id": "toggle.extension_mount.requested",
+      "command_id": "command.toggle.extension_mount",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "ExtensionRegistryService",
+      "owner_state": "ExtensionRegistryState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "persists extension mount posture in editor-local config",
+      "diagnostics_kind": "extensions_toggle_extension_mount_diagnostics",
+      "focus_success": "extension manager on updated bundle",
+      "focus_retry": "extension manager before toggle",
+      "focus_failure": "extension manager with mount blocker",
+      "recovery_anchor": "anchor.extension.pre_mount_toggle",
+      "evidence_family": "extensions_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.extensions.toggle_extension_mount"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.assistant.open_dock",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor 116",
+      "action_id": "open.assistant_dock.requested",
+      "command_id": "command.open.assistant_dock",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "AssistantSurfaceService",
+      "owner_state": "AssistantProposalState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "no save; shell state only",
+      "diagnostics_kind": "assistant_open_dock_diagnostics",
+      "focus_success": "assistant dock on current context",
+      "focus_retry": "previous surface with same context",
+      "focus_failure": "shell with disabled-surface message",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "assistant_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.assistant.open_dock"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.assistant.apply_proposal",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor 116",
+      "action_id": "apply.assistant_proposal.requested",
+      "command_id": "command.apply.assistant_proposal",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "AssistantSurfaceService",
+      "owner_state": "AssistantProposalState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "persists proposal lineage and rollback anchor; underlying domain save posture remains route-specific",
+      "diagnostics_kind": "assistant_apply_proposal_diagnostics",
+      "focus_success": "affected surface with success summary",
+      "focus_retry": "assistant dock on failed apply",
+      "focus_failure": "assistant dock with blocker trace and affected-route list",
+      "recovery_anchor": "anchor.assistant.last_proposal",
+      "evidence_family": "assistant_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.assistant.apply_proposal"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.assistant.revert_last_apply",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "editor 116",
+      "action_id": "revert.assistant_apply.requested",
+      "command_id": "command.revert.assistant_apply",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "AssistantSurfaceService",
+      "owner_state": "AssistantProposalState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "persists revert lineage only; underlying save posture follows reverted routes",
+      "diagnostics_kind": "assistant_revert_last_apply_diagnostics",
+      "focus_success": "affected surface after revert",
+      "focus_retry": "assistant dock before revert",
+      "focus_failure": "assistant dock with recovery blocker",
+      "recovery_anchor": "anchor.assistant.last_apply_anchor",
+      "evidence_family": "assistant_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.assistant.revert_last_apply"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_destruction",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 120",
+      "action_id": "open.lab_destruction.requested",
+      "command_id": "command.open.lab_destruction",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_destruction_diagnostics",
+      "focus_success": "destruction lab",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_destruction"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_hydrology",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 121",
+      "action_id": "open.lab_hydrology.requested",
+      "command_id": "command.open.lab_hydrology",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_hydrology_diagnostics",
+      "focus_success": "hydrology lab",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_hydrology"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_climate_theater",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 122",
+      "action_id": "open.lab_climate_theater.requested",
+      "command_id": "command.open.lab_climate_theater",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_climate_theater_diagnostics",
+      "focus_success": "climate lab",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_climate_theater"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_society_tactics",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 123",
+      "action_id": "open.lab_society_tactics.requested",
+      "command_id": "command.open.lab_society_tactics",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_society_tactics_diagnostics",
+      "focus_success": "society/tactics suite",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_society_tactics"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_wound_species",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 124",
+      "action_id": "open.lab_wound_species.requested",
+      "command_id": "command.open.lab_wound_species",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_wound_species_diagnostics",
+      "focus_success": "wound/species lab",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_wound_species"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_fur_certification",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 125",
+      "action_id": "open.lab_fur_certification.requested",
+      "command_id": "command.open.lab_fur_certification",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_fur_certification_diagnostics",
+      "focus_success": "fur/cert lab",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_fur_certification"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.lab.open_photoreal_old_floor",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 126",
+      "action_id": "open.lab_photoreal_old_floor.requested",
+      "command_id": "command.open.lab_photoreal_old_floor",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "editor shell truth",
+      "owner_state": "editor shell truth",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "lab_open_photoreal_old_floor_diagnostics",
+      "focus_success": "old-floor cert lab",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.lab.open_photoreal_old_floor"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.playbook.open_first_proof",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "editor 127",
+      "action_id": "open.playbook_first_proof.requested",
+      "command_id": "command.open.playbook_first_proof",
+      "envelope_type": "ShellCommandEnvelope",
+      "executor_module": "common::executor_shell",
+      "owner_service": "AssistantSurfaceService",
+      "owner_state": "PlaybookState",
+      "publication_kinds": [
+        "ShellChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "no save",
+      "diagnostics_kind": "playbook_open_first_proof_diagnostics",
+      "focus_success": "first-proof playbook",
+      "focus_retry": "previous surface",
+      "focus_failure": "shell blocker pane",
+      "recovery_anchor": "anchor.shell.previous_surface",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.playbook.open_first_proof"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.assign_material_set",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 119",
+      "action_id": "assign.terrain_material_set.requested",
+      "command_id": "command.assign.terrain_material_set",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "pending-save terrain/world",
+      "diagnostics_kind": "terrain_assign_material_set_diagnostics",
+      "focus_success": "terrain material lab",
+      "focus_retry": "terrain material lab with blocker row",
+      "focus_failure": "inspector blocker pane",
+      "recovery_anchor": "anchor.terrain.last_good_material_set",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.assign_material_set"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.destruction.bind_topology_profile",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 120",
+      "action_id": "bind.load_path_profile.requested",
+      "command_id": "command.bind.load_path_profile",
+      "envelope_type": "WorldCommandEnvelope",
+      "executor_module": "world::executor_world",
+      "owner_service": "DestructionAuthoringService",
+      "owner_state": "DestructionTopologyState",
+      "publication_kinds": [
+        "WorldChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "pending-save world",
+      "diagnostics_kind": "destruction_bind_topology_profile_diagnostics",
+      "focus_success": "destruction lab",
+      "focus_retry": "destruction lab with blocker row",
+      "focus_failure": "collapse blocker pane",
+      "recovery_anchor": "anchor.destruction.last_good_topology",
+      "evidence_family": "destruction_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.destruction.bind_topology_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.hydrology.edit_container_state",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 121",
+      "action_id": "author.rule.requested",
+      "command_id": "command.author.rule",
+      "envelope_type": "EnvironmentCommandEnvelope",
+      "executor_module": "environment::executor_environment",
+      "owner_service": "HydrologyAuthoringService",
+      "owner_state": "HydrologyState",
+      "publication_kinds": [
+        "EnvironmentChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "pending-save world",
+      "diagnostics_kind": "hydrology_edit_container_state_diagnostics",
+      "focus_success": "hydrology lab",
+      "focus_retry": "hydrology lab with blocker row",
+      "focus_failure": "mass-ledger blocker pane",
+      "recovery_anchor": "anchor.hydrology.last_good_container",
+      "evidence_family": "hydrology_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.hydrology.edit_container_state"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.climate.inject_front",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 122",
+      "action_id": "inject.weather_front.requested",
+      "command_id": "command.inject.weather_front",
+      "envelope_type": "EnvironmentCommandEnvelope",
+      "executor_module": "environment::executor_environment",
+      "owner_service": "EnvironmentAuthoringService",
+      "owner_state": "ClimateState",
+      "publication_kinds": [
+        "EnvironmentChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "pending-save world",
+      "diagnostics_kind": "climate_inject_front_diagnostics",
+      "focus_success": "climate lab",
+      "focus_retry": "climate lab with blocker row",
+      "focus_failure": "arrival blocker pane",
+      "recovery_anchor": "anchor.climate.last_good_front",
+      "evidence_family": "climate_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.climate.inject_front"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.cert.run_old_hardware_photoreal_pack",
+      "source_docs": [
+        "editor/110"
+      ],
+      "ui_location": "editor 126",
+      "action_id": "certify.old_hardware_photoreal_pack.requested",
+      "command_id": "command.certify.old_hardware_photoreal_pack",
+      "envelope_type": "DiagnosticsCommandEnvelope",
+      "executor_module": "build::executor_build",
+      "owner_service": "CertificationService",
+      "owner_state": "CertificationState",
+      "publication_kinds": [
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "retained artifact mandatory",
+      "diagnostics_kind": "cert_run_old_hardware_photoreal_pack_diagnostics",
+      "focus_success": "certification review rail",
+      "focus_retry": "certification lab with blocker row",
+      "focus_failure": "cert blocker board",
+      "recovery_anchor": "anchor.cert.last_good_old_floor",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.cert.run_old_hardware_photoreal_pack"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.inspect_bus_ducking",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/113"
+      ],
+      "ui_location": "audio > inspect_bus_ducking",
+      "action_id": "audio.inspect_bus_ducking.requested",
+      "command_id": "command.audio.inspect_bus_ducking",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioAuthoringState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "audio_profile",
+      "diagnostics_kind": "audio_inspect_bus_ducking_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio_inspect_bus_ducking",
+      "evidence_family": "audio_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.inspect_bus_ducking"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.audio.inspect_listener_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/113"
+      ],
+      "ui_location": "audio > inspect_listener_profile",
+      "action_id": "audio.inspect_listener_profile.requested",
+      "command_id": "command.audio.inspect_listener_profile",
+      "envelope_type": "AudioCommandEnvelope",
+      "executor_module": "audio::executor_audio",
+      "owner_service": "AudioAuthoringService",
+      "owner_state": "AudioAuthoringState",
+      "publication_kinds": [
+        "AudioChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "audio_profile",
+      "diagnostics_kind": "audio_inspect_listener_profile_diagnostics",
+      "focus_success": "audio",
+      "focus_retry": "audio",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.audio_inspect_listener_profile",
+      "evidence_family": "audio_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.audio.inspect_listener_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.import.heightmap_source",
+      "source_docs": [
+        "editor/110",
+        "editor/112"
+      ],
+      "ui_location": "import > heightmap_source",
+      "action_id": "import.heightmap_source.requested",
+      "command_id": "command.import.heightmap_source",
+      "envelope_type": "ImportCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "ImportExportPipelineService",
+      "owner_state": "ImportSourceState",
+      "publication_kinds": [
+        "ShellChanged"
+      ],
+      "persistence_kind": "import_session",
+      "diagnostics_kind": "import_heightmap_source_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.import_heightmap_source",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.import.heightmap_source"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.assign_archetype",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > assign_archetype",
+      "action_id": "material.assign_archetype.requested",
+      "command_id": "command.material.assign_archetype",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_assign_archetype_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_assign_archetype",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.material.assign_archetype"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_response_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > bind_response_profile",
+      "action_id": "material.bind_response_profile.requested",
+      "command_id": "command.material.bind_response_profile",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_bind_response_profile_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_bind_response_profile",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_response_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_surface_family",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > bind_surface_family",
+      "action_id": "material.bind_surface_family.requested",
+      "command_id": "command.material.bind_surface_family",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_bind_surface_family_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_bind_surface_family",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_surface_family"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.bind_texture_stack",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > bind_texture_stack",
+      "action_id": "material.bind_texture_stack.requested",
+      "command_id": "command.material.bind_texture_stack",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_bind_texture_stack_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_bind_texture_stack",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.material.bind_texture_stack"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.capture_proof_artifacts",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > capture_proof_artifacts",
+      "action_id": "material.capture_proof_artifacts.requested",
+      "command_id": "command.material.capture_proof_artifacts",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_capture_proof_artifacts_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_capture_proof_artifacts",
+      "evidence_family": "material_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.capture_proof_artifacts"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.new_profile",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "material > new_profile",
+      "action_id": "material.new_profile.requested",
+      "command_id": "command.material.new_profile",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_new_profile_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_new_profile",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.material.new_profile"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.preview_blast",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > preview_blast",
+      "action_id": "material.preview_blast.requested",
+      "command_id": "command.material.preview_blast",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_preview_blast_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_preview_blast",
+      "evidence_family": "material_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.preview_blast"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.preview_bullet_hit",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > preview_bullet_hit",
+      "action_id": "material.preview_bullet_hit.requested",
+      "command_id": "command.material.preview_bullet_hit",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_preview_bullet_hit_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_preview_bullet_hit",
+      "evidence_family": "material_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.preview_bullet_hit"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.preview_wetness",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > preview_wetness",
+      "action_id": "material.preview_wetness.requested",
+      "command_id": "command.material.preview_wetness",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_preview_wetness_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_preview_wetness",
+      "evidence_family": "material_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.preview_wetness"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.review_freeze_blockers",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112",
+        "editor/113"
+      ],
+      "ui_location": "material > review_freeze_blockers",
+      "action_id": "material.review_freeze_blockers.requested",
+      "command_id": "command.material.review_freeze_blockers",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged",
+        "EvidenceChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_review_freeze_blockers_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_review_freeze_blockers",
+      "evidence_family": "material_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.material.review_freeze_blockers"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.material.save_profile_as",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "material > save_profile_as",
+      "action_id": "material.save_profile_as.requested",
+      "command_id": "command.material.save_profile_as",
+      "envelope_type": "MaterialCommandEnvelope",
+      "executor_module": "material::executor_material",
+      "owner_service": "MaterialAuthoringService",
+      "owner_state": "MaterialRegistryState",
+      "publication_kinds": [
+        "MaterialChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "material_profile",
+      "diagnostics_kind": "material_save_profile_as_diagnostics",
+      "focus_success": "material",
+      "focus_retry": "material",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.material_save_profile_as",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.material.save_profile_as"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.project.new_project",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "project > new_project",
+      "action_id": "project.new_project.requested",
+      "command_id": "command.project.new_project",
+      "envelope_type": "ProjectCommandEnvelope",
+      "executor_module": "project::executor_project",
+      "owner_service": "ProjectBootstrapService",
+      "owner_state": "ProjectDocument",
+      "publication_kinds": [
+        "ProjectChanged",
+        "ShellChanged"
+      ],
+      "persistence_kind": "project_document",
+      "diagnostics_kind": "project_new_project_diagnostics",
+      "focus_success": "project",
+      "focus_retry": "project",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.project_new_project",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.project.new_project"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.project.open_project",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "project > open_project",
+      "action_id": "project.open_project.requested",
+      "command_id": "command.project.open_project",
+      "envelope_type": "ProjectCommandEnvelope",
+      "executor_module": "project::executor_project",
+      "owner_service": "ProjectBootstrapService",
+      "owner_state": "ProjectDocument",
+      "publication_kinds": [
+        "ProjectChanged",
+        "ShellChanged"
+      ],
+      "persistence_kind": "project_document",
+      "diagnostics_kind": "project_open_project_diagnostics",
+      "focus_success": "project",
+      "focus_retry": "project",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.project_open_project",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.project.open_project"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.project.save_project",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "project > save_project",
+      "action_id": "project.save_project.requested",
+      "command_id": "command.project.save_project",
+      "envelope_type": "ProjectCommandEnvelope",
+      "executor_module": "project::executor_project",
+      "owner_service": "ProjectBootstrapService",
+      "owner_state": "ProjectDocument",
+      "publication_kinds": [
+        "ProjectChanged",
+        "ShellChanged"
+      ],
+      "persistence_kind": "project_document",
+      "diagnostics_kind": "project_save_project_diagnostics",
+      "focus_success": "project",
+      "focus_retry": "project",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.project_save_project",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.project.save_project"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.project.save_project_as",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "project > save_project_as",
+      "action_id": "project.save_project_as.requested",
+      "command_id": "command.project.save_project_as",
+      "envelope_type": "ProjectCommandEnvelope",
+      "executor_module": "project::executor_project",
+      "owner_service": "ProjectBootstrapService",
+      "owner_state": "ProjectDocument",
+      "publication_kinds": [
+        "ProjectChanged",
+        "ShellChanged"
+      ],
+      "persistence_kind": "project_document",
+      "diagnostics_kind": "project_save_project_as_diagnostics",
+      "focus_success": "project",
+      "focus_retry": "project",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.project_save_project_as",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.project.save_project_as"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.flatten_patch",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "terrain > flatten_patch",
+      "action_id": "terrain.flatten_patch.requested",
+      "command_id": "command.terrain.flatten_patch",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_flatten_patch_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_flatten_patch",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.flatten_patch"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.import_heightmap",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "terrain > import_heightmap",
+      "action_id": "terrain.import_heightmap.requested",
+      "command_id": "command.terrain.import_heightmap",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "ImportExportPipelineService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_import_heightmap_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_import_heightmap",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.import_heightmap"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.load_chunks",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "terrain > load_chunks",
+      "action_id": "terrain.load_chunks.requested",
+      "command_id": "command.terrain.load_chunks",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_load_chunks_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_load_chunks",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.load_chunks"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.paint_biome_mask",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "terrain > paint_biome_mask",
+      "action_id": "terrain.paint_biome_mask.requested",
+      "command_id": "command.terrain.paint_biome_mask",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_paint_biome_mask_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_paint_biome_mask",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.paint_biome_mask"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.paint_layer",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "terrain > paint_layer",
+      "action_id": "terrain.paint_layer.requested",
+      "command_id": "command.terrain.paint_layer",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_paint_layer_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_paint_layer",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.paint_layer"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.rebuild_chunks",
+      "source_docs": [
+        "editor/110",
+        "editor/111"
+      ],
+      "ui_location": "terrain > rebuild_chunks",
+      "action_id": "terrain.rebuild_chunks.requested",
+      "command_id": "command.terrain.rebuild_chunks",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_rebuild_chunks_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_rebuild_chunks",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.rebuild_chunks"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.save_chunks",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "terrain > save_chunks",
+      "action_id": "terrain.save_chunks.requested",
+      "command_id": "command.terrain.save_chunks",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_save_chunks_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_save_chunks",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.save_chunks"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.terrain.sculpt_primary",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "terrain > sculpt_primary",
+      "action_id": "terrain.sculpt_primary.requested",
+      "command_id": "command.terrain.sculpt_primary",
+      "envelope_type": "TerrainCommandEnvelope",
+      "executor_module": "terrain::executor_terrain",
+      "owner_service": "TerrainAuthoringService",
+      "owner_state": "TerrainTruthState",
+      "publication_kinds": [
+        "TerrainChanged",
+        "DiagnosticsChanged"
+      ],
+      "persistence_kind": "terrain_chunks",
+      "diagnostics_kind": "terrain_sculpt_primary_diagnostics",
+      "focus_success": "terrain",
+      "focus_retry": "terrain",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.terrain_sculpt_primary",
+      "evidence_family": "terrain_artifact",
+      "test_ids": [
+        "editor_command_matrix::btn.terrain.sculpt_primary"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.world.open_world_package",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "world > open_world_package",
+      "action_id": "world.open_world_package.requested",
+      "command_id": "command.world.open_world_package",
+      "envelope_type": "WorldCommandEnvelope",
+      "executor_module": "world::executor_world",
+      "owner_service": "WorldLifecycleService",
+      "owner_state": "WorldPackageState",
+      "publication_kinds": [
+        "WorldChanged",
+        "ShellChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "world_open_world_package_diagnostics",
+      "focus_success": "viewport",
+      "focus_retry": "viewport",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.world_open_world_package",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.world.open_world_package"
+      ],
+      "status": "cataloged"
+    },
+    {
+      "button_id": "btn.world.save_world_package",
+      "source_docs": [
+        "editor/110",
+        "editor/111",
+        "editor/112"
+      ],
+      "ui_location": "world > save_world_package",
+      "action_id": "world.save_world_package.requested",
+      "command_id": "command.world.save_world_package",
+      "envelope_type": "WorldCommandEnvelope",
+      "executor_module": "world::executor_world",
+      "owner_service": "WorldLifecycleService",
+      "owner_state": "WorldPackageState",
+      "publication_kinds": [
+        "WorldChanged",
+        "ShellChanged"
+      ],
+      "persistence_kind": "world_package",
+      "diagnostics_kind": "world_save_world_package_diagnostics",
+      "focus_success": "viewport",
+      "focus_retry": "viewport",
+      "focus_failure": "diagnostics",
+      "recovery_anchor": "anchor.world_save_world_package",
+      "evidence_family": "none",
+      "test_ids": [
+        "editor_command_matrix::btn.world.save_world_package"
+      ],
+      "status": "cataloged"
+    }
+  ]
+}
+

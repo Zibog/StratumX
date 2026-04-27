@@ -1,0 +1,13 @@
+[package]
+name = "sdk_tooling_link_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dev-dependencies]
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+engine_runtime = { path = "../../../2.engine/l1-runtime-kernel/runtime" }
+proptest.workspace = true

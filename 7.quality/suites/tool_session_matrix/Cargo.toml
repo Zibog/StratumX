@@ -1,0 +1,16 @@
+[package]
+name = "tool_session_matrix"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["StratumX Contributors"]
+rust-version = "1.81"
+publish = false
+
+[dependencies]
+stratumx_tooling_l6_0_tool_session = { path = "../../../4.tooling/l6.0-tool-session" }
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+link_ingress_packets = { path = "../../../3.sdk/l5.0-link-ingress-packets" }
+proptest = "1.5"
+serde_json = "1.0"
+uuid = { version = "1.0", features = ["v4", "serde"] }

@@ -1,0 +1,9 @@
+[package]
+name = "stratumx_quality_sdk_compat_matrix"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sdk_compat = { path = "../../../3.sdk/l5-compat" }
+
+[dev-dependencies]

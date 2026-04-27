@@ -1,0 +1,30 @@
+[package]
+name = "stratumx-editor-l8-1-viewport-system"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid = { workspace = true, features = ["v4"] }
+editor_dto_law = { path = "../../3.sdk/l5.9-editor-dto-law" }
+stratumx_tooling = { package = "stratumx_tooling_l6_0_tool_session", path = "../../4.tooling/l6.0-tool-session" }
+engine_world = { path = "../../2.engine/l0-world-truth" }
+engine_material = { path = "../../2.engine/l0.5-shared-world-property-substrate" }
+image = { version = "0.25", default-features = false, features = ["png"] }
+egui = { workspace = true, optional = true }
+eframe = { workspace = true, optional = true, features = ["wgpu"] }
+wgpu = { workspace = true, optional = true }
+bytemuck = { version = "1.21", features = ["derive"], optional = true }
+glam = { workspace = true, optional = true }
+
+[features]
+desktop = ["dep:egui", "dep:eframe", "dep:wgpu", "dep:bytemuck", "dep:glam"]
+
+[dev-dependencies]
+proptest = "1.4"
+
+[lib]
+path = "src/editor_viewport_system.rs"

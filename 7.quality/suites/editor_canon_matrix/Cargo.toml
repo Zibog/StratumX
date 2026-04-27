@@ -1,0 +1,34 @@
+[package]
+name = "editor_canon_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+stratumx-editor-l8-0-editor-shell = { path = "../../../5.editor/l8.0-editor-shell" }
+engine_imaging = { path = "../../../2.engine/l3.1-synthesis-systems/imaging" }
+engine_acoustics = { path = "../../../2.engine/l3.1-synthesis-systems/acoustics" }
+engine_animation = { path = "../../../2.engine/l3.1-synthesis-systems/animation" }
+engine_world = { path = "../../../2.engine/l0-world-truth" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+engine_memory_control = { path = "../../../2.engine/l1.5-runtime-resource-services/memory-control" }
+engine_agents = { path = "../../../2.engine/l2-critical-simulation-families/agents" }
+engine_core = { path = "../../../2.engine/l-1-foundation" }
+engine_startup = { path = "../../../2.engine/l4-startup" }
+stratumx_tooling_l6_7_tool_evidence_capture = { path = "../../../4.tooling/l6.7-tool-evidence-capture" }
+stratumx_tooling_l6_14_release_runtime = { path = "../../../4.tooling/l6.14-release-runtime" }
+stratumx_tooling_l6_0_tool_session = { path = "../../../4.tooling/l6.0-tool-session" }
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+stratumx_tooling_l6_12_preview_runtime = { path = "../../../4.tooling/l6.12-preview-runtime" }
+link_ingress_packets = { path = "../../../3.sdk/l5.0-link-ingress-packets" }
+link_egress_observations = { path = "../../../3.sdk/l5.2-link-egress-observations" }
+
+[dev-dependencies]
+serde_json.workspace = true
+uuid.workspace = true
+editor_dto_law = { path = "../../../3.sdk/l5.9-editor-dto-law" }
+tempfile = "3"
+proptest.workspace = true

@@ -1,0 +1,15 @@
+[package]
+name = "stratumx-editor-l9-3-material-lookdev-authoring-suite"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+editor_dto_law = { path = "../../3.sdk/l5.9-editor-dto-law" }
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+proptest = "1.4"

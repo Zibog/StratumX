@@ -1,0 +1,19 @@
+[package]
+name = "engine_world_region"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Region geometry and partition management"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["world", "region", "stratumx"]
+categories = ["game-development", "data-structures"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_world_spatial = { path = "../l-0.1-world-spatial" }
+serde.workspace = true
+bitflags = { workspace = true, features = ["serde"] }
+
+

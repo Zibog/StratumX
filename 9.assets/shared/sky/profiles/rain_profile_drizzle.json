@@ -1,0 +1,9 @@
+{
+  "profile_name": "Light Drizzle",
+  "intensity_mm_per_hour": 2.5,
+  "droplet_size_mm": 0.5,
+  "wind_influence": 0.6,
+  "wetness_accumulation_rate": 0.1,
+  "surface_response": "light_wetness",
+  "sound_intensity": 0.3
+}

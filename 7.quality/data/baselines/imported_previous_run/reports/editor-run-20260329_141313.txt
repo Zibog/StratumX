@@ -1,0 +1,48 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260329141313
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\scripts\run-editor-with-trace.ps1
+Process ID: 2348
+PSVersion: 5.1.28000.1516
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.28000.1516
+BuildVersion: 10.0.28000.1516
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is E:\Development\gold\scripts\..\artifacts\reports\editor-run-20260329_141313.txt
+   Compiling stratumx_editor_app v0.1.0 (E:\Development\gold\6.apps\editor\stratumx_editor_app)
+error[E0689]: can't call method `min` on ambiguous numeric type `{float}`
+   --> 6.apps\editor\stratumx_editor_app\src\main.rs:145:31
+    |
+145 |                 min_h = min_h.min(*h);
+    |                               ^^^
+    |
+help: you must specify a type for this binding, like `f32`
+    |
+141 |             let mut min_h: f32 = 0.0;
+    |                          +++++
+
+error[E0689]: can't call method `max` on ambiguous numeric type `{float}`
+   --> 6.apps\editor\stratumx_editor_app\src\main.rs:146:31
+    |
+146 |                 max_h = max_h.max(*h);
+    |                               ^^^
+    |
+help: you must specify a type for this binding, like `f32`
+    |
+142 |             let mut max_h: f32 = 0.0;
+    |                          +++++
+
+For more information about this error, try `rustc --explain E0689`.
+error: could not compile `stratumx_editor_app` (bin "stratumx_editor_app") due to 2 previous errors
+**********************
+Windows PowerShell transcript end
+End time: 20260329141314
+**********************

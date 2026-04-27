@@ -1,0 +1,10 @@
+{
+  "profile_name": "Storm Rain",
+  "intensity_mm_per_hour": 40.0,
+  "droplet_size_mm": 3.0,
+  "wind_influence": 0.9,
+  "wetness_accumulation_rate": 0.5,
+  "surface_response": "heavy_wetness_puddles",
+  "sound_intensity": 0.9,
+  "splash_particles": true
+}

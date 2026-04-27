@@ -1,0 +1,24 @@
+[package]
+name = "sdk_canon_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+bincode.workspace = true
+editor_dto_law = { path = "../../../3.sdk/l5.9-editor-dto-law" }
+engine_handle_refs = { path = "../../../3.sdk/l5.10-engine-handle-refs" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+legality_gates = { path = "../../../3.sdk/l5.9-legality-gates" }
+link_egress_observations = { path = "../../../3.sdk/l5.2-link-egress-observations" }
+link_ingress_controls = { path = "../../../3.sdk/l5.1-link-ingress-controls" }
+link_ingress_packets = { path = "../../../3.sdk/l5.0-link-ingress-packets" }
+sdk_compat = { path = "../../../3.sdk/l5-compat" }
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+stratumx_editor_l9_2_terrain_landscape_authoring_suite = { package = "stratumx-editor-l9-2-terrain-landscape-authoring-suite", path = "../../../5.editor/l9.2-terrain-landscape-authoring-suite" }
+transport_policies = { path = "../../../3.sdk/l5.8-transport-policies" }
+proptest.workspace = true

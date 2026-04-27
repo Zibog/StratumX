@@ -1,0 +1,2 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
+     Running `target\debug\stratumx_quality_tasks.exe evidence`

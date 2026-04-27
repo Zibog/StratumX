@@ -1,0 +1,22 @@
+[package]
+name = "engine_runtime"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Runtime kernel with tick phases and execution"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["runtime", "kernel", "stratumx"]
+categories = ["game-development", "concurrency"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_ecs = { path = "../../l-0.2-ecs-assembly" }
+engine_world = { path = "../../l0-world-truth" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_runtime.rs"

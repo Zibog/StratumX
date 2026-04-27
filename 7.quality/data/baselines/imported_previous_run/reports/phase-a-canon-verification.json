@@ -1,0 +1,362 @@
+{
+  "canonical_crate_count": 32,
+  "workspace_member_count": 44,
+  "missing_members": [
+    "2.engine/l-1-foundation/core/engine_core",
+    "2.engine/l-0.9-identity/identity/engine_identity",
+    "2.engine/l-0.8-handle/handle/engine_handle",
+    "2.engine/l-0.7-storage-layout/storage-layout/engine_storage_layout",
+    "2.engine/l-0.6-storage-access/storage-access/engine_storage_access",
+    "2.engine/l-0.5-storage-mutation/storage-mutation/engine_storage_mutation",
+    "2.engine/l-0.4-ecs-registry/ecs-registry/engine_ecs_registry",
+    "2.engine/l-0.3-ecs-query/ecs-query/engine_ecs_query",
+    "2.engine/l-0.2-ecs-assembly/ecs/engine_ecs",
+    "2.engine/l-0.1-world-spatial/world-spatial/engine_world_spatial",
+    "2.engine/l-0.05-world-region/world-region/engine_world_region",
+    "2.engine/l0-world-truth/world/engine_world",
+    "2.engine/l0.5-shared-world-property-substrate/material/engine_material",
+    "2.engine/l1-runtime-kernel/runtime/engine_runtime",
+    "2.engine/l1-runtime-kernel/runtime-headless/engine_runtime_headless",
+    "2.engine/l1-runtime-kernel/runtime-realtime/engine_runtime_realtime",
+    "2.engine/l1.5-runtime-resource-services/stream-control/engine_stream_control",
+    "2.engine/l1.5-runtime-resource-services/residency-control/engine_residency_control",
+    "2.engine/l1.5-runtime-resource-services/memory-control/engine_memory_control",
+    "2.engine/l1.5-runtime-resource-services/transfer-control/engine_transfer_control",
+    "2.engine/l2-critical-simulation-families/kinetics/engine_kinetics",
+    "2.engine/l2-critical-simulation-families/field/engine_field",
+    "2.engine/l2-critical-simulation-families/agents/engine_agents",
+    "2.engine/l2.5-network-runtime-services/net-transport/engine_net_transport",
+    "2.engine/l2.5-network-runtime-services/net-sync/engine_net_sync",
+    "2.engine/l2.5-network-runtime-services/net-latency/engine_net_latency",
+    "2.engine/l3.0-model-systems/inference/engine_inference",
+    "2.engine/l3.0-model-systems/generation/engine_generation",
+    "2.engine/l3.1-synthesis-systems/imaging/engine_imaging",
+    "2.engine/l3.1-synthesis-systems/acoustics/engine_acoustics",
+    "2.engine/l3.2-resource-systems/content/engine_content",
+    "2.engine/l4-startup/startup/engine_startup"
+  ],
+  "missing_files": [
+    "2.engine/l-1-foundation/core/engine_core",
+    "2.engine/l-0.9-identity/identity/engine_identity",
+    "2.engine/l-0.8-handle/handle/engine_handle",
+    "2.engine/l-0.7-storage-layout/storage-layout/engine_storage_layout",
+    "2.engine/l-0.6-storage-access/storage-access/engine_storage_access",
+    "2.engine/l-0.5-storage-mutation/storage-mutation/engine_storage_mutation",
+    "2.engine/l-0.4-ecs-registry/ecs-registry/engine_ecs_registry",
+    "2.engine/l-0.3-ecs-query/ecs-query/engine_ecs_query",
+    "2.engine/l-0.2-ecs-assembly/ecs/engine_ecs",
+    "2.engine/l-0.1-world-spatial/world-spatial/engine_world_spatial",
+    "2.engine/l-0.05-world-region/world-region/engine_world_region",
+    "2.engine/l0-world-truth/world/engine_world",
+    "2.engine/l0.5-shared-world-property-substrate/material/engine_material",
+    "2.engine/l1-runtime-kernel/runtime/engine_runtime",
+    "2.engine/l1-runtime-kernel/runtime-headless/engine_runtime_headless",
+    "2.engine/l1-runtime-kernel/runtime-realtime/engine_runtime_realtime",
+    "2.engine/l1.5-runtime-resource-services/stream-control/engine_stream_control",
+    "2.engine/l1.5-runtime-resource-services/residency-control/engine_residency_control",
+    "2.engine/l1.5-runtime-resource-services/memory-control/engine_memory_control",
+    "2.engine/l1.5-runtime-resource-services/transfer-control/engine_transfer_control",
+    "2.engine/l2-critical-simulation-families/kinetics/engine_kinetics",
+    "2.engine/l2-critical-simulation-families/field/engine_field",
+    "2.engine/l2-critical-simulation-families/agents/engine_agents",
+    "2.engine/l2.5-network-runtime-services/net-transport/engine_net_transport",
+    "2.engine/l2.5-network-runtime-services/net-sync/engine_net_sync",
+    "2.engine/l2.5-network-runtime-services/net-latency/engine_net_latency",
+    "2.engine/l3.0-model-systems/inference/engine_inference",
+    "2.engine/l3.0-model-systems/generation/engine_generation",
+    "2.engine/l3.1-synthesis-systems/imaging/engine_imaging",
+    "2.engine/l3.1-synthesis-systems/acoustics/engine_acoustics",
+    "2.engine/l3.2-resource-systems/content/engine_content",
+    "2.engine/l4-startup/startup/engine_startup"
+  ],
+  "rows": [
+    {
+      "crate": "engine_core",
+      "path": "2.engine/l-1-foundation/core/engine_core",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_identity",
+      "path": "2.engine/l-0.9-identity/identity/engine_identity",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_handle",
+      "path": "2.engine/l-0.8-handle/handle/engine_handle",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_storage_layout",
+      "path": "2.engine/l-0.7-storage-layout/storage-layout/engine_storage_layout",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_storage_access",
+      "path": "2.engine/l-0.6-storage-access/storage-access/engine_storage_access",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_storage_mutation",
+      "path": "2.engine/l-0.5-storage-mutation/storage-mutation/engine_storage_mutation",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_ecs_registry",
+      "path": "2.engine/l-0.4-ecs-registry/ecs-registry/engine_ecs_registry",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_ecs_query",
+      "path": "2.engine/l-0.3-ecs-query/ecs-query/engine_ecs_query",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_ecs",
+      "path": "2.engine/l-0.2-ecs-assembly/ecs/engine_ecs",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_world_spatial",
+      "path": "2.engine/l-0.1-world-spatial/world-spatial/engine_world_spatial",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_world_region",
+      "path": "2.engine/l-0.05-world-region/world-region/engine_world_region",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_world",
+      "path": "2.engine/l0-world-truth/world/engine_world",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_material",
+      "path": "2.engine/l0.5-shared-world-property-substrate/material/engine_material",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_runtime",
+      "path": "2.engine/l1-runtime-kernel/runtime/engine_runtime",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_runtime_headless",
+      "path": "2.engine/l1-runtime-kernel/runtime-headless/engine_runtime_headless",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_runtime_realtime",
+      "path": "2.engine/l1-runtime-kernel/runtime-realtime/engine_runtime_realtime",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_stream_control",
+      "path": "2.engine/l1.5-runtime-resource-services/stream-control/engine_stream_control",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_residency_control",
+      "path": "2.engine/l1.5-runtime-resource-services/residency-control/engine_residency_control",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_memory_control",
+      "path": "2.engine/l1.5-runtime-resource-services/memory-control/engine_memory_control",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_transfer_control",
+      "path": "2.engine/l1.5-runtime-resource-services/transfer-control/engine_transfer_control",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_kinetics",
+      "path": "2.engine/l2-critical-simulation-families/kinetics/engine_kinetics",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_field",
+      "path": "2.engine/l2-critical-simulation-families/field/engine_field",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_agents",
+      "path": "2.engine/l2-critical-simulation-families/agents/engine_agents",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_net_transport",
+      "path": "2.engine/l2.5-network-runtime-services/net-transport/engine_net_transport",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_net_sync",
+      "path": "2.engine/l2.5-network-runtime-services/net-sync/engine_net_sync",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_net_latency",
+      "path": "2.engine/l2.5-network-runtime-services/net-latency/engine_net_latency",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_inference",
+      "path": "2.engine/l3.0-model-systems/inference/engine_inference",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_generation",
+      "path": "2.engine/l3.0-model-systems/generation/engine_generation",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_imaging",
+      "path": "2.engine/l3.1-synthesis-systems/imaging/engine_imaging",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_acoustics",
+      "path": "2.engine/l3.1-synthesis-systems/acoustics/engine_acoustics",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_content",
+      "path": "2.engine/l3.2-resource-systems/content/engine_content",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    },
+    {
+      "crate": "engine_startup",
+      "path": "2.engine/l4-startup/startup/engine_startup",
+      "in_workspace": false,
+      "cargo_toml": false,
+      "lib_rs": false,
+      "tests_dir": false,
+      "status": "fail"
+    }
+  ]
+}

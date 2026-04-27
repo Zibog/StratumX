@@ -1,0 +1,33 @@
+**********************
+PowerShell transcript start
+Start time: 20260330061146
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Program Files\WindowsApps\Microsoft.PowerShell_7.5.5.0_x64__8wekyb3d8bbwe\pwsh.dll -noexit -command try { . "c:\Users\CheCat\AppData\Local\Programs\Microsoft VS Code\ce099c1ed2\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 28220
+PSVersion: 7.5.5
+PSEdition: Core
+GitCommitId: 7.5.5
+OS: Microsoft Windows 10.0.28000
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is E:\Development\goldeditor\artifacts\reports\editor-compile-fix-v1-check.txt
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+]633;D]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cd E:\Development\goldeditor
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cargo check -p stratumx_editor
+
+]633;D;1]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+]633;D]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>Stop-Transcript
+**********************
+PowerShell transcript end
+End time: 20260330061148
+**********************

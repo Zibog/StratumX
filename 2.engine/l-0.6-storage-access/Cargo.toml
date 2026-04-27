@@ -1,0 +1,19 @@
+[package]
+name = "engine_storage_access"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Read views and write windows for ECS access patterns"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["ecs", "access", "stratumx"]
+categories = ["data-structures", "game-development"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_handle = { path = "../l-0.8-handle" }
+engine_storage_layout = { path = "../l-0.7-storage-layout" }
+bitflags.workspace = true
+smallvec.workspace = true
+serde.workspace = true

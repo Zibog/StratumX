@@ -1,0 +1,16 @@
+[package]
+name = "stratumx-editor-l8-2-outliner-system"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+eframe = { workspace = true, optional = true }
+
+[features]
+desktop = ["dep:eframe"]
+
+[lib]
+path = "src/editor_outliner_system.rs"

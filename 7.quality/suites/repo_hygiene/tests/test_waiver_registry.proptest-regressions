@@ -1,0 +1,8 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 856e5711cff7bb77d6738c8c5a253e7b619a81ac1c0a3aea55b2b1e7f28e10fd # shrinks to entries = [WaiverEntry { path: "a.rs", justification: " " }]
+cc b4bcc44393c56881edb689abf4028846454c40e08207728fa0176427cda3cdf1 # shrinks to registry = WaiverRegistry { line_limit_waivers: [WaiverEntry { path: "//_/.rs", justification: "0" }], allow_attr_waivers: [] }

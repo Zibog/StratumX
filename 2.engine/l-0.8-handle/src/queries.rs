@@ -1,0 +1,1 @@
+// Query and accessor functionality.

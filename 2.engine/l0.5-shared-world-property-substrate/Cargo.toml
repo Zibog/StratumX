@@ -1,0 +1,21 @@
+[package]
+name = "engine_material"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Shared world property substrate including hydrology, fire, storm"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["material", "simulation", "stratumx"]
+categories = ["game-development", "science"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_handle = { path = "../l-0.8-handle" }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+thiserror = "1.0"
+
+[lib]
+path = "src/lib.rs"

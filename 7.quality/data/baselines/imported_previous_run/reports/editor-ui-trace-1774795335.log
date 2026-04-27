@@ -1,0 +1,23 @@
+1774795335457	editor	session	trace file created
+1774795335462	terrain	create	terrain-root ObjectHandle(<opaque:db30eb0519197f1c>)
+1774795335463	editor	status	terrain actor created
+1774795335464	editor	status	UE-like level editor shell initialised
+1774795352894	selection	select	ObjectHandle(<opaque:55d754f7c9ed6591>)
+1774795352896	editor	status	selected ObjectHandle(<opaque:55d754f7c9ed6591>)
+1774795353428	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)
+1774795353429	editor	status	selected ObjectHandle(<opaque:fd8c671699409cfa>)
+1774795353801	selection	select	ObjectHandle(<opaque:a4d31070d122b816>)
+1774795353802	editor	status	selected ObjectHandle(<opaque:a4d31070d122b816>)
+1774795354155	selection	select	ObjectHandle(<opaque:1e9f734161d62dd9>)
+1774795354156	editor	status	selected ObjectHandle(<opaque:1e9f734161d62dd9>)
+1774795354701	selection	select	ObjectHandle(<opaque:db30eb0519197f1c>)
+1774795354713	editor	status	selected ObjectHandle(<opaque:db30eb0519197f1c>)
+1774795362692	terrain	stroke	mode=Sculpt samples=18144 peak_delta=6.000
+1774795364810	build	build	build:517:5:logic-root|material-root|scene-root|terrain-root|world-root
+1774795364822	editor	status	build ready: build:517:5:logic-root|material-root|scene-root|terrain-root|world-root
+1774795366971	runtime	play	play-in-editor
+1774795366983	editor	status	play mode enabled — WASD + QE move, RMB look
+1774795407051	runtime	play	step-simulation
+1774795407099	editor	status	step simulation
+1774795409117	runtime	stop	editor mode
+1774795409129	editor	status	returned to editor mode

@@ -1,0 +1,23 @@
+[package]
+name = "engine_net_transport"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Network transport layer for communication"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["network", "transport", "stratumx"]
+categories = ["game-development", "network-programming"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
+serde.workspace = true
+
+[dev-dependencies]
+engine_world = { path = "../../l0-world-truth" }
+
+[lib]
+path = "src/engine_net_transport.rs"

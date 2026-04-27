@@ -1,0 +1,14 @@
+[package]
+name = "material_authoring_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+stratumx-editor-l9-3-material-lookdev-authoring-suite = { path = "../../../5.editor/l9.3-material-lookdev-authoring-suite" }
+
+[dev-dependencies]
+proptest = "1.4"
+

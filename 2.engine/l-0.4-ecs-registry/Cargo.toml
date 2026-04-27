@@ -1,0 +1,18 @@
+[package]
+name = "engine_ecs_registry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Entity and component membership tracking for ECS"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["ecs", "registry", "stratumx"]
+categories = ["data-structures", "game-development"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_identity = { path = "../l-0.9-identity" }
+engine_handle = { path = "../l-0.8-handle" }
+engine_storage_layout = { path = "../l-0.7-storage-layout" }
+serde.workspace = true

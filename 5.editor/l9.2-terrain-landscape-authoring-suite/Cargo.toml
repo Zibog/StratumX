@@ -1,0 +1,26 @@
+[package]
+name = "stratumx-editor-l9-2-terrain-landscape-authoring-suite"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid = { workspace = true, features = ["v4"] }
+editor_dto_law = { path = "../../3.sdk/l5.9-editor-dto-law" }
+engine_world = { path = "../../2.engine/l0-world-truth" }
+engine_material = { path = "../../2.engine/l0.5-shared-world-property-substrate" }
+image = { version = "0.24", default-features = false, features = ["png", "tiff"] }
+egui = { version = "0.28", optional = true }
+
+[features]
+desktop = ["dep:egui"]
+
+[dev-dependencies]
+proptest = "1.4"
+tempfile = "3.8"
+
+[lib]
+path = "src/editor_terrain_landscape_authoring_suite.rs"

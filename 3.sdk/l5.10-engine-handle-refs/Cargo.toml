@@ -1,0 +1,11 @@
+[package]
+name = "engine_handle_refs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+serde = { workspace = true, features = ["derive"] }
+sdk_compat = { path = "../l5-compat" }

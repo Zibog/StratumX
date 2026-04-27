@@ -1,0 +1,23 @@
+[package]
+name = "engine_residency_control"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Residency control for asset streaming"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["residency", "streaming", "stratumx"]
+categories = ["game-development", "memory-management"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_world = { path = "../../l0-world-truth" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+engine_stream_control = { path = "../stream-control" }
+engine_memory_control = { path = "../memory-control" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_residency_control.rs"

@@ -1,0 +1,24 @@
+1774785941624	editor	session	trace file created
+1774785941627	terrain	create	terrain-root ObjectHandle(<opaque:db30eb0519197f1c>)
+1774785941628	editor	status	terrain actor created
+1774785941628	editor	status	UE-like level editor shell initialised
+1774785966398	terrain	stroke	mode=Sculpt samples=20582 peak_delta=6.000
+1774785967623	runtime	play	play-in-editor
+1774785967636	editor	status	play mode enabled — WASD + QE move, RMB look
+1774785996338	runtime	play	simulate
+1774785996389	editor	status	simulate requested
+1774785998455	runtime	play	step-simulation
+1774785998468	editor	status	step simulation
+1774785999388	runtime	stop	editor mode
+1774785999389	editor	status	returned to editor mode
+1774786000721	runtime	play	play-in-editor
+1774786000733	editor	status	play mode enabled — WASD + QE move, RMB look
+1774786116929	runtime	stop	editor mode
+1774786116979	editor	status	returned to editor mode
+1774786324589	selection	select	ObjectHandle(<opaque:a4d31070d122b816>)
+1774786324646	editor	status	selected ObjectHandle(<opaque:a4d31070d122b816>)
+1774786325826	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)
+1774786325838	editor	status	selected ObjectHandle(<opaque:fd8c671699409cfa>)
+1774786335577	editor	status	rename failed: bridge error: queue exceeds canonical ceiling
+1774786346370	runtime	play	play-in-editor
+1774786346382	editor	status	play mode enabled — WASD + QE move, RMB look

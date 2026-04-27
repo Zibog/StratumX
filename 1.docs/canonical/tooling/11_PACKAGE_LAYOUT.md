@@ -1,0 +1,55 @@
+**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+
+
+# Package Layout
+
+```text
+tooling/
+├── 00_INDEX.md
+├── 01_SCOPE.md
+├── 02_CANONICAL_STACK.md
+├── 03_ROLE_MAP.md
+├── 04_LIBRARY_BASELINE.md
+├── 05_DEPENDENCY_MODEL.md
+├── 06_COMMUNICATION_MODEL.md
+├── 07_THREADING_MODEL.md
+├── 08_ACTIVATION_MODEL.md
+├── 09_GLOSSARY.md
+├── 10_DOCUMENT_RULES.md
+├── 11_PACKAGE_LAYOUT.md
+├── 12_BOUNDARY_PRESERVATION_MATRIX.md
+├── 13_DATA_PLANE_MODEL.md
+├── 14_AUTHORITY_AND_TRANSACTION_MODEL.md
+├── 15_SNAPSHOT_INDEX_DERIVED_MODEL.md
+├── 16_L6A_ASSISTANT_RUNTIME_MODEL.md
+├── 17_L7_STUDIO_ORCHESTRATION_MODEL.md
+├── 18_L7A_ASSISTANT_BRAIN_MODEL.md
+├── 19_CROSS_LAYER_EXCHANGE_MODEL.md
+├── 20_MEMORY_GPU_DISK_DISCIPLINE.md
+├── 21_FORBIDDEN_CONNECTIONS.md
+├── 22_L5_SYNCHRONIZATION_MODEL.md
+├── 23_BUILD_AND_FREEZE_CONDITIONS.md
+├── 24_TESTING_MODEL.md
+├── 25_IMPLEMENTATION_HANDOFF.md
+├── 26_SHARED_TYPE_REGISTRY.md
+├── 27_ACCEPTANCE_MATRIX.md
+├── 28_LAYER_AND_PLANE_NAMING.md
+├── 29_DOCUMENT_AUTHORITY_ORDER.md
+├── 30_EVIDENCE_REGISTRY.md
+├── 31_ARTIFACT_MANIFEST_LAW.md
+├── 32_REPRESENTATION_LADDER_MODEL.md
+├── 33_BUDGET_RUNTIME_MODEL.md
+├── 34_DOMAIN_FAMILY_DATA_MODEL.md
+├── 35_DEGRADATION_POLICY_MODEL.md
+├── STACK_VERSION
+├── constitutions/
+├── evidence/
+│   ├── root/
+│   ├── layers/
+│   └── tests/
+├── families/
+└── levels/
+```
+
+The root tree above is authoritative for package-level audit purposes.
+The `evidence/` subtree is summarized at the folder level here; individual active artifacts are declared by `29_DOCUMENT_AUTHORITY_ORDER.md` and `30_EVIDENCE_REGISTRY.md`.

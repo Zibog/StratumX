@@ -1,0 +1,6 @@
+1774840625423	editor	session	trace file created
+1774840625426	terrain	create	terrain-root ObjectHandle(<opaque:db30eb0519197f1c>)
+1774840625426	editor	status	terrain actor created
+1774840625427	editor	status	UE-like level editor shell initialised
+1774840632878	runtime	play	play-in-editor
+1774840632890	editor	status	play mode enabled — WASD + QE move, RMB look

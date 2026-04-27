@@ -1,0 +1,19 @@
+[package]
+name = "link_ingress_packets"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/sdk_ingress_packets.rs"
+
+[dependencies]
+sdk_compat = { path = "../l5-compat" }
+transport_policies = { path = "../l5.8-transport-policies" }
+legality_gates = { path = "../l5.9-legality-gates" }
+editor_dto_law = { path = "../l5.9-editor-dto-law" }
+engine_handle_refs = { path = "../l5.10-engine-handle-refs" }
+link_egress_observations = { path = "../l5.2-link-egress-observations" }
+serde = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }

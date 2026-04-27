@@ -1,0 +1,22 @@
+[package]
+name = "engine_storage_mutation"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Deferred mutation buffer and apply payload for ECS"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["ecs", "mutation", "stratumx"]
+categories = ["data-structures", "game-development"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_handle = { path = "../l-0.8-handle" }
+engine_storage_layout = { path = "../l-0.7-storage-layout" }
+engine_storage_access = { path = "../l-0.6-storage-access" }
+bitflags.workspace = true
+smallvec.workspace = true
+
+[lib]
+path = "src/engine_storage_mutation.rs"

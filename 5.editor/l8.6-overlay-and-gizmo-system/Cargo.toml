@@ -1,0 +1,17 @@
+[package]
+name = "stratumx-editor-l8-6-overlay-and-gizmo-system"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+glam = { workspace = true, optional = true }
+
+[features]
+desktop = ["dep:glam"]
+
+[lib]
+path = "src/editor_overlay_and_gizmo_system.rs"

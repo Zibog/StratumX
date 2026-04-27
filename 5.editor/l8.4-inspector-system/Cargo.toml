@@ -1,0 +1,18 @@
+[package]
+name = "stratumx-editor-l8-4-inspector-system"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+stratumx_tooling_l6_0_tool_session = { path = "../../4.tooling/l6.0-tool-session" }
+eframe = { version = "0.31", optional = true }
+
+[features]
+desktop = ["dep:eframe"]
+
+[lib]
+path = "src/editor_inspector_system.rs"

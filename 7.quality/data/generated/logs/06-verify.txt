@@ -1,0 +1,28 @@
+   Compiling serde_core v1.0.228
+   Compiling serde v1.0.228
+   Compiling syn v2.0.117
+   Compiling serde_derive v1.0.228
+   Compiling thiserror-impl v1.0.69
+   Compiling glam v0.30.10
+   Compiling bitflags v2.11.0
+   Compiling serde_json v1.0.149
+   Compiling thiserror v1.0.69
+   Compiling engine_core v0.1.0 (E:\Development\goldeditor\2.engine\l-1-foundation)
+   Compiling smallvec v1.15.1
+   Compiling bincode v1.3.3
+   Compiling engine_identity v0.1.0 (E:\Development\goldeditor\2.engine\l-0.9-identity)
+   Compiling engine_storage_layout v0.1.0 (E:\Development\goldeditor\2.engine\l-0.7-storage-layout)
+   Compiling engine_handle v0.1.0 (E:\Development\goldeditor\2.engine\l-0.8-handle)
+   Compiling engine_storage_access v0.1.0 (E:\Development\goldeditor\2.engine\l-0.6-storage-access)
+   Compiling engine_ecs_registry v0.1.0 (E:\Development\goldeditor\2.engine\l-0.4-ecs-registry)
+   Compiling engine_world_spatial v0.1.0 (E:\Development\goldeditor\2.engine\l-0.1-world-spatial)
+   Compiling engine_storage_mutation v0.1.0 (E:\Development\goldeditor\2.engine\l-0.5-storage-mutation)
+   Compiling engine_world_region v0.1.0 (E:\Development\goldeditor\2.engine\l-0.05-world-region)
+   Compiling engine_ecs_query v0.1.0 (E:\Development\goldeditor\2.engine\l-0.3-ecs-query)
+   Compiling engine_ecs v0.1.0 (E:\Development\goldeditor\2.engine\l-0.2-ecs-assembly)
+   Compiling engine_world v0.1.0 (E:\Development\goldeditor\2.engine\l0-world-truth)
+   Compiling engine_runtime v0.1.0 (E:\Development\goldeditor\2.engine\l1-runtime-kernel\runtime)
+   Compiling stratumx_test_support v0.1.0 (E:\Development\goldeditor\7.quality\support\stratumx_test_support)
+   Compiling stratumx_quality_tasks v0.1.0 (E:\Development\goldeditor\7.quality\tasks\stratumx_quality_tasks)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.22s
+     Running `target\debug\stratumx_quality_tasks.exe verify`

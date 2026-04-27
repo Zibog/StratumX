@@ -1,0 +1,49 @@
+use crate::{ChangeSet, DeferredWrite, IdempotenceClass, MutationBuffer};
+use engine_core::ComponentTypeId;
+use smallvec::SmallVec;
+
+impl Default for MutationBuffer {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl MutationBuffer {
+    /// Create a new empty mutation buffer.
+    pub fn new() -> Self {
+        Self {
+            writes: SmallVec::new(),
+        }
+    }
+
+    /// Stage a deferred write, merging idempotent writes on the same component.
+    pub fn stage_write(&mut self, write: DeferredWrite) {
+        if let Some(existing) = self.writes.iter_mut().find(|w| {
+            w.component == write.component
+                && w.idempotence == IdempotenceClass::Idempotent
+                && write.idempotence == IdempotenceClass::Idempotent
+        }) {
+            *existing = write;
+            return;
+        }
+        self.writes.push(write);
+    }
+
+    /// Convert buffer into a changeset with given structural changes.
+    pub fn into_change_set(self, structural: SmallVec<[ComponentTypeId; 8]>) -> ChangeSet {
+        ChangeSet {
+            structural,
+            writes: self.writes,
+        }
+    }
+
+    /// Get the count of staged writes.
+    pub fn write_count(&self) -> usize {
+        self.writes.len()
+    }
+
+    /// Check if buffer is empty.
+    pub fn is_empty(&self) -> bool {
+        self.writes.is_empty()
+    }
+}

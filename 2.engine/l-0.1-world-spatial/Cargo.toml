@@ -1,0 +1,18 @@
+[package]
+name = "engine_world_spatial"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "World spatial addressing and transform utilities"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["world", "spatial", "stratumx"]
+categories = ["game-development", "data-structures"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_identity = { path = "../l-0.9-identity" }
+engine_handle = { path = "../l-0.8-handle" }
+glam.workspace = true
+serde.workspace = true

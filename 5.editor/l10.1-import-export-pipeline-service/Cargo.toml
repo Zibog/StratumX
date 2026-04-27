@@ -1,0 +1,13 @@
+[package]
+name = "stratumx-editor-l10-1-import-export-pipeline-service"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+
+[lib]
+path = "src/editor_import_export_pipeline_service.rs"

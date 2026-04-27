@@ -1,0 +1,21 @@
+[package]
+name = "stratumx_test_support"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+engine_runtime = { path = "../../../2.engine/l1-runtime-kernel/runtime" }
+engine_world = { path = "../../../2.engine/l0-world-truth" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+engine_handle = { path = "../../../2.engine/l-0.8-handle" }
+editor_dto_law = { path = "../../../3.sdk/l5.9-editor-dto-law" }
+
+[lib]
+path = "src/lib.rs"

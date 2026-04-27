@@ -1,0 +1,567 @@
+{
+  "row_count": 32,
+  "failure_count": 0,
+  "failures": [],
+  "rows": [
+    {
+      "crate": "engine_core",
+      "canonical_deps": [],
+      "actual_deps": [],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_identity",
+      "canonical_deps": [
+        "engine_core"
+      ],
+      "actual_deps": [
+        "engine_core"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_handle",
+      "canonical_deps": [
+        "engine_core",
+        "engine_identity"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_identity"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_storage_layout",
+      "canonical_deps": [
+        "engine_core"
+      ],
+      "actual_deps": [
+        "engine_core"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_storage_access",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_storage_layout"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_storage_layout"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_storage_mutation",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_storage_access",
+        "engine_storage_layout"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_storage_access",
+        "engine_storage_layout"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_ecs_registry",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_identity",
+        "engine_storage_layout"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_identity",
+        "engine_storage_layout"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_ecs_query",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs_registry",
+        "engine_handle",
+        "engine_identity",
+        "engine_storage_access"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs_registry",
+        "engine_handle",
+        "engine_identity",
+        "engine_storage_access"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_ecs",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs_query",
+        "engine_ecs_registry",
+        "engine_handle",
+        "engine_identity",
+        "engine_storage_access",
+        "engine_storage_layout",
+        "engine_storage_mutation"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs_query",
+        "engine_ecs_registry",
+        "engine_handle",
+        "engine_identity",
+        "engine_storage_access",
+        "engine_storage_layout",
+        "engine_storage_mutation"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_world_spatial",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_identity"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_identity"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_world_region",
+      "canonical_deps": [
+        "engine_core",
+        "engine_world_spatial"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_world_spatial"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_world",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_handle",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_handle",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_material",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_world"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_runtime",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_handle",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_handle",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_runtime_headless",
+      "canonical_deps": [
+        "engine_ecs",
+        "engine_runtime",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_ecs",
+        "engine_runtime",
+        "engine_world"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_runtime_realtime",
+      "canonical_deps": [
+        "engine_ecs",
+        "engine_runtime",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_ecs",
+        "engine_runtime",
+        "engine_world"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_stream_control",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_residency_control",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_memory_control",
+        "engine_stream_control",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_memory_control",
+        "engine_stream_control",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_memory_control",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_runtime",
+        "engine_storage_layout",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_runtime",
+        "engine_storage_layout",
+        "engine_world"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_transfer_control",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_memory_control",
+        "engine_stream_control"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_memory_control",
+        "engine_stream_control"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_kinetics",
+      "canonical_deps": [
+        "engine_core",
+        "engine_material",
+        "engine_memory_control",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_material",
+        "engine_memory_control",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_field",
+      "canonical_deps": [
+        "engine_core",
+        "engine_material",
+        "engine_memory_control",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_material",
+        "engine_memory_control",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_agents",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_memory_control",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_memory_control",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_net_transport",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_runtime"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_runtime"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_net_sync",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_identity",
+        "engine_net_transport",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_identity",
+        "engine_net_transport",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_net_latency",
+      "canonical_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_net_transport",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_handle",
+        "engine_net_transport",
+        "engine_runtime",
+        "engine_world",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_inference",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_world"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_generation",
+      "canonical_deps": [
+        "engine_core",
+        "engine_inference",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_inference",
+        "engine_world"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_imaging",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_material",
+        "engine_residency_control",
+        "engine_transfer_control",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_material",
+        "engine_residency_control",
+        "engine_transfer_control",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_acoustics",
+      "canonical_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_material",
+        "engine_residency_control",
+        "engine_transfer_control",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_ecs",
+        "engine_material",
+        "engine_residency_control",
+        "engine_transfer_control",
+        "engine_world",
+        "engine_world_region",
+        "engine_world_spatial"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_content",
+      "canonical_deps": [
+        "engine_core",
+        "engine_material",
+        "engine_world_region"
+      ],
+      "actual_deps": [
+        "engine_core",
+        "engine_material",
+        "engine_world_region"
+      ],
+      "status": "pass"
+    },
+    {
+      "crate": "engine_startup",
+      "canonical_deps": [
+        "engine_acoustics",
+        "engine_agents",
+        "engine_content",
+        "engine_core",
+        "engine_field",
+        "engine_generation",
+        "engine_imaging",
+        "engine_inference",
+        "engine_kinetics",
+        "engine_memory_control",
+        "engine_net_latency",
+        "engine_net_sync",
+        "engine_net_transport",
+        "engine_residency_control",
+        "engine_runtime",
+        "engine_runtime_headless",
+        "engine_runtime_realtime",
+        "engine_stream_control",
+        "engine_transfer_control",
+        "engine_world"
+      ],
+      "actual_deps": [
+        "engine_acoustics",
+        "engine_agents",
+        "engine_content",
+        "engine_core",
+        "engine_field",
+        "engine_generation",
+        "engine_imaging",
+        "engine_inference",
+        "engine_kinetics",
+        "engine_memory_control",
+        "engine_net_latency",
+        "engine_net_sync",
+        "engine_net_transport",
+        "engine_residency_control",
+        "engine_runtime",
+        "engine_runtime_headless",
+        "engine_runtime_realtime",
+        "engine_stream_control",
+        "engine_transfer_control",
+        "engine_world"
+      ],
+      "status": "pass"
+    }
+  ]
+}

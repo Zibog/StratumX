@@ -1,0 +1,58 @@
+   Compiling stratumx_tooling_l7_5_automation_meta v0.1.0 (E:\Development\goldeditor\4.tooling\l7.5-automation-meta)
+   Compiling stratumx_tooling_l7a_5_migration_planner v0.1.0 (E:\Development\goldeditor\4.tooling\l7a.5-migration-planner)
+   Compiling stratumx_tooling_family_l6_f3_world_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f3-world-family)
+   Compiling stratumx_tooling_family_l6_f5_physics_destruction_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f5-physics-destruction-family)
+   Compiling stratumx_tooling_family_l6_f5_fluid_fire_weather_authoring_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f5-fluid-fire-weather-authoring-family)
+   Compiling stratumx_tooling_family_l6_f7_animation_rig_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f7-animation-rig-family)
+   Compiling stratumx_tooling_l6_4_index_plane v0.1.0 (E:\Development\goldeditor\4.tooling\l6.4-index-plane)
+   Compiling stratumx_tooling_l6_16_tool_panel_refs v0.1.0 (E:\Development\goldeditor\4.tooling\l6.16-tool-panel-refs)
+   Compiling stratumx_tooling_family_l6_f26_performance_governance_authoring_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f26-performance-governance-authoring-family)
+   Compiling stratumx_tooling_l6_6_artifact_plane v0.1.0 (E:\Development\goldeditor\4.tooling\l6.6-artifact-plane)
+   Compiling stratumx_tooling_l6_2_transaction_ledger v0.1.0 (E:\Development\goldeditor\4.tooling\l6.2-transaction-ledger)
+   Compiling stratumx_tooling_l6_14_release_runtime v0.1.0 (E:\Development\goldeditor\4.tooling\l6.14-release-runtime)
+   Compiling stratumx_tooling_l6_14_tool_task_requests v0.1.0 (E:\Development\goldeditor\4.tooling\l6.14-tool-task-requests)
+   Compiling stratumx_tooling_family_l7a_f0_assistant_intelligence_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l7a.f0-assistant-intelligence-family)
+   Compiling stratumx_tooling_family_l6_f9_acoustics_voice_authoring_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f9-acoustics-voice-authoring-family)
+   Compiling stratumx_tooling_family_l6_f6_population_ai_society_authoring_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f6-population-ai-society-authoring-family)
+   Compiling stratumx_tooling_l6_7_stream_plane v0.1.0 (E:\Development\goldeditor\4.tooling\l6.7-stream-plane)
+   Compiling stratumx_tooling_family_l6_f10_audio_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f10-audio-family)
+   Compiling serde_derive v1.0.228
+   Compiling thiserror-impl v1.0.69
+   Compiling zerocopy-derive v0.8.48
+   Compiling link_ingress_packets v0.1.0 (E:\Development\goldeditor\3.sdk\l5.0-link-ingress-packets)
+   Compiling stratumx_tooling_family_l6_f14_assistant_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f14-assistant-family)
+   Compiling stratumx_tooling_family_l6_f28_observability_diagnostics_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f28-observability-diagnostics-family)
+   Compiling stratumx_tooling_l6_0_authority_core v0.1.0 (E:\Development\goldeditor\4.tooling\l6.0-authority-core)
+   Compiling stratumx_tooling_family_l7_f3_simulation_meta_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l7.f3-simulation-meta-family)
+   Compiling stratumx_tooling_l6_10_workspace_runtime v0.1.0 (E:\Development\goldeditor\4.tooling\l6.10-workspace-runtime)
+   Compiling stratumx_stack_runtime_app v0.1.0 (E:\Development\goldeditor\6.apps\stack\stratumx_stack_runtime_app)
+   Compiling stratumx_tooling_l6_3_snapshot_plane v0.1.0 (E:\Development\goldeditor\4.tooling\l6.3-snapshot-plane)
+   Compiling stratumx_tooling_l6a_0_assistant_sessions v0.1.0 (E:\Development\goldeditor\4.tooling\l6a.0-assistant-sessions)
+   Compiling stratumx_tooling_l6a_1_context_evidence_packs v0.1.0 (E:\Development\goldeditor\4.tooling\l6a.1-context-evidence-packs)
+   Compiling stratumx_tooling_l7a_4_optimization_reasoner v0.1.0 (E:\Development\goldeditor\4.tooling\l7a.4-optimization-reasoner)
+error[E0425]: cannot find function `default_transport_policy` in this scope
+  --> 3.sdk\l5.0-link-ingress-packets\src\sdk_ingress_packets.rs:49:22
+   |
+49 |         let policy = default_transport_policy(FramingKind::OrderedControl);
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+44 +     use transport_policies::default_transport_policy;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `FramingKind`
+  --> 3.sdk\l5.0-link-ingress-packets\src\sdk_ingress_packets.rs:49:47
+   |
+49 |         let policy = default_transport_policy(FramingKind::OrderedControl);
+   |                                               ^^^^^^^^^^^ use of undeclared type `FramingKind`
+   |
+help: consider importing this enum
+   |
+44 +     use transport_policies::FramingKind;
+   |
+
+Some errors have detailed explanations: E0425, E0433.
+For more information about an error, try `rustc --explain E0425`.
+error: could not compile `link_ingress_packets` (lib test) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...

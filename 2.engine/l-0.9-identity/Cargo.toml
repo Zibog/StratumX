@@ -1,0 +1,16 @@
+[package]
+name = "engine_identity"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Entity and component ID allocation with generation tracking"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["ecs", "identity", "stratumx"]
+categories = ["data-structures", "game-development"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+serde.workspace = true
+slotmap.workspace = true

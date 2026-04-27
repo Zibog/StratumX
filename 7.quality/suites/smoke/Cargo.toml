@@ -1,0 +1,15 @@
+[package]
+name = "smoke"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+stratumx_route_test_support = { path = "../../support/stratumx_route_test_support" }
+stratumx_shell_test_support = { path = "../../support/stratumx_shell_test_support" }
+
+[lib]
+path = "src/lib.rs"

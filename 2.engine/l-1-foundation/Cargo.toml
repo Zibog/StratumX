@@ -1,0 +1,24 @@
+[package]
+name = "engine_core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Canonical L1 foundation crate for StratumX engine"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["game-engine", "foundation", "stratumx"]
+categories = ["game-development", "data-structures"]
+
+[features]
+default = []
+headless = []
+realtime = []
+
+[dependencies]
+glam.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+
+[lib]
+path = "src/engine_core.rs"

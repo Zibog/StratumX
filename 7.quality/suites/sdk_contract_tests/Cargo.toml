@@ -1,0 +1,19 @@
+[package]
+name = "sdk_contract_tests"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+bincode.workspace = true
+proptest.workspace = true
+legality_gates = { path = "../../../3.sdk/l5.9-legality-gates" }
+link_egress_observations = { path = "../../../3.sdk/l5.2-link-egress-observations" }
+link_ingress_controls = { path = "../../../3.sdk/l5.1-link-ingress-controls" }
+link_ingress_packets = { path = "../../../3.sdk/l5.0-link-ingress-packets" }
+sdk_compat = { path = "../../../3.sdk/l5-compat" }
+transport_policies = { path = "../../../3.sdk/l5.8-transport-policies" }
+engine_handle_refs = { path = "../../../3.sdk/l5.10-engine-handle-refs" }

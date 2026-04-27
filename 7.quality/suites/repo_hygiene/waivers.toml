@@ -1,0 +1,503 @@
+# Waiver Registry for Hygiene Rules
+#
+# These entries record the remaining explicitly accepted debt after the
+# current roadmap pass. Each entry keeps the exception visible until the
+# owning decomposition phase is completed.
+
+# ============================================================================
+# Line Limit Waivers (200 line limit)
+# ============================================================================
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/audio_authority_container.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/terrain_authority_container.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-tool-session/src/command_executor.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-tool-session/src/tooling_tool_session/audio_executor.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/canonical_command_schema.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/promoted_commands.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/audio_registry_state.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l8.0-editor-shell/src/panel_registry.rs"
+justification = "Panel registry migrated from editor-product-shell; exceeds 200 lines due to PanelRegistry, WorkspaceState, and DockingConfig definitions. Will be split further during Phase 2 state-container demolition."
+
+[[line_limit_waivers]]
+path = "5.editor/l8.0-editor-shell/src/product_shell.rs"
+justification = "Product shell migrated from editor-product-shell; shell orchestration logic concentrated in single file. Will be decomposed during Phase 4 shell cleanup."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/cache_layer.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/cached_state_queries.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/editor_host.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/editor_services.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/material_registry_state.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/model/diagnostics_types.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/owners/project_owner.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/owners/workspace_owner.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/owners/world_owner.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/persistence/project_persistence_view.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/persistence/world_persistence_view.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/queries/diagnostics_queries.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/queries/workspace_queries.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/queries/world_queries.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/query_layer.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/diagnostics_service.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/environment_authoring_service.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/runtime_mode_service.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/state_container_system.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/terrain_command_executor.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/world_session_service.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/session_state.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/state_graph.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/editor-state-containers/src/validation/ownership_validator.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_context.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_dispatch.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_enums.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_registration.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_validation.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/canonical_action_api.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_core.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_editor.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_world.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/registry_builder.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.2-terrain-landscape-authoring-suite/src/terrain_authoring/service.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.3-material-lookdev-authoring-suite/src/runtime/mod.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.8-audio-voice-authoring-suite/src/model/mod.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.8-audio-voice-authoring-suite/src/runtime/mod.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "3.sdk/l5.0-link-ingress-packets/src/editor_authoring_ingress/diagnostics.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "3.sdk/l5.2-link-egress-observations/src/editor_authoring_observations/mod.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-tool-session/src/tooling_tool_session/material_executor.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-tool-session/src/tooling_tool_session/runtime.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-tool-session/src/tooling_tool_session/types.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.12-preview-runtime/src/vertical_slice_runtime/startup.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.12-preview-runtime/src/vertical_slice_runtime/terrain_mutation.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.12-preview-runtime/src/authoring_runtime/nav_commands.rs"
+justification = "The nav/door/inventory/streaming authoring bridge now routes the full runtime-backed command surface in one place; keep the temporary line-limit debt explicit until the next decomposition pass splits this handler by domain."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.14-release-runtime/src/first_result_verification.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "5.editor/l10.0-project-bootstrap-service/src/editor_project_bootstrap_service.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+[[line_limit_waivers]]
+path = "6.apps/editor/stratumx_editor_app/src/editor_host/command_execution.rs"
+justification = "Legacy module exceeds 200 lines while roadmap decomposition is still in progress; keep tracked explicitly until the owning phase is completed."
+
+# ============================================================================
+# Allow Attribute Waivers
+# ============================================================================
+
+# No allow-attribute waivers are currently active.
+
+# ============================================================================
+# Test In Src Waivers
+# ============================================================================
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/audio_authority_container.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/material_authority_container.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/terrain_authority_container.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/audio_registry_state.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/cache_layer.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/cached_state_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/editor_host.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/editor_services.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/material_registry_state.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/owners/project_owner.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/owners/workspace_owner.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/owners/world_owner.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/persistence/project_persistence_view.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/persistence/workspace_persistence_view.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/persistence/world_persistence_view.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/queries/diagnostics_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/queries/project_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/queries/workspace_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/queries/world_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/query_layer.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/audio_authoring_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/diagnostics_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/environment_authoring_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/environment_command_executor.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/event_bus.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/material_authoring_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/runtime_mode_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/state_container_system.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/terrain_authoring_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/terrain_command_executor.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/runtime/world_session_service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/session_state.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/state_graph.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/state_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/editor-state-containers/src/validation/ownership_validator.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_dispatch.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_enums.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_execution.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_focus.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_ids.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_preconditions.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_queries.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_registration.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_registry_types.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_registry.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/action_validation.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/canonical_action_api.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_audio.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_core.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_editor.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_material.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/dispatch_world.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/editor_command_spine.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/focus_recovery.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l7.0-editor-command-spine/src/focus_routing.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.0-editor-shell/src/command_spine/spine_lifecycle.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l9.2-terrain-landscape-authoring-suite/src/terrain_authoring/service.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+[[test_in_src_waivers]]
+path = "5.editor/l9.8-audio-voice-authoring-suite/src/runtime/mod.rs"
+justification = "Legacy inline tests remain in src while extraction into dedicated quality suites is still pending; keep the exception explicit until the owning quality phase completes."
+
+# ============================================================================
+# Execute Bridge Waivers
+# ============================================================================
+
+[[execute_bridge_waivers]]
+path = "3.sdk/l5.0-link-ingress-packets/src/packet_executor.rs"
+justification = "This execute_* name is a domain or tooling execution verb, not an editor bridge shim; keep it explicit in the waiver registry."
+
+[[execute_bridge_waivers]]
+path = "4.tooling/l6.0-tool-session/src/command_executor.rs"
+justification = "This execute_* name is a domain or tooling execution verb, not an editor bridge shim; keep it explicit in the waiver registry."
+
+[[execute_bridge_waivers]]
+path = "4.tooling/l6.7-tool-evidence-capture/src/tool_evidence_capture/compare.rs"
+justification = "This execute_* name is a domain or tooling execution verb, not an editor bridge shim; keep it explicit in the waiver registry."
+
+[[execute_bridge_waivers]]
+path = "5.editor/l8.0-editor-shell/src/command_spine/spine_core.rs"
+justification = "This execute_* name is a domain or tooling execution verb, not an editor bridge shim; keep it explicit in the waiver registry."

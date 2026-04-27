@@ -1,0 +1,39 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260329182532
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\scripts\run-editor-with-trace.ps1
+Process ID: 16528
+PSVersion: 5.1.28000.1516
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.28000.1516
+BuildVersion: 10.0.28000.1516
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+   Compiling stratumx_sdk v0.1.0 (E:\Development\goldeditor\3.sdk\sdk_bridge\stratumx_sdk)
+   Compiling stratumx_tooling v0.1.0 (E:\Development\goldeditor\4.tooling\tooling_runtime\stratumx_tooling)
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authori
+ng_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+**********************
+Windows PowerShell transcript end
+End time: 20260329182534
+**********************

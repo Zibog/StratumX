@@ -1,0 +1,25 @@
+[package]
+name = "engine_world"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "World truth and state management"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["world", "state", "stratumx"]
+categories = ["game-development", "data-structures"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_handle = { path = "../l-0.8-handle" }
+engine_ecs = { path = "../l-0.2-ecs-assembly" }
+engine_world_spatial = { path = "../l-0.1-world-spatial" }
+engine_world_region = { path = "../l-0.05-world-region" }
+engine_material = { path = "../l0.5-shared-world-property-substrate" }
+serde.workspace = true
+bincode.workspace = true
+glam.workspace = true
+
+[lib]
+path = "src/engine_world.rs"

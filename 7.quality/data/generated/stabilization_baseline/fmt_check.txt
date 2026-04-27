@@ -1,0 +1,964 @@
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\action_dispatch.rs:1:
+ //! ActionDispatch тАФ main dispatcher facade delegating to DispatchCore.
+ 
+[31m-use crate::{ActionContext, ActionId, ActionRegistry, ActionResult};
+[0m[31m-use std::sync::Arc;
+[0m pub use crate::action_execution::ActionExecutor;
+ pub use crate::action_focus::ActionFocus;
+ pub use crate::action_queries::StateQueries;
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\action_dispatch.rs:8:
+ pub use crate::action_validation::ActionValidator;
+ use crate::dispatch_core::DispatchCore;
+[32m+use crate::{ActionContext, ActionId, ActionRegistry, ActionResult};
+[0m[32m+use std::sync::Arc;
+[0m 
+[31m-pub struct ActionDispatch { dispatch_core: DispatchCore }
+[0m[32m+pub struct ActionDispatch {
+[0m[32m+    dispatch_core: DispatchCore,
+[0m[32m+}
+[0m 
+ impl ActionDispatch {
+[31m-    pub fn new(registry: Arc<ActionRegistry>, state_queries: Arc<dyn StateQueries>) -> Self { Self { dispatch_core: DispatchCore::new(registry, state_queries) } }
+[0m[31m-    pub fn with_panel_validator<F>(registry: Arc<ActionRegistry>, state_queries: Arc<dyn StateQueries>, panel_validator: F) -> Self where F: Fn(&str) -> bool + Send + Sync + 'static { Self { dispatch_core: DispatchCore::new(registry, state_queries).with_panel_validator(panel_validator) } }
+[0m[31m-    pub fn dispatch(&self, action_id: ActionId, context: ActionContext) -> ActionResult { self.dispatch_core.dispatch(action_id, context) }
+[0m[32m+    pub fn new(registry: Arc<ActionRegistry>, state_queries: Arc<dyn StateQueries>) -> Self {
+[0m[32m+        Self {
+[0m[32m+            dispatch_core: DispatchCore::new(registry, state_queries),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn with_panel_validator<F>(
+[0m[32m+        registry: Arc<ActionRegistry>,
+[0m[32m+        state_queries: Arc<dyn StateQueries>,
+[0m[32m+        panel_validator: F,
+[0m[32m+    ) -> Self
+[0m[32m+    where
+[0m[32m+        F: Fn(&str) -> bool + Send + Sync + 'static,
+[0m[32m+    {
+[0m[32m+        Self {
+[0m[32m+            dispatch_core: DispatchCore::new(registry, state_queries)
+[0m[32m+                .with_panel_validator(panel_validator),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn dispatch(&self, action_id: ActionId, context: ActionContext) -> ActionResult {
+[0m[32m+        self.dispatch_core.dispatch(action_id, context)
+[0m[32m+    }
+[0m }
+ 
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\canonical_action_api.rs:1:
+[31m-use stratumx_tooling_l6_1_command_envelopes::{canonical_route_by_action_id, CanonicalCommandEnvelope, CommandPayload, SourceSurface};
+[0m[32m+use stratumx_tooling_l6_1_command_envelopes::{
+[0m[32m+    canonical_route_by_action_id, CanonicalCommandEnvelope, CommandPayload, SourceSurface,
+[0m[32m+};
+[0m 
+ macro_rules! canonical_actions {
+     ($($variant:ident => ($action:expr, $button:expr)),+ $(,)?) => {
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\canonical_action_api.rs:17:
+     ProjectNewProject => ("project.new_project.requested", "btn.project.new_project"), ProjectOpenProject => ("project.open_project.requested", "btn.project.open_project"), ProjectSaveProject => ("project.save_project.requested", "btn.project.save_project"), ProjectSaveProjectAs => ("project.save_project_as.requested", "btn.project.save_project_as"), WorldOpenWorldPackage => ("world.open_world_package.requested", "btn.world.open_world_package"), WorldSaveWorldPackage => ("world.save_world_package.requested", "btn.world.save_world_package"), WorldValidateWorld => ("world.validate_world.requested", "btn.world.validate_world"), ImportHeightmapSource => ("import.heightmap_source.selected", "btn.import.heightmap_source"), TerrainImportHeightmap => ("terrain.import_heightmap.requested", "btn.terrain.import_heightmap"), TerrainSculptPrimary => ("terrain.sculpt_primary.requested", "btn.terrain.sculpt_primary"), TerrainSmoothPatch => ("terrain.smooth_patch.requested", "btn.terrain.smooth_patch"), TerrainFlattenPatch => ("terrain.flatten_patch.requested", "btn.terrain.flatten_patch"), TerrainPaintLayer => ("terrain.paint_layer.requested", "btn.terrain.paint_layer"), TerrainPaintBiomeMask => ("terrain.paint_biome_mask.requested", "btn.terrain.paint_biome_mask"), TerrainRebuildChunks => ("terrain.rebuild_chunks.requested", "btn.terrain.rebuild_chunks"), TerrainLoadChunks => ("terrain.load_chunks.requested", "btn.terrain.load_chunks"), TerrainSaveChunks => ("terrain.save_chunks.requested", "btn.terrain.save_chunks"), MaterialNewProfile => ("material.new_profile.requested", "btn.material.new_profile"), MaterialDuplicateProfile => ("material.duplicate_profile.requested", "btn.material.duplicate_profile"), MaterialAssignArchetype => ("material.assign_archetype.requested", "btn.material.assign_archetype"), MaterialBindSurfaceFamily => ("material.bind_surface_family.requested", "btn.material.bind_surface_family"), MaterialBindResponseProfile => ("material.bind_response_profile.requested", "btn.material.bind_response_profile"), MaterialBindTextureStack => ("material.bind_texture_stack.requested", "btn.material.bind_texture_stack"), MaterialBindMicrodetailProfile => ("material.bind_microdetail_profile.requested", "btn.material.bind_microdetail_profile"), MaterialBindWeatherModulation => ("material.bind_weather_modulation.requested", "btn.material.bind_weather_modulation"), MaterialBindVisualResponseFamily => ("material.bind_visual_response_family.requested", "btn.material.bind_visual_response_family"), MaterialBindAcousticProfile => ("material.bind_acoustic_profile.requested", "btn.material.bind_acoustic_profile"), MaterialBindLightResponse => ("material.bind_light_response.requested", "btn.material.bind_light_response"), MaterialInspectBranchCoverage => ("material.inspect_branch_coverage.requested", "btn.material.inspect_branch_coverage"), MaterialSetCheapRuntimeRung => ("material.set_cheap_runtime_rung.requested", "btn.material.set_cheap_runtime_rung"), MaterialPreviewBulletHit => ("material.preview_bullet_hit.requested", "btn.material.preview_bullet_hit"), MaterialPreviewBlast => ("material.preview_blast.requested", "btn.material.preview_blast"), MaterialPreviewWetness => ("material.preview_wetness.requested", "btn.material.preview_wetness"), MaterialPreviewBurn => ("material.preview_burn.requested", "btn.material.preview_burn"), MaterialSaveProfileAs => ("material.save_profile_as.requested", "btn.material.save_profile_as"), MaterialCaptureProofArtifacts => ("material.capture_proof_artifacts.requested", "btn.material.capture_proof_artifacts"), MaterialReviewFreezeBlockers => ("material.review_freeze_blockers.requested", "btn.material.review_freeze_blockers"), SkyBindSkyProfile => ("sky.bind_sky_profile.requested", "btn.sky.bind_sky_profile"), SkySetTimeOfDay => ("sky.set_time_of_day.requested", "btn.sky.set_time_of_day"), SkySetWeatherRegime => ("sky.set_weather_regime.requested", "btn.sky.set_weather_regime"), SkyBindCloudProfile => ("sky.bind_cloud_profile.requested", "btn.sky.bind_cloud_profile"), ViewViewport => ("view.viewport.requested", "btn.view.viewport"), ViewOutliner => ("view.outliner.requested", "btn.view.outliner"), ViewInspector => ("view.inspector.requested", "btn.view.inspector"), ViewContentBrowser => ("view.content_browser.requested", "btn.view.content_browser"), ViewMaterialLab => ("view.material_lab.requested", "btn.view.material_lab"), ViewTerrainLab => ("view.terrain_lab.requested", "btn.view.terrain_lab"), ViewSkyLab => ("view.sky_lab.requested", "btn.view.sky_lab"), AudioAssignEmitterClassWorldSource => ("audio.assign_emitter_class_world_source.requested", "btn.audio.assign_emitter_class_world_source"), AudioBindZoneProfileWorldSurface => ("audio.bind_zone_profile_world_surface.requested", "btn.audio.bind_zone_profile_world_surface"), AudioBindPriorityDuckingPolicy => ("audio.bind_priority_ducking_policy.requested", "btn.audio.bind_priority_ducking_policy"), AudioPreviewAudibilityFreeCamera => ("audio.preview_audibility_free_camera.requested", "btn.audio.preview_audibility_free_camera"), AudioPreviewObstructionVsOcclusion => ("audio.preview_obstruction_vs_occlusion.requested", "btn.audio.preview_obstruction_vs_occlusion"), AudioPreviewIndoorOutdoorTransition => ("audio.preview_indoor_outdoor_transition.requested", "btn.audio.preview_indoor_outdoor_transition"), AudioPreviewVoiceSubtitleLegality => ("audio.preview_voice_subtitle_legality.requested", "btn.audio.preview_voice_subtitle_legality"), AudioInspectListenerProfile => ("audio.inspect_listener_profile.requested", "btn.audio.inspect_listener_profile"), AudioInspectBusDucking => ("audio.inspect_bus_ducking.requested", "btn.audio.inspect_bus_ducking")
+ }
+ 
+[31m-#[derive(Debug, Clone, PartialEq)] pub struct ActionRequest<P> { pub action_id: CanonicalActionId, pub payload: P, pub ui_context: UiActionContext }
+[0m[31m-#[derive(Debug, Clone, PartialEq, Eq)] pub struct UiActionContext { pub source_surface: SourceSurface, pub has_project: bool, pub has_world: bool, pub has_selection: bool, pub shell_ready: bool }
+[0m[31m-impl UiActionContext { pub fn shell_only(source_surface: SourceSurface) -> Self { Self { source_surface, has_project: false, has_world: false, has_selection: false, shell_ready: true } } }
+[0m[31m-#[derive(Debug, Clone, PartialEq, Eq)] pub enum ActionDenial { ShellUnavailable, MissingProject, MissingWorld, MissingSelection, RouteNotCataloged(String) }
+[0m[32m+#[derive(Debug, Clone, PartialEq)]
+[0m[32m+pub struct ActionRequest<P> {
+[0m[32m+    pub action_id: CanonicalActionId,
+[0m[32m+    pub payload: P,
+[0m[32m+    pub ui_context: UiActionContext,
+[0m[32m+}
+[0m[32m+#[derive(Debug, Clone, PartialEq, Eq)]
+[0m[32m+pub struct UiActionContext {
+[0m[32m+    pub source_surface: SourceSurface,
+[0m[32m+    pub has_project: bool,
+[0m[32m+    pub has_world: bool,
+[0m[32m+    pub has_selection: bool,
+[0m[32m+    pub shell_ready: bool,
+[0m[32m+}
+[0m[32m+impl UiActionContext {
+[0m[32m+    pub fn shell_only(source_surface: SourceSurface) -> Self {
+[0m[32m+        Self {
+[0m[32m+            source_surface,
+[0m[32m+            has_project: false,
+[0m[32m+            has_world: false,
+[0m[32m+            has_selection: false,
+[0m[32m+            shell_ready: true,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m[32m+#[derive(Debug, Clone, PartialEq, Eq)]
+[0m[32m+pub enum ActionDenial {
+[0m[32m+    ShellUnavailable,
+[0m[32m+    MissingProject,
+[0m[32m+    MissingWorld,
+[0m[32m+    MissingSelection,
+[0m[32m+    RouteNotCataloged(String),
+[0m[32m+}
+[0m 
+ pub struct CanonicalActionDispatch;
+ impl CanonicalActionDispatch {
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\canonical_action_api.rs:27:
+[31m-    pub fn dispatch<P: Into<CommandPayload>>(request: ActionRequest<P>) -> Result<CanonicalCommandEnvelope<CommandPayload>, ActionDenial> {
+[0m[32m+    pub fn dispatch<P: Into<CommandPayload>>(
+[0m[32m+        request: ActionRequest<P>,
+[0m[32m+    ) -> Result<CanonicalCommandEnvelope<CommandPayload>, ActionDenial> {
+[0m         Self::validate(&request.action_id, &request.ui_context)?;
+[31m-        let route = canonical_route_by_action_id(request.action_id.as_str()).ok_or_else(|| ActionDenial::RouteNotCataloged(request.action_id.as_str().to_string()))?;
+[0m[31m-        Ok(CanonicalCommandEnvelope::from_route(route, request.payload.into(), request.ui_context.source_surface))
+[0m[32m+        let route = canonical_route_by_action_id(request.action_id.as_str()).ok_or_else(|| {
+[0m[32m+            ActionDenial::RouteNotCataloged(request.action_id.as_str().to_string())
+[0m[32m+        })?;
+[0m[32m+        Ok(CanonicalCommandEnvelope::from_route(
+[0m[32m+            route,
+[0m[32m+            request.payload.into(),
+[0m[32m+            request.ui_context.source_surface,
+[0m[32m+        ))
+[0m     }
+[31m-    fn validate(action_id: &CanonicalActionId, ui_context: &UiActionContext) -> Result<(), ActionDenial> {
+[0m[31m-        if !ui_context.shell_ready { return Err(ActionDenial::ShellUnavailable); }
+[0m[32m+    fn validate(
+[0m[32m+        action_id: &CanonicalActionId,
+[0m[32m+        ui_context: &UiActionContext,
+[0m[32m+    ) -> Result<(), ActionDenial> {
+[0m[32m+        if !ui_context.shell_ready {
+[0m[32m+            return Err(ActionDenial::ShellUnavailable);
+[0m[32m+        }
+[0m         let button_id = action_id.button_id();
+         let is_view_route = button_id.starts_with("btn.view.");
+         let needs_project = !is_view_route && !button_id.starts_with("btn.project.new_project");
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\canonical_action_api.rs:37:
+[31m-        let needs_world = button_id.starts_with("btn.world.save_") || button_id == "btn.world.validate_world" || button_id.starts_with("btn.terrain.") || button_id.starts_with("btn.material.") || button_id.starts_with("btn.sky.") || button_id.starts_with("btn.audio.");
+[0m[31m-        if needs_project && !ui_context.has_project { return Err(ActionDenial::MissingProject); }
+[0m[31m-        if needs_world && !ui_context.has_world { return Err(ActionDenial::MissingWorld); }
+[0m[31m-        if matches!(action_id, CanonicalActionId::MaterialBindSurfaceFamily | CanonicalActionId::MaterialBindResponseProfile | CanonicalActionId::MaterialBindTextureStack | CanonicalActionId::MaterialBindMicrodetailProfile | CanonicalActionId::MaterialBindWeatherModulation | CanonicalActionId::MaterialBindVisualResponseFamily | CanonicalActionId::MaterialBindAcousticProfile | CanonicalActionId::MaterialBindLightResponse | CanonicalActionId::AudioAssignEmitterClassWorldSource | CanonicalActionId::AudioBindZoneProfileWorldSurface) && !ui_context.has_selection { return Err(ActionDenial::MissingSelection); }
+[0m[32m+        let needs_world = button_id.starts_with("btn.world.save_")
+[0m[32m+            || button_id == "btn.world.validate_world"
+[0m[32m+            || button_id.starts_with("btn.terrain.")
+[0m[32m+            || button_id.starts_with("btn.material.")
+[0m[32m+            || button_id.starts_with("btn.sky.")
+[0m[32m+            || button_id.starts_with("btn.audio.");
+[0m[32m+        if needs_project && !ui_context.has_project {
+[0m[32m+            return Err(ActionDenial::MissingProject);
+[0m[32m+        }
+[0m[32m+        if needs_world && !ui_context.has_world {
+[0m[32m+            return Err(ActionDenial::MissingWorld);
+[0m[32m+        }
+[0m[32m+        if matches!(
+[0m[32m+            action_id,
+[0m[32m+            CanonicalActionId::MaterialBindSurfaceFamily
+[0m[32m+                | CanonicalActionId::MaterialBindResponseProfile
+[0m[32m+                | CanonicalActionId::MaterialBindTextureStack
+[0m[32m+                | CanonicalActionId::MaterialBindMicrodetailProfile
+[0m[32m+                | CanonicalActionId::MaterialBindWeatherModulation
+[0m[32m+                | CanonicalActionId::MaterialBindVisualResponseFamily
+[0m[32m+                | CanonicalActionId::MaterialBindAcousticProfile
+[0m[32m+                | CanonicalActionId::MaterialBindLightResponse
+[0m[32m+                | CanonicalActionId::AudioAssignEmitterClassWorldSource
+[0m[32m+                | CanonicalActionId::AudioBindZoneProfileWorldSurface
+[0m[32m+        ) && !ui_context.has_selection
+[0m[32m+        {
+[0m[32m+            return Err(ActionDenial::MissingSelection);
+[0m[32m+        }
+[0m         Ok(())
+     }
+ }
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\canonical_action_api.rs:44:
+ 
+[31m-#[cfg(test)] mod tests {
+[0m[31m-    use super::*; use stratumx_tooling_l6_1_command_envelopes::MaterialPayload;
+[0m[31m-    #[test] fn canonical_actions_lower_to_envelopes() {
+[0m[31m-        let envelope = CanonicalActionDispatch::dispatch(ActionRequest { action_id: CanonicalActionId::MaterialBindLightResponse, payload: MaterialPayload::default(), ui_context: UiActionContext { source_surface: SourceSurface::MaterialPanel, has_project: true, has_world: true, has_selection: true, shell_ready: true } }).expect("canonical dispatch");
+[0m[31m-        assert_eq!(envelope.route_metadata.button_id, "btn.material.bind_light_response");
+[0m[32m+#[cfg(test)]
+[0m[32m+mod tests {
+[0m[32m+    use super::*;
+[0m[32m+    use stratumx_tooling_l6_1_command_envelopes::MaterialPayload;
+[0m[32m+    #[test]
+[0m[32m+    fn canonical_actions_lower_to_envelopes() {
+[0m[32m+        let envelope = CanonicalActionDispatch::dispatch(ActionRequest {
+[0m[32m+            action_id: CanonicalActionId::MaterialBindLightResponse,
+[0m[32m+            payload: MaterialPayload::default(),
+[0m[32m+            ui_context: UiActionContext {
+[0m[32m+                source_surface: SourceSurface::MaterialPanel,
+[0m[32m+                has_project: true,
+[0m[32m+                has_world: true,
+[0m[32m+                has_selection: true,
+[0m[32m+                shell_ready: true,
+[0m[32m+            },
+[0m[32m+        })
+[0m[32m+        .expect("canonical dispatch");
+[0m[32m+        assert_eq!(
+[0m[32m+            envelope.route_metadata.button_id,
+[0m[32m+            "btn.material.bind_light_response"
+[0m[32m+        );
+[0m     }
+[31m-    #[test] fn action_catalog_round_trips_from_string_ids() {
+[0m[31m-        let action = CanonicalActionId::from_action_id("material.bind_light_response.requested").expect("action id lookup");
+[0m[32m+    #[test]
+[0m[32m+    fn action_catalog_round_trips_from_string_ids() {
+[0m[32m+        let action = CanonicalActionId::from_action_id("material.bind_light_response.requested")
+[0m[32m+            .expect("action id lookup");
+[0m         assert_eq!(action, CanonicalActionId::MaterialBindLightResponse);
+[31m-        assert_eq!(CanonicalActionId::from_button_id("btn.material.bind_light_response"), Some(CanonicalActionId::MaterialBindLightResponse));
+[0m[32m+        assert_eq!(
+[0m[32m+            CanonicalActionId::from_button_id("btn.material.bind_light_response"),
+[0m[32m+            Some(CanonicalActionId::MaterialBindLightResponse)
+[0m[32m+        );
+[0m         assert_eq!(CanonicalActionId::all().len(), 57);
+     }
+ }
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\command_types.rs:1:
+ //! Command types тАФ core type definitions.
+[31m-use serde::{Deserialize, Serialize}; use std::collections::HashMap; use uuid::Uuid;
+[0m[32m+use serde::{Deserialize, Serialize};
+[0m[32m+use std::collections::HashMap;
+[0m[32m+use uuid::Uuid;
+[0m 
+[31m-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)] pub struct CommandId(Uuid);
+[0m[31m-impl CommandId { pub fn new() -> Self { Self(Uuid::new_v4()) } }
+[0m[31m-impl Default for CommandId { fn default() -> Self { Self::new() } }
+[0m[32m+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+[0m[32m+pub struct CommandId(Uuid);
+[0m[32m+impl CommandId {
+[0m[32m+    pub fn new() -> Self {
+[0m[32m+        Self(Uuid::new_v4())
+[0m[32m+    }
+[0m[32m+}
+[0m[32m+impl Default for CommandId {
+[0m[32m+    fn default() -> Self {
+[0m[32m+        Self::new()
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)] pub struct ActionId(u64);
+[0m[32m+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+[0m[32m+pub struct ActionId(u64);
+[0m impl ActionId {
+[31m-    pub fn from_command_type(ct: &CommandType) -> Self { use std::collections::hash_map::DefaultHasher; use std::hash::{Hash, Hasher}; let mut h = DefaultHasher::new(); match ct { CommandType::SculptTerrain => "terrain.sculpt".hash(&mut h), CommandType::PaintTerrain => "terrain.paint".hash(&mut h), CommandType::ImportHeightmap => "terrain.import_heightmap".hash(&mut h), CommandType::CreateMaterial => "material.create".hash(&mut h), CommandType::AssignTexture => "material.assign_texture".hash(&mut h), CommandType::SelectEntity => "selection.select_entity".hash(&mut h), CommandType::DeselectAll => "selection.deselect_all".hash(&mut h), CommandType::TranslateEntity => "transform.translate".hash(&mut h), CommandType::RotateEntity => "transform.rotate".hash(&mut h), CommandType::ScaleEntity => "transform.scale".hash(&mut h), CommandType::SaveProject => "project.save".hash(&mut h), CommandType::LoadProject => "project.load".hash(&mut h), CommandType::Custom(n) => format!("custom.{}", n).hash(&mut h) }; Self(h.finish()) }
+[0m[31m-    pub fn as_u64(&self) -> u64 { self.0 }
+[0m[32m+    pub fn from_command_type(ct: &CommandType) -> Self {
+[0m[32m+        use std::collections::hash_map::DefaultHasher;
+[0m[32m+        use std::hash::{Hash, Hasher};
+[0m[32m+        let mut h = DefaultHasher::new();
+[0m[32m+        match ct {
+[0m[32m+            CommandType::SculptTerrain => "terrain.sculpt".hash(&mut h),
+[0m[32m+            CommandType::PaintTerrain => "terrain.paint".hash(&mut h),
+[0m[32m+            CommandType::ImportHeightmap => "terrain.import_heightmap".hash(&mut h),
+[0m[32m+            CommandType::CreateMaterial => "material.create".hash(&mut h),
+[0m[32m+            CommandType::AssignTexture => "material.assign_texture".hash(&mut h),
+[0m[32m+            CommandType::SelectEntity => "selection.select_entity".hash(&mut h),
+[0m[32m+            CommandType::DeselectAll => "selection.deselect_all".hash(&mut h),
+[0m[32m+            CommandType::TranslateEntity => "transform.translate".hash(&mut h),
+[0m[32m+            CommandType::RotateEntity => "transform.rotate".hash(&mut h),
+[0m[32m+            CommandType::ScaleEntity => "transform.scale".hash(&mut h),
+[0m[32m+            CommandType::SaveProject => "project.save".hash(&mut h),
+[0m[32m+            CommandType::LoadProject => "project.load".hash(&mut h),
+[0m[32m+            CommandType::Custom(n) => format!("custom.{}", n).hash(&mut h),
+[0m[32m+        };
+[0m[32m+        Self(h.finish())
+[0m[32m+    }
+[0m[32m+    pub fn as_u64(&self) -> u64 {
+[0m[32m+        self.0
+[0m[32m+    }
+[0m }
+ 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub enum CommandType { SculptTerrain, PaintTerrain, ImportHeightmap, CreateMaterial, AssignTexture, SelectEntity, DeselectAll, TranslateEntity, RotateEntity, ScaleEntity, SaveProject, LoadProject, Custom(String) }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub enum CommandType {
+[0m[32m+    SculptTerrain,
+[0m[32m+    PaintTerrain,
+[0m[32m+    ImportHeightmap,
+[0m[32m+    CreateMaterial,
+[0m[32m+    AssignTexture,
+[0m[32m+    SelectEntity,
+[0m[32m+    DeselectAll,
+[0m[32m+    TranslateEntity,
+[0m[32m+    RotateEntity,
+[0m[32m+    ScaleEntity,
+[0m[32m+    SaveProject,
+[0m[32m+    LoadProject,
+[0m[32m+    Custom(String),
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct CommandParameters { params: HashMap<String, String> }
+[0m[31m-impl CommandParameters { pub fn new() -> Self { Self { params: HashMap::new() } } pub fn with_param(mut self, k: impl Into<String>, v: impl Into<String>) -> Self { self.params.insert(k.into(), v.into()); self } pub fn get(&self, k: &str) -> Option<&str> { self.params.get(k).map(|s| s.as_str()) } }
+[0m[31m-impl Default for CommandParameters { fn default() -> Self { Self::new() } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct CommandParameters {
+[0m[32m+    params: HashMap<String, String>,
+[0m[32m+}
+[0m[32m+impl CommandParameters {
+[0m[32m+    pub fn new() -> Self {
+[0m[32m+        Self {
+[0m[32m+            params: HashMap::new(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn with_param(mut self, k: impl Into<String>, v: impl Into<String>) -> Self {
+[0m[32m+        self.params.insert(k.into(), v.into());
+[0m[32m+        self
+[0m[32m+    }
+[0m[32m+    pub fn get(&self, k: &str) -> Option<&str> {
+[0m[32m+        self.params.get(k).map(|s| s.as_str())
+[0m[32m+    }
+[0m[32m+}
+[0m[32m+impl Default for CommandParameters {
+[0m[32m+    fn default() -> Self {
+[0m[32m+        Self::new()
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct Command { pub id: CommandId, pub command_type: CommandType, pub parameters: CommandParameters }
+[0m[31m-impl Command { pub fn new(ct: CommandType) -> Self { Self { id: CommandId::new(), command_type: ct, parameters: CommandParameters::new() } } pub fn with_parameters(ct: CommandType, p: CommandParameters) -> Self { Self { id: CommandId::new(), command_type: ct, parameters: p } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct Command {
+[0m[32m+    pub id: CommandId,
+[0m[32m+    pub command_type: CommandType,
+[0m[32m+    pub parameters: CommandParameters,
+[0m[32m+}
+[0m[32m+impl Command {
+[0m[32m+    pub fn new(ct: CommandType) -> Self {
+[0m[32m+        Self {
+[0m[32m+            id: CommandId::new(),
+[0m[32m+            command_type: ct,
+[0m[32m+            parameters: CommandParameters::new(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn with_parameters(ct: CommandType, p: CommandParameters) -> Self {
+[0m[32m+        Self {
+[0m[32m+            id: CommandId::new(),
+[0m[32m+            command_type: ct,
+[0m[32m+            parameters: p,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct ValidationError { pub command_id: CommandId, pub reason: String }
+[0m[31m-impl ValidationError { pub fn new(cid: CommandId, r: impl Into<String>) -> Self { Self { command_id: cid, reason: r.into() } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct ValidationError {
+[0m[32m+    pub command_id: CommandId,
+[0m[32m+    pub reason: String,
+[0m[32m+}
+[0m[32m+impl ValidationError {
+[0m[32m+    pub fn new(cid: CommandId, r: impl Into<String>) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            reason: r.into(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct PreconditionError { pub command_id: CommandId, pub failed_preconditions: Vec<String> }
+[0m[31m-impl PreconditionError { pub fn new(cid: CommandId, fp: Vec<String>) -> Self { Self { command_id: cid, failed_preconditions: fp } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct PreconditionError {
+[0m[32m+    pub command_id: CommandId,
+[0m[32m+    pub failed_preconditions: Vec<String>,
+[0m[32m+}
+[0m[32m+impl PreconditionError {
+[0m[32m+    pub fn new(cid: CommandId, fp: Vec<String>) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            failed_preconditions: fp,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct ExecutionError { pub command_id: CommandId, pub reason: String, pub recoverable: bool }
+[0m[31m-impl ExecutionError { pub fn new(cid: CommandId, r: impl Into<String>, rc: bool) -> Self { Self { command_id: cid, reason: r.into(), recoverable: rc } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct ExecutionError {
+[0m[32m+    pub command_id: CommandId,
+[0m[32m+    pub reason: String,
+[0m[32m+    pub recoverable: bool,
+[0m[32m+}
+[0m[32m+impl ExecutionError {
+[0m[32m+    pub fn new(cid: CommandId, r: impl Into<String>, rc: bool) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            reason: r.into(),
+[0m[32m+            recoverable: rc,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct UndoError { pub command_id: CommandId, pub reason: String }
+[0m[31m-impl UndoError { pub fn new(cid: CommandId, r: impl Into<String>) -> Self { Self { command_id: cid, reason: r.into() } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct UndoError {
+[0m[32m+    pub command_id: CommandId,
+[0m[32m+    pub reason: String,
+[0m[32m+}
+[0m[32m+impl UndoError {
+[0m[32m+    pub fn new(cid: CommandId, r: impl Into<String>) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            reason: r.into(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct RedoError { pub command_id: CommandId, pub reason: String }
+[0m[31m-impl RedoError { pub fn new(cid: CommandId, r: impl Into<String>) -> Self { Self { command_id: cid, reason: r.into() } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct RedoError {
+[0m[32m+    pub command_id: CommandId,
+[0m[32m+    pub reason: String,
+[0m[32m+}
+[0m[32m+impl RedoError {
+[0m[32m+    pub fn new(cid: CommandId, r: impl Into<String>) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            reason: r.into(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct CommandResult { pub command_id: CommandId, pub success: bool, pub result_data: Option<String> }
+[0m[31m-impl CommandResult { pub fn success(cid: CommandId) -> Self { Self { command_id: cid, success: true, result_data: None } } pub fn success_with_data(cid: CommandId, d: impl Into<String>) -> Self { Self { command_id: cid, success: true, result_data: Some(d.into()) } } pub fn failure(cid: CommandId) -> Self { Self { command_id: cid, success: false, result_data: None } } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct CommandResult {
+[0m[32m+    pub command_id: CommandId,
+[0m[32m+    pub success: bool,
+[0m[32m+    pub result_data: Option<String>,
+[0m[32m+}
+[0m[32m+impl CommandResult {
+[0m[32m+    pub fn success(cid: CommandId) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            success: true,
+[0m[32m+            result_data: None,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn success_with_data(cid: CommandId, d: impl Into<String>) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            success: true,
+[0m[32m+            result_data: Some(d.into()),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn failure(cid: CommandId) -> Self {
+[0m[32m+        Self {
+[0m[32m+            command_id: cid,
+[0m[32m+            success: false,
+[0m[32m+            result_data: None,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct UndoData { data: HashMap<String, String> }
+[0m[31m-impl UndoData { pub fn new() -> Self { Self { data: HashMap::new() } } }
+[0m[31m-impl Default for UndoData { fn default() -> Self { Self::new() } }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct UndoData {
+[0m[32m+    data: HashMap<String, String>,
+[0m[32m+}
+[0m[32m+impl UndoData {
+[0m[32m+    pub fn new() -> Self {
+[0m[32m+        Self {
+[0m[32m+            data: HashMap::new(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m[32m+impl Default for UndoData {
+[0m[32m+    fn default() -> Self {
+[0m[32m+        Self::new()
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct ExecutedCommand { pub command: Command, pub result: CommandResult, pub undo_data: Option<UndoData> }
+[0m[32m+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+[0m[32m+pub struct ExecutedCommand {
+[0m[32m+    pub command: Command,
+[0m[32m+    pub result: CommandResult,
+[0m[32m+    pub undo_data: Option<UndoData>,
+[0m[32m+}
+[0m 
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\src\editor_command_spine.rs:76:
+ pub use dispatch_world::WorldDispatch;
+ 
+ // Command Spine - Central command routing with validation, preconditions, and history
+[31m-mod command_types;
+[0m mod command_spine;
+[32m+mod command_types;
+[0m pub use command_spine::{
+     ActionId as CommandActionId, Command, CommandId, CommandParameters, CommandResult,
+     CommandSpine, CommandType, ExecutedCommand, ExecutionError, PreconditionError, RedoError,
+Diff in \\?\E:\Development\StratumX\5.editor\l7.0-editor-command-spine\tests\dispatch_core_tests.rs:2:
+ 
+ use std::sync::Arc;
+ use stratumx_editor_l7_0_editor_command_spine::{
+[31m-    ActionContext, ActionDefinition, ActionFamily, ActionId, ActionRegistry,
+[0m[31m-    DispatchCore, FocusState, MutationClass, ProjectState, SelectionState, SessionState,
+[0m[31m-    StateQueries,
+[0m[32m+    ActionContext, ActionDefinition, ActionFamily, ActionId, ActionRegistry, DispatchCore,
+[0m[32m+    FocusState, MutationClass, ProjectState, SelectionState, SessionState, StateQueries,
+[0m };
+ use uuid::Uuid;
+ 
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\editor_tool_context_system.rs:1:
+ //! Editor Tool Context System
+ 
+[31m-pub mod selection_state;
+[0m pub mod focus_state;
+[31m-pub mod tool_mode;
+[0m[32m+pub mod selection_state;
+[0m pub mod session_errors;
+ pub mod session_state;
+[32m+pub mod tool_mode;
+[0m 
+[31m-pub use selection_state::*;
+[0m pub use focus_state::*;
+[31m-pub use tool_mode::*;
+[0m[32m+pub use selection_state::*;
+[0m pub use session_errors::*;
+ pub use session_state::*;
+[32m+pub use tool_mode::*;
+[0m 
+ pub use serde::{Deserialize, Serialize};
+ use std::collections::HashMap;
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\focus_state.rs:1:
+ //! Focus state type.
+ 
+[31m-use serde::{Deserialize, Serialize};
+[0m use crate::{EntityId, PanelId};
+[32m+use serde::{Deserialize, Serialize};
+[0m 
+ #[derive(Debug, Clone, Serialize, Deserialize)]
+[31m-pub struct FocusState { pub focused_panel: Option<PanelId>, pub focused_entity: Option<EntityId> }
+[0m[31m-impl FocusState { pub fn new() -> Self { Self { focused_panel: None, focused_entity: None } } }
+[0m[31m-impl Default for FocusState { fn default() -> Self { Self::new() } }
+[0m[32m+pub struct FocusState {
+[0m[32m+    pub focused_panel: Option<PanelId>,
+[0m[32m+    pub focused_entity: Option<EntityId>,
+[0m[32m+}
+[0m[32m+impl FocusState {
+[0m[32m+    pub fn new() -> Self {
+[0m[32m+        Self {
+[0m[32m+            focused_panel: None,
+[0m[32m+            focused_entity: None,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+}
+[0m[32m+impl Default for FocusState {
+[0m[32m+    fn default() -> Self {
+[0m[32m+        Self::new()
+[0m[32m+    }
+[0m[32m+}
+[0m 
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\selection_state.rs:1:
+ //! Selection state types.
+ 
+[31m-use serde::{Deserialize, Serialize};
+[0m use crate::EntityId;
+[32m+use serde::{Deserialize, Serialize};
+[0m 
+ #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+[31m-pub enum SelectionMode { Single, Multiple, Hierarchical }
+[0m[32m+pub enum SelectionMode {
+[0m[32m+    Single,
+[0m[32m+    Multiple,
+[0m[32m+    Hierarchical,
+[0m[32m+}
+[0m 
+ #[derive(Debug, Clone, Serialize, Deserialize)]
+[31m-pub struct SelectionState { pub selected_entities: Vec<EntityId>, pub selection_mode: SelectionMode }
+[0m[32m+pub struct SelectionState {
+[0m[32m+    pub selected_entities: Vec<EntityId>,
+[0m[32m+    pub selection_mode: SelectionMode,
+[0m[32m+}
+[0m 
+ impl SelectionState {
+[31m-    pub fn new() -> Self { Self { selected_entities: Vec::new(), selection_mode: SelectionMode::Single } }
+[0m[31m-    pub fn get_selected_entities(&self) -> &[EntityId] { &self.selected_entities }
+[0m[31m-    pub fn get_selection_mode(&self) -> SelectionMode { self.selection_mode }
+[0m[31m-    pub fn has_selection(&self) -> bool { !self.selected_entities.is_empty() }
+[0m[31m-    pub fn selection_count(&self) -> usize { self.selected_entities.len() }
+[0m[31m-    pub fn is_selected(&self, entity: &EntityId) -> bool { self.selected_entities.contains(entity) }
+[0m[31m-    pub(crate) fn clear(&mut self) { self.selected_entities.clear() }
+[0m[31m-    pub(crate) fn set_selected(&mut self, entities: Vec<EntityId>) { self.selected_entities = entities }
+[0m[31m-    pub(crate) fn add_entity(&mut self, entity: EntityId) { if !self.selected_entities.contains(&entity) { self.selected_entities.push(entity); } }
+[0m[31m-    pub(crate) fn remove_entity(&mut self, entity: &EntityId) { self.selected_entities.retain(|e| e != entity); }
+[0m[32m+    pub fn new() -> Self {
+[0m[32m+        Self {
+[0m[32m+            selected_entities: Vec::new(),
+[0m[32m+            selection_mode: SelectionMode::Single,
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn get_selected_entities(&self) -> &[EntityId] {
+[0m[32m+        &self.selected_entities
+[0m[32m+    }
+[0m[32m+    pub fn get_selection_mode(&self) -> SelectionMode {
+[0m[32m+        self.selection_mode
+[0m[32m+    }
+[0m[32m+    pub fn has_selection(&self) -> bool {
+[0m[32m+        !self.selected_entities.is_empty()
+[0m[32m+    }
+[0m[32m+    pub fn selection_count(&self) -> usize {
+[0m[32m+        self.selected_entities.len()
+[0m[32m+    }
+[0m[32m+    pub fn is_selected(&self, entity: &EntityId) -> bool {
+[0m[32m+        self.selected_entities.contains(entity)
+[0m[32m+    }
+[0m[32m+    pub(crate) fn clear(&mut self) {
+[0m[32m+        self.selected_entities.clear()
+[0m[32m+    }
+[0m[32m+    pub(crate) fn set_selected(&mut self, entities: Vec<EntityId>) {
+[0m[32m+        self.selected_entities = entities
+[0m[32m+    }
+[0m[32m+    pub(crate) fn add_entity(&mut self, entity: EntityId) {
+[0m[32m+        if !self.selected_entities.contains(&entity) {
+[0m[32m+            self.selected_entities.push(entity);
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub(crate) fn remove_entity(&mut self, entity: &EntityId) {
+[0m[32m+        self.selected_entities.retain(|e| e != entity);
+[0m[32m+    }
+[0m }
+[31m-impl Default for SelectionState { fn default() -> Self { Self::new() } }
+[0m[32m+impl Default for SelectionState {
+[0m[32m+    fn default() -> Self {
+[0m[32m+        Self::new()
+[0m[32m+    }
+[0m[32m+}
+[0m 
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\session_errors.rs:3:
+ use serde::{Deserialize, Serialize};
+ 
+ #[derive(Debug, Clone, PartialEq, Eq)]
+[31m-pub struct ApplyError { pub reason: String }
+[0m[32m+pub struct ApplyError {
+[0m[32m+    pub reason: String,
+[0m[32m+}
+[0m 
+ #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+[31m-pub struct SerializationError { pub reason: String }
+[0m[31m-impl std::fmt::Display for SerializationError { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "Serialization error: {}", self.reason) } }
+[0m[32m+pub struct SerializationError {
+[0m[32m+    pub reason: String,
+[0m[32m+}
+[0m[32m+impl std::fmt::Display for SerializationError {
+[0m[32m+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+[0m[32m+        write!(f, "Serialization error: {}", self.reason)
+[0m[32m+    }
+[0m[32m+}
+[0m impl std::error::Error for SerializationError {}
+ 
+ #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\session_errors.rs:14:
+[31m-pub struct DeserializationError { pub reason: String }
+[0m[31m-impl std::fmt::Display for DeserializationError { fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { write!(f, "Deserialization error: {}", self.reason) } }
+[0m[32m+pub struct DeserializationError {
+[0m[32m+    pub reason: String,
+[0m[32m+}
+[0m[32m+impl std::fmt::Display for DeserializationError {
+[0m[32m+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+[0m[32m+        write!(f, "Deserialization error: {}", self.reason)
+[0m[32m+    }
+[0m[32m+}
+[0m impl std::error::Error for DeserializationError {}
+ 
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\session_state.rs:1:
+ //! Session State Container
+ 
+[31m-use serde::{Deserialize, Serialize};
+[0m[31m-use std::path::PathBuf;
+[0m[31m-use crate::{EntityId, PanelId, WorldIdentity, state_modification::StateModification};
+[0m[31m-use crate::selection_state::{SelectionState, SelectionMode};
+[0m use crate::focus_state::FocusState;
+[31m-use crate::tool_mode::ToolMode;
+[0m[31m-use crate::session_errors::{ApplyError, SerializationError, DeserializationError};
+[0m[32m+use crate::selection_state::{SelectionMode, SelectionState};
+[0m[32m+use crate::session_errors::{ApplyError, DeserializationError, SerializationError};
+[0m use crate::state_modification::{ValidationError, ValidationErrorCode};
+[32m+use crate::tool_mode::ToolMode;
+[0m[32m+use crate::{state_modification::StateModification, EntityId, PanelId, WorldIdentity};
+[0m[32m+use serde::{Deserialize, Serialize};
+[0m[32m+use std::path::PathBuf;
+[0m 
+ #[derive(Debug, Clone, Serialize, Deserialize)]
+ pub struct SessionState {
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\session_state.rs:20:
+ }
+ 
+ impl SessionState {
+[31m-    pub fn new() -> Self { Self { active_world: None, open_panels: Vec::new(), focused_panel: None, selection_state: SelectionState::default(), tool_mode: ToolMode::Select, recently_opened_worlds: Vec::new() } }
+[0m[31m-    pub fn get_active_world(&self) -> Option<&WorldIdentity> { self.active_world.as_ref() }
+[0m[31m-    pub fn get_open_panels(&self) -> &[PanelId] { &self.open_panels }
+[0m[31m-    pub fn get_focused_panel(&self) -> Option<&PanelId> { self.focused_panel.as_ref() }
+[0m[31m-    pub fn get_selection_state(&self) -> &SelectionState { &self.selection_state }
+[0m[31m-    pub fn get_tool_mode(&self) -> ToolMode { self.tool_mode }
+[0m[31m-    pub fn get_recently_opened_worlds(&self) -> &[PathBuf] { &self.recently_opened_worlds }
+[0m[31m-    pub fn set_active_world(&mut self, world: Option<WorldIdentity>) { self.active_world = world }
+[0m[31m-    pub fn add_open_panel(&mut self, panel_id: PanelId) { if !self.open_panels.contains(&panel_id) { self.open_panels.push(panel_id); } }
+[0m[31m-    pub fn remove_open_panel(&mut self, panel_id: &PanelId) { self.open_panels.retain(|p| p != panel_id); }
+[0m[31m-    pub fn set_focused_panel(&mut self, panel_id: Option<PanelId>) { self.focused_panel = panel_id }
+[0m[31m-    pub fn set_selection(&mut self, selection: SelectionState) { self.selection_state = selection }
+[0m[31m-    pub fn set_tool_mode(&mut self, mode: ToolMode) { self.tool_mode = mode }
+[0m[31m-    pub fn add_recently_opened_world(&mut self, path: PathBuf) { self.recently_opened_worlds.retain(|p| p != &path); self.recently_opened_worlds.insert(0, path); self.recently_opened_worlds.truncate(10); }
+[0m[32m+    pub fn new() -> Self {
+[0m[32m+        Self {
+[0m[32m+            active_world: None,
+[0m[32m+            open_panels: Vec::new(),
+[0m[32m+            focused_panel: None,
+[0m[32m+            selection_state: SelectionState::default(),
+[0m[32m+            tool_mode: ToolMode::Select,
+[0m[32m+            recently_opened_worlds: Vec::new(),
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn get_active_world(&self) -> Option<&WorldIdentity> {
+[0m[32m+        self.active_world.as_ref()
+[0m[32m+    }
+[0m[32m+    pub fn get_open_panels(&self) -> &[PanelId] {
+[0m[32m+        &self.open_panels
+[0m[32m+    }
+[0m[32m+    pub fn get_focused_panel(&self) -> Option<&PanelId> {
+[0m[32m+        self.focused_panel.as_ref()
+[0m[32m+    }
+[0m[32m+    pub fn get_selection_state(&self) -> &SelectionState {
+[0m[32m+        &self.selection_state
+[0m[32m+    }
+[0m[32m+    pub fn get_tool_mode(&self) -> ToolMode {
+[0m[32m+        self.tool_mode
+[0m[32m+    }
+[0m[32m+    pub fn get_recently_opened_worlds(&self) -> &[PathBuf] {
+[0m[32m+        &self.recently_opened_worlds
+[0m[32m+    }
+[0m[32m+    pub fn set_active_world(&mut self, world: Option<WorldIdentity>) {
+[0m[32m+        self.active_world = world
+[0m[32m+    }
+[0m[32m+    pub fn add_open_panel(&mut self, panel_id: PanelId) {
+[0m[32m+        if !self.open_panels.contains(&panel_id) {
+[0m[32m+            self.open_panels.push(panel_id);
+[0m[32m+        }
+[0m[32m+    }
+[0m[32m+    pub fn remove_open_panel(&mut self, panel_id: &PanelId) {
+[0m[32m+        self.open_panels.retain(|p| p != panel_id);
+[0m[32m+    }
+[0m[32m+    pub fn set_focused_panel(&mut self, panel_id: Option<PanelId>) {
+[0m[32m+        self.focused_panel = panel_id
+[0m[32m+    }
+[0m[32m+    pub fn set_selection(&mut self, selection: SelectionState) {
+[0m[32m+        self.selection_state = selection
+[0m[32m+    }
+[0m[32m+    pub fn set_tool_mode(&mut self, mode: ToolMode) {
+[0m[32m+        self.tool_mode = mode
+[0m[32m+    }
+[0m[32m+    pub fn add_recently_opened_world(&mut self, path: PathBuf) {
+[0m[32m+        self.recently_opened_worlds.retain(|p| p != &path);
+[0m[32m+        self.recently_opened_worlds.insert(0, path);
+[0m[32m+        self.recently_opened_worlds.truncate(10);
+[0m[32m+    }
+[0m 
+[31m-    pub fn validate_modification(&self, modification: &StateModification) -> Result<(), ValidationError> {
+[0m[32m+    pub fn validate_modification(
+[0m[32m+        &self,
+[0m[32m+        modification: &StateModification,
+[0m[32m+    ) -> Result<(), ValidationError> {
+[0m         match modification {
+[31m-            StateModification::SetActiveWorld(world_opt) => { if let Some(w) = world_opt { if w.world_id.is_nil() { return Err(ValidationError::with_field("World ID cannot be nil UUID", "world_id", ValidationErrorCode::InvalidWorldIdentity)); } if w.world_name.is_empty() { return Err(ValidationError::with_field("World name cannot be empty", "world_name", ValidationErrorCode::InvalidWorldIdentity)); } } Ok(()) }
+[0m[31m-            StateModification::AddOpenPanel(p) | StateModification::RemoveOpenPanel(p) => { if p.0.is_empty() { Err(ValidationError::with_field("Panel ID cannot be empty", "panel_id", ValidationErrorCode::InvalidPanelId)) } else { Ok(()) } }
+[0m[31m-            StateModification::SetFocusedPanel(p_opt) => { if let Some(p) = p_opt { if p.0.is_empty() { return Err(ValidationError::with_field("Panel ID cannot be empty", "panel_id", ValidationErrorCode::InvalidPanelId)); } } Ok(()) }
+[0m[31m-            StateModification::SetSelection(entities) | StateModification::AddToSelection(entities) | StateModification::RemoveFromSelection(entities) => { if entities.iter().any(|e| e.is_nil()) { Err(ValidationError::with_field("Entity ID cannot be nil UUID", "entity_id", ValidationErrorCode::InvalidEntityId)) } else { Ok(()) } }
+[0m[31m-            _ => Ok(())
+[0m[32m+            StateModification::SetActiveWorld(world_opt) => {
+[0m[32m+                if let Some(w) = world_opt {
+[0m[32m+                    if w.world_id.is_nil() {
+[0m[32m+                        return Err(ValidationError::with_field(
+[0m[32m+                            "World ID cannot be nil UUID",
+[0m[32m+                            "world_id",
+[0m[32m+                            ValidationErrorCode::InvalidWorldIdentity,
+[0m[32m+                        ));
+[0m[32m+                    }
+[0m[32m+                    if w.world_name.is_empty() {
+[0m[32m+                        return Err(ValidationError::with_field(
+[0m[32m+                            "World name cannot be empty",
+[0m[32m+                            "world_name",
+[0m[32m+                            ValidationErrorCode::InvalidWorldIdentity,
+[0m[32m+                        ));
+[0m[32m+                    }
+[0m[32m+                }
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::AddOpenPanel(p) | StateModification::RemoveOpenPanel(p) => {
+[0m[32m+                if p.0.is_empty() {
+[0m[32m+                    Err(ValidationError::with_field(
+[0m[32m+                        "Panel ID cannot be empty",
+[0m[32m+                        "panel_id",
+[0m[32m+                        ValidationErrorCode::InvalidPanelId,
+[0m[32m+                    ))
+[0m[32m+                } else {
+[0m[32m+                    Ok(())
+[0m[32m+                }
+[0m[32m+            }
+[0m[32m+            StateModification::SetFocusedPanel(p_opt) => {
+[0m[32m+                if let Some(p) = p_opt {
+[0m[32m+                    if p.0.is_empty() {
+[0m[32m+                        return Err(ValidationError::with_field(
+[0m[32m+                            "Panel ID cannot be empty",
+[0m[32m+                            "panel_id",
+[0m[32m+                            ValidationErrorCode::InvalidPanelId,
+[0m[32m+                        ));
+[0m[32m+                    }
+[0m[32m+                }
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::SetSelection(entities)
+[0m[32m+            | StateModification::AddToSelection(entities)
+[0m[32m+            | StateModification::RemoveFromSelection(entities) => {
+[0m[32m+                if entities.iter().any(|e| e.is_nil()) {
+[0m[32m+                    Err(ValidationError::with_field(
+[0m[32m+                        "Entity ID cannot be nil UUID",
+[0m[32m+                        "entity_id",
+[0m[32m+                        ValidationErrorCode::InvalidEntityId,
+[0m[32m+                    ))
+[0m[32m+                } else {
+[0m[32m+                    Ok(())
+[0m[32m+                }
+[0m[32m+            }
+[0m[32m+            _ => Ok(()),
+[0m         }
+     }
+ 
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\session_state.rs:48:
+[31m-    pub fn apply_modification(&mut self, modification: StateModification) -> Result<(), ApplyError> {
+[0m[32m+    pub fn apply_modification(
+[0m[32m+        &mut self,
+[0m[32m+        modification: StateModification,
+[0m[32m+    ) -> Result<(), ApplyError> {
+[0m         match modification {
+[31m-            StateModification::SetActiveWorld(w) => { self.set_active_world(w); Ok(()) }
+[0m[31m-            StateModification::AddOpenPanel(p) => { self.add_open_panel(p); Ok(()) }
+[0m[31m-            StateModification::RemoveOpenPanel(p) => { self.remove_open_panel(&p); Ok(()) }
+[0m[31m-            StateModification::SetFocusedPanel(p) => { self.set_focused_panel(p); Ok(()) }
+[0m[31m-            StateModification::SetSelection(e) => { self.selection_state.set_selected(e); Ok(()) }
+[0m[31m-            StateModification::AddToSelection(e) => { self.selection_state.add_entity(e); Ok(()) }
+[0m[31m-            StateModification::RemoveFromSelection(e) => { self.selection_state.remove_entity(&e); Ok(()) }
+[0m[31m-            StateModification::ClearSelection => { self.selection_state.clear(); Ok(()) }
+[0m[31m-            StateModification::SetSelectionMode(m) => { self.selection_state.selection_mode = m; Ok(()) }
+[0m[31m-            StateModification::SetToolMode(m) => { self.set_tool_mode(m); Ok(()) }
+[0m[31m-            StateModification::IncrementSaveGeneration => Err(ApplyError { reason: "IncrementSaveGeneration should be applied to ProjectState".into() })
+[0m[32m+            StateModification::SetActiveWorld(w) => {
+[0m[32m+                self.set_active_world(w);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::AddOpenPanel(p) => {
+[0m[32m+                self.add_open_panel(p);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::RemoveOpenPanel(p) => {
+[0m[32m+                self.remove_open_panel(&p);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::SetFocusedPanel(p) => {
+[0m[32m+                self.set_focused_panel(p);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::SetSelection(e) => {
+[0m[32m+                self.selection_state.set_selected(e);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::AddToSelection(e) => {
+[0m[32m+                self.selection_state.add_entity(e);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::RemoveFromSelection(e) => {
+[0m[32m+                self.selection_state.remove_entity(&e);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::ClearSelection => {
+[0m[32m+                self.selection_state.clear();
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::SetSelectionMode(m) => {
+[0m[32m+                self.selection_state.selection_mode = m;
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::SetToolMode(m) => {
+[0m[32m+                self.set_tool_mode(m);
+[0m[32m+                Ok(())
+[0m[32m+            }
+[0m[32m+            StateModification::IncrementSaveGeneration => Err(ApplyError {
+[0m[32m+                reason: "IncrementSaveGeneration should be applied to ProjectState".into(),
+[0m[32m+            }),
+[0m         }
+     }
+[31m-    pub fn serialize(&self) -> Result<Vec<u8>, SerializationError> { bincode::serialize(self).map_err(|e| SerializationError { reason: format!("Failed to serialize SessionState: {}", e) }) }
+[0m[31m-    pub fn deserialize(data: &[u8]) -> Result<Self, DeserializationError> { bincode::deserialize(data).map_err(|e| DeserializationError { reason: format!("Failed to deserialize SessionState: {}", e) }) }
+[0m[32m+    pub fn serialize(&self) -> Result<Vec<u8>, SerializationError> {
+[0m[32m+        bincode::serialize(self).map_err(|e| SerializationError {
+[0m[32m+            reason: format!("Failed to serialize SessionState: {}", e),
+[0m[32m+        })
+[0m[32m+    }
+[0m[32m+    pub fn deserialize(data: &[u8]) -> Result<Self, DeserializationError> {
+[0m[32m+        bincode::deserialize(data).map_err(|e| DeserializationError {
+[0m[32m+            reason: format!("Failed to deserialize SessionState: {}", e),
+[0m[32m+        })
+[0m[32m+    }
+[0m }
+[31m-impl Default for SessionState { fn default() -> Self { Self::new() } }
+[0m[32m+impl Default for SessionState {
+[0m[32m+    fn default() -> Self {
+[0m[32m+        Self::new()
+[0m[32m+    }
+[0m[32m+}
+[0m 
+[31m-#[cfg(test)] mod tests { use super::*; use uuid::Uuid;
+[0m[31m-    #[test] fn test_session_state_creation() { let s = SessionState::new(); assert!(s.active_world.is_none()); assert!(s.open_panels.is_empty()); }
+[0m[31m-    #[test] fn test_panel_management() { let mut s = SessionState::new(); let p = PanelId("viewport".into()); s.add_open_panel(p.clone()); assert_eq!(s.open_panels.len(), 1); s.add_open_panel(p.clone()); assert_eq!(s.open_panels.len(), 1); s.remove_open_panel(&p); assert!(s.open_panels.is_empty()); }
+[0m[31m-    #[test] fn test_selection_state() { let mut sel = SelectionState::new(); assert!(!sel.has_selection()); let e1 = Uuid::new_v4(); sel.add_entity(e1); assert!(sel.has_selection()); sel.clear(); assert!(!sel.has_selection()); }
+[0m[31m-    #[test] fn test_recently_opened_worlds() { let mut s = SessionState::new(); for i in 0..15 { s.add_recently_opened_world(PathBuf::from(format!("/w{}", i))); } assert_eq!(s.recently_opened_worlds.len(), 10); }
+[0m[32m+#[cfg(test)]
+[0m[32m+mod tests {
+[0m[32m+    use super::*;
+[0m[32m+    use uuid::Uuid;
+[0m[32m+    #[test]
+[0m[32m+    fn test_session_state_creation() {
+[0m[32m+        let s = SessionState::new();
+[0m[32m+        assert!(s.active_world.is_none());
+[0m[32m+        assert!(s.open_panels.is_empty());
+[0m[32m+    }
+[0m[32m+    #[test]
+[0m[32m+    fn test_panel_management() {
+[0m[32m+        let mut s = SessionState::new();
+[0m[32m+        let p = PanelId("viewport".into());
+[0m[32m+        s.add_open_panel(p.clone());
+[0m[32m+        assert_eq!(s.open_panels.len(), 1);
+[0m[32m+        s.add_open_panel(p.clone());
+[0m[32m+        assert_eq!(s.open_panels.len(), 1);
+[0m[32m+        s.remove_open_panel(&p);
+[0m[32m+        assert!(s.open_panels.is_empty());
+[0m[32m+    }
+[0m[32m+    #[test]
+[0m[32m+    fn test_selection_state() {
+[0m[32m+        let mut sel = SelectionState::new();
+[0m[32m+        assert!(!sel.has_selection());
+[0m[32m+        let e1 = Uuid::new_v4();
+[0m[32m+        sel.add_entity(e1);
+[0m[32m+        assert!(sel.has_selection());
+[0m[32m+        sel.clear();
+[0m[32m+        assert!(!sel.has_selection());
+[0m[32m+    }
+[0m[32m+    #[test]
+[0m[32m+    fn test_recently_opened_worlds() {
+[0m[32m+        let mut s = SessionState::new();
+[0m[32m+        for i in 0..15 {
+[0m[32m+            s.add_recently_opened_world(PathBuf::from(format!("/w{}", i)));
+[0m[32m+        }
+[0m[32m+        assert_eq!(s.recently_opened_worlds.len(), 10);
+[0m[32m+    }
+[0m }
+ 
+Diff in \\?\E:\Development\StratumX\5.editor\l8.5-tool-context-system\src\tool_mode.rs:3:
+ use serde::{Deserialize, Serialize};
+ 
+ #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+[31m-pub enum ToolMode { Select, Move, Rotate, Scale, TerrainSculpt, Paint }
+[0m[32m+pub enum ToolMode {
+[0m[32m+    Select,
+[0m[32m+    Move,
+[0m[32m+    Rotate,
+[0m[32m+    Scale,
+[0m[32m+    TerrainSculpt,
+[0m[32m+    Paint,
+[0m[32m+}
+[0m 

@@ -1,0 +1,19 @@
+[package]
+name = "end_to_end_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+stratumx_editor_app = { path = "../../../6.apps/editor/stratumx_editor_app" }
+
+[dev-dependencies]
+serde_json.workspace = true
+uuid.workspace = true
+engine_world = { path = "../../../2.engine/l0-world-truth" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+editor_dto_law = { path = "../../../3.sdk/l5.9-editor-dto-law" }
+stratumx-editor-l8-0-editor-shell = { path = "../../../5.editor/l8.0-editor-shell" }
+tempfile = "3"

@@ -1,0 +1,24 @@
+[package]
+name = "engine_field"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Field simulation for damage, hydrology, fire"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["field", "simulation", "stratumx"]
+categories = ["game-development", "science"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_world = { path = "../../l0-world-truth" }
+engine_material = { path = "../../l0.5-shared-world-property-substrate" }
+engine_world_spatial = { path = "../../l-0.1-world-spatial" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
+engine_memory_control = { path = "../../l1.5-runtime-resource-services/memory-control" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_field.rs"

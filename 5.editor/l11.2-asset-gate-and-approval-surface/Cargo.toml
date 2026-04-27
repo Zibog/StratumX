@@ -1,0 +1,13 @@
+[package]
+name = "stratumx-editor-l11-2-asset-gate-and-approval-surface"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+
+[lib]
+path = "src/editor_asset_gate_and_approval_surface.rs"

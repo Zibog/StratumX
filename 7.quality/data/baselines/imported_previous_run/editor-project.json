@@ -1,0 +1,749 @@
+{
+  "title": "StratumX Editor",
+  "project_name": "StratumX Game Project",
+  "viewport": {
+    "active_viewport": 0,
+    "projection": "Perspective",
+    "selected": [
+      2
+    ],
+    "camera_bookmark": "origin"
+  },
+  "tool_context": {
+    "active_mode": "Select",
+    "active_suite": "world"
+  },
+  "workspace_layout": {
+    "open_panels": [
+      "Viewport",
+      "Outliner",
+      "DataLayers",
+      "ContentBrowser",
+      "Inspector",
+      "ValidationDock",
+      "Console",
+      "PackageManager",
+      "RuntimeInspector",
+      "Timeline",
+      "BuildRelease",
+      "Assistant"
+    ],
+    "focused_panel": "Viewport"
+  },
+  "interaction_routing": {
+    "command_palette_open": false,
+    "pointer_captured": false
+  },
+  "plugin_host": {
+    "registered_plugins": [
+      "core.viewport",
+      "core.asset"
+    ]
+  },
+  "package_service": {
+    "installed_packages": [
+      "stratumx.core"
+    ]
+  },
+  "collaboration_surface": {
+    "reviewers": [
+      "local-user"
+    ]
+  },
+  "review_surface": {
+    "notes": []
+  },
+  "approval_surface": {
+    "pending_assets": []
+  },
+  "playtest_surface": {
+    "last_capture_label": "step-simulation"
+  },
+  "production_surface": {
+    "counters": {
+      "diagnostics": 0,
+      "objects": 30
+    }
+  },
+  "learning_surface": {
+    "quick_start_steps": [
+      "Open a project",
+      "Select a world root",
+      "Run validation",
+      "Build a package"
+    ]
+  },
+  "assistant_surface": {
+    "goal_draft": "",
+    "staged_proposal": null
+  },
+  "objects": [
+    {
+      "handle": 1,
+      "class": "Asset",
+      "label": "climate-sky",
+      "fields": {
+        "build_status": "Ready",
+        "bundle": "open-world-core",
+        "data_layer": "Authoring",
+        "family": "terrain_material_environment_family",
+        "layer": "Assets",
+        "mobility": "Static",
+        "override_state": "Clean",
+        "position_x": "-440",
+        "position_y": "-180",
+        "position_z": "0",
+        "role": "sky_asset",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/climate-sky.asset",
+        "source_prefab": "/Prefabs/climate-sky",
+        "stable_id": "ObjectHandle(<opaque:b5add7fc67e64910>)",
+        "streaming_policy": "Streamable",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "asset",
+        "component:StaticMesh",
+        "component:Transform",
+        "sky"
+      ],
+      "active": true
+    },
+    {
+      "handle": 2,
+      "class": "Logic",
+      "label": "climate-weather",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Mission",
+        "family": "terrain_material_environment_family",
+        "layer": "Logic",
+        "mobility": "Stationary",
+        "override_state": "Clean",
+        "position_x": "-220",
+        "position_y": "-180",
+        "position_z": "0",
+        "role": "weather_profile",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/climate-weather.asset",
+        "source_prefab": "/Prefabs/climate-weather",
+        "stable_id": "ObjectHandle(<opaque:215d83d34b64736a>)",
+        "streaming_policy": "Manual",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:AI Brain Link",
+        "component:QuestMarker",
+        "component:ScriptBehaviour",
+        "component:Transform",
+        "environment",
+        "logic",
+        "weather"
+      ],
+      "active": true
+    },
+    {
+      "handle": 3,
+      "class": "Logic",
+      "label": "logic-root",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Mission",
+        "family": "quest_event_logic_family",
+        "layer": "Logic",
+        "mobility": "Stationary",
+        "override_state": "Clean",
+        "position_x": "0",
+        "position_y": "-180",
+        "position_z": "0",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/logic-root.asset",
+        "source_prefab": "/Prefabs/logic-root",
+        "stable_id": "ObjectHandle(<opaque:55d754f7c9ed6591>)",
+        "streaming_policy": "Manual",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:AI Brain Link",
+        "component:QuestMarker",
+        "component:ScriptBehaviour",
+        "component:Transform"
+      ],
+      "active": true
+    },
+    {
+      "handle": 4,
+      "class": "Material",
+      "label": "material-root",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "LookDev",
+        "family": "terrain_material_environment_family",
+        "layer": "Materials",
+        "mobility": "Static",
+        "override_state": "Clean",
+        "position_x": "220",
+        "position_y": "-180",
+        "position_z": "0",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/material-root.asset",
+        "source_prefab": "/Prefabs/material-root",
+        "stable_id": "ObjectHandle(<opaque:fd8c671699409cfa>)",
+        "streaming_policy": "Manual",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:MaterialOverride",
+        "component:Transform"
+      ],
+      "active": true
+    },
+    {
+      "handle": 17,
+      "class": "World",
+      "label": "new-object",
+      "fields": {
+        "data_layer": "Mission",
+        "family": "world_scene_family",
+        "layer": "Mission"
+      },
+      "tags": [
+        "world"
+      ],
+      "active": true
+    },
+    {
+      "handle": 29,
+      "class": "Asset",
+      "label": "new-object-audio",
+      "fields": {
+        "family": "audio_voice_family",
+        "role": "audio_bank"
+      },
+      "tags": [
+        "asset",
+        "audio",
+        "voice"
+      ],
+      "active": true
+    },
+    {
+      "handle": 30,
+      "class": "Asset",
+      "label": "new-object-hud",
+      "fields": {
+        "family": "ui_hud_family",
+        "override_state": "Clean",
+        "role": "hud"
+      },
+      "tags": [
+        "asset",
+        "hud",
+        "ui"
+      ],
+      "active": true
+    },
+    {
+      "handle": 16,
+      "class": "Logic",
+      "label": "new-object-logic",
+      "fields": {
+        "family": "quest_event_logic_family",
+        "role": "bootstrap"
+      },
+      "tags": [
+        "bootstrap",
+        "logic"
+      ],
+      "active": true
+    },
+    {
+      "handle": 20,
+      "class": "Logic",
+      "label": "new-object-logic",
+      "fields": {
+        "family": "quest_event_logic_family",
+        "role": "bootstrap"
+      },
+      "tags": [
+        "bootstrap",
+        "logic"
+      ],
+      "active": true
+    },
+    {
+      "handle": 26,
+      "class": "Material",
+      "label": "new-object-material",
+      "fields": {
+        "family": "terrain_material_environment_family",
+        "role": "master_material"
+      },
+      "tags": [
+        "layered",
+        "material"
+      ],
+      "active": true
+    },
+    {
+      "handle": 22,
+      "class": "Material",
+      "label": "new-object-material",
+      "fields": {
+        "family": "terrain_material_environment_family",
+        "role": "master_material"
+      },
+      "tags": [
+        "layered",
+        "material"
+      ],
+      "active": true
+    },
+    {
+      "handle": 23,
+      "class": "Logic",
+      "label": "new-object-quest",
+      "fields": {
+        "family": "quest_event_logic_family",
+        "role": "quest"
+      },
+      "tags": [
+        "gameplay",
+        "logic",
+        "quest"
+      ],
+      "active": true
+    },
+    {
+      "handle": 15,
+      "class": "Scene",
+      "label": "new-object-scene",
+      "fields": {
+        "family": "world_scene_family",
+        "role": "play_space"
+      },
+      "tags": [
+        "scene",
+        "spawn"
+      ],
+      "active": true
+    },
+    {
+      "handle": 19,
+      "class": "Scene",
+      "label": "new-object-scene",
+      "fields": {
+        "family": "world_scene_family",
+        "role": "play_space"
+      },
+      "tags": [
+        "scene",
+        "spawn"
+      ],
+      "active": true
+    },
+    {
+      "handle": 28,
+      "class": "Asset",
+      "label": "new-object-sky",
+      "fields": {
+        "family": "terrain_material_environment_family",
+        "role": "sky_asset"
+      },
+      "tags": [
+        "asset",
+        "sky"
+      ],
+      "active": true
+    },
+    {
+      "handle": 21,
+      "class": "Terrain",
+      "label": "new-object-terrain",
+      "fields": {
+        "family": "terrain_material_environment_family",
+        "role": "landscape"
+      },
+      "tags": [
+        "paintable",
+        "terrain"
+      ],
+      "active": true
+    },
+    {
+      "handle": 25,
+      "class": "Terrain",
+      "label": "new-object-terrain",
+      "fields": {
+        "family": "terrain_material_environment_family",
+        "role": "landscape"
+      },
+      "tags": [
+        "paintable",
+        "terrain"
+      ],
+      "active": true
+    },
+    {
+      "handle": 24,
+      "class": "Scene",
+      "label": "new-object-trigger",
+      "fields": {
+        "family": "world_scene_family",
+        "role": "trigger"
+      },
+      "tags": [
+        "scene",
+        "trigger"
+      ],
+      "active": true
+    },
+    {
+      "handle": 27,
+      "class": "Logic",
+      "label": "new-object-weather",
+      "fields": {
+        "family": "terrain_material_environment_family",
+        "role": "weather_profile"
+      },
+      "tags": [
+        "environment",
+        "logic",
+        "weather"
+      ],
+      "active": true
+    },
+    {
+      "handle": 14,
+      "class": "World",
+      "label": "new-object-world",
+      "fields": {
+        "family": "world_scene_family",
+        "role": "world_root"
+      },
+      "tags": [
+        "streaming",
+        "world"
+      ],
+      "active": true
+    },
+    {
+      "handle": 18,
+      "class": "World",
+      "label": "new-object-world",
+      "fields": {
+        "family": "world_scene_family",
+        "role": "world_root"
+      },
+      "tags": [
+        "streaming",
+        "world"
+      ],
+      "active": true
+    },
+    {
+      "handle": 5,
+      "class": "Logic",
+      "label": "quest-quest",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Mission",
+        "family": "quest_event_logic_family",
+        "layer": "Logic",
+        "mobility": "Stationary",
+        "override_state": "Clean",
+        "position_x": "440",
+        "position_y": "-180",
+        "position_z": "0",
+        "role": "quest",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/quest-quest.asset",
+        "source_prefab": "/Prefabs/quest-quest",
+        "stable_id": "ObjectHandle(<opaque:ee4a2cc9e1a0a487>)",
+        "streaming_policy": "Manual",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:AI Brain Link",
+        "component:QuestMarker",
+        "component:ScriptBehaviour",
+        "component:Transform",
+        "gameplay",
+        "logic",
+        "quest"
+      ],
+      "active": true
+    },
+    {
+      "handle": 6,
+      "class": "Scene",
+      "label": "quest-trigger",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Gameplay",
+        "family": "world_scene_family",
+        "layer": "Gameplay",
+        "mobility": "Dynamic",
+        "override_state": "Clean",
+        "position_x": "660",
+        "position_y": "-180",
+        "position_z": "0",
+        "role": "trigger",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/quest-trigger.asset",
+        "source_prefab": "/Prefabs/quest-trigger",
+        "stable_id": "ObjectHandle(<opaque:157dbcb1260ec7ee>)",
+        "streaming_policy": "Distance Loaded",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:Collider",
+        "component:ScriptBehaviour",
+        "component:StaticMesh",
+        "component:Transform",
+        "scene",
+        "trigger"
+      ],
+      "active": true
+    },
+    {
+      "handle": 7,
+      "class": "Scene",
+      "label": "scene-root",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Gameplay",
+        "family": "world_scene_family",
+        "layer": "Gameplay",
+        "mobility": "Dynamic",
+        "override_state": "Clean",
+        "position_x": "-440",
+        "position_y": "0",
+        "position_z": "0",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/scene-root.asset",
+        "source_prefab": "/Prefabs/scene-root",
+        "stable_id": "ObjectHandle(<opaque:a4d31070d122b816>)",
+        "streaming_policy": "Distance Loaded",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:Collider",
+        "component:ScriptBehaviour",
+        "component:StaticMesh",
+        "component:Transform",
+        "scene"
+      ],
+      "active": true
+    },
+    {
+      "handle": 8,
+      "class": "Asset",
+      "label": "ui-audio",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Authoring",
+        "family": "audio_voice_family",
+        "layer": "Assets",
+        "mobility": "Static",
+        "override_state": "Clean",
+        "position_x": "-220",
+        "position_y": "0",
+        "position_z": "0",
+        "role": "audio_bank",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/ui-audio.asset",
+        "source_prefab": "/Prefabs/ui-audio",
+        "stable_id": "ObjectHandle(<opaque:819e0257143b0bb8>)",
+        "streaming_policy": "Streamable",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "asset",
+        "audio",
+        "component:StaticMesh",
+        "component:Transform",
+        "voice"
+      ],
+      "active": true
+    },
+    {
+      "handle": 9,
+      "class": "Asset",
+      "label": "ui-hud",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Authoring",
+        "family": "ui_hud_family",
+        "layer": "Assets",
+        "mobility": "Static",
+        "override_state": "Clean",
+        "position_x": "0",
+        "position_y": "0",
+        "position_z": "0",
+        "role": "hud",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/ui-hud.asset",
+        "source_prefab": "/Prefabs/ui-hud",
+        "stable_id": "ObjectHandle(<opaque:53d1166d79c4dddf>)",
+        "streaming_policy": "Streamable",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "asset",
+        "component:StaticMesh",
+        "component:Transform",
+        "hud",
+        "ui"
+      ],
+      "active": true
+    },
+    {
+      "handle": 10,
+      "class": "World",
+      "label": "world-root",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Persistent",
+        "family": "world_scene_family",
+        "layer": "World",
+        "mobility": "Static",
+        "override_state": "Clean",
+        "position_x": "220",
+        "position_y": "0",
+        "position_z": "0",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/world-root.asset",
+        "source_prefab": "/Prefabs/world-root",
+        "stable_id": "ObjectHandle(<opaque:1e9f734161d62dd9>)",
+        "streaming_policy": "Always Loaded",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:NavigationAgent / Obstacle",
+        "component:Transform"
+      ],
+      "active": true
+    },
+    {
+      "handle": 11,
+      "class": "Logic",
+      "label": "zone-logic",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Mission",
+        "family": "quest_event_logic_family",
+        "layer": "Logic",
+        "mobility": "Stationary",
+        "override_state": "Clean",
+        "position_x": "440",
+        "position_y": "0",
+        "position_z": "0",
+        "role": "bootstrap",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/zone-logic.asset",
+        "source_prefab": "/Prefabs/zone-logic",
+        "stable_id": "ObjectHandle(<opaque:6634b0bda4fe8a7b>)",
+        "streaming_policy": "Manual",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "bootstrap",
+        "component:AI Brain Link",
+        "component:QuestMarker",
+        "component:ScriptBehaviour",
+        "component:Transform",
+        "logic"
+      ],
+      "active": true
+    },
+    {
+      "handle": 12,
+      "class": "Scene",
+      "label": "zone-scene",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Gameplay",
+        "family": "world_scene_family",
+        "layer": "Gameplay",
+        "mobility": "Dynamic",
+        "override_state": "Clean",
+        "position_x": "660",
+        "position_y": "0",
+        "position_z": "0",
+        "role": "play_space",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/zone-scene.asset",
+        "source_prefab": "/Prefabs/zone-scene",
+        "stable_id": "ObjectHandle(<opaque:fbd8f25ee5d0c5a8>)",
+        "streaming_policy": "Distance Loaded",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:Collider",
+        "component:ScriptBehaviour",
+        "component:StaticMesh",
+        "component:Transform",
+        "scene",
+        "spawn"
+      ],
+      "active": true
+    },
+    {
+      "handle": 13,
+      "class": "World",
+      "label": "zone-world",
+      "fields": {
+        "build_status": "Ready",
+        "data_layer": "Persistent",
+        "family": "world_scene_family",
+        "layer": "World",
+        "mobility": "Static",
+        "override_state": "Clean",
+        "position_x": "-440",
+        "position_y": "180",
+        "position_z": "0",
+        "role": "world_root",
+        "rotation_y": "0",
+        "runtime_state": "Authoring",
+        "scale_uniform": "1",
+        "source_file": "/Game/zone-world.asset",
+        "source_prefab": "/Prefabs/zone-world",
+        "stable_id": "ObjectHandle(<opaque:db30eb0519197f1c>)",
+        "streaming_policy": "Always Loaded",
+        "validation_state": "Pass"
+      },
+      "tags": [
+        "component:NavigationAgent / Obstacle",
+        "component:Transform",
+        "streaming",
+        "world"
+      ],
+      "active": true
+    }
+  ]
+}

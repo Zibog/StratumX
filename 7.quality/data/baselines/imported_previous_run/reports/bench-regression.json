@@ -1,0 +1,267 @@
+{
+  "row_count": 37,
+  "regression_count": 0,
+  "baseline_created": false,
+  "baseline_updated": false,
+  "rows": [
+    {
+      "benchmark": "engine_acoustics_synthesize",
+      "mean_ns": 73775.8100765441,
+      "baseline_mean_ns": 73879.89644350855,
+      "delta_pct": -0.14088591345554255,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_agents_simulate",
+      "mean_ns": 61387.44028084855,
+      "baseline_mean_ns": 62289.33100775575,
+      "delta_pct": -1.447905624150795,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_content_ingest",
+      "mean_ns": 123312.407889011,
+      "baseline_mean_ns": 127125.67477020311,
+      "delta_pct": -2.999604043860624,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_core_hot_type_ops",
+      "mean_ns": 2571.426227703042,
+      "baseline_mean_ns": 2626.2219866498363,
+      "delta_pct": -2.0864861853013004,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_ecs_facade",
+      "mean_ns": 39054.262946967945,
+      "baseline_mean_ns": 39837.971936998925,
+      "delta_pct": -1.967241182031965,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_ecs_query_execute",
+      "mean_ns": 41706.040673573356,
+      "baseline_mean_ns": 42415.19520342419,
+      "delta_pct": -1.6719350847018737,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_ecs_registry_membership",
+      "mean_ns": 146255.93021862497,
+      "baseline_mean_ns": 147684.9258008983,
+      "delta_pct": -0.9675974541909718,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_field_simulate",
+      "mean_ns": 61823.658206453365,
+      "baseline_mean_ns": 64024.50028073292,
+      "delta_pct": -3.4374998080880967,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_generation_generate",
+      "mean_ns": 76385.5320764362,
+      "baseline_mean_ns": 79975.16642861451,
+      "delta_pct": -4.48843623899477,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_handle_validate",
+      "mean_ns": 867.0128929867641,
+      "baseline_mean_ns": 885.6819467928907,
+      "delta_pct": -2.107873359474969,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_identity_issue_retire",
+      "mean_ns": 84168.10959177036,
+      "baseline_mean_ns": 85690.42717247167,
+      "delta_pct": -1.7765316744626436,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_imaging_render",
+      "mean_ns": 73490.00895843467,
+      "baseline_mean_ns": 73561.33547083344,
+      "delta_pct": -0.09696195962489866,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_inference_infer",
+      "mean_ns": 170004.96505384927,
+      "baseline_mean_ns": 177465.2835283621,
+      "delta_pct": -4.2038185306933835,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_kinetics_simulate",
+      "mean_ns": 62612.83949185211,
+      "baseline_mean_ns": 65439.41956474016,
+      "delta_pct": -4.319384388933452,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_material_lookup",
+      "mean_ns": 54683.644267455056,
+      "baseline_mean_ns": 54906.847600575304,
+      "delta_pct": -0.40651274453773,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_memory_control_cycle",
+      "mean_ns": 2127.0249082999508,
+      "baseline_mean_ns": 2256.920842914247,
+      "delta_pct": -5.755449289332099,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_net_latency_metrics",
+      "mean_ns": 38041.70692706989,
+      "baseline_mean_ns": 40812.772071586245,
+      "delta_pct": -6.7897008800477,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_net_sync_snapshot",
+      "mean_ns": 86693.04190543543,
+      "baseline_mean_ns": 91229.7367128033,
+      "delta_pct": -4.972824619290148,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_net_transport_send",
+      "mean_ns": 152918.24454697935,
+      "baseline_mean_ns": 157175.04921395652,
+      "delta_pct": -2.7083208742518305,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_residency_control_metrics",
+      "mean_ns": 32726.36583725525,
+      "baseline_mean_ns": 34027.75126373277,
+      "delta_pct": -3.824482600660574,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_runtime_headless_step",
+      "mean_ns": 16005.836146797641,
+      "baseline_mean_ns": 16595.75713294322,
+      "delta_pct": -3.554649428886641,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_runtime_realtime_step",
+      "mean_ns": 16732.828113119016,
+      "baseline_mean_ns": 17321.020284108086,
+      "delta_pct": -3.39582865986672,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_runtime_tick",
+      "mean_ns": 31945.834977516894,
+      "baseline_mean_ns": 33170.19004394033,
+      "delta_pct": -3.691130695366966,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_startup_launch_plan",
+      "mean_ns": 6283.460317454072,
+      "baseline_mean_ns": 11275.952535472967,
+      "delta_pct": -44.27556964534071,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_storage_access_bind",
+      "mean_ns": 29.393824916205272,
+      "baseline_mean_ns": 30.984824522793357,
+      "delta_pct": -5.134770427431977,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_storage_layout_validate",
+      "mean_ns": 3894.5695871755106,
+      "baseline_mean_ns": 3925.778712721386,
+      "delta_pct": -0.7949792341769804,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_storage_mutation_assemble",
+      "mean_ns": 66795.67436968618,
+      "baseline_mean_ns": 69725.62113127684,
+      "delta_pct": -4.202109230514082,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_stream_control_tick",
+      "mean_ns": 91930.0193647969,
+      "baseline_mean_ns": 95846.013381508,
+      "delta_pct": -4.08571403082127,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_transfer_control_submit",
+      "mean_ns": 60622.24707521123,
+      "baseline_mean_ns": 63345.24588345406,
+      "delta_pct": -4.298663254465456,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_world_region_dirty_tracking",
+      "mean_ns": 106220.3514190228,
+      "baseline_mean_ns": 109887.4027212253,
+      "delta_pct": -3.337098895225947,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_world_snapshot_apply",
+      "mean_ns": 38334.6663685717,
+      "baseline_mean_ns": 41433.518251870766,
+      "delta_pct": -7.4790942551907245,
+      "status": "ok"
+    },
+    {
+      "benchmark": "engine_world_spatial_address",
+      "mean_ns": 15644.414622561044,
+      "baseline_mean_ns": 15984.839066731129,
+      "delta_pct": -2.129670763333503,
+      "status": "ok"
+    },
+    {
+      "benchmark": "scenario_content_batch",
+      "mean_ns": 5513.382117719262,
+      "baseline_mean_ns": 5375.5279958479605,
+      "delta_pct": 2.5644759357179376,
+      "status": "ok"
+    },
+    {
+      "benchmark": "scenario_network_batch",
+      "mean_ns": 1583.7054550033934,
+      "baseline_mean_ns": 1627.5949233313224,
+      "delta_pct": -2.696584248253685,
+      "status": "ok"
+    },
+    {
+      "benchmark": "scenario_resource_pipeline_batch",
+      "mean_ns": 1525.6061055244481,
+      "baseline_mean_ns": 1551.1204883848054,
+      "delta_pct": -1.6449001255167233,
+      "status": "ok"
+    },
+    {
+      "benchmark": "scenario_runtime_world_batch",
+      "mean_ns": 1293.989300122089,
+      "baseline_mean_ns": 1331.240568194214,
+      "delta_pct": -2.798237145270831,
+      "status": "ok"
+    },
+    {
+      "benchmark": "scenario_simulation_batch",
+      "mean_ns": 5955.984918732588,
+      "baseline_mean_ns": 6144.661653462462,
+      "delta_pct": -3.0705797222139326,
+      "status": "ok"
+    }
+  ]
+}

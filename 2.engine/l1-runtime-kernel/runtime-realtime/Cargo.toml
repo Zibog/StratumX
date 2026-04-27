@@ -1,0 +1,21 @@
+[package]
+name = "engine_runtime_realtime"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Realtime runtime variant for client/presentation"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["runtime", "realtime", "stratumx"]
+categories = ["game-development", "graphics"]
+
+[dependencies]
+engine_runtime = { path = "../runtime" }
+engine_world = { path = "../../l0-world-truth" }
+engine_ecs = { path = "../../l-0.2-ecs-assembly" }
+engine_core = { path = "../../l-1-foundation" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_runtime_realtime.rs"

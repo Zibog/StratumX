@@ -1,0 +1,12 @@
+[package]
+name = "legality_gates"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/sdk_legality_gates.rs"
+
+[dependencies]
+sdk_compat = { path = "../l5-compat" }
+transport_policies = { path = "../l5.8-transport-policies" }
+serde = { workspace = true, features = ["derive"] }

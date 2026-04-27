@@ -1,0 +1,59 @@
+[package]
+name = "stratumx_editor_app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Thin editor host for StratumX desktop application"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["editor", "desktop", "stratumx"]
+categories = ["game-development", "development-tools"]
+
+[features]
+default = []
+desktop = ["dep:eframe", "dep:egui"]
+debug-preview = []
+
+[dependencies]
+eframe = { workspace = true, optional = true, features = ["default_fonts", "wgpu"] }
+egui = { workspace = true, optional = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true, features = ["v4"] }
+thiserror = "1.0"
+image = { version = "0.25", default-features = false, features = ["png"] }
+rfd = "0.14"
+wgpu = { workspace = true }
+bytemuck = { version = "1.14", features = ["derive"] }
+glam = "0.25"
+clap = { version = "4.0", features = ["derive"] }
+
+# DTO Law
+editor_dto_law = { path = "../../../3.sdk/l5.9-editor-dto-law" }
+
+# Editor Systems
+stratumx-editor-l8-0-editor-shell = { path = "../../../5.editor/l8.0-editor-shell" }
+stratumx-editor-l8-1-viewport-system = { path = "../../../5.editor/l8.1-viewport-system", features = ["desktop"] }
+stratumx-editor-l7-0-editor-command-spine = { path = "../../../5.editor/l7.0-editor-command-spine", features = ["desktop"] }
+stratumx-editor-l8-5-tool-context-system = { path = "../../../5.editor/l8.5-tool-context-system" }
+stratumx-editor-l8-10-diagnostics-surface = { path = "../../../5.editor/l8.10-diagnostics-surface", features = ["desktop"] }
+stratumx-editor-l9-0-world-authoring-suite = { path = "../../../5.editor/l9.0-world-authoring-suite" }
+stratumx-editor-l9-2-terrain-landscape-authoring-suite = { path = "../../../5.editor/l9.2-terrain-landscape-authoring-suite" }
+stratumx-editor-l9-3-material-lookdev-authoring-suite = { path = "../../../5.editor/l9.3-material-lookdev-authoring-suite" }
+stratumx-editor-l9-6-weather-environment-authoring-suite = { path = "../../../5.editor/l9.6-weather-environment-authoring-suite" }
+
+# Engine
+engine_world = { path = "../../../2.engine/l0-world-truth" }
+engine_startup = { path = "../../../2.engine/l4-startup" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+engine_core = { path = "../../../2.engine/l-1-foundation" }
+
+# Tooling
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+stratumx_tooling_l6_12_preview_runtime = { path = "../../../4.tooling/l6.12-preview-runtime", features = ["desktop"] }
+link_ingress_packets = { path = "../../../3.sdk/l5.0-link-ingress-packets" }
+link_egress_observations = { path = "../../../3.sdk/l5.2-link-egress-observations" }
+
+[dev-dependencies]
+proptest = "1.4"

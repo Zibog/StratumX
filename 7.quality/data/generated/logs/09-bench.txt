@@ -1,0 +1,447 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running `target\debug\stratumx_quality_tasks.exe bench`
+   Compiling proc-macro2 v1.0.106
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.45
+   Compiling serde_core v1.0.228
+   Compiling serde v1.0.228
+   Compiling thiserror v1.0.69
+   Compiling version_check v0.9.5
+   Compiling windows-link v0.2.1
+   Compiling zerocopy v0.8.48
+   Compiling zmij v1.0.21
+   Compiling autocfg v1.5.0
+   Compiling cfg-if v1.0.4
+   Compiling serde_json v1.0.149
+   Compiling regex-syntax v0.8.10
+   Compiling anstyle v1.0.14
+   Compiling either v1.15.0
+   Compiling memchr v2.8.0
+   Compiling clap_lex v1.1.0
+   Compiling itoa v1.0.18
+   Compiling ciborium-io v0.2.2
+   Compiling cast v0.3.0
+   Compiling once_cell v1.21.4
+   Compiling oorandom v11.1.5
+   Compiling anes v0.1.6
+   Compiling windows-sys v0.61.2
+   Compiling num-traits v0.2.19
+   Compiling itertools v0.10.5
+   Compiling clap_builder v4.6.0
+   Compiling slotmap v1.1.1
+   Compiling regex-automata v0.4.14
+   Compiling winapi-util v0.1.11
+   Compiling is-terminal v0.4.17
+   Compiling criterion-plot v0.5.0
+   Compiling clap v4.6.0
+   Compiling same-file v1.0.6
+   Compiling regex v1.12.3
+   Compiling walkdir v2.5.0
+   Compiling glam v0.30.10
+   Compiling bitflags v2.11.0
+   Compiling syn v2.0.117
+   Compiling serde_derive v1.0.228
+   Compiling thiserror-impl v1.0.69
+   Compiling zerocopy-derive v0.8.48
+   Compiling engine_core v0.1.0 (E:\Development\goldeditor\2.engine\l-1-foundation)
+   Compiling smallvec v1.15.1
+   Compiling bincode v1.3.3
+   Compiling tinytemplate v1.2.1
+   Compiling engine_identity v0.1.0 (E:\Development\goldeditor\2.engine\l-0.9-identity)
+   Compiling engine_storage_layout v0.1.0 (E:\Development\goldeditor\2.engine\l-0.7-storage-layout)
+   Compiling engine_handle v0.1.0 (E:\Development\goldeditor\2.engine\l-0.8-handle)
+   Compiling engine_storage_access v0.1.0 (E:\Development\goldeditor\2.engine\l-0.6-storage-access)
+   Compiling engine_ecs_registry v0.1.0 (E:\Development\goldeditor\2.engine\l-0.4-ecs-registry)
+   Compiling engine_world_spatial v0.1.0 (E:\Development\goldeditor\2.engine\l-0.1-world-spatial)
+   Compiling engine_world_region v0.1.0 (E:\Development\goldeditor\2.engine\l-0.05-world-region)
+   Compiling engine_storage_mutation v0.1.0 (E:\Development\goldeditor\2.engine\l-0.5-storage-mutation)
+   Compiling engine_ecs_query v0.1.0 (E:\Development\goldeditor\2.engine\l-0.3-ecs-query)
+   Compiling engine_ecs v0.1.0 (E:\Development\goldeditor\2.engine\l-0.2-ecs-assembly)
+   Compiling engine_world v0.1.0 (E:\Development\goldeditor\2.engine\l0-world-truth)
+   Compiling engine_runtime v0.1.0 (E:\Development\goldeditor\2.engine\l1-runtime-kernel\runtime)
+   Compiling engine_material v0.1.0 (E:\Development\goldeditor\2.engine\l0.5-shared-world-property-substrate)
+   Compiling engine_inference v0.1.0 (E:\Development\goldeditor\2.engine\l3.0-model-systems\inference)
+   Compiling half v2.7.1
+   Compiling ciborium-ll v0.2.2
+   Compiling ciborium v0.2.2
+   Compiling engine_generation v0.1.0 (E:\Development\goldeditor\2.engine\l3.0-model-systems\generation)
+   Compiling criterion v0.5.1
+   Compiling engine_memory_control v0.1.0 (E:\Development\goldeditor\2.engine\l1.5-runtime-resource-services\memory-control)
+   Compiling engine_stream_control v0.1.0 (E:\Development\goldeditor\2.engine\l1.5-runtime-resource-services\stream-control)
+   Compiling engine_net_transport v0.1.0 (E:\Development\goldeditor\2.engine\l2.5-network-runtime-services\net-transport)
+   Compiling engine_runtime_headless v0.1.0 (E:\Development\goldeditor\2.engine\l1-runtime-kernel\runtime-headless)
+   Compiling engine_runtime_realtime v0.1.0 (E:\Development\goldeditor\2.engine\l1-runtime-kernel\runtime-realtime)
+   Compiling engine_content v0.1.0 (E:\Development\goldeditor\2.engine\l3.2-resource-systems)
+   Compiling engine_kinetics v0.1.0 (E:\Development\goldeditor\2.engine\l2-critical-simulation-families\kinetics)
+   Compiling engine_field v0.1.0 (E:\Development\goldeditor\2.engine\l2-critical-simulation-families\field)
+   Compiling engine_agents v0.1.0 (E:\Development\goldeditor\2.engine\l2-critical-simulation-families\agents)
+   Compiling engine_residency_control v0.1.0 (E:\Development\goldeditor\2.engine\l1.5-runtime-resource-services\residency-control)
+   Compiling engine_transfer_control v0.1.0 (E:\Development\goldeditor\2.engine\l1.5-runtime-resource-services\transfer-control)
+   Compiling engine_net_latency v0.1.0 (E:\Development\goldeditor\2.engine\l2.5-network-runtime-services\net-latency)
+   Compiling engine_net_sync v0.1.0 (E:\Development\goldeditor\2.engine\l2.5-network-runtime-services\net-sync)
+   Compiling engine_imaging v0.1.0 (E:\Development\goldeditor\2.engine\l3.1-synthesis-systems\imaging)
+   Compiling engine_acoustics v0.1.0 (E:\Development\goldeditor\2.engine\l3.1-synthesis-systems\acoustics)
+   Compiling engine_startup v0.1.0 (E:\Development\goldeditor\2.engine\l4-startup)
+   Compiling engine_perf_harness v0.1.0 (E:\Development\goldeditor\7.quality\suites\engine_perf_harness)
+    Finished `bench` profile [optimized] target(s) in 10.94s
+     Running unittests src\lib.rs (target\release\deps\engine_perf_harness-169ce8a2583ef077.exe)
+
+running 1 test
+test __ready_smoke_tests::crate_smoke ... ignored
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running benches\engine_benches.rs (target\release\deps\engine_benches-03ab600b719f6c4e.exe)
+Benchmarking engine_core_hot_type_ops
+Benchmarking engine_core_hot_type_ops: Warming up for 2.0000 s
+Benchmarking engine_core_hot_type_ops: Collecting 60 samples in estimated 4.0029 s (1.8M iterations)
+Benchmarking engine_core_hot_type_ops: Analyzing
+engine_core_hot_type_ops
+                        time:   [2.2299 ┬╡s 2.2403 ┬╡s 2.2502 ┬╡s]
+Found 5 outliers among 60 measurements (8.33%)
+  2 (3.33%) low mild
+  3 (5.00%) high mild
+
+Benchmarking engine_identity_issue_retire
+Benchmarking engine_identity_issue_retire: Warming up for 2.0000 s
+Benchmarking engine_identity_issue_retire: Collecting 60 samples in estimated 4.1345 s (48k iterations)
+Benchmarking engine_identity_issue_retire: Analyzing
+engine_identity_issue_retire
+                        time:   [87.218 ┬╡s 87.888 ┬╡s 88.548 ┬╡s]
+
+Benchmarking engine_handle_validate
+Benchmarking engine_handle_validate: Warming up for 2.0000 s
+Benchmarking engine_handle_validate: Collecting 60 samples in estimated 4.0006 s (4.5M iterations)
+Benchmarking engine_handle_validate: Analyzing
+engine_handle_validate  time:   [906.85 ns 935.32 ns 975.64 ns]
+Found 7 outliers among 60 measurements (11.67%)
+  5 (8.33%) high mild
+  2 (3.33%) high severe
+
+Benchmarking engine_storage_layout_validate
+Benchmarking engine_storage_layout_validate: Warming up for 2.0000 s
+Benchmarking engine_storage_layout_validate: Collecting 60 samples in estimated 4.0028 s (997k iterations)
+Benchmarking engine_storage_layout_validate: Analyzing
+engine_storage_layout_validate
+                        time:   [3.9880 ┬╡s 4.0124 ┬╡s 4.0382 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high severe
+
+Benchmarking engine_storage_access_bind
+Benchmarking engine_storage_access_bind: Warming up for 2.0000 s
+Benchmarking engine_storage_access_bind: Collecting 60 samples in estimated 4.0000 s (133M iterations)
+Benchmarking engine_storage_access_bind: Analyzing
+engine_storage_access_bind
+                        time:   [29.872 ns 30.007 ns 30.142 ns]
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low mild
+  1 (1.67%) high severe
+
+Benchmarking engine_storage_mutation_assemble
+Benchmarking engine_storage_mutation_assemble: Warming up for 2.0000 s
+Benchmarking engine_storage_mutation_assemble: Collecting 60 samples in estimated 4.1237 s (59k iterations)
+Benchmarking engine_storage_mutation_assemble: Analyzing
+engine_storage_mutation_assemble
+                        time:   [70.122 ┬╡s 70.744 ┬╡s 71.552 ┬╡s]
+Found 5 outliers among 60 measurements (8.33%)
+  2 (3.33%) high mild
+  3 (5.00%) high severe
+
+Benchmarking engine_ecs_registry_membership
+Benchmarking engine_ecs_registry_membership: Warming up for 2.0000 s
+Benchmarking engine_ecs_registry_membership: Collecting 60 samples in estimated 4.0635 s (27k iterations)
+Benchmarking engine_ecs_registry_membership: Analyzing
+engine_ecs_registry_membership
+                        time:   [147.84 ┬╡s 148.67 ┬╡s 149.47 ┬╡s]
+Found 6 outliers among 60 measurements (10.00%)
+  2 (3.33%) low mild
+  2 (3.33%) high mild
+  2 (3.33%) high severe
+
+Benchmarking engine_ecs_query_execute
+Benchmarking engine_ecs_query_execute: Warming up for 2.0000 s
+Benchmarking engine_ecs_query_execute: Collecting 60 samples in estimated 4.0608 s (99k iterations)
+Benchmarking engine_ecs_query_execute: Analyzing
+engine_ecs_query_execute
+                        time:   [41.177 ┬╡s 41.450 ┬╡s 41.803 ┬╡s]
+Found 3 outliers among 60 measurements (5.00%)
+  2 (3.33%) low mild
+  1 (1.67%) high severe
+
+Benchmarking engine_ecs_facade
+Benchmarking engine_ecs_facade: Warming up for 2.0000 s
+Benchmarking engine_ecs_facade: Collecting 60 samples in estimated 4.0710 s (101k iterations)
+Benchmarking engine_ecs_facade: Analyzing
+engine_ecs_facade       time:   [40.136 ┬╡s 40.473 ┬╡s 40.816 ┬╡s]
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_world_spatial_address
+Benchmarking engine_world_spatial_address: Warming up for 2.0000 s
+Benchmarking engine_world_spatial_address: Collecting 60 samples in estimated 4.0029 s (249k iterations)
+Benchmarking engine_world_spatial_address: Analyzing
+engine_world_spatial_address
+                        time:   [15.800 ┬╡s 15.926 ┬╡s 16.059 ┬╡s]
+Found 3 outliers among 60 measurements (5.00%)
+  2 (3.33%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_world_region_dirty_tracking
+Benchmarking engine_world_region_dirty_tracking: Warming up for 2.0000 s
+Benchmarking engine_world_region_dirty_tracking: Collecting 60 samples in estimated 4.0006 s (37k iterations)
+Benchmarking engine_world_region_dirty_tracking: Analyzing
+engine_world_region_dirty_tracking
+                        time:   [107.47 ┬╡s 108.22 ┬╡s 108.99 ┬╡s]
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_world_snapshot_apply
+Benchmarking engine_world_snapshot_apply: Warming up for 2.0000 s
+Benchmarking engine_world_snapshot_apply: Collecting 60 samples in estimated 4.0312 s (102k iterations)
+Benchmarking engine_world_snapshot_apply: Analyzing
+engine_world_snapshot_apply
+                        time:   [39.203 ┬╡s 39.497 ┬╡s 39.782 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_material_lookup
+Benchmarking engine_material_lookup: Warming up for 2.0000 s
+Benchmarking engine_material_lookup: Collecting 60 samples in estimated 4.0335 s (73k iterations)
+Benchmarking engine_material_lookup: Analyzing
+engine_material_lookup  time:   [53.738 ┬╡s 54.187 ┬╡s 54.676 ┬╡s]
+Found 5 outliers among 60 measurements (8.33%)
+  1 (1.67%) low mild
+  3 (5.00%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_runtime_tick
+Benchmarking engine_runtime_tick: Warming up for 2.0000 s
+Benchmarking engine_runtime_tick: Collecting 60 samples in estimated 4.0483 s (126k iterations)
+Benchmarking engine_runtime_tick: Analyzing
+engine_runtime_tick     time:   [31.750 ┬╡s 31.923 ┬╡s 32.091 ┬╡s]
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_runtime_headless_step
+Benchmarking engine_runtime_headless_step: Warming up for 2.0000 s
+Benchmarking engine_runtime_headless_step: Collecting 60 samples in estimated 4.0092 s (247k iterations)
+Benchmarking engine_runtime_headless_step: Analyzing
+engine_runtime_headless_step
+                        time:   [16.112 ┬╡s 16.178 ┬╡s 16.253 ┬╡s]
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_runtime_realtime_step
+Benchmarking engine_runtime_realtime_step: Warming up for 2.0000 s
+Benchmarking engine_runtime_realtime_step: Collecting 60 samples in estimated 4.0099 s (242k iterations)
+Benchmarking engine_runtime_realtime_step: Analyzing
+engine_runtime_realtime_step
+                        time:   [16.450 ┬╡s 16.560 ┬╡s 16.704 ┬╡s]
+Found 4 outliers among 60 measurements (6.67%)
+  1 (1.67%) low mild
+  1 (1.67%) high mild
+  2 (3.33%) high severe
+
+Benchmarking engine_stream_control_tick
+Benchmarking engine_stream_control_tick: Warming up for 2.0000 s
+Benchmarking engine_stream_control_tick: Collecting 60 samples in estimated 4.1710 s (44k iterations)
+Benchmarking engine_stream_control_tick: Analyzing
+engine_stream_control_tick
+                        time:   [94.697 ┬╡s 95.427 ┬╡s 96.179 ┬╡s]
+Found 3 outliers among 60 measurements (5.00%)
+  3 (5.00%) high mild
+
+Benchmarking engine_residency_control_metrics
+Benchmarking engine_residency_control_metrics: Warming up for 2.0000 s
+Benchmarking engine_residency_control_metrics: Collecting 60 samples in estimated 4.0544 s (121k iterations)
+Benchmarking engine_residency_control_metrics: Analyzing
+engine_residency_control_metrics
+                        time:   [33.485 ┬╡s 33.737 ┬╡s 33.984 ┬╡s]
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_memory_control_cycle
+Benchmarking engine_memory_control_cycle: Warming up for 2.0000 s
+Benchmarking engine_memory_control_cycle: Collecting 60 samples in estimated 4.0008 s (1.8M iterations)
+Benchmarking engine_memory_control_cycle: Analyzing
+engine_memory_control_cycle
+                        time:   [2.1381 ┬╡s 2.1570 ┬╡s 2.1762 ┬╡s]
+Found 4 outliers among 60 measurements (6.67%)
+  2 (3.33%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_transfer_control_submit
+Benchmarking engine_transfer_control_submit: Warming up for 2.0000 s
+Benchmarking engine_transfer_control_submit: Collecting 60 samples in estimated 4.0749 s (66k iterations)
+Benchmarking engine_transfer_control_submit: Analyzing
+engine_transfer_control_submit
+                        time:   [61.492 ┬╡s 62.125 ┬╡s 62.831 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_kinetics_simulate
+Benchmarking engine_kinetics_simulate: Warming up for 2.0000 s
+Benchmarking engine_kinetics_simulate: Collecting 60 samples in estimated 4.0148 s (64k iterations)
+Benchmarking engine_kinetics_simulate: Analyzing
+engine_kinetics_simulate
+                        time:   [62.801 ┬╡s 63.296 ┬╡s 63.782 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_field_simulate
+Benchmarking engine_field_simulate: Warming up for 2.0000 s
+Benchmarking engine_field_simulate: Collecting 60 samples in estimated 4.0644 s (64k iterations)
+Benchmarking engine_field_simulate: Analyzing
+engine_field_simulate   time:   [61.969 ┬╡s 62.342 ┬╡s 62.720 ┬╡s]
+Found 4 outliers among 60 measurements (6.67%)
+  2 (3.33%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_agents_simulate
+Benchmarking engine_agents_simulate: Warming up for 2.0000 s
+Benchmarking engine_agents_simulate: Collecting 60 samples in estimated 4.0338 s (64k iterations)
+Benchmarking engine_agents_simulate: Analyzing
+engine_agents_simulate  time:   [62.104 ┬╡s 62.374 ┬╡s 62.708 ┬╡s]
+Found 5 outliers among 60 measurements (8.33%)
+  1 (1.67%) low mild
+  3 (5.00%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_net_transport_send
+Benchmarking engine_net_transport_send: Warming up for 2.0000 s
+Benchmarking engine_net_transport_send: Collecting 60 samples in estimated 4.1879 s (27k iterations)
+Benchmarking engine_net_transport_send: Analyzing
+engine_net_transport_send
+                        time:   [152.56 ┬╡s 153.24 ┬╡s 153.90 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low severe
+
+Benchmarking engine_net_sync_snapshot
+Benchmarking engine_net_sync_snapshot: Warming up for 2.0000 s
+Benchmarking engine_net_sync_snapshot: Collecting 60 samples in estimated 4.0330 s (46k iterations)
+Benchmarking engine_net_sync_snapshot: Analyzing
+engine_net_sync_snapshot
+                        time:   [87.467 ┬╡s 87.837 ┬╡s 88.221 ┬╡s]
+Found 4 outliers among 60 measurements (6.67%)
+  2 (3.33%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_net_latency_metrics
+Benchmarking engine_net_latency_metrics: Warming up for 2.0000 s
+Benchmarking engine_net_latency_metrics: Collecting 60 samples in estimated 4.0358 s (104k iterations)
+Benchmarking engine_net_latency_metrics: Analyzing
+engine_net_latency_metrics
+                        time:   [38.181 ┬╡s 38.432 ┬╡s 38.812 ┬╡s]
+Found 10 outliers among 60 measurements (16.67%)
+  1 (1.67%) low severe
+  3 (5.00%) low mild
+  3 (5.00%) high mild
+  3 (5.00%) high severe
+
+Benchmarking engine_inference_infer
+Benchmarking engine_inference_infer: Warming up for 2.0000 s
+Benchmarking engine_inference_infer: Collecting 60 samples in estimated 4.2475 s (24k iterations)
+Benchmarking engine_inference_infer: Analyzing
+engine_inference_infer  time:   [177.49 ┬╡s 179.13 ┬╡s 180.83 ┬╡s]
+Found 2 outliers among 60 measurements (3.33%)
+  2 (3.33%) high mild
+
+Benchmarking engine_generation_generate
+Benchmarking engine_generation_generate: Warming up for 2.0000 s
+Benchmarking engine_generation_generate: Collecting 60 samples in estimated 4.1312 s (53k iterations)
+Benchmarking engine_generation_generate: Analyzing
+engine_generation_generate
+                        time:   [78.170 ┬╡s 78.656 ┬╡s 79.153 ┬╡s]
+
+Benchmarking engine_imaging_render
+Benchmarking engine_imaging_render: Warming up for 2.0000 s
+Benchmarking engine_imaging_render: Collecting 60 samples in estimated 4.0337 s (55k iterations)
+Benchmarking engine_imaging_render: Analyzing
+engine_imaging_render   time:   [74.185 ┬╡s 75.000 ┬╡s 75.902 ┬╡s]
+Found 2 outliers among 60 measurements (3.33%)
+  2 (3.33%) high mild
+
+Benchmarking engine_acoustics_synthesize
+Benchmarking engine_acoustics_synthesize: Warming up for 2.0000 s
+Benchmarking engine_acoustics_synthesize: Collecting 60 samples in estimated 4.0898 s (55k iterations)
+Benchmarking engine_acoustics_synthesize: Analyzing
+engine_acoustics_synthesize
+                        time:   [73.539 ┬╡s 73.993 ┬╡s 74.458 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_content_ingest
+Benchmarking engine_content_ingest: Warming up for 2.0000 s
+Benchmarking engine_content_ingest: Collecting 60 samples in estimated 4.1593 s (33k iterations)
+Benchmarking engine_content_ingest: Analyzing
+engine_content_ingest   time:   [123.86 ┬╡s 124.68 ┬╡s 125.56 ┬╡s]
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_startup_launch_plan
+Benchmarking engine_startup_launch_plan: Warming up for 2.0000 s
+Benchmarking engine_startup_launch_plan: Collecting 60 samples in estimated 4.0004 s (640k iterations)
+Benchmarking engine_startup_launch_plan: Analyzing
+engine_startup_launch_plan
+                        time:   [6.1942 ┬╡s 6.2320 ┬╡s 6.2718 ┬╡s]
+Found 4 outliers among 60 measurements (6.67%)
+  4 (6.67%) high mild
+
+     Running benches\engine_scenarios.rs (target\release\deps\engine_scenarios-bdb32f388db6100d.exe)
+Benchmarking scenario_runtime_world_batch
+Benchmarking scenario_runtime_world_batch: Warming up for 3.0000 s
+Benchmarking scenario_runtime_world_batch: Collecting 100 samples in estimated 5.0011 s (3.8M iterations)
+Benchmarking scenario_runtime_world_batch: Analyzing
+scenario_runtime_world_batch
+                        time:   [1.2891 ┬╡s 1.2940 ┬╡s 1.2991 ┬╡s]
+Found 16 outliers among 100 measurements (16.00%)
+  3 (3.00%) low severe
+  2 (2.00%) low mild
+  8 (8.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking scenario_resource_pipeline_batch
+Benchmarking scenario_resource_pipeline_batch: Warming up for 3.0000 s
+Benchmarking scenario_resource_pipeline_batch: Collecting 100 samples in estimated 5.0003 s (3.2M iterations)
+Benchmarking scenario_resource_pipeline_batch: Analyzing
+scenario_resource_pipeline_batch
+                        time:   [1.5319 ┬╡s 1.5431 ┬╡s 1.5580 ┬╡s]
+Found 4 outliers among 100 measurements (4.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking scenario_simulation_batch
+Benchmarking scenario_simulation_batch: Warming up for 3.0000 s
+Benchmarking scenario_simulation_batch: Collecting 100 samples in estimated 5.0067 s (833k iterations)
+Benchmarking scenario_simulation_batch: Analyzing
+scenario_simulation_batch
+                        time:   [5.9448 ┬╡s 5.9847 ┬╡s 6.0251 ┬╡s]
+Found 5 outliers among 100 measurements (5.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking scenario_network_batch
+Benchmarking scenario_network_batch: Warming up for 3.0000 s
+Benchmarking scenario_network_batch: Collecting 100 samples in estimated 5.0072 s (3.1M iterations)
+Benchmarking scenario_network_batch: Analyzing
+scenario_network_batch  time:   [1.6036 ┬╡s 1.6186 ┬╡s 1.6349 ┬╡s]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) low mild
+  5 (5.00%) high mild
+
+Benchmarking scenario_content_batch
+Benchmarking scenario_content_batch: Warming up for 3.0000 s
+Benchmarking scenario_content_batch: Collecting 100 samples in estimated 5.0425 s (414k iterations)
+Benchmarking scenario_content_batch: Analyzing
+scenario_content_batch  time:   [12.251 ┬╡s 12.332 ┬╡s 12.411 ┬╡s]
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high severe
+

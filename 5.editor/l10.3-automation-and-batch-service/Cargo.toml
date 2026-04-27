@@ -1,0 +1,13 @@
+[package]
+name = "stratumx-editor-l10-3-automation-and-batch-service"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+
+[lib]
+path = "src/editor_automation_and_batch_service.rs"

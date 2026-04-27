@@ -1,0 +1,22 @@
+[package]
+name = "engine_stream_control"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Stream control for asset delivery"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["streaming", "assets", "stratumx"]
+categories = ["game-development", "data-structures"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_world = { path = "../../l0-world-truth" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_stream_control.rs"

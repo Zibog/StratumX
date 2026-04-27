@@ -1,0 +1,12 @@
+1774783387243	editor	session	trace file created
+1774783387245	terrain	create	terrain-root ObjectHandle(<opaque:db30eb0519197f1c>)
+1774783387245	editor	status	terrain actor created
+1774783387246	editor	status	desktop editor shell initialised
+1774783401107	runtime	play	play-in-editor
+1774783401120	editor	status	play mode enabled — WASD + QE move, RMB look
+1774783430065	runtime	stop	editor mode
+1774783430116	editor	status	returned to landscape edit mode
+1774783432516	terrain	stroke	mode=Sculpt samples=9234 peak_delta=6.00 min=0.00 max=215.98 avg=25.14
+1774783432517	editor	status	terrain Sculpt stroke applied · 9234 samples · peak 6.00
+1774783433402	runtime	play	play-in-editor
+1774783433403	editor	status	play mode enabled — WASD + QE move, RMB look

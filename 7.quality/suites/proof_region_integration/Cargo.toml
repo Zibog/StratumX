@@ -1,0 +1,19 @@
+[package]
+name = "proof_region_integration"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+stratumx_route_test_support = { path = "../../support/stratumx_route_test_support" }
+stratumx_tooling_l6_14_release_runtime = { path = "../../../4.tooling/l6.14-release-runtime" }
+tool_evidence_capture = { path = "../../../4.tooling/l6.7-tool-evidence-capture", package = "stratumx_tooling_l6_7_tool_evidence_capture" }
+
+[dev-dependencies]
+serde_json.workspace = true
+
+[lib]
+path = "src/lib.rs"

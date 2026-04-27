@@ -1,0 +1,24 @@
+1774783097475	editor	session	trace file created
+1774783097476	terrain	create	terrain-root ObjectHandle(<opaque:db30eb0519197f1c>)
+1774783097477	editor	status	terrain actor created
+1774783097478	editor	status	desktop editor shell initialised
+1774783104647	terrain	stroke	mode=Sculpt samples=17325 peak_delta=6.00 min=0.00 max=126.37 avg=8.17
+1774783104648	editor	status	terrain Sculpt stroke applied · 17325 samples · peak 6.00
+1774783112817	runtime	play	play-in-editor
+1774783112830	editor	status	play mode enabled — WASD + QE move, RMB look
+1774783155402	runtime	stop	editor mode
+1774783155473	editor	status	returned to landscape edit mode
+1774783159535	terrain	stroke	mode=Sculpt samples=4131 peak_delta=6.00 min=0.00 max=162.54 avg=10.11
+1774783159535	editor	status	terrain Sculpt stroke applied · 4131 samples · peak 6.00
+1774783160644	runtime	play	play-in-editor
+1774783160656	editor	status	play mode enabled — WASD + QE move, RMB look
+1774783163928	runtime	stop	editor mode
+1774783163940	editor	status	returned to landscape edit mode
+1774783166440	terrain	reset	resolution=64 world_size=2048
+1774783166440	editor	status	terrain reset to flat heightmap
+1774783178313	terrain	stroke	mode=Sculpt samples=42496 peak_delta=6.00 min=0.00 max=93.17 avg=20.79
+1774783178313	editor	status	terrain Sculpt stroke applied · 42496 samples · peak 6.00
+1774783179289	runtime	play	play-in-editor
+1774783179301	editor	status	play mode enabled — WASD + QE move, RMB look
+1774783214095	terrain	save	./artifacts/editor-terrain-state.json
+1774783214095	editor	status	terrain state saved

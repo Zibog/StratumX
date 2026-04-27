@@ -1,0 +1,20 @@
+[package]
+name = "tooling_canon_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+bincode.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+stratumx_tooling_l6_0_authority_core = { path = "../../../4.tooling/l6.0-authority-core" }
+stratumx_tooling_l6_0_tool_session = { path = "../../../4.tooling/l6.0-tool-session" }
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+stratumx_tooling_l6_12_preview_runtime = { path = "../../../4.tooling/l6.12-preview-runtime" }
+stratumx_tooling_l6_14_release_runtime = { path = "../../../4.tooling/l6.14-release-runtime" }
+stratumx_tooling_l6_6_tool_diagnostics_events = { path = "../../../4.tooling/l6.6-tool-diagnostics-events" }
+tool_evidence_capture = { package = "stratumx_tooling_l6_7_tool_evidence_capture", path = "../../../4.tooling/l6.7-tool-evidence-capture" }
+proptest.workspace = true

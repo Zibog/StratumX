@@ -1,0 +1,7 @@
+{
+  "command": "bench",
+  "failure": "cargo bench -p engine_perf_harness failed with status exit code: 101",
+  "stages": [],
+  "status": "failed",
+  "total_duration_ms": 0
+}

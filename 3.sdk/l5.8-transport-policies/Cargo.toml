@@ -1,0 +1,11 @@
+[package]
+name = "transport_policies"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/sdk_transport_policies.rs"
+
+[dependencies]
+sdk_compat = { path = "../l5-compat" }
+serde = { workspace = true, features = ["derive"] }

@@ -1,0 +1,19 @@
+[package]
+name = "terrain_authoring_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+editor_dto_law = { path = "../../../3.sdk/l5.9-editor-dto-law" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+engine_world = { path = "../../../2.engine/l0-world-truth" }
+stratumx-editor-l9-2-terrain-landscape-authoring-suite = { path = "../../../5.editor/l9.2-terrain-landscape-authoring-suite" }
+
+[dev-dependencies]
+proptest = "1.4"
+uuid = { workspace = true }
+tempfile = "3.10"
+

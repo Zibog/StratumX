@@ -1,0 +1,2323 @@
+**********************
+PowerShell transcript start
+Start time: 20260329183004
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Program Files\WindowsApps\Microsoft.PowerShell_7.5.5.0_x64__8wekyb3d8bbwe\pwsh.dll -noexit -command try { . "c:\Users\CheCat\AppData\Local\Programs\Microsoft VS Code\ce099c1ed2\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 532
+PSVersion: 7.5.5
+PSEdition: Core
+GitCommitId: 7.5.5
+OS: Microsoft Windows 10.0.28000
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is E:\Development\goldeditor\artifacts\reports\post-refactor-validation.txt
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+]633;D]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cd E:\Development\goldeditor
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>.\scripts\test-all.ps1
+
+
+    Checking stratumx_sdk v0.1.0 (E:\Development\goldeditor\3.sdk\sdk_bridge\stratumx_sdk)
+    Checking stratumx_tooling v0.1.0 (E:\Development\goldeditor\4.tooling\tooling_runtime\stratumx_tooling)
+    Checking sdk_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\sdk\sdk_canon_matrix)
+    Checking engine_sdk_link_matrix v0.1.0 (E:\Development\goldeditor\7.tests\shared\engine_sdk_link_matrix)
+    Checking stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+    Checking tooling_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\tooling\tooling_canon_matrix)
+    Checking sdk_tooling_link_matrix v0.1.0 (E:\Development\goldeditor\7.tests\shared\sdk_tooling_link_matrix)
+    Checking stratumx_stack_utility v0.1.0 (E:\Development\goldeditor\6.apps\stack\stratumx_stack_utility)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `stratumx_editor` (lib test) due to 1 previous error
+   Compiling stratumx_sdk v0.1.0 (E:\Development\goldeditor\3.sdk\sdk_bridge\stratumx_sdk)
+   Compiling stratumx_tooling v0.1.0 (E:\Development\goldeditor\4.tooling\tooling_runtime\stratumx_tooling)
+   Compiling sdk_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\sdk\sdk_canon_matrix)
+   Compiling engine_sdk_link_matrix v0.1.0 (E:\Development\goldeditor\7.tests\shared\engine_sdk_link_matrix)
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+   Compiling tooling_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\tooling\tooling_canon_matrix)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+   Compiling sdk_tooling_link_matrix v0.1.0 (E:\Development\goldeditor\7.tests\shared\sdk_tooling_link_matrix)
+   Compiling stratumx_stack_utility v0.1.0 (E:\Development\goldeditor\6.apps\stack\stratumx_stack_utility)
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `stratumx_editor` (lib test) due to 1 previous error
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>.\scripts\smoke-all.ps1
+   Compiling stratumx_sdk v0.1.0 (E:\Development\goldeditor\3.sdk\sdk_bridge\stratumx_sdk)
+   Compiling engine_sdk_link_matrix v0.1.0 (E:\Development\goldeditor\7.tests\shared\engine_sdk_link_matrix)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.64s
+     Running tests\startup_bridge.rs (target\debug\deps\startup_bridge-bd5cc52f70207ac0.exe)
+
+running 200 tests
+test startup_bridge_1 ... ok
+test startup_bridge_103 ... ok
+test startup_bridge_114 ... ok
+test startup_bridge_119 ... ok
+test startup_bridge_106 ... ok
+test startup_bridge_123 ... ok
+test startup_bridge_104 ... ok
+test startup_bridge_109 ... ok
+test startup_bridge_0 ... ok
+test startup_bridge_107 ... ok
+test startup_bridge_110 ... ok
+test startup_bridge_11 ... ok
+test startup_bridge_112 ... ok
+test startup_bridge_101 ... ok
+test startup_bridge_116 ... ok
+test startup_bridge_115 ... ok
+test startup_bridge_12 ... ok
+test startup_bridge_120 ... ok
+test startup_bridge_10 ... ok
+test startup_bridge_122 ... ok
+test startup_bridge_118 ... ok
+test startup_bridge_121 ... ok
+test startup_bridge_125 ... ok
+test startup_bridge_126 ... ok
+test startup_bridge_105 ... ok
+test startup_bridge_128 ... ok
+test startup_bridge_117 ... ok
+test startup_bridge_111 ... ok
+test startup_bridge_127 ... ok
+test startup_bridge_124 ... ok
+test startup_bridge_108 ... ok
+test startup_bridge_113 ... ok
+test startup_bridge_102 ... ok
+test startup_bridge_129 ... ok
+test startup_bridge_100 ... ok
+test startup_bridge_13 ... ok
+test startup_bridge_133 ... ok
+test startup_bridge_135 ... ok
+test startup_bridge_130 ... ok
+test startup_bridge_138 ... ok
+test startup_bridge_136 ... ok
+test startup_bridge_137 ... ok
+test startup_bridge_134 ... ok
+test startup_bridge_139 ... ok
+test startup_bridge_142 ... ok
+test startup_bridge_132 ... ok
+test startup_bridge_131 ... ok
+test startup_bridge_14 ... ok
+test startup_bridge_144 ... ok
+test startup_bridge_140 ... ok
+test startup_bridge_141 ... ok
+test startup_bridge_147 ... ok
+test startup_bridge_143 ... ok
+test startup_bridge_148 ... ok
+test startup_bridge_149 ... ok
+test startup_bridge_146 ... ok
+test startup_bridge_15 ... ok
+test startup_bridge_145 ... ok
+test startup_bridge_151 ... ok
+test startup_bridge_152 ... ok
+test startup_bridge_150 ... ok
+test startup_bridge_153 ... ok
+test startup_bridge_154 ... ok
+test startup_bridge_155 ... ok
+test startup_bridge_156 ... ok
+test startup_bridge_159 ... ok
+test startup_bridge_157 ... ok
+test startup_bridge_16 ... ok
+test startup_bridge_158 ... ok
+test startup_bridge_160 ... ok
+test startup_bridge_161 ... ok
+test startup_bridge_163 ... ok
+test startup_bridge_165 ... ok
+test startup_bridge_162 ... ok
+test startup_bridge_166 ... ok
+test startup_bridge_164 ... ok
+test startup_bridge_169 ... ok
+test startup_bridge_167 ... ok
+test startup_bridge_168 ... ok
+test startup_bridge_17 ... ok
+test startup_bridge_170 ... ok
+test startup_bridge_171 ... ok
+test startup_bridge_173 ... ok
+test startup_bridge_174 ... ok
+test startup_bridge_175 ... ok
+test startup_bridge_172 ... ok
+test startup_bridge_178 ... ok
+test startup_bridge_176 ... ok
+test startup_bridge_179 ... ok
+test startup_bridge_177 ... ok
+test startup_bridge_18 ... ok
+test startup_bridge_180 ... ok
+test startup_bridge_181 ... ok
+test startup_bridge_183 ... ok
+test startup_bridge_185 ... ok
+test startup_bridge_182 ... ok
+test startup_bridge_188 ... ok
+test startup_bridge_186 ... ok
+test startup_bridge_192 ... ok
+test startup_bridge_189 ... ok
+test startup_bridge_19 ... ok
+test startup_bridge_184 ... ok
+test startup_bridge_191 ... ok
+test startup_bridge_190 ... ok
+test startup_bridge_187 ... ok
+test startup_bridge_194 ... ok
+test startup_bridge_197 ... ok
+test startup_bridge_195 ... ok
+test startup_bridge_196 ... ok
+test startup_bridge_198 ... ok
+test startup_bridge_193 ... ok
+test startup_bridge_199 ... ok
+test startup_bridge_2 ... ok
+test startup_bridge_22 ... ok
+test startup_bridge_23 ... ok
+test startup_bridge_20 ... ok
+test startup_bridge_21 ... ok
+test startup_bridge_24 ... ok
+test startup_bridge_25 ... ok
+test startup_bridge_29 ... ok
+test startup_bridge_26 ... ok
+test startup_bridge_27 ... ok
+test startup_bridge_32 ... ok
+test startup_bridge_3 ... ok
+test startup_bridge_30 ... ok
+test startup_bridge_33 ... ok
+test startup_bridge_28 ... ok
+test startup_bridge_34 ... ok
+test startup_bridge_37 ... ok
+test startup_bridge_31 ... ok
+test startup_bridge_38 ... ok
+test startup_bridge_39 ... ok
+test startup_bridge_35 ... ok
+test startup_bridge_40 ... ok
+test startup_bridge_36 ... ok
+test startup_bridge_4 ... ok
+test startup_bridge_41 ... ok
+test startup_bridge_42 ... ok
+test startup_bridge_43 ... ok
+test startup_bridge_44 ... ok
+test startup_bridge_45 ... ok
+test startup_bridge_48 ... ok
+test startup_bridge_47 ... ok
+test startup_bridge_5 ... ok
+test startup_bridge_49 ... ok
+test startup_bridge_46 ... ok
+test startup_bridge_50 ... ok
+test startup_bridge_51 ... ok
+test startup_bridge_52 ... ok
+test startup_bridge_54 ... ok
+test startup_bridge_55 ... ok
+test startup_bridge_53 ... ok
+test startup_bridge_56 ... ok
+test startup_bridge_57 ... ok
+test startup_bridge_58 ... ok
+test startup_bridge_59 ... ok
+test startup_bridge_6 ... ok
+test startup_bridge_60 ... ok
+test startup_bridge_62 ... ok
+test startup_bridge_61 ... ok
+test startup_bridge_63 ... ok
+test startup_bridge_65 ... ok
+test startup_bridge_64 ... ok
+test startup_bridge_68 ... ok
+test startup_bridge_67 ... ok
+test startup_bridge_66 ... ok
+test startup_bridge_7 ... ok
+test startup_bridge_69 ... ok
+test startup_bridge_70 ... ok
+test startup_bridge_71 ... ok
+test startup_bridge_73 ... ok
+test startup_bridge_72 ... ok
+test startup_bridge_74 ... ok
+test startup_bridge_75 ... ok
+test startup_bridge_77 ... ok
+test startup_bridge_76 ... ok
+test startup_bridge_78 ... ok
+test startup_bridge_79 ... ok
+test startup_bridge_8 ... ok
+test startup_bridge_80 ... ok
+test startup_bridge_81 ... ok
+test startup_bridge_82 ... ok
+test startup_bridge_83 ... ok
+test startup_bridge_84 ... ok
+test startup_bridge_85 ... ok
+test startup_bridge_86 ... ok
+test startup_bridge_87 ... ok
+test startup_bridge_88 ... ok
+test startup_bridge_89 ... ok
+test startup_bridge_9 ... ok
+test startup_bridge_90 ... ok
+test startup_bridge_91 ... ok
+test startup_bridge_92 ... ok
+test startup_bridge_93 ... ok
+test startup_bridge_94 ... ok
+test startup_bridge_95 ... ok
+test startup_bridge_97 ... ok
+test startup_bridge_96 ... ok
+test startup_bridge_98 ... ok
+test startup_bridge_99 ... ok
+
+test result: ok. 200 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Compiling sdk_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\sdk\sdk_canon_matrix)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.29s
+     Running tests\snapshot_swaps.rs (target\debug\deps\snapshot_swaps-910f239c733fd631.exe)
+
+running 200 tests
+test snapshot_swaps_1 ... ok
+test snapshot_swaps_0 ... ok
+test snapshot_swaps_101 ... ok
+test snapshot_swaps_107 ... ok
+test snapshot_swaps_123 ... ok
+test snapshot_swaps_103 ... ok
+test snapshot_swaps_104 ... ok
+test snapshot_swaps_106 ... ok
+test snapshot_swaps_10 ... ok
+test snapshot_swaps_105 ... ok
+test snapshot_swaps_110 ... ok
+test snapshot_swaps_111 ... ok
+test snapshot_swaps_112 ... ok
+test snapshot_swaps_100 ... ok
+test snapshot_swaps_113 ... ok
+test snapshot_swaps_114 ... ok
+test snapshot_swaps_116 ... ok
+test snapshot_swaps_117 ... ok
+test snapshot_swaps_119 ... ok
+test snapshot_swaps_108 ... ok
+test snapshot_swaps_12 ... ok
+test snapshot_swaps_120 ... ok
+test snapshot_swaps_122 ... ok
+test snapshot_swaps_102 ... ok
+test snapshot_swaps_125 ... ok
+test snapshot_swaps_124 ... ok
+test snapshot_swaps_109 ... ok
+test snapshot_swaps_115 ... ok
+test snapshot_swaps_118 ... ok
+test snapshot_swaps_121 ... ok
+test snapshot_swaps_11 ... ok
+test snapshot_swaps_134 ... ok
+test snapshot_swaps_13 ... ok
+test snapshot_swaps_128 ... ok
+test snapshot_swaps_127 ... ok
+test snapshot_swaps_133 ... ok
+test snapshot_swaps_132 ... ok
+test snapshot_swaps_126 ... ok
+test snapshot_swaps_130 ... ok
+test snapshot_swaps_131 ... ok
+test snapshot_swaps_135 ... ok
+test snapshot_swaps_129 ... ok
+test snapshot_swaps_138 ... ok
+test snapshot_swaps_136 ... ok
+test snapshot_swaps_139 ... ok
+test snapshot_swaps_137 ... ok
+test snapshot_swaps_14 ... ok
+test snapshot_swaps_141 ... ok
+test snapshot_swaps_140 ... ok
+test snapshot_swaps_142 ... ok
+test snapshot_swaps_144 ... ok
+test snapshot_swaps_143 ... ok
+test snapshot_swaps_145 ... ok
+test snapshot_swaps_146 ... ok
+test snapshot_swaps_147 ... ok
+test snapshot_swaps_148 ... ok
+test snapshot_swaps_149 ... ok
+test snapshot_swaps_15 ... ok
+test snapshot_swaps_150 ... ok
+test snapshot_swaps_151 ... ok
+test snapshot_swaps_152 ... ok
+test snapshot_swaps_154 ... ok
+test snapshot_swaps_153 ... ok
+test snapshot_swaps_155 ... ok
+test snapshot_swaps_156 ... ok
+test snapshot_swaps_157 ... ok
+test snapshot_swaps_158 ... ok
+test snapshot_swaps_159 ... ok
+test snapshot_swaps_16 ... ok
+test snapshot_swaps_160 ... ok
+test snapshot_swaps_161 ... ok
+test snapshot_swaps_162 ... ok
+test snapshot_swaps_163 ... ok
+test snapshot_swaps_164 ... ok
+test snapshot_swaps_165 ... ok
+test snapshot_swaps_166 ... ok
+test snapshot_swaps_167 ... ok
+test snapshot_swaps_168 ... ok
+test snapshot_swaps_169 ... ok
+test snapshot_swaps_17 ... ok
+test snapshot_swaps_170 ... ok
+test snapshot_swaps_171 ... ok
+test snapshot_swaps_172 ... ok
+test snapshot_swaps_173 ... ok
+test snapshot_swaps_177 ... ok
+test snapshot_swaps_175 ... ok
+test snapshot_swaps_176 ... ok
+test snapshot_swaps_174 ... ok
+test snapshot_swaps_178 ... ok
+test snapshot_swaps_18 ... ok
+test snapshot_swaps_179 ... ok
+test snapshot_swaps_180 ... ok
+test snapshot_swaps_181 ... ok
+test snapshot_swaps_182 ... ok
+test snapshot_swaps_183 ... ok
+test snapshot_swaps_184 ... ok
+test snapshot_swaps_185 ... ok
+test snapshot_swaps_188 ... ok
+test snapshot_swaps_187 ... ok
+test snapshot_swaps_189 ... ok
+test snapshot_swaps_186 ... ok
+test snapshot_swaps_19 ... ok
+test snapshot_swaps_190 ... ok
+test snapshot_swaps_191 ... ok
+test snapshot_swaps_192 ... ok
+test snapshot_swaps_193 ... ok
+test snapshot_swaps_194 ... ok
+test snapshot_swaps_195 ... ok
+test snapshot_swaps_196 ... ok
+test snapshot_swaps_197 ... ok
+test snapshot_swaps_198 ... ok
+test snapshot_swaps_199 ... ok
+test snapshot_swaps_26 ... ok
+test snapshot_swaps_21 ... ok
+test snapshot_swaps_20 ... ok
+test snapshot_swaps_22 ... ok
+test snapshot_swaps_24 ... ok
+test snapshot_swaps_25 ... ok
+test snapshot_swaps_27 ... ok
+test snapshot_swaps_2 ... ok
+test snapshot_swaps_29 ... ok
+test snapshot_swaps_28 ... ok
+test snapshot_swaps_23 ... ok
+test snapshot_swaps_30 ... ok
+test snapshot_swaps_3 ... ok
+test snapshot_swaps_32 ... ok
+test snapshot_swaps_33 ... ok
+test snapshot_swaps_34 ... ok
+test snapshot_swaps_31 ... ok
+test snapshot_swaps_38 ... ok
+test snapshot_swaps_39 ... ok
+test snapshot_swaps_36 ... ok
+test snapshot_swaps_37 ... ok
+test snapshot_swaps_4 ... ok
+test snapshot_swaps_42 ... ok
+test snapshot_swaps_35 ... ok
+test snapshot_swaps_41 ... ok
+test snapshot_swaps_40 ... ok
+test snapshot_swaps_43 ... ok
+test snapshot_swaps_44 ... ok
+test snapshot_swaps_45 ... ok
+test snapshot_swaps_46 ... ok
+test snapshot_swaps_47 ... ok
+test snapshot_swaps_48 ... ok
+test snapshot_swaps_49 ... ok
+test snapshot_swaps_5 ... ok
+test snapshot_swaps_50 ... ok
+test snapshot_swaps_51 ... ok
+test snapshot_swaps_52 ... ok
+test snapshot_swaps_54 ... ok
+test snapshot_swaps_53 ... ok
+test snapshot_swaps_55 ... ok
+test snapshot_swaps_56 ... ok
+test snapshot_swaps_57 ... ok
+test snapshot_swaps_58 ... ok
+test snapshot_swaps_59 ... ok
+test snapshot_swaps_61 ... ok
+test snapshot_swaps_6 ... ok
+test snapshot_swaps_60 ... ok
+test snapshot_swaps_62 ... ok
+test snapshot_swaps_63 ... ok
+test snapshot_swaps_64 ... ok
+test snapshot_swaps_65 ... ok
+test snapshot_swaps_66 ... ok
+test snapshot_swaps_67 ... ok
+test snapshot_swaps_68 ... ok
+test snapshot_swaps_69 ... ok
+test snapshot_swaps_7 ... ok
+test snapshot_swaps_70 ... ok
+test snapshot_swaps_71 ... ok
+test snapshot_swaps_72 ... ok
+test snapshot_swaps_74 ... ok
+test snapshot_swaps_76 ... ok
+test snapshot_swaps_73 ... ok
+test snapshot_swaps_75 ... ok
+test snapshot_swaps_77 ... ok
+test snapshot_swaps_78 ... ok
+test snapshot_swaps_80 ... ok
+test snapshot_swaps_8 ... ok
+test snapshot_swaps_79 ... ok
+test snapshot_swaps_81 ... ok
+test snapshot_swaps_83 ... ok
+test snapshot_swaps_82 ... ok
+test snapshot_swaps_84 ... ok
+test snapshot_swaps_85 ... ok
+test snapshot_swaps_86 ... ok
+test snapshot_swaps_87 ... ok
+test snapshot_swaps_88 ... ok
+test snapshot_swaps_9 ... ok
+test snapshot_swaps_89 ... ok
+test snapshot_swaps_90 ... ok
+test snapshot_swaps_91 ... ok
+test snapshot_swaps_92 ... ok
+test snapshot_swaps_93 ... ok
+test snapshot_swaps_94 ... ok
+test snapshot_swaps_95 ... ok
+test snapshot_swaps_96 ... ok
+test snapshot_swaps_97 ... ok
+test snapshot_swaps_99 ... ok
+test snapshot_swaps_98 ... ok
+
+test result: ok. 200 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Compiling stratumx_tooling v0.1.0 (E:\Development\goldeditor\4.tooling\tooling_runtime\stratumx_tooling)
+   Compiling sdk_tooling_link_matrix v0.1.0 (E:\Development\goldeditor\7.tests\shared\sdk_tooling_link_matrix)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.51s
+     Running tests\command_lowering.rs (target\debug\deps\command_lowering-5e247fad9c6e9b32.exe)
+
+running 200 tests
+test command_lowering_103 ... ok
+test command_lowering_0 ... ok
+test command_lowering_122 ... ok
+test command_lowering_115 ... ok
+test command_lowering_10 ... ok
+test command_lowering_1 ... ok
+test command_lowering_116 ... ok
+test command_lowering_101 ... ok
+test command_lowering_112 ... ok
+test command_lowering_117 ... ok
+test command_lowering_118 ... ok
+test command_lowering_100 ... ok
+test command_lowering_106 ... ok
+test command_lowering_119 ... ok
+test command_lowering_114 ... ok
+test command_lowering_121 ... ok
+test command_lowering_11 ... ok
+test command_lowering_105 ... ok
+test command_lowering_108 ... ok
+test command_lowering_111 ... ok
+test command_lowering_102 ... ok
+test command_lowering_124 ... ok
+test command_lowering_104 ... ok
+test command_lowering_113 ... ok
+test command_lowering_120 ... ok
+test command_lowering_109 ... ok
+test command_lowering_12 ... ok
+test command_lowering_110 ... ok
+test command_lowering_126 ... ok
+test command_lowering_125 ... ok
+test command_lowering_107 ... ok
+test command_lowering_13 ... ok
+test command_lowering_127 ... ok
+test command_lowering_123 ... ok
+test command_lowering_129 ... ok
+test command_lowering_134 ... ok
+test command_lowering_131 ... ok
+test command_lowering_130 ... ok
+test command_lowering_132 ... ok
+test command_lowering_128 ... ok
+test command_lowering_133 ... ok
+test command_lowering_135 ... ok
+test command_lowering_137 ... ok
+test command_lowering_136 ... ok
+test command_lowering_138 ... ok
+test command_lowering_139 ... ok
+test command_lowering_14 ... ok
+test command_lowering_140 ... ok
+test command_lowering_141 ... ok
+test command_lowering_142 ... ok
+test command_lowering_143 ... ok
+test command_lowering_145 ... ok
+test command_lowering_144 ... ok
+test command_lowering_146 ... ok
+test command_lowering_147 ... ok
+test command_lowering_148 ... ok
+test command_lowering_149 ... ok
+test command_lowering_15 ... ok
+test command_lowering_151 ... ok
+test command_lowering_152 ... ok
+test command_lowering_154 ... ok
+test command_lowering_159 ... ok
+test command_lowering_157 ... ok
+test command_lowering_158 ... ok
+test command_lowering_150 ... ok
+test command_lowering_155 ... ok
+test command_lowering_161 ... ok
+test command_lowering_160 ... ok
+test command_lowering_16 ... ok
+test command_lowering_153 ... ok
+test command_lowering_162 ... ok
+test command_lowering_156 ... ok
+test command_lowering_165 ... ok
+test command_lowering_163 ... ok
+test command_lowering_166 ... ok
+test command_lowering_164 ... ok
+test command_lowering_167 ... ok
+test command_lowering_168 ... ok
+test command_lowering_171 ... ok
+test command_lowering_17 ... ok
+test command_lowering_175 ... ok
+test command_lowering_169 ... ok
+test command_lowering_174 ... ok
+test command_lowering_170 ... ok
+test command_lowering_173 ... ok
+test command_lowering_172 ... ok
+test command_lowering_177 ... ok
+test command_lowering_179 ... ok
+test command_lowering_178 ... ok
+test command_lowering_176 ... ok
+test command_lowering_180 ... ok
+test command_lowering_181 ... ok
+test command_lowering_18 ... ok
+test command_lowering_182 ... ok
+test command_lowering_183 ... ok
+test command_lowering_184 ... ok
+test command_lowering_185 ... ok
+test command_lowering_186 ... ok
+test command_lowering_187 ... ok
+test command_lowering_189 ... ok
+test command_lowering_19 ... ok
+test command_lowering_190 ... ok
+test command_lowering_191 ... ok
+test command_lowering_199 ... ok
+test command_lowering_193 ... ok
+test command_lowering_188 ... ok
+test command_lowering_194 ... ok
+test command_lowering_195 ... ok
+test command_lowering_197 ... ok
+test command_lowering_2 ... ok
+test command_lowering_25 ... ok
+test command_lowering_196 ... ok
+test command_lowering_198 ... ok
+test command_lowering_23 ... ok
+test command_lowering_21 ... ok
+test command_lowering_24 ... ok
+test command_lowering_22 ... ok
+test command_lowering_192 ... ok
+test command_lowering_33 ... ok
+test command_lowering_26 ... ok
+test command_lowering_28 ... ok
+test command_lowering_30 ... ok
+test command_lowering_31 ... ok
+test command_lowering_29 ... ok
+test command_lowering_32 ... ok
+test command_lowering_34 ... ok
+test command_lowering_40 ... ok
+test command_lowering_35 ... ok
+test command_lowering_27 ... ok
+test command_lowering_36 ... ok
+test command_lowering_37 ... ok
+test command_lowering_38 ... ok
+test command_lowering_39 ... ok
+test command_lowering_4 ... ok
+test command_lowering_41 ... ok
+test command_lowering_20 ... ok
+test command_lowering_42 ... ok
+test command_lowering_43 ... ok
+test command_lowering_47 ... ok
+test command_lowering_44 ... ok
+test command_lowering_45 ... ok
+test command_lowering_48 ... ok
+test command_lowering_46 ... ok
+test command_lowering_49 ... ok
+test command_lowering_50 ... ok
+test command_lowering_51 ... ok
+test command_lowering_5 ... ok
+test command_lowering_3 ... ok
+test command_lowering_52 ... ok
+test command_lowering_55 ... ok
+test command_lowering_54 ... ok
+test command_lowering_53 ... ok
+test command_lowering_63 ... ok
+test command_lowering_56 ... ok
+test command_lowering_66 ... ok
+test command_lowering_68 ... ok
+test command_lowering_62 ... ok
+test command_lowering_59 ... ok
+test command_lowering_60 ... ok
+test command_lowering_64 ... ok
+test command_lowering_70 ... ok
+test command_lowering_67 ... ok
+test command_lowering_57 ... ok
+test command_lowering_69 ... ok
+test command_lowering_7 ... ok
+test command_lowering_71 ... ok
+test command_lowering_61 ... ok
+test command_lowering_72 ... ok
+test command_lowering_65 ... ok
+test command_lowering_6 ... ok
+test command_lowering_73 ... ok
+test command_lowering_58 ... ok
+test command_lowering_74 ... ok
+test command_lowering_75 ... ok
+test command_lowering_76 ... ok
+test command_lowering_84 ... ok
+test command_lowering_78 ... ok
+test command_lowering_79 ... ok
+test command_lowering_86 ... ok
+test command_lowering_8 ... ok
+test command_lowering_80 ... ok
+test command_lowering_9 ... ok
+test command_lowering_77 ... ok
+test command_lowering_89 ... ok
+test command_lowering_85 ... ok
+test command_lowering_87 ... ok
+test command_lowering_81 ... ok
+test command_lowering_88 ... ok
+test command_lowering_82 ... ok
+test command_lowering_90 ... ok
+test command_lowering_96 ... ok
+test command_lowering_92 ... ok
+test command_lowering_94 ... ok
+test command_lowering_83 ... ok
+test command_lowering_91 ... ok
+test command_lowering_95 ... ok
+test command_lowering_99 ... ok
+test command_lowering_98 ... ok
+test command_lowering_97 ... ok
+test command_lowering_93 ... ok
+
+test result: ok. 200 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Compiling tooling_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\tooling\tooling_canon_matrix)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.68s
+     Running tests\build_reproducibility.rs (target\debug\deps\build_reproducibility-718951c86ab53e07.exe)
+
+running 100 tests
+test build_reproducibility_25 ... ok
+test build_reproducibility_20 ... ok
+test build_reproducibility_24 ... ok
+test build_reproducibility_1 ... ok
+test build_reproducibility_14 ... ok
+test build_reproducibility_17 ... ok
+test build_reproducibility_0 ... ok
+test build_reproducibility_18 ... ok
+test build_reproducibility_19 ... ok
+test build_reproducibility_2 ... ok
+test build_reproducibility_21 ... ok
+test build_reproducibility_22 ... ok
+test build_reproducibility_15 ... ok
+test build_reproducibility_23 ... ok
+test build_reproducibility_28 ... ok
+test build_reproducibility_27 ... ok
+test build_reproducibility_3 ... ok
+test build_reproducibility_29 ... ok
+test build_reproducibility_30 ... ok
+test build_reproducibility_31 ... ok
+test build_reproducibility_32 ... ok
+test build_reproducibility_33 ... ok
+test build_reproducibility_34 ... ok
+test build_reproducibility_35 ... ok
+test build_reproducibility_13 ... ok
+test build_reproducibility_36 ... ok
+test build_reproducibility_37 ... ok
+test build_reproducibility_26 ... ok
+test build_reproducibility_38 ... ok
+test build_reproducibility_10 ... ok
+test build_reproducibility_40 ... ok
+test build_reproducibility_11 ... ok
+test build_reproducibility_16 ... ok
+test build_reproducibility_4 ... ok
+test build_reproducibility_39 ... ok
+test build_reproducibility_41 ... ok
+test build_reproducibility_12 ... ok
+test build_reproducibility_42 ... ok
+test build_reproducibility_43 ... ok
+test build_reproducibility_44 ... ok
+test build_reproducibility_45 ... ok
+test build_reproducibility_46 ... ok
+test build_reproducibility_47 ... ok
+test build_reproducibility_49 ... ok
+test build_reproducibility_48 ... ok
+test build_reproducibility_5 ... ok
+test build_reproducibility_50 ... ok
+test build_reproducibility_51 ... ok
+test build_reproducibility_52 ... ok
+test build_reproducibility_53 ... ok
+test build_reproducibility_55 ... ok
+test build_reproducibility_57 ... ok
+test build_reproducibility_58 ... ok
+test build_reproducibility_56 ... ok
+test build_reproducibility_54 ... ok
+test build_reproducibility_6 ... ok
+test build_reproducibility_62 ... ok
+test build_reproducibility_59 ... ok
+test build_reproducibility_61 ... ok
+test build_reproducibility_63 ... ok
+test build_reproducibility_60 ... ok
+test build_reproducibility_64 ... ok
+test build_reproducibility_66 ... ok
+test build_reproducibility_67 ... ok
+test build_reproducibility_65 ... ok
+test build_reproducibility_68 ... ok
+test build_reproducibility_69 ... ok
+test build_reproducibility_7 ... ok
+test build_reproducibility_70 ... ok
+test build_reproducibility_71 ... ok
+test build_reproducibility_73 ... ok
+test build_reproducibility_72 ... ok
+test build_reproducibility_75 ... ok
+test build_reproducibility_74 ... ok
+test build_reproducibility_76 ... ok
+test build_reproducibility_80 ... ok
+test build_reproducibility_79 ... ok
+test build_reproducibility_81 ... ok
+test build_reproducibility_83 ... ok
+test build_reproducibility_8 ... ok
+test build_reproducibility_82 ... ok
+test build_reproducibility_84 ... ok
+test build_reproducibility_77 ... ok
+test build_reproducibility_86 ... ok
+test build_reproducibility_89 ... ok
+test build_reproducibility_87 ... ok
+test build_reproducibility_78 ... ok
+test build_reproducibility_85 ... ok
+test build_reproducibility_9 ... ok
+test build_reproducibility_90 ... ok
+test build_reproducibility_91 ... ok
+test build_reproducibility_88 ... ok
+test build_reproducibility_92 ... ok
+test build_reproducibility_93 ... ok
+test build_reproducibility_94 ... ok
+test build_reproducibility_95 ... ok
+test build_reproducibility_96 ... ok
+test build_reproducibility_97 ... ok
+test build_reproducibility_98 ... ok
+test build_reproducibility_99 ... ok
+
+test result: ok. 100 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Compiling tooling_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\tooling\tooling_canon_matrix)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.92s
+     Running tests\validation_legality.rs (target\debug\deps\validation_legality-bf864b852ab96b82.exe)
+
+running 100 tests
+test validation_legality_11 ... ok
+test validation_legality_0 ... ok
+test validation_legality_26 ... ok
+test validation_legality_14 ... ok
+test validation_legality_12 ... ok
+test validation_legality_16 ... ok
+test validation_legality_20 ... ok
+test validation_legality_21 ... ok
+test validation_legality_1 ... ok
+test validation_legality_10 ... ok
+test validation_legality_27 ... ok
+test validation_legality_23 ... ok
+test validation_legality_25 ... ok
+test validation_legality_15 ... ok
+test validation_legality_28 ... ok
+test validation_legality_13 ... ok
+test validation_legality_29 ... ok
+test validation_legality_2 ... ok
+test validation_legality_3 ... ok
+test validation_legality_31 ... ok
+test validation_legality_33 ... ok
+test validation_legality_32 ... ok
+test validation_legality_34 ... ok
+test validation_legality_35 ... ok
+test validation_legality_36 ... ok
+test validation_legality_37 ... ok
+test validation_legality_17 ... ok
+test validation_legality_18 ... ok
+test validation_legality_19 ... ok
+test validation_legality_24 ... ok
+test validation_legality_22 ... ok
+test validation_legality_38 ... ok
+test validation_legality_30 ... ok
+test validation_legality_39 ... ok
+test validation_legality_40 ... ok
+test validation_legality_4 ... ok
+test validation_legality_41 ... ok
+test validation_legality_43 ... ok
+test validation_legality_42 ... ok
+test validation_legality_45 ... ok
+test validation_legality_44 ... ok
+test validation_legality_46 ... ok
+test validation_legality_47 ... ok
+test validation_legality_48 ... ok
+test validation_legality_49 ... ok
+test validation_legality_5 ... ok
+test validation_legality_50 ... ok
+test validation_legality_53 ... ok
+test validation_legality_52 ... ok
+test validation_legality_51 ... ok
+test validation_legality_54 ... ok
+test validation_legality_56 ... ok
+test validation_legality_55 ... ok
+test validation_legality_57 ... ok
+test validation_legality_6 ... ok
+test validation_legality_59 ... ok
+test validation_legality_58 ... ok
+test validation_legality_60 ... ok
+test validation_legality_61 ... ok
+test validation_legality_62 ... ok
+test validation_legality_64 ... ok
+test validation_legality_63 ... ok
+test validation_legality_66 ... ok
+test validation_legality_65 ... ok
+test validation_legality_68 ... ok
+test validation_legality_67 ... ok
+test validation_legality_7 ... ok
+test validation_legality_70 ... ok
+test validation_legality_69 ... ok
+test validation_legality_71 ... ok
+test validation_legality_72 ... ok
+test validation_legality_73 ... ok
+test validation_legality_74 ... ok
+test validation_legality_75 ... ok
+test validation_legality_76 ... ok
+test validation_legality_78 ... ok
+test validation_legality_77 ... ok
+test validation_legality_8 ... ok
+test validation_legality_79 ... ok
+test validation_legality_80 ... ok
+test validation_legality_81 ... ok
+test validation_legality_82 ... ok
+test validation_legality_83 ... ok
+test validation_legality_87 ... ok
+test validation_legality_85 ... ok
+test validation_legality_84 ... ok
+test validation_legality_88 ... ok
+test validation_legality_86 ... ok
+test validation_legality_89 ... ok
+test validation_legality_9 ... ok
+test validation_legality_92 ... ok
+test validation_legality_90 ... ok
+test validation_legality_91 ... ok
+test validation_legality_93 ... ok
+test validation_legality_95 ... ok
+test validation_legality_96 ... ok
+test validation_legality_94 ... ok
+test validation_legality_97 ... ok
+test validation_legality_98 ... ok
+test validation_legality_99 ... ok
+
+test result: ok. 100 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+   Compiling stratumx_stack_utility v0.1.0 (E:\Development\goldeditor\6.apps\stack\stratumx_stack_utility)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.41s
+     Running `target\debug\stratumx_stack_utility.exe`
+{
+  "build_digest": "build:4:2:engine-world|logic-root",
+  "diagnostics": 0,
+  "engine_snapshot_epoch": 2,
+  "object_count": 2,
+  "release_digest": "build:4:2:engine-world|logic-root",
+  "tooling_generation": 4
+}
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>.\scripts\full-validation.ps1
+
+
+
+
+
+
+    Checking stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+   Compiling tooling_canon_matrix v0.1.0 (E:\Development\goldeditor\7.tests\tooling\tooling_canon_matrix)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests\startup_bridge.rs (target\debug\deps\startup_bridge-bd5cc52f70207ac0.exe)
+
+running 200 tests
+test startup_bridge_100 ... ok
+test startup_bridge_0 ... ok
+test startup_bridge_101 ... ok
+test startup_bridge_103 ... ok
+test startup_bridge_102 ... ok
+test startup_bridge_1 ... ok
+test startup_bridge_107 ... ok
+test startup_bridge_10 ... ok
+test startup_bridge_109 ... ok
+test startup_bridge_106 ... ok
+test startup_bridge_112 ... ok
+test startup_bridge_110 ... ok
+test startup_bridge_115 ... ok
+test startup_bridge_108 ... ok
+test startup_bridge_117 ... ok
+test startup_bridge_119 ... ok
+test startup_bridge_120 ... ok
+test startup_bridge_12 ... ok
+test startup_bridge_124 ... ok
+test startup_bridge_122 ... ok
+test startup_bridge_123 ... ok
+test startup_bridge_105 ... ok
+test startup_bridge_11 ... ok
+test startup_bridge_127 ... ok
+test startup_bridge_113 ... ok
+test startup_bridge_118 ... ok
+test startup_bridge_116 ... ok
+test startup_bridge_114 ... ok
+test startup_bridge_121 ... ok
+test startup_bridge_125 ... ok
+test startup_bridge_104 ... ok
+test startup_bridge_126 ... ok
+test startup_bridge_111 ... ok
+test startup_bridge_129 ... ok
+test startup_bridge_128 ... ok
+test startup_bridge_130 ... ok
+test startup_bridge_131 ... ok
+test startup_bridge_13 ... ok
+test startup_bridge_132 ... ok
+test startup_bridge_134 ... ok
+test startup_bridge_133 ... ok
+test startup_bridge_135 ... ok
+test startup_bridge_136 ... ok
+test startup_bridge_137 ... ok
+test startup_bridge_138 ... ok
+test startup_bridge_139 ... ok
+test startup_bridge_14 ... ok
+test startup_bridge_140 ... ok
+test startup_bridge_141 ... ok
+test startup_bridge_142 ... ok
+test startup_bridge_143 ... ok
+test startup_bridge_144 ... ok
+test startup_bridge_146 ... ok
+test startup_bridge_147 ... ok
+test startup_bridge_148 ... ok
+test startup_bridge_145 ... ok
+test startup_bridge_149 ... ok
+test startup_bridge_150 ... ok
+test startup_bridge_151 ... ok
+test startup_bridge_15 ... ok
+test startup_bridge_152 ... ok
+test startup_bridge_153 ... ok
+test startup_bridge_154 ... ok
+test startup_bridge_155 ... ok
+test startup_bridge_156 ... ok
+test startup_bridge_159 ... ok
+test startup_bridge_158 ... ok
+test startup_bridge_16 ... ok
+test startup_bridge_157 ... ok
+test startup_bridge_160 ... ok
+test startup_bridge_161 ... ok
+test startup_bridge_162 ... ok
+test startup_bridge_163 ... ok
+test startup_bridge_165 ... ok
+test startup_bridge_164 ... ok
+test startup_bridge_166 ... ok
+test startup_bridge_167 ... ok
+test startup_bridge_168 ... ok
+test startup_bridge_169 ... ok
+test startup_bridge_17 ... ok
+test startup_bridge_170 ... ok
+test startup_bridge_171 ... ok
+test startup_bridge_172 ... ok
+test startup_bridge_173 ... ok
+test startup_bridge_174 ... ok
+test startup_bridge_175 ... ok
+test startup_bridge_176 ... ok
+test startup_bridge_177 ... ok
+test startup_bridge_178 ... ok
+test startup_bridge_179 ... ok
+test startup_bridge_18 ... ok
+test startup_bridge_181 ... ok
+test startup_bridge_180 ... ok
+test startup_bridge_182 ... ok
+test startup_bridge_183 ... ok
+test startup_bridge_184 ... ok
+test startup_bridge_186 ... ok
+test startup_bridge_185 ... ok
+test startup_bridge_187 ... ok
+test startup_bridge_188 ... ok
+test startup_bridge_190 ... ok
+test startup_bridge_189 ... ok
+test startup_bridge_191 ... ok
+test startup_bridge_192 ... ok
+test startup_bridge_19 ... ok
+test startup_bridge_193 ... ok
+test startup_bridge_195 ... ok
+test startup_bridge_194 ... ok
+test startup_bridge_196 ... ok
+test startup_bridge_197 ... ok
+test startup_bridge_198 ... ok
+test startup_bridge_199 ... ok
+test startup_bridge_2 ... ok
+test startup_bridge_20 ... ok
+test startup_bridge_21 ... ok
+test startup_bridge_22 ... ok
+test startup_bridge_23 ... ok
+test startup_bridge_25 ... ok
+test startup_bridge_24 ... ok
+test startup_bridge_26 ... ok
+test startup_bridge_27 ... ok
+test startup_bridge_28 ... ok
+test startup_bridge_29 ... ok
+test startup_bridge_3 ... ok
+test startup_bridge_30 ... ok
+test startup_bridge_31 ... ok
+test startup_bridge_32 ... ok
+test startup_bridge_33 ... ok
+test startup_bridge_34 ... ok
+test startup_bridge_35 ... ok
+test startup_bridge_38 ... ok
+test startup_bridge_36 ... ok
+test startup_bridge_39 ... ok
+test startup_bridge_4 ... ok
+test startup_bridge_40 ... ok
+test startup_bridge_37 ... ok
+test startup_bridge_42 ... ok
+test startup_bridge_41 ... ok
+test startup_bridge_43 ... ok
+test startup_bridge_44 ... ok
+test startup_bridge_45 ... ok
+test startup_bridge_46 ... ok
+test startup_bridge_47 ... ok
+test startup_bridge_48 ... ok
+test startup_bridge_49 ... ok
+test startup_bridge_5 ... ok
+test startup_bridge_50 ... ok
+test startup_bridge_52 ... ok
+test startup_bridge_51 ... ok
+test startup_bridge_53 ... ok
+test startup_bridge_55 ... ok
+test startup_bridge_54 ... ok
+test startup_bridge_56 ... ok
+test startup_bridge_58 ... ok
+test startup_bridge_57 ... ok
+test startup_bridge_59 ... ok
+test startup_bridge_6 ... ok
+test startup_bridge_60 ... ok
+test startup_bridge_61 ... ok
+test startup_bridge_62 ... ok
+test startup_bridge_63 ... ok
+test startup_bridge_64 ... ok
+test startup_bridge_65 ... ok
+test startup_bridge_66 ... ok
+test startup_bridge_67 ... ok
+test startup_bridge_69 ... ok
+test startup_bridge_7 ... ok
+test startup_bridge_70 ... ok
+test startup_bridge_68 ... ok
+test startup_bridge_71 ... ok
+test startup_bridge_72 ... ok
+test startup_bridge_73 ... ok
+test startup_bridge_74 ... ok
+test startup_bridge_75 ... ok
+test startup_bridge_76 ... ok
+test startup_bridge_77 ... ok
+test startup_bridge_78 ... ok
+test startup_bridge_79 ... ok
+test startup_bridge_80 ... ok
+test startup_bridge_8 ... ok
+test startup_bridge_81 ... ok
+test startup_bridge_83 ... ok
+test startup_bridge_82 ... ok
+test startup_bridge_84 ... ok
+test startup_bridge_85 ... ok
+test startup_bridge_86 ... ok
+test startup_bridge_87 ... ok
+test startup_bridge_88 ... ok
+test startup_bridge_90 ... ok
+test startup_bridge_89 ... ok
+test startup_bridge_9 ... ok
+test startup_bridge_91 ... ok
+test startup_bridge_92 ... ok
+test startup_bridge_93 ... ok
+test startup_bridge_94 ... ok
+test startup_bridge_95 ... ok
+test startup_bridge_96 ... ok
+test startup_bridge_97 ... ok
+test startup_bridge_98 ... ok
+test startup_bridge_99 ... ok
+
+test result: ok. 200 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests\snapshot_swaps.rs (target\debug\deps\snapshot_swaps-910f239c733fd631.exe)
+
+running 200 tests
+test snapshot_swaps_0 ... ok
+test snapshot_swaps_1 ... ok
+test snapshot_swaps_100 ... ok
+test snapshot_swaps_124 ... ok
+test snapshot_swaps_106 ... ok
+test snapshot_swaps_126 ... ok
+test snapshot_swaps_107 ... ok
+test snapshot_swaps_127 ... ok
+test snapshot_swaps_11 ... ok
+test snapshot_swaps_101 ... ok
+test snapshot_swaps_111 ... ok
+test snapshot_swaps_112 ... ok
+test snapshot_swaps_103 ... ok
+test snapshot_swaps_116 ... ok
+test snapshot_swaps_118 ... ok
+test snapshot_swaps_119 ... ok
+test snapshot_swaps_10 ... ok
+test snapshot_swaps_12 ... ok
+test snapshot_swaps_115 ... ok
+test snapshot_swaps_120 ... ok
+test snapshot_swaps_113 ... ok
+test snapshot_swaps_125 ... ok
+test snapshot_swaps_123 ... ok
+test snapshot_swaps_122 ... ok
+test snapshot_swaps_105 ... ok
+test snapshot_swaps_114 ... ok
+test snapshot_swaps_128 ... ok
+test snapshot_swaps_130 ... ok
+test snapshot_swaps_117 ... ok
+test snapshot_swaps_129 ... ok
+test snapshot_swaps_121 ... ok
+test snapshot_swaps_133 ... ok
+test snapshot_swaps_108 ... ok
+test snapshot_swaps_110 ... ok
+test snapshot_swaps_102 ... ok
+test snapshot_swaps_132 ... ok
+test snapshot_swaps_131 ... ok
+test snapshot_swaps_104 ... ok
+test snapshot_swaps_13 ... ok
+test snapshot_swaps_109 ... ok
+test snapshot_swaps_134 ... ok
+test snapshot_swaps_138 ... ok
+test snapshot_swaps_136 ... ok
+test snapshot_swaps_142 ... ok
+test snapshot_swaps_14 ... ok
+test snapshot_swaps_135 ... ok
+test snapshot_swaps_141 ... ok
+test snapshot_swaps_140 ... ok
+test snapshot_swaps_139 ... ok
+test snapshot_swaps_137 ... ok
+test snapshot_swaps_143 ... ok
+test snapshot_swaps_144 ... ok
+test snapshot_swaps_145 ... ok
+test snapshot_swaps_147 ... ok
+test snapshot_swaps_146 ... ok
+test snapshot_swaps_149 ... ok
+test snapshot_swaps_148 ... ok
+test snapshot_swaps_15 ... ok
+test snapshot_swaps_152 ... ok
+test snapshot_swaps_153 ... ok
+test snapshot_swaps_150 ... ok
+test snapshot_swaps_154 ... ok
+test snapshot_swaps_155 ... ok
+test snapshot_swaps_151 ... ok
+test snapshot_swaps_156 ... ok
+test snapshot_swaps_157 ... ok
+test snapshot_swaps_158 ... ok
+test snapshot_swaps_159 ... ok
+test snapshot_swaps_160 ... ok
+test snapshot_swaps_16 ... ok
+test snapshot_swaps_161 ... ok
+test snapshot_swaps_162 ... ok
+test snapshot_swaps_163 ... ok
+test snapshot_swaps_164 ... ok
+test snapshot_swaps_166 ... ok
+test snapshot_swaps_167 ... ok
+test snapshot_swaps_165 ... ok
+test snapshot_swaps_168 ... ok
+test snapshot_swaps_169 ... ok
+test snapshot_swaps_17 ... ok
+test snapshot_swaps_170 ... ok
+test snapshot_swaps_171 ... ok
+test snapshot_swaps_172 ... ok
+test snapshot_swaps_173 ... ok
+test snapshot_swaps_174 ... ok
+test snapshot_swaps_175 ... ok
+test snapshot_swaps_176 ... ok
+test snapshot_swaps_177 ... ok
+test snapshot_swaps_178 ... ok
+test snapshot_swaps_179 ... ok
+test snapshot_swaps_18 ... ok
+test snapshot_swaps_180 ... ok
+test snapshot_swaps_181 ... ok
+test snapshot_swaps_182 ... ok
+test snapshot_swaps_183 ... ok
+test snapshot_swaps_186 ... ok
+test snapshot_swaps_187 ... ok
+test snapshot_swaps_184 ... ok
+test snapshot_swaps_185 ... ok
+test snapshot_swaps_188 ... ok
+test snapshot_swaps_189 ... ok
+test snapshot_swaps_19 ... ok
+test snapshot_swaps_190 ... ok
+test snapshot_swaps_191 ... ok
+test snapshot_swaps_192 ... ok
+test snapshot_swaps_193 ... ok
+test snapshot_swaps_194 ... ok
+test snapshot_swaps_195 ... ok
+test snapshot_swaps_196 ... ok
+test snapshot_swaps_197 ... ok
+test snapshot_swaps_198 ... ok
+test snapshot_swaps_199 ... ok
+test snapshot_swaps_2 ... ok
+test snapshot_swaps_20 ... ok
+test snapshot_swaps_21 ... ok
+test snapshot_swaps_22 ... ok
+test snapshot_swaps_23 ... ok
+test snapshot_swaps_24 ... ok
+test snapshot_swaps_25 ... ok
+test snapshot_swaps_26 ... ok
+test snapshot_swaps_27 ... ok
+test snapshot_swaps_28 ... ok
+test snapshot_swaps_3 ... ok
+test snapshot_swaps_30 ... ok
+test snapshot_swaps_31 ... ok
+test snapshot_swaps_29 ... ok
+test snapshot_swaps_32 ... ok
+test snapshot_swaps_33 ... ok
+test snapshot_swaps_35 ... ok
+test snapshot_swaps_34 ... ok
+test snapshot_swaps_36 ... ok
+test snapshot_swaps_37 ... ok
+test snapshot_swaps_38 ... ok
+test snapshot_swaps_39 ... ok
+test snapshot_swaps_4 ... ok
+test snapshot_swaps_41 ... ok
+test snapshot_swaps_42 ... ok
+test snapshot_swaps_40 ... ok
+test snapshot_swaps_43 ... ok
+test snapshot_swaps_45 ... ok
+test snapshot_swaps_44 ... ok
+test snapshot_swaps_46 ... ok
+test snapshot_swaps_49 ... ok
+test snapshot_swaps_47 ... ok
+test snapshot_swaps_48 ... ok
+test snapshot_swaps_5 ... ok
+test snapshot_swaps_50 ... ok
+test snapshot_swaps_51 ... ok
+test snapshot_swaps_52 ... ok
+test snapshot_swaps_53 ... ok
+test snapshot_swaps_54 ... ok
+test snapshot_swaps_55 ... ok
+test snapshot_swaps_56 ... ok
+test snapshot_swaps_57 ... ok
+test snapshot_swaps_58 ... ok
+test snapshot_swaps_59 ... ok
+test snapshot_swaps_6 ... ok
+test snapshot_swaps_61 ... ok
+test snapshot_swaps_60 ... ok
+test snapshot_swaps_62 ... ok
+test snapshot_swaps_63 ... ok
+test snapshot_swaps_64 ... ok
+test snapshot_swaps_65 ... ok
+test snapshot_swaps_66 ... ok
+test snapshot_swaps_67 ... ok
+test snapshot_swaps_68 ... ok
+test snapshot_swaps_69 ... ok
+test snapshot_swaps_7 ... ok
+test snapshot_swaps_70 ... ok
+test snapshot_swaps_71 ... ok
+test snapshot_swaps_72 ... ok
+test snapshot_swaps_73 ... ok
+test snapshot_swaps_74 ... ok
+test snapshot_swaps_75 ... ok
+test snapshot_swaps_76 ... ok
+test snapshot_swaps_77 ... ok
+test snapshot_swaps_78 ... ok
+test snapshot_swaps_79 ... ok
+test snapshot_swaps_8 ... ok
+test snapshot_swaps_80 ... ok
+test snapshot_swaps_81 ... ok
+test snapshot_swaps_82 ... ok
+test snapshot_swaps_83 ... ok
+test snapshot_swaps_84 ... ok
+test snapshot_swaps_85 ... ok
+test snapshot_swaps_86 ... ok
+test snapshot_swaps_87 ... ok
+test snapshot_swaps_88 ... ok
+test snapshot_swaps_89 ... ok
+test snapshot_swaps_9 ... ok
+test snapshot_swaps_90 ... ok
+test snapshot_swaps_91 ... ok
+test snapshot_swaps_92 ... ok
+test snapshot_swaps_93 ... ok
+test snapshot_swaps_95 ... ok
+test snapshot_swaps_96 ... ok
+test snapshot_swaps_94 ... ok
+test snapshot_swaps_97 ... ok
+test snapshot_swaps_98 ... ok
+test snapshot_swaps_99 ... ok
+
+test result: ok. 200 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests\command_lowering.rs (target\debug\deps\command_lowering-5e247fad9c6e9b32.exe)
+
+running 200 tests
+test command_lowering_101 ... ok
+test command_lowering_10 ... ok
+test command_lowering_114 ... ok
+test command_lowering_0 ... ok
+test command_lowering_1 ... ok
+test command_lowering_105 ... ok
+test command_lowering_106 ... ok
+test command_lowering_108 ... ok
+test command_lowering_107 ... ok
+test command_lowering_100 ... ok
+test command_lowering_111 ... ok
+test command_lowering_112 ... ok
+test command_lowering_113 ... ok
+test command_lowering_102 ... ok
+test command_lowering_118 ... ok
+test command_lowering_119 ... ok
+test command_lowering_117 ... ok
+test command_lowering_116 ... ok
+test command_lowering_121 ... ok
+test command_lowering_124 ... ok
+test command_lowering_122 ... ok
+test command_lowering_126 ... ok
+test command_lowering_125 ... ok
+test command_lowering_127 ... ok
+test command_lowering_11 ... ok
+test command_lowering_103 ... ok
+test command_lowering_110 ... ok
+test command_lowering_104 ... ok
+test command_lowering_120 ... ok
+test command_lowering_115 ... ok
+test command_lowering_109 ... ok
+test command_lowering_12 ... ok
+test command_lowering_123 ... ok
+test command_lowering_128 ... ok
+test command_lowering_129 ... ok
+test command_lowering_13 ... ok
+test command_lowering_130 ... ok
+test command_lowering_132 ... ok
+test command_lowering_134 ... ok
+test command_lowering_135 ... ok
+test command_lowering_131 ... ok
+test command_lowering_133 ... ok
+test command_lowering_138 ... ok
+test command_lowering_136 ... ok
+test command_lowering_14 ... ok
+test command_lowering_139 ... ok
+test command_lowering_140 ... ok
+test command_lowering_137 ... ok
+test command_lowering_142 ... ok
+test command_lowering_141 ... ok
+test command_lowering_143 ... ok
+test command_lowering_144 ... ok
+test command_lowering_145 ... ok
+test command_lowering_148 ... ok
+test command_lowering_147 ... ok
+test command_lowering_149 ... ok
+test command_lowering_146 ... ok
+test command_lowering_151 ... ok
+test command_lowering_150 ... ok
+test command_lowering_153 ... ok
+test command_lowering_152 ... ok
+test command_lowering_15 ... ok
+test command_lowering_154 ... ok
+test command_lowering_156 ... ok
+test command_lowering_155 ... ok
+test command_lowering_159 ... ok
+test command_lowering_158 ... ok
+test command_lowering_157 ... ok
+test command_lowering_160 ... ok
+test command_lowering_161 ... ok
+test command_lowering_16 ... ok
+test command_lowering_163 ... ok
+test command_lowering_167 ... ok
+test command_lowering_165 ... ok
+test command_lowering_162 ... ok
+test command_lowering_170 ... ok
+test command_lowering_166 ... ok
+test command_lowering_169 ... ok
+test command_lowering_164 ... ok
+test command_lowering_174 ... ok
+test command_lowering_172 ... ok
+test command_lowering_173 ... ok
+test command_lowering_171 ... ok
+test command_lowering_168 ... ok
+test command_lowering_177 ... ok
+test command_lowering_17 ... ok
+test command_lowering_175 ... ok
+test command_lowering_176 ... ok
+test command_lowering_178 ... ok
+test command_lowering_179 ... ok
+test command_lowering_18 ... ok
+test command_lowering_182 ... ok
+test command_lowering_181 ... ok
+test command_lowering_180 ... ok
+test command_lowering_184 ... ok
+test command_lowering_183 ... ok
+test command_lowering_185 ... ok
+test command_lowering_187 ... ok
+test command_lowering_188 ... ok
+test command_lowering_189 ... ok
+test command_lowering_186 ... ok
+test command_lowering_19 ... ok
+test command_lowering_191 ... ok
+test command_lowering_190 ... ok
+test command_lowering_192 ... ok
+test command_lowering_194 ... ok
+test command_lowering_193 ... ok
+test command_lowering_195 ... ok
+test command_lowering_196 ... ok
+test command_lowering_197 ... ok
+test command_lowering_198 ... ok
+test command_lowering_199 ... ok
+test command_lowering_2 ... ok
+test command_lowering_20 ... ok
+test command_lowering_21 ... ok
+test command_lowering_22 ... ok
+test command_lowering_23 ... ok
+test command_lowering_24 ... ok
+test command_lowering_25 ... ok
+test command_lowering_26 ... ok
+test command_lowering_27 ... ok
+test command_lowering_28 ... ok
+test command_lowering_29 ... ok
+test command_lowering_3 ... ok
+test command_lowering_30 ... ok
+test command_lowering_32 ... ok
+test command_lowering_31 ... ok
+test command_lowering_33 ... ok
+test command_lowering_34 ... ok
+test command_lowering_37 ... ok
+test command_lowering_35 ... ok
+test command_lowering_36 ... ok
+test command_lowering_39 ... ok
+test command_lowering_40 ... ok
+test command_lowering_4 ... ok
+test command_lowering_41 ... ok
+test command_lowering_38 ... ok
+test command_lowering_42 ... ok
+test command_lowering_44 ... ok
+test command_lowering_43 ... ok
+test command_lowering_45 ... ok
+test command_lowering_46 ... ok
+test command_lowering_49 ... ok
+test command_lowering_48 ... ok
+test command_lowering_47 ... ok
+test command_lowering_5 ... ok
+test command_lowering_51 ... ok
+test command_lowering_50 ... ok
+test command_lowering_52 ... ok
+test command_lowering_53 ... ok
+test command_lowering_54 ... ok
+test command_lowering_55 ... ok
+test command_lowering_56 ... ok
+test command_lowering_57 ... ok
+test command_lowering_58 ... ok
+test command_lowering_6 ... ok
+test command_lowering_59 ... ok
+test command_lowering_61 ... ok
+test command_lowering_60 ... ok
+test command_lowering_62 ... ok
+test command_lowering_63 ... ok
+test command_lowering_64 ... ok
+test command_lowering_65 ... ok
+test command_lowering_66 ... ok
+test command_lowering_67 ... ok
+test command_lowering_68 ... ok
+test command_lowering_69 ... ok
+test command_lowering_7 ... ok
+test command_lowering_70 ... ok
+test command_lowering_71 ... ok
+test command_lowering_72 ... ok
+test command_lowering_73 ... ok
+test command_lowering_74 ... ok
+test command_lowering_75 ... ok
+test command_lowering_77 ... ok
+test command_lowering_78 ... ok
+test command_lowering_76 ... ok
+test command_lowering_79 ... ok
+test command_lowering_8 ... ok
+test command_lowering_80 ... ok
+test command_lowering_81 ... ok
+test command_lowering_82 ... ok
+test command_lowering_85 ... ok
+test command_lowering_84 ... ok
+test command_lowering_83 ... ok
+test command_lowering_86 ... ok
+test command_lowering_87 ... ok
+test command_lowering_88 ... ok
+test command_lowering_89 ... ok
+test command_lowering_9 ... ok
+test command_lowering_90 ... ok
+test command_lowering_91 ... ok
+test command_lowering_92 ... ok
+test command_lowering_93 ... ok
+test command_lowering_94 ... ok
+test command_lowering_95 ... ok
+test command_lowering_96 ... ok
+test command_lowering_97 ... ok
+test command_lowering_98 ... ok
+test command_lowering_99 ... ok
+
+test result: ok. 200 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests\build_reproducibility.rs (target\debug\deps\build_reproducibility-718951c86ab53e07.exe)
+
+running 100 tests
+test build_reproducibility_12 ... ok
+test build_reproducibility_21 ... ok
+test build_reproducibility_34 ... ok
+test build_reproducibility_16 ... ok
+test build_reproducibility_10 ... ok
+test build_reproducibility_1 ... ok
+test build_reproducibility_2 ... ok
+test build_reproducibility_0 ... ok
+test build_reproducibility_22 ... ok
+test build_reproducibility_14 ... ok
+test build_reproducibility_18 ... ok
+test build_reproducibility_29 ... ok
+test build_reproducibility_11 ... ok
+test build_reproducibility_23 ... ok
+test build_reproducibility_30 ... ok
+test build_reproducibility_31 ... ok
+test build_reproducibility_28 ... ok
+test build_reproducibility_33 ... ok
+test build_reproducibility_32 ... ok
+test build_reproducibility_24 ... ok
+test build_reproducibility_35 ... ok
+test build_reproducibility_36 ... ok
+test build_reproducibility_38 ... ok
+test build_reproducibility_15 ... ok
+test build_reproducibility_17 ... ok
+test build_reproducibility_13 ... ok
+test build_reproducibility_20 ... ok
+test build_reproducibility_26 ... ok
+test build_reproducibility_3 ... ok
+test build_reproducibility_27 ... ok
+test build_reproducibility_19 ... ok
+test build_reproducibility_37 ... ok
+test build_reproducibility_25 ... ok
+test build_reproducibility_4 ... ok
+test build_reproducibility_41 ... ok
+test build_reproducibility_39 ... ok
+test build_reproducibility_40 ... ok
+test build_reproducibility_42 ... ok
+test build_reproducibility_43 ... ok
+test build_reproducibility_44 ... ok
+test build_reproducibility_45 ... ok
+test build_reproducibility_46 ... ok
+test build_reproducibility_48 ... ok
+test build_reproducibility_49 ... ok
+test build_reproducibility_5 ... ok
+test build_reproducibility_47 ... ok
+test build_reproducibility_50 ... ok
+test build_reproducibility_51 ... ok
+test build_reproducibility_52 ... ok
+test build_reproducibility_53 ... ok
+test build_reproducibility_54 ... ok
+test build_reproducibility_55 ... ok
+test build_reproducibility_56 ... ok
+test build_reproducibility_57 ... ok
+test build_reproducibility_58 ... ok
+test build_reproducibility_59 ... ok
+test build_reproducibility_6 ... ok
+test build_reproducibility_60 ... ok
+test build_reproducibility_62 ... ok
+test build_reproducibility_61 ... ok
+test build_reproducibility_63 ... ok
+test build_reproducibility_64 ... ok
+test build_reproducibility_67 ... ok
+test build_reproducibility_66 ... ok
+test build_reproducibility_68 ... ok
+test build_reproducibility_65 ... ok
+test build_reproducibility_69 ... ok
+test build_reproducibility_70 ... ok
+test build_reproducibility_7 ... ok
+test build_reproducibility_71 ... ok
+test build_reproducibility_72 ... ok
+test build_reproducibility_73 ... ok
+test build_reproducibility_74 ... ok
+test build_reproducibility_75 ... ok
+test build_reproducibility_76 ... ok
+test build_reproducibility_77 ... ok
+test build_reproducibility_78 ... ok
+test build_reproducibility_79 ... ok
+test build_reproducibility_80 ... ok
+test build_reproducibility_8 ... ok
+test build_reproducibility_81 ... ok
+test build_reproducibility_82 ... ok
+test build_reproducibility_83 ... ok
+test build_reproducibility_84 ... ok
+test build_reproducibility_85 ... ok
+test build_reproducibility_86 ... ok
+test build_reproducibility_87 ... ok
+test build_reproducibility_89 ... ok
+test build_reproducibility_88 ... ok
+test build_reproducibility_9 ... ok
+test build_reproducibility_91 ... ok
+test build_reproducibility_93 ... ok
+test build_reproducibility_94 ... ok
+test build_reproducibility_92 ... ok
+test build_reproducibility_95 ... ok
+test build_reproducibility_90 ... ok
+test build_reproducibility_96 ... ok
+test build_reproducibility_97 ... ok
+test build_reproducibility_98 ... ok
+test build_reproducibility_99 ... ok
+
+test result: ok. 100 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running tests\validation_legality.rs (target\debug\deps\validation_legality-bf864b852ab96b82.exe)
+
+running 100 tests
+test validation_legality_0 ... ok
+test validation_legality_11 ... ok
+test validation_legality_25 ... ok
+test validation_legality_36 ... ok
+test validation_legality_35 ... ok
+test validation_legality_18 ... ok
+test validation_legality_2 ... ok
+test validation_legality_20 ... ok
+test validation_legality_22 ... ok
+test validation_legality_21 ... ok
+test validation_legality_12 ... ok
+test validation_legality_23 ... ok
+test validation_legality_24 ... ok
+test validation_legality_15 ... ok
+test validation_legality_26 ... ok
+test validation_legality_27 ... ok
+test validation_legality_28 ... ok
+test validation_legality_29 ... ok
+test validation_legality_3 ... ok
+test validation_legality_30 ... ok
+test validation_legality_17 ... ok
+test validation_legality_31 ... ok
+test validation_legality_32 ... ok
+test validation_legality_19 ... ok
+test validation_legality_13 ... ok
+test validation_legality_34 ... ok
+test validation_legality_37 ... ok
+test validation_legality_33 ... ok
+test validation_legality_1 ... ok
+test validation_legality_14 ... ok
+test validation_legality_10 ... ok
+test validation_legality_16 ... ok
+test validation_legality_38 ... ok
+test validation_legality_39 ... ok
+test validation_legality_4 ... ok
+test validation_legality_40 ... ok
+test validation_legality_41 ... ok
+test validation_legality_42 ... ok
+test validation_legality_43 ... ok
+test validation_legality_44 ... ok
+test validation_legality_45 ... ok
+test validation_legality_47 ... ok
+test validation_legality_46 ... ok
+test validation_legality_48 ... ok
+test validation_legality_49 ... ok
+test validation_legality_5 ... ok
+test validation_legality_50 ... ok
+test validation_legality_51 ... ok
+test validation_legality_52 ... ok
+test validation_legality_53 ... ok
+test validation_legality_54 ... ok
+test validation_legality_55 ... ok
+test validation_legality_56 ... ok
+test validation_legality_58 ... ok
+test validation_legality_57 ... ok
+test validation_legality_59 ... ok
+test validation_legality_60 ... ok
+test validation_legality_6 ... ok
+test validation_legality_63 ... ok
+test validation_legality_62 ... ok
+test validation_legality_61 ... ok
+test validation_legality_65 ... ok
+test validation_legality_64 ... ok
+test validation_legality_66 ... ok
+test validation_legality_67 ... ok
+test validation_legality_68 ... ok
+test validation_legality_69 ... ok
+test validation_legality_70 ... ok
+test validation_legality_7 ... ok
+test validation_legality_71 ... ok
+test validation_legality_72 ... ok
+test validation_legality_73 ... ok
+test validation_legality_76 ... ok
+test validation_legality_74 ... ok
+test validation_legality_77 ... ok
+test validation_legality_78 ... ok
+test validation_legality_79 ... ok
+test validation_legality_8 ... ok
+test validation_legality_80 ... ok
+test validation_legality_75 ... ok
+test validation_legality_81 ... ok
+test validation_legality_82 ... ok
+test validation_legality_83 ... ok
+test validation_legality_84 ... ok
+test validation_legality_85 ... ok
+test validation_legality_86 ... ok
+test validation_legality_87 ... ok
+test validation_legality_88 ... ok
+test validation_legality_9 ... ok
+test validation_legality_89 ... ok
+test validation_legality_90 ... ok
+test validation_legality_91 ... ok
+test validation_legality_92 ... ok
+test validation_legality_93 ... ok
+test validation_legality_94 ... ok
+test validation_legality_95 ... ok
+test validation_legality_96 ... ok
+test validation_legality_97 ... ok
+test validation_legality_98 ... ok
+test validation_legality_99 ... ok
+
+test result: ok. 100 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running `target\debug\stratumx_stack_utility.exe`
+{
+  "build_digest": "build:4:2:engine-world|logic-root",
+  "diagnostics": 0,
+  "engine_snapshot_epoch": 2,
+  "object_count": 2,
+  "release_digest": "build:4:2:engine-world|logic-root",
+  "tooling_generation": 4
+}
+   Compiling stratumx_editor v0.1.0 (E:\Development\goldeditor\5.editor\editor_runtime\stratumx_editor)
+error[E0592]: duplicate definitions with name `suite_overview`
+   --> 5.editor\editor_runtime\stratumx_editor\src\../../../l9.0-world-authoring-suite/world-authoring-suite/world_authoring_suite.rs:21:5
+    |
+ 21 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ duplicate definitions for `suite_overview`
+    |
+   ::: 5.editor\editor_runtime\stratumx_editor\src\editor_runtime_core.rs:194:5
+    |
+194 |     pub fn suite_overview(&self) -> SuiteOverview {
+    |     --------------------------------------------- other definition for `suite_overview`
+
+For more information about this error, try `rustc --explain E0592`.
+error: could not compile `stratumx_editor` (lib) due to 1 previous error
+    Finished `bench` profile [optimized] target(s) in 0.10s
+     Running benches\engine_benches.rs (target\release\deps\engine_benches-141c7058f05cfbf0.exe)
+Benchmarking engine_core_hot_type_ops
+Benchmarking engine_core_hot_type_ops: Warming up for 2.0000 s
+Benchmarking engine_core_hot_type_ops: Collecting 60 samples in estimated 4.0012 s (1.6M iterations)
+Benchmarking engine_core_hot_type_ops: Analyzing
+engine_core_hot_type_ops
+                        time:   [2.4601 ┬╡s 2.4779 ┬╡s 2.4980 ┬╡s]
+                        change: [-7.6793% -6.4227% -5.2691%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_identity_issue_retire
+Benchmarking engine_identity_issue_retire: Warming up for 2.0000 s
+Benchmarking engine_identity_issue_retire: Collecting 60 samples in estimated 4.0629 s (51k iterations)
+Benchmarking engine_identity_issue_retire: Analyzing
+engine_identity_issue_retire
+                        time:   [78.826 ┬╡s 79.384 ┬╡s 79.910 ┬╡s]
+                        change: [-13.005% -8.4958% -5.3227%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high severe
+
+Benchmarking engine_handle_validate
+Benchmarking engine_handle_validate: Warming up for 2.0000 s
+Benchmarking engine_handle_validate: Collecting 60 samples in estimated 4.0001 s (4.8M iterations)
+Benchmarking engine_handle_validate: Analyzing
+engine_handle_validate  time:   [845.14 ns 849.60 ns 853.60 ns]
+                        change: [-5.7805% -4.6809% -3.6613%] (p = 0.00 < 0.05)
+                        Performance has improved.
+
+Benchmarking engine_storage_layout_validate
+Benchmarking engine_storage_layout_validate: Warming up for 2.0000 s
+Benchmarking engine_storage_layout_validate: Collecting 60 samples in estimated 4.0060 s (1.1M iterations)
+Benchmarking engine_storage_layout_validate: Analyzing
+engine_storage_layout_validate
+                        time:   [3.6091 ┬╡s 3.6332 ┬╡s 3.6580 ┬╡s]
+                        change: [-7.9798% -6.9046% -5.7899%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_storage_access_bind
+Benchmarking engine_storage_access_bind: Warming up for 2.0000 s
+Benchmarking engine_storage_access_bind: Collecting 60 samples in estimated 4.0000 s (143M iterations)
+Benchmarking engine_storage_access_bind: Analyzing
+engine_storage_access_bind
+                        time:   [27.788 ns 27.849 ns 27.909 ns]
+                        change: [-7.3139% -6.5170% -5.7614%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 60 measurements (11.67%)
+  2 (3.33%) low mild
+  3 (5.00%) high mild
+  2 (3.33%) high severe
+
+Benchmarking engine_storage_mutation_assemble
+Benchmarking engine_storage_mutation_assemble: Warming up for 2.0000 s
+Benchmarking engine_storage_mutation_assemble: Collecting 60 samples in estimated 4.0335 s (62k iterations)
+Benchmarking engine_storage_mutation_assemble: Analyzing
+engine_storage_mutation_assemble
+                        time:   [64.726 ┬╡s 65.032 ┬╡s 65.300 ┬╡s]
+                        change: [-6.0421% -5.1563% -4.2926%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 60 measurements (11.67%)
+  5 (8.33%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_ecs_registry_membership
+Benchmarking engine_ecs_registry_membership: Warming up for 2.0000 s
+Benchmarking engine_ecs_registry_membership: Collecting 60 samples in estimated 4.0762 s (29k iterations)
+Benchmarking engine_ecs_registry_membership: Analyzing
+engine_ecs_registry_membership
+                        time:   [138.82 ┬╡s 139.62 ┬╡s 140.32 ┬╡s]
+                        change: [-5.7910% -4.7564% -3.8100%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 60 measurements (3.33%)
+  2 (3.33%) low mild
+Benchmarking engine_ecs_query_execute
+Benchmarking engine_ecs_query_execute: Warming up for 2.0000 s
+
+Benchmarking engine_ecs_query_execute: Collecting 60 samples in estimated 4.0561 s (104k iterations)
+Benchmarking engine_ecs_query_execute: Analyzing
+engine_ecs_query_execute
+                        time:   [38.636 ┬╡s 38.841 ┬╡s 39.019 ┬╡s]
+                        change: [-6.6022% -5.6553% -4.7320%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 6 outliers among 60 measurements (10.00%)
+  5 (8.33%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_ecs_facade
+Benchmarking engine_ecs_facade: Warming up for 2.0000 s
+Benchmarking engine_ecs_facade: Collecting 60 samples in estimated 4.0505 s (108k iterations)
+Benchmarking engine_ecs_facade: Analyzing
+engine_ecs_facade       time:   [37.317 ┬╡s 37.511 ┬╡s 37.682 ┬╡s]
+                        change: [-6.7696% -5.0204% -2.6946%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) low mild
+  2 (3.33%) high severe
+Benchmarking engine_world_spatial_address
+Benchmarking engine_world_spatial_address: Warming up for 2.0000 s
+
+Benchmarking engine_world_spatial_address: Collecting 60 samples in estimated 4.0120 s (271k iterations)
+Benchmarking engine_world_spatial_address: Analyzing
+engine_world_spatial_address
+                        time:   [14.349 ┬╡s 14.448 ┬╡s 14.555 ┬╡s]
+                        change: [-8.6386% -7.2229% -5.9224%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+
+Benchmarking engine_world_region_dirty_tracking
+Benchmarking engine_world_region_dirty_tracking: Warming up for 2.0000 s
+Benchmarking engine_world_region_dirty_tracking: Collecting 60 samples in estimated 4.1361 s (40k iterations)
+Benchmarking engine_world_region_dirty_tracking: Analyzing
+engine_world_region_dirty_tracking
+                        time:   [101.69 ┬╡s 102.28 ┬╡s 102.79 ┬╡s]
+                        change: [-5.6368% -4.5593% -3.5937%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 60 measurements (5.00%)
+  2 (3.33%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_world_snapshot_apply
+Benchmarking engine_world_snapshot_apply: Warming up for 2.0000 s
+Benchmarking engine_world_snapshot_apply: Collecting 60 samples in estimated 4.0487 s (112k iterations)
+Benchmarking engine_world_snapshot_apply: Analyzing
+engine_world_snapshot_apply
+                        time:   [36.116 ┬╡s 36.280 ┬╡s 36.433 ┬╡s]
+                        change: [-9.3449% -8.0626% -6.7179%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 60 measurements (5.00%)
+  2 (3.33%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_material_lookup
+Benchmarking engine_material_lookup: Warming up for 2.0000 s
+Benchmarking engine_material_lookup: Collecting 60 samples in estimated 4.0438 s (81k iterations)
+Benchmarking engine_material_lookup: Analyzing
+engine_material_lookup  time:   [49.784 ┬╡s 50.179 ┬╡s 50.560 ┬╡s]
+                        change: [-11.526% -9.7041% -8.0050%] (p = 0.00 < 0.05)
+                        Performance has improved.
+
+Benchmarking engine_runtime_tick
+Benchmarking engine_runtime_tick: Warming up for 2.0000 s
+Benchmarking engine_runtime_tick: Collecting 60 samples in estimated 4.0280 s (134k iterations)
+Benchmarking engine_runtime_tick: Analyzing
+engine_runtime_tick     time:   [30.338 ┬╡s 30.494 ┬╡s 30.649 ┬╡s]
+                        change: [-9.3928% -7.4467% -5.6648%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 60 measurements (5.00%)
+  3 (5.00%) low mild
+
+Benchmarking engine_runtime_headless_step
+Benchmarking engine_runtime_headless_step: Warming up for 2.0000 s
+Benchmarking engine_runtime_headless_step: Collecting 60 samples in estimated 4.0109 s (262k iterations)
+Benchmarking engine_runtime_headless_step: Analyzing
+engine_runtime_headless_step
+                        time:   [15.290 ┬╡s 15.362 ┬╡s 15.427 ┬╡s]
+                        change: [-3.6619% -2.1101% -0.8312%] (p = 0.00 < 0.05)
+                        Change within noise threshold.
+Found 9 outliers among 60 measurements (15.00%)
+  6 (10.00%) low mild
+  2 (3.33%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_runtime_realtime_step
+Benchmarking engine_runtime_realtime_step: Warming up for 2.0000 s
+Benchmarking engine_runtime_realtime_step: Collecting 60 samples in estimated 4.0309 s (201k iterations)
+Benchmarking engine_runtime_realtime_step: Analyzing
+engine_runtime_realtime_step
+                        time:   [30.062 ┬╡s 31.649 ┬╡s 32.921 ┬╡s]
+                        change: [+77.589% +86.525% +94.904%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_stream_control_tick
+Benchmarking engine_stream_control_tick: Warming up for 2.0000 s
+Benchmarking engine_stream_control_tick: Collecting 60 samples in estimated 4.1747 s (22k iterations)
+Benchmarking engine_stream_control_tick: Analyzing
+engine_stream_control_tick
+                        time:   [187.31 ┬╡s 191.80 ┬╡s 196.41 ┬╡s]
+                        change: [+109.37% +116.44% +124.28%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low severe
+  1 (1.67%) high severe
+
+Benchmarking engine_residency_control_metrics
+Benchmarking engine_residency_control_metrics: Warming up for 2.0000 s
+Benchmarking engine_residency_control_metrics: Collecting 60 samples in estimated 4.0297 s (55k iterations)
+Benchmarking engine_residency_control_metrics: Analyzing
+engine_residency_control_metrics
+                        time:   [57.704 ┬╡s 64.891 ┬╡s 72.151 ┬╡s]
+                        change: [+105.48% +116.22% +125.07%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 6 outliers among 60 measurements (10.00%)
+  5 (8.33%) low severe
+  1 (1.67%) high mild
+
+Benchmarking engine_memory_control_cycle
+Benchmarking engine_memory_control_cycle: Warming up for 2.0000 s
+Benchmarking engine_memory_control_cycle: Collecting 60 samples in estimated 4.0019 s (2.0M iterations)
+Benchmarking engine_memory_control_cycle: Analyzing
+engine_memory_control_cycle
+                        time:   [2.0236 ┬╡s 2.0394 ┬╡s 2.0556 ┬╡s]
+                        change: [-4.6126% -3.4363% -2.4164%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_transfer_control_submit
+Benchmarking engine_transfer_control_submit: Warming up for 2.0000 s
+Benchmarking engine_transfer_control_submit: Collecting 60 samples in estimated 4.0266 s (70k iterations)
+Benchmarking engine_transfer_control_submit: Analyzing
+engine_transfer_control_submit
+                        time:   [57.030 ┬╡s 57.423 ┬╡s 57.813 ┬╡s]
+                        change: [-3.6001% -2.5168% -1.3558%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 60 measurements (5.00%)
+  2 (3.33%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_kinetics_simulate
+Benchmarking engine_kinetics_simulate: Warming up for 2.0000 s
+Benchmarking engine_kinetics_simulate: Collecting 60 samples in estimated 4.0061 s (68k iterations)
+Benchmarking engine_kinetics_simulate: Analyzing
+engine_kinetics_simulate
+                        time:   [58.475 ┬╡s 58.823 ┬╡s 59.143 ┬╡s]
+                        change: [-3.0025% -1.9380% -0.7355%] (p = 0.00 < 0.05)
+                        Change within noise threshold.
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low mild
+  1 (1.67%) high severe
+
+Benchmarking engine_field_simulate
+Benchmarking engine_field_simulate: Warming up for 2.0000 s
+Benchmarking engine_field_simulate: Collecting 60 samples in estimated 4.0873 s (70k iterations)
+Benchmarking engine_field_simulate: Analyzing
+engine_field_simulate   time:   [58.112 ┬╡s 58.395 ┬╡s 58.694 ┬╡s]
+                        change: [-1.9474% -0.8108% +0.5432%] (p = 0.23 > 0.05)
+                        No change in performance detected.
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_agents_simulate
+Benchmarking engine_agents_simulate: Warming up for 2.0000 s
+Benchmarking engine_agents_simulate: Collecting 60 samples in estimated 4.0787 s (70k iterations)
+Benchmarking engine_agents_simulate: Analyzing
+engine_agents_simulate  time:   [57.882 ┬╡s 58.257 ┬╡s 58.663 ┬╡s]
+                        change: [-4.1850% -2.6776% -1.2967%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) high mild
+
+Benchmarking engine_net_transport_send
+Benchmarking engine_net_transport_send: Warming up for 2.0000 s
+Benchmarking engine_net_transport_send: Collecting 60 samples in estimated 4.2367 s (29k iterations)
+Benchmarking engine_net_transport_send: Analyzing
+engine_net_transport_send
+                        time:   [143.81 ┬╡s 144.52 ┬╡s 145.28 ┬╡s]
+                        change: [-1.1832% -0.2338% +0.7489%] (p = 0.65 > 0.05)
+                        No change in performance detected.
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) high mild
+  2 (3.33%) high severe
+
+Benchmarking engine_net_sync_snapshot
+Benchmarking engine_net_sync_snapshot: Warming up for 2.0000 s
+Benchmarking engine_net_sync_snapshot: Collecting 60 samples in estimated 4.0480 s (48k iterations)
+Benchmarking engine_net_sync_snapshot: Analyzing
+engine_net_sync_snapshot
+                        time:   [83.607 ┬╡s 84.199 ┬╡s 84.808 ┬╡s]
+                        change: [-3.2428% -1.5234% -0.0046%] (p = 0.07 > 0.05)
+                        No change in performance detected.
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) low mild
+  2 (3.33%) high mild
+
+Benchmarking engine_net_latency_metrics
+Benchmarking engine_net_latency_metrics: Warming up for 2.0000 s
+Benchmarking engine_net_latency_metrics: Collecting 60 samples in estimated 4.0494 s (110k iterations)
+Benchmarking engine_net_latency_metrics: Analyzing
+engine_net_latency_metrics
+                        time:   [36.249 ┬╡s 36.469 ┬╡s 36.674 ┬╡s]
+                        change: [-1.9472% -0.6503% +0.4864%] (p = 0.31 > 0.05)
+                        No change in performance detected.
+Found 2 outliers among 60 measurements (3.33%)
+  1 (1.67%) low mild
+  1 (1.67%) high mild
+
+Benchmarking engine_inference_infer
+Benchmarking engine_inference_infer: Warming up for 2.0000 s
+Benchmarking engine_inference_infer: Collecting 60 samples in estimated 4.1440 s (26k iterations)
+Benchmarking engine_inference_infer: Analyzing
+engine_inference_infer  time:   [160.41 ┬╡s 161.16 ┬╡s 161.94 ┬╡s]
+                        change: [-2.9599% -1.6227% -0.4314%] (p = 0.01 < 0.05)
+                        Change within noise threshold.
+Found 5 outliers among 60 measurements (8.33%)
+  1 (1.67%) low severe
+  2 (3.33%) low mild
+  1 (1.67%) high mild
+  1 (1.67%) high severe
+
+Benchmarking engine_generation_generate
+Benchmarking engine_generation_generate: Warming up for 2.0000 s
+Benchmarking engine_generation_generate: Collecting 60 samples in estimated 4.0647 s (55k iterations)
+Benchmarking engine_generation_generate: Analyzing
+engine_generation_generate
+                        time:   [73.237 ┬╡s 73.840 ┬╡s 74.580 ┬╡s]
+                        change: [-0.7775% +0.1115% +1.1455%] (p = 0.82 > 0.05)
+                        No change in performance detected.
+Found 4 outliers among 60 measurements (6.67%)
+  1 (1.67%) low mild
+  3 (5.00%) high mild
+
+Benchmarking engine_imaging_render
+Benchmarking engine_imaging_render: Warming up for 2.0000 s
+Benchmarking engine_imaging_render: Collecting 60 samples in estimated 4.1142 s (60k iterations)
+Benchmarking engine_imaging_render: Analyzing
+engine_imaging_render   time:   [68.764 ┬╡s 69.228 ┬╡s 69.704 ┬╡s]
+                        change: [-0.1337% +0.9069% +1.9709%] (p = 0.10 > 0.05)
+                        No change in performance detected.
+Found 3 outliers among 60 measurements (5.00%)
+  1 (1.67%) low severe
+  1 (1.67%) low mild
+  1 (1.67%) high severe
+
+Benchmarking engine_acoustics_synthesize
+Benchmarking engine_acoustics_synthesize: Warming up for 2.0000 s
+Benchmarking engine_acoustics_synthesize: Collecting 60 samples in estimated 4.0087 s (59k iterations)
+Benchmarking engine_acoustics_synthesize: Analyzing
+engine_acoustics_synthesize
+                        time:   [68.230 ┬╡s 68.665 ┬╡s 69.075 ┬╡s]
+                        change: [-1.1917% -0.2137% +0.7225%] (p = 0.66 > 0.05)
+                        No change in performance detected.
+Found 1 outliers among 60 measurements (1.67%)
+  1 (1.67%) low mild
+
+Benchmarking engine_content_ingest
+Benchmarking engine_content_ingest: Warming up for 2.0000 s
+Benchmarking engine_content_ingest: Collecting 60 samples in estimated 4.1739 s (35k iterations)
+Benchmarking engine_content_ingest: Analyzing
+engine_content_ingest   time:   [118.30 ┬╡s 119.10 ┬╡s 119.97 ┬╡s]
+                        change: [-0.5374% +0.4195% +1.4128%] (p = 0.39 > 0.05)
+                        No change in performance detected.
+Found 7 outliers among 60 measurements (11.67%)
+  4 (6.67%) low mild
+  2 (3.33%) high mild
+  1 (1.67%) high severe
+Benchmarking engine_startup_launch_plan
+Benchmarking engine_startup_launch_plan: Warming up for 2.0000 s
+
+Benchmarking engine_startup_launch_plan: Collecting 60 samples in estimated 4.0037 s (672k iterations)
+Benchmarking engine_startup_launch_plan: Analyzing
+engine_startup_launch_plan
+                        time:   [5.9269 ┬╡s 5.9570 ┬╡s 5.9935 ┬╡s]
+                        change: [-0.4914% +0.2239% +1.0336%] (p = 0.58 > 0.05)
+                        No change in performance detected.
+Found 3 outliers among 60 measurements (5.00%)
+  2 (3.33%) high mild
+  1 (1.67%) high severe
+
+    Finished `bench` profile [optimized] target(s) in 0.10s
+     Running benches\engine_scenarios.rs (target\release\deps\engine_scenarios-db2207e4d4a62ac0.exe)
+Benchmarking scenario_runtime_world_batch
+Benchmarking scenario_runtime_world_batch: Warming up for 3.0000 s
+Benchmarking scenario_runtime_world_batch: Collecting 100 samples in estimated 5.0056 s (4.1M iterations)
+Benchmarking scenario_runtime_world_batch: Analyzing
+scenario_runtime_world_batch
+                        time:   [1.2318 ┬╡s 1.2396 ┬╡s 1.2482 ┬╡s]
+                        change: [-0.3725% +0.9541% +2.5016%] (p = 0.22 > 0.05)
+                        No change in performance detected.
+Found 6 outliers among 100 measurements (6.00%)
+  2 (2.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking scenario_resource_pipeline_batch
+Benchmarking scenario_resource_pipeline_batch: Warming up for 3.0000 s
+Benchmarking scenario_resource_pipeline_batch: Collecting 100 samples in estimated 5.0058 s (4.3M iterations)
+Benchmarking scenario_resource_pipeline_batch: Analyzing
+scenario_resource_pipeline_batch
+                        time:   [1.1429 ┬╡s 1.1502 ┬╡s 1.1573 ┬╡s]
+                        change: [-21.074% -20.233% -19.447%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking scenario_simulation_batch
+Benchmarking scenario_simulation_batch: Warming up for 3.0000 s
+Benchmarking scenario_simulation_batch: Collecting 100 samples in estimated 5.0073 s (899k iterations)
+Benchmarking scenario_simulation_batch: Analyzing
+scenario_simulation_batch
+                        time:   [5.5841 ┬╡s 5.6139 ┬╡s 5.6419 ┬╡s]
+                        change: [-1.5678% -0.3270% +0.7211%] (p = 0.61 > 0.05)
+                        No change in performance detected.
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high severe
+
+Benchmarking scenario_network_batch
+Benchmarking scenario_network_batch: Warming up for 3.0000 s
+Benchmarking scenario_network_batch: Collecting 100 samples in estimated 5.0037 s (3.4M iterations)
+Benchmarking scenario_network_batch: Analyzing
+scenario_network_batch  time:   [1.4925 ┬╡s 1.5005 ┬╡s 1.5084 ┬╡s]
+                        change: [-1.5333% -0.1437% +1.1503%] (p = 0.84 > 0.05)
+                        No change in performance detected.
+Found 5 outliers among 100 measurements (5.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking scenario_content_batch
+Benchmarking scenario_content_batch: Warming up for 3.0000 s
+Benchmarking scenario_content_batch: Collecting 100 samples in estimated 5.0117 s (1.0M iterations)
+error: bench failed, to rerun pass `-p engine_perf_harness --bench engine_scenarios`
+
+Caused by:

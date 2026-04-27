@@ -1,0 +1,25 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260329150538
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\scripts\run-editor-with-trace.ps1
+Process ID: 27876
+PSVersion: 5.1.28000.1516
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.28000.1516
+BuildVersion: 10.0.28000.1516
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+   Compiling stratumx_editor_app v0.1.0 (E:\Development\goldeditor\6.apps\editor\stratumx_editor_app)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.65s
+     Running `target\debug\stratumx_editor_app.exe`
+**********************
+Windows PowerShell transcript end
+End time: 20260329151857
+**********************

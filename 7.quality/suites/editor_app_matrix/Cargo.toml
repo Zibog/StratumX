@@ -1,0 +1,10 @@
+[package]
+name = "editor_app_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+stratumx_test_support = { path = "../../support/stratumx_test_support" }
+stratumx_editor_app = { path = "../../../6.apps/editor/stratumx_editor_app" }

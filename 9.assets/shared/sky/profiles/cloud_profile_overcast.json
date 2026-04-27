@@ -1,0 +1,11 @@
+{
+  "profile_name": "Overcast",
+  "coverage": 0.85,
+  "density": 0.8,
+  "erosion": 0.2,
+  "base_height_km": 1.0,
+  "top_height_km": 2.5,
+  "shadow_strength": 0.7,
+  "wind_influence": 0.4,
+  "evolution_rate": 0.05
+}

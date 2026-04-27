@@ -1,0 +1,25 @@
+[package]
+name = "engine_net_sync"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Network synchronization for multiplayer"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["network", "sync", "stratumx"]
+categories = ["game-development", "network-programming"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_identity = { path = "../../l-0.9-identity" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_world = { path = "../../l0-world-truth" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
+engine_net_transport = { path = "../net-transport" }
+serde.workspace = true
+bincode.workspace = true
+
+[lib]
+path = "src/engine_net_sync.rs"

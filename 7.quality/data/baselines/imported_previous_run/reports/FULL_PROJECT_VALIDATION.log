@@ -1,0 +1,390 @@
+**********************
+PowerShell transcript start
+Start time: 20260330093026
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Program Files\WindowsApps\Microsoft.PowerShell_7.5.5.0_x64__8wekyb3d8bbwe\pwsh.dll -noexit -command try { . "c:\Users\CheCat\AppData\Local\Programs\Microsoft VS Code\ce099c1ed2\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 37652
+PSVersion: 7.5.5
+PSEdition: Core
+GitCommitId: 7.5.5
+OS: Microsoft Windows 10.0.28000
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is E:\Development\goldeditor\artifacts\reports\FULL_PROJECT_VALIDATION.log
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cd $root
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+]633;D]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cargo metadata --format-version 1 --no-deps
+
+]633;D;1]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cargo check --workspace
+
+]633;D;1]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cargo build --workspace
+
+]633;D;1]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>cargo test --workspace --no-run
+
+]633;D;1]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>.\scripts\test-all.ps1
+
+
+`cargo metadata` exited with an error: error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+
+This utility formats all bin and lib files of the current crate using rustfmt.
+
+Usage: cargo fmt [OPTIONS] [-- <rustfmt_options>...]
+
+Arguments:
+  [rustfmt_options]...  Options passed to rustfmt
+
+Options:
+  -q, --quiet
+          No output printed to stdout
+  -v, --verbose
+          Use verbose output
+      --version
+          Print rustfmt version and exit
+  -p, --package <package>...
+          Specify package to format
+      --manifest-path <manifest-path>
+          Specify path to Cargo.toml
+      --message-format <message-format>
+          Specify message-format: short|json|human
+      --all
+          Format all packages, and also their local path-based dependencies
+      --check
+          Run rustfmt in check mode
+  -h, --help
+          Print help
+
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>.\scripts\smoke-all.ps1
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>.\scripts\full-validation.ps1
+
+
+
+
+
+
+`cargo metadata` exited with an error: error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+
+This utility formats all bin and lib files of the current crate using rustfmt.
+
+Usage: cargo fmt [OPTIONS] [-- <rustfmt_options>...]
+
+Arguments:
+  [rustfmt_options]...  Options passed to rustfmt
+
+Options:
+  -q, --quiet
+          No output printed to stdout
+  -v, --verbose
+          Use verbose output
+      --version
+          Print rustfmt version and exit
+  -p, --package <package>...
+          Specify package to format
+      --manifest-path <manifest-path>
+          Specify path to Cargo.toml
+      --message-format <message-format>
+          Specify message-format: short|json|human
+      --all
+          Format all packages, and also their local path-based dependencies
+      --check
+          Run rustfmt in check mode
+  -h, --help
+          Print help
+
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)
+engine_perf_harness package not present; skipping engine benches
+
+
+]633;D;0]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+]633;D]633;A]633;P;Cwd=E:\x5cDevelopment\x5cgoldeditorPS E:\Development\goldeditor> ]633;B
+PS>Stop-Transcript
+**********************
+PowerShell transcript end
+End time: 20260330093029
+**********************

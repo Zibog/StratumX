@@ -1,0 +1,9 @@
+[package]
+name = "editor_shell_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+stratumx_shell_test_support = { path = "../../support/stratumx_shell_test_support" }

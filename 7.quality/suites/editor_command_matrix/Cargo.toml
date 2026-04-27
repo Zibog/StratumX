@@ -1,0 +1,15 @@
+[package]
+name = "editor_command_matrix"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+
+[dev-dependencies]
+proptest.workspace = true
+stratumx-editor-l7-0-editor-command-spine = { path = "../../../5.editor/l7.0-editor-command-spine" }

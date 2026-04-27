@@ -1,0 +1,11 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 0bb25ca8ea64cad8a710ae62b61f12ee2e921e45a45e2e06f5b489144dd7cc25 # shrinks to pattern = "static mut GLOBAL: i32 = 0;"
+cc e13281e93c56abcaa8b146d166434ca2cdd867e9b3b12a50003cdf0bf92912f9 # shrinks to pattern = "static mut GLOBAL: i32 = 0;"
+cc 12d1ac2d032e993109f8e5716d21620fcdc353ae70630bef0ae70d672b929cbb # shrinks to todo_variant = "TODO"
+cc 268dcac1f58c9dcb2623e89fd9a8661682c67f2248d6b3628faf15ea22c1f279 # shrinks to (code, expected_patterns) = ("static mut GLOBAL: i32 = 0;", ["static mut"])
+cc 4d12af43937ca212fcc7da6e451576fff131b75713b9e80a6cc570447e95dd20 # shrinks to line_count = 201

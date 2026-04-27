@@ -1,0 +1,11 @@
+error: failed to load manifest for workspace member `E:\Development\goldeditor\3.sdk\sdk_bridge`
+referenced by workspace at `E:\Development\goldeditor\Cargo.toml`
+
+Caused by:
+  failed to load manifest for dependency `engine_content`
+
+Caused by:
+  failed to read `E:\Development\2.engine\l3.2-resource-systems\Cargo.toml`
+
+Caused by:
+  The system cannot find the path specified. (os error 3)

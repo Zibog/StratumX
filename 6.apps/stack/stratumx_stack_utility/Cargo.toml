@@ -1,0 +1,16 @@
+[package]
+name = "stratumx_stack_utility"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Thin utility command entrypoint for stack operations"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["utility", "cli", "stratumx"]
+categories = ["game-development", "command-line-utilities"]
+
+[dependencies]
+engine_core = { path = "../../../2.engine/l-1-foundation" }
+serde_json.workspace = true
+clap = { version = "4.0", features = ["derive"] }

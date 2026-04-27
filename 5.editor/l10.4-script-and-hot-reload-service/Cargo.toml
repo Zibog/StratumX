@@ -1,0 +1,13 @@
+[package]
+name = "stratumx-editor-l10-4-script-and-hot-reload-service"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+
+[lib]
+path = "src/editor_script_and_hot_reload_service.rs"

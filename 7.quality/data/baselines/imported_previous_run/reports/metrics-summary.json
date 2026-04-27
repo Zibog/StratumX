@@ -1,0 +1,261 @@
+[
+  {
+    "benchmark": "engine_acoustics_synthesize",
+    "mean_ns": 73775.8100765441,
+    "median_ns": 73191.70454545454,
+    "std_dev_ns": 3161.133161166073,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_agents_simulate",
+    "mean_ns": 61387.44028084855,
+    "median_ns": 61204.042735042734,
+    "std_dev_ns": 2393.358388922585,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_content_ingest",
+    "mean_ns": 123312.407889011,
+    "median_ns": 123477.73550098005,
+    "std_dev_ns": 4879.861374431377,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_core_hot_type_ops",
+    "mean_ns": 2571.426227703042,
+    "median_ns": 2564.213786213786,
+    "std_dev_ns": 75.87908359950795,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_ecs_facade",
+    "mean_ns": 39054.262946967945,
+    "median_ns": 38884.72821821036,
+    "std_dev_ns": 873.1460876686928,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_ecs_query_execute",
+    "mean_ns": 41706.040673573356,
+    "median_ns": 40944.395711500976,
+    "std_dev_ns": 4538.793407668547,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_ecs_registry_membership",
+    "mean_ns": 146255.93021862497,
+    "median_ns": 145410.98020186333,
+    "std_dev_ns": 4767.264833414117,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_field_simulate",
+    "mean_ns": 61823.658206453365,
+    "median_ns": 61579.11111111111,
+    "std_dev_ns": 1926.062016197699,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_generation_generate",
+    "mean_ns": 76385.5320764362,
+    "median_ns": 76407.59877760679,
+    "std_dev_ns": 2065.2073800355215,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_handle_validate",
+    "mean_ns": 867.0128929867641,
+    "median_ns": 866.017284974293,
+    "std_dev_ns": 27.039260713050695,
+    "scale_bucket": "small bounded operation"
+  },
+  {
+    "benchmark": "engine_identity_issue_retire",
+    "mean_ns": 84168.10959177036,
+    "median_ns": 84145.25991508749,
+    "std_dev_ns": 2884.2710690362483,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_imaging_render",
+    "mean_ns": 73490.00895843467,
+    "median_ns": 73442.02188940093,
+    "std_dev_ns": 2637.263309537838,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_inference_infer",
+    "mean_ns": 170004.96505384927,
+    "median_ns": 170138.6850539811,
+    "std_dev_ns": 4216.861122362885,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_kinetics_simulate",
+    "mean_ns": 62612.83949185211,
+    "median_ns": 62408.46450617284,
+    "std_dev_ns": 2884.796871780651,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_material_lookup",
+    "mean_ns": 54683.644267455056,
+    "median_ns": 54805.829301207996,
+    "std_dev_ns": 1821.7760094781506,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_memory_control_cycle",
+    "mean_ns": 2127.0249082999508,
+    "median_ns": 2132.528753561698,
+    "std_dev_ns": 53.53780303685492,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_net_latency_metrics",
+    "mean_ns": 38041.70692706989,
+    "median_ns": 37869.33692244787,
+    "std_dev_ns": 986.7949852129547,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_net_sync_snapshot",
+    "mean_ns": 86693.04190543543,
+    "median_ns": 86810.83333333333,
+    "std_dev_ns": 2386.430159382073,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_net_transport_send",
+    "mean_ns": 152918.24454697935,
+    "median_ns": 151345.55456437706,
+    "std_dev_ns": 8489.317470761993,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_residency_control_metrics",
+    "mean_ns": 32726.36583725525,
+    "median_ns": 32487.165135859163,
+    "std_dev_ns": 1280.7398548715037,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_runtime_headless_step",
+    "mean_ns": 16005.836146797641,
+    "median_ns": 16022.35279805353,
+    "std_dev_ns": 466.8335274782429,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_runtime_realtime_step",
+    "mean_ns": 16732.828113119016,
+    "median_ns": 16650.020889037434,
+    "std_dev_ns": 1214.1186603577771,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_runtime_tick",
+    "mean_ns": 31945.834977516894,
+    "median_ns": 31886.06780765319,
+    "std_dev_ns": 1004.4166618343379,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_startup_launch_plan",
+    "mean_ns": 6283.460317454072,
+    "median_ns": 6211.599064246573,
+    "std_dev_ns": 224.96917450917314,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_storage_access_bind",
+    "mean_ns": 29.393824916205272,
+    "median_ns": 29.316508383413158,
+    "std_dev_ns": 0.8824074084331048,
+    "scale_bucket": "micro-only; not production-shaped"
+  },
+  {
+    "benchmark": "engine_storage_layout_validate",
+    "mean_ns": 3894.5695871755106,
+    "median_ns": 3875.8168822328116,
+    "std_dev_ns": 114.57006696532245,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_storage_mutation_assemble",
+    "mean_ns": 66795.67436968618,
+    "median_ns": 66781.67637917638,
+    "std_dev_ns": 2213.895085885045,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_stream_control_tick",
+    "mean_ns": 91930.0193647969,
+    "median_ns": 91602.56944444444,
+    "std_dev_ns": 2427.77222310177,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_transfer_control_submit",
+    "mean_ns": 60622.24707521123,
+    "median_ns": 60782.29934479934,
+    "std_dev_ns": 2191.1575163722664,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_world_region_dirty_tracking",
+    "mean_ns": 106220.3514190228,
+    "median_ns": 106143.7712585034,
+    "std_dev_ns": 3172.77904059479,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_world_snapshot_apply",
+    "mean_ns": 38334.6663685717,
+    "median_ns": 38131.97055137844,
+    "std_dev_ns": 1436.0711516134131,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "engine_world_spatial_address",
+    "mean_ns": 15644.414622561044,
+    "median_ns": 15600.559056956115,
+    "std_dev_ns": 425.0125007458712,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "scenario_content_batch",
+    "mean_ns": 5513.382117719262,
+    "median_ns": 5464.391179981068,
+    "std_dev_ns": 386.8150256064538,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "scenario_network_batch",
+    "mean_ns": 1583.7054550033934,
+    "median_ns": 1573.6485480268057,
+    "std_dev_ns": 95.15769088128751,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "scenario_resource_pipeline_batch",
+    "mean_ns": 1525.6061055244481,
+    "median_ns": 1511.7318382823273,
+    "std_dev_ns": 77.95512355465789,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "scenario_runtime_world_batch",
+    "mean_ns": 1293.989300122089,
+    "median_ns": 1284.2111687911183,
+    "std_dev_ns": 103.7721293731628,
+    "scale_bucket": "batch-scale operation"
+  },
+  {
+    "benchmark": "scenario_simulation_batch",
+    "mean_ns": 5955.984918732588,
+    "median_ns": 5864.8523698523695,
+    "std_dev_ns": 413.92812886783884,
+    "scale_bucket": "batch-scale operation"
+  }
+]

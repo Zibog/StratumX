@@ -1,0 +1,26 @@
+[package]
+name = "engine_imaging"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Imaging synthesis for visual processing"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["imaging", "synthesis", "stratumx"]
+categories = ["game-development", "graphics"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_world = { path = "../../l0-world-truth" }
+engine_ecs = { path = "../../l-0.2-ecs-assembly" }
+engine_material = { path = "../../l0.5-shared-world-property-substrate" }
+engine_world_spatial = { path = "../../l-0.1-world-spatial" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+engine_residency_control = { path = "../../l1.5-runtime-resource-services/residency-control" }
+engine_transfer_control = { path = "../../l1.5-runtime-resource-services/transfer-control" }
+engine_memory_control = { path = "../../l1.5-runtime-resource-services/memory-control" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_imaging.rs"

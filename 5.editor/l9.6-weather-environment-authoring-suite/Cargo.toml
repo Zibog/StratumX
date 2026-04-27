@@ -1,0 +1,21 @@
+[package]
+name = "stratumx-editor-l9-6-weather-environment-authoring-suite"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid = { workspace = true, features = ["v4"] }
+editor_dto_law = { path = "../../3.sdk/l5.9-editor-dto-law" }
+engine_material = { path = "../../2.engine/l0.5-shared-world-property-substrate" }
+engine_world = { path = "../../2.engine/l0-world-truth" }
+egui = { workspace = true, optional = true }
+
+[features]
+desktop = ["egui"]
+
+[lib]
+path = "src/editor_weather_environment_authoring_suite.rs"

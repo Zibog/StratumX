@@ -1,0 +1,23 @@
+[package]
+name = "engine_net_latency"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Network latency simulation and compensation"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["network", "latency", "stratumx"]
+categories = ["game-development", "network-programming"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_handle = { path = "../../l-0.8-handle" }
+engine_world = { path = "../../l0-world-truth" }
+engine_world_region = { path = "../../l-0.05-world-region" }
+engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
+engine_net_transport = { path = "../net-transport" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_net_latency.rs"

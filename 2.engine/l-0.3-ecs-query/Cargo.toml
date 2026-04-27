@@ -1,0 +1,20 @@
+[package]
+name = "engine_ecs_query"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Query descriptors and execution for ECS"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["ecs", "query", "stratumx"]
+categories = ["data-structures", "game-development"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+engine_identity = { path = "../l-0.9-identity" }
+engine_handle = { path = "../l-0.8-handle" }
+engine_storage_access = { path = "../l-0.6-storage-access" }
+engine_ecs_registry = { path = "../l-0.4-ecs-registry" }
+bitflags.workspace = true
+smallvec.workspace = true

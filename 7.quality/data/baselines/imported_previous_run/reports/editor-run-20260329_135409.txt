@@ -1,0 +1,41 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260329135409
+Username: DESKTOP-O8JEUC7\CheCat
+RunAs User: DESKTOP-O8JEUC7\CheCat
+Configuration Name: 
+Machine: DESKTOP-O8JEUC7 (Microsoft Windows NT 10.0.28000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\scripts\run-editor-with-trace.ps1
+Process ID: 12840
+PSVersion: 5.1.28000.1516
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.28000.1516
+BuildVersion: 10.0.28000.1516
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\artifacts\reports\editor-run-20260329_135409.txt
+   Compiling stratumx_editor v0.1.0 (E:\Development\gold\5.editor\editor_runtime\stratumx_editor)
+   Compiling stratumx_editor_app v0.1.0 (E:\Development\gold\6.apps\editor\stratumx_editor_app)
+warning: unused `Result` that must be used
+   --> 6.apps\editor\stratumx_editor_app\src\main.rs:211:13
+    |
+211 |             append_trace_line(&self.trace_path, channel, action, &detail);
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: this `Result` may be an `Err` variant, which should be handled
+    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+211 |             let _ = append_trace_line(&self.trace_path, channel, action, &detail);
+    |             +++++++
+
+warning: `stratumx_editor_app` (bin "stratumx_editor_app") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.45s
+     Running `target\debug\stratumx_editor_app.exe`
+**********************
+Windows PowerShell transcript end
+End time: 20260329135553
+**********************

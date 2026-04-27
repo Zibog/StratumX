@@ -1,0 +1,122 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.16s
+     Running `target\debug\stratumx_quality_tasks.exe full`
+    Checking itoa v1.0.18
+    Checking memchr v2.8.0
+    Checking engine_canon_matrix v0.1.0 (E:\Development\goldeditor\7.quality\suites\engine_canon_matrix)
+    Checking engine_session_handles v0.1.0 (E:\Development\goldeditor\3.sdk\l5.10-engine-session-handles)
+    Checking compat_versions v0.1.0 (E:\Development\goldeditor\3.sdk\l5.4-compat-versions)
+    Checking compat_capabilities v0.1.0 (E:\Development\goldeditor\3.sdk\l5.5-compat-capabilities)
+    Checking windows-link v0.2.1
+    Checking cfg-if v1.0.4
+    Checking ciborium-io v0.2.2
+    Checking regex-syntax v0.8.10
+    Checking either v1.15.0
+    Checking clap_lex v1.1.0
+    Checking anstyle v1.0.14
+    Checking engine_sdk_link_matrix v0.1.0 (E:\Development\goldeditor\7.quality\suites\engine_sdk_link_matrix)
+    Checking sdk_tooling_link_matrix v0.1.0 (E:\Development\goldeditor\7.quality\suites\sdk_tooling_link_matrix)
+    Checking cast v0.3.0
+    Checking oorandom v11.1.5
+    Checking anes v0.1.6
+    Checking once_cell v1.21.4
+    Checking stratumx_tooling_l6_10_workspace_runtime v0.1.0 (E:\Development\goldeditor\4.tooling\l6.10-workspace-runtime)
+    Checking stratumx_tooling_l6_11_validation_runtime v0.1.0 (E:\Development\goldeditor\4.tooling\l6.11-validation-runtime)
+    Checking serde_core v1.0.228
+    Checking stratumx_tooling_l7_0_project_orchestration v0.1.0 (E:\Development\goldeditor\4.tooling\l7.0-project-orchestration)
+    Checking zmij v1.0.21
+    Checking stratumx_tooling_l7a_1_planning_engine v0.1.0 (E:\Development\goldeditor\4.tooling\l7a.1-planning-engine)
+    Checking stratumx_tooling_l6_12_preview_runtime v0.1.0 (E:\Development\goldeditor\4.tooling\l6.12-preview-runtime)
+    Checking stratumx_tooling_l6_9_tool_scene_intents v0.1.0 (E:\Development\goldeditor\4.tooling\l6.9-tool-scene-intents)
+    Checking stratumx_tooling_l7a_5_migration_planner v0.1.0 (E:\Development\goldeditor\4.tooling\l7a.5-migration-planner)
+    Checking stratumx_tooling_family_l7a_f0_assistant_intelligence_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l7a.f0-assistant-intelligence-family)
+    Checking slotmap v1.1.1
+    Checking num-traits v0.2.19
+    Checking thiserror v1.0.69
+    Checking zerocopy v0.8.48
+    Checking stratumx_tooling_family_l6_f19_structure_fracture_authoring_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f19-structure-fracture-authoring-family)
+    Checking windows-sys v0.61.2
+    Checking stratumx_tooling_family_l6_f9_vfx_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f9-vfx-family)
+    Checking stratumx_tooling_family_l6_f16_world_partition_authoring_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l6.f16-world-partition-authoring-family)
+    Checking stratumx_tooling_family_l7_f2_world_meta_family v0.1.0 (E:\Development\goldeditor\4.tooling\families\l7.f2-world-meta-family)
+error: use of `default` to create a unit struct
+  --> 4.tooling\l7a.5-migration-planner\src\tooling_migration_planner.rs:20:22
+   |
+20 |         let marker = L7a5MigrationPlannerMarker::default();
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^-----------
+   |                                                |
+   |                                                help: remove this call to `default`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#default_constructed_unit_structs
+   = note: `-D clippy::default-constructed-unit-structs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::default_constructed_unit_structs)]`
+
+error: use of `default` to create a unit struct
+  --> 4.tooling\l6.12-preview-runtime\src\tooling_preview_runtime.rs:20:22
+   |
+20 |         let marker = L612PreviewRuntimeMarker::default();
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^-----------
+   |                                              |
+   |                                              help: remove this call to `default`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#default_constructed_unit_structs
+   = note: `-D clippy::default-constructed-unit-structs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::default_constructed_unit_structs)]`
+
+    Checking compat_profiles v0.1.0 (E:\Development\goldeditor\3.sdk\l5.6-compat-profiles)
+error: use of `default` to create a unit struct
+  --> 4.tooling\l6.9-tool-scene-intents\src\tooling_tool_scene_intents.rs:19:22
+   |
+19 |         let marker = L69ToolSceneIntentsMarker::default();
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^-----------
+   |                                               |
+   |                                               help: remove this call to `default`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#default_constructed_unit_structs
+   = note: `-D clippy::default-constructed-unit-structs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::default_constructed_unit_structs)]`
+
+error: use of `default` to create a unit struct
+  --> 4.tooling\families\l7a.f0-assistant-intelligence-family\src\lib.rs:20:22
+   |
+20 |         let marker = L7aF0AssistantIntelligenceFamilyMarker::default();
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-----------
+   |                                                            |
+   |                                                            help: remove this call to `default`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#default_constructed_unit_structs
+   = note: `-D clippy::default-constructed-unit-structs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::default_constructed_unit_structs)]`
+
+error: could not compile `stratumx_tooling_l6_12_preview_runtime` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `stratumx_tooling_l7a_5_migration_planner` (lib test) due to 1 previous error
+error: could not compile `stratumx_tooling_l6_9_tool_scene_intents` (lib test) due to 1 previous error
+error: could not compile `stratumx_tooling_family_l7a_f0_assistant_intelligence_family` (lib test) due to 1 previous error
+error: use of `default` to create a unit struct
+  --> 4.tooling\families\l6.f9-vfx-family\src\lib.rs:19:22
+   |
+19 |         let marker = L6F9VfxFamilyMarker::default();
+   |                      ^^^^^^^^^^^^^^^^^^^-----------
+   |                                         |
+   |                                         help: remove this call to `default`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#default_constructed_unit_structs
+   = note: `-D clippy::default-constructed-unit-structs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::default_constructed_unit_structs)]`
+
+error: use of `default` to create a unit struct
+  --> 4.tooling\families\l6.f19-structure-fracture-authoring-family\src\lib.rs:20:22
+   |
+20 |         let marker = L6F19StructureFractureAuthoringFamilyMarker::default();
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-----------
+   |                                                                 |
+   |                                                                 help: remove this call to `default`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#default_constructed_unit_structs
+   = note: `-D clippy::default-constructed-unit-structs` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::default_constructed_unit_structs)]`
+
+error: could not compile `stratumx_tooling_family_l6_f9_vfx_family` (lib test) due to 1 previous error
+error: could not compile `stratumx_tooling_family_l6_f19_structure_fracture_authoring_family` (lib test) due to 1 previous error
+cargo ["clippy", "--workspace", "--all-targets", "--", "-D", "warnings"] failed with status exit code: 101
+error: process didn't exit successfully: `target\debug\stratumx_quality_tasks.exe full` (exit code: 1)

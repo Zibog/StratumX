@@ -1,0 +1,54 @@
+[package]
+name = "engine_perf_harness"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+publish = false
+
+[dependencies]
+engine_core = { path = "../../../2.engine/l-1-foundation" }
+engine_identity = { path = "../../../2.engine/l-0.9-identity" }
+engine_handle = { path = "../../../2.engine/l-0.8-handle" }
+engine_storage_layout = { path = "../../../2.engine/l-0.7-storage-layout" }
+engine_storage_access = { path = "../../../2.engine/l-0.6-storage-access" }
+engine_storage_mutation = { path = "../../../2.engine/l-0.5-storage-mutation" }
+engine_ecs_registry = { path = "../../../2.engine/l-0.4-ecs-registry" }
+engine_ecs_query = { path = "../../../2.engine/l-0.3-ecs-query" }
+engine_ecs = { path = "../../../2.engine/l-0.2-ecs-assembly" }
+engine_world_spatial = { path = "../../../2.engine/l-0.1-world-spatial" }
+engine_world_region = { path = "../../../2.engine/l-0.05-world-region" }
+engine_world = { path = "../../../2.engine/l0-world-truth" }
+engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
+engine_runtime = { path = "../../../2.engine/l1-runtime-kernel/runtime" }
+engine_runtime_headless = { path = "../../../2.engine/l1-runtime-kernel/runtime-headless" }
+engine_runtime_realtime = { path = "../../../2.engine/l1-runtime-kernel/runtime-realtime" }
+engine_stream_control = { path = "../../../2.engine/l1.5-runtime-resource-services/stream-control" }
+engine_residency_control = { path = "../../../2.engine/l1.5-runtime-resource-services/residency-control" }
+engine_memory_control = { path = "../../../2.engine/l1.5-runtime-resource-services/memory-control" }
+engine_transfer_control = { path = "../../../2.engine/l1.5-runtime-resource-services/transfer-control" }
+engine_kinetics = { path = "../../../2.engine/l2-critical-simulation-families/kinetics" }
+engine_field = { path = "../../../2.engine/l2-critical-simulation-families/field" }
+engine_agents = { path = "../../../2.engine/l2-critical-simulation-families/agents" }
+engine_net_transport = { path = "../../../2.engine/l2.5-network-runtime-services/net-transport" }
+engine_net_sync = { path = "../../../2.engine/l2.5-network-runtime-services/net-sync" }
+engine_net_latency = { path = "../../../2.engine/l2.5-network-runtime-services/net-latency" }
+engine_inference = { path = "../../../2.engine/l3.0-model-systems/inference" }
+engine_generation = { path = "../../../2.engine/l3.0-model-systems/generation" }
+engine_imaging = { path = "../../../2.engine/l3.1-synthesis-systems/imaging" }
+engine_acoustics = { path = "../../../2.engine/l3.1-synthesis-systems/acoustics" }
+engine_content = { path = "../../../2.engine/l3.2-resource-systems" }
+engine_startup = { path = "../../../2.engine/l4-startup" }
+glam.workspace = true
+smallvec.workspace = true
+criterion.workspace = true
+bincode.workspace = true
+
+[[bench]]
+name = "engine_benches"
+harness = false
+
+[[bench]]
+name = "engine_scenarios"
+harness = false

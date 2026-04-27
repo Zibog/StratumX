@@ -1,0 +1,7 @@
+{
+  "command": "full",
+  "failure": "hygiene checks found 76 violations",
+  "stages": [],
+  "status": "failed",
+  "total_duration_ms": 0
+}

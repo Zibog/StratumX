@@ -1,0 +1,18 @@
+[package]
+name = "stratumx_stack_runtime_app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Thin stack runtime entrypoint for full engine+editor stack"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["stack", "runtime", "stratumx"]
+categories = ["game-development"]
+
+[dependencies]
+engine_runtime = { path = "../../../2.engine/l1-runtime-kernel/runtime" }
+engine_startup = { path = "../../../2.engine/l4-startup" }
+engine_core = { path = "../../../2.engine/l-1-foundation" }
+serde_json.workspace = true
+clap = { version = "4.0", features = ["derive"] }

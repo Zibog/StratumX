@@ -1,0 +1,13 @@
+{
+  "command": "smoke",
+  "failure": null,
+  "stages": [
+    {
+      "command": "cargo test -p smoke --lib -j 1",
+      "duration_ms": 54213,
+      "name": "smoke"
+    }
+  ],
+  "status": "passed",
+  "total_duration_ms": 54213
+}

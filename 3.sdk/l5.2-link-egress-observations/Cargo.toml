@@ -1,0 +1,16 @@
+[package]
+name = "link_egress_observations"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/sdk_egress_observations.rs"
+
+[dependencies]
+sdk_compat = { path = "../l5-compat" }
+engine_handle_refs = { path = "../l5.10-engine-handle-refs" }
+transport_policies = { path = "../l5.8-transport-policies" }
+serde = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }

@@ -1,0 +1,20 @@
+[package]
+name = "engine_generation"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Procedural generation for world and content"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["generation", "procedural", "stratumx"]
+categories = ["game-development", "algorithms"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_world = { path = "../../l0-world-truth" }
+engine_inference = { path = "../inference" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_generation.rs"

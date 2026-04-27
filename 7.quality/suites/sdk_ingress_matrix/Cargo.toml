@@ -1,0 +1,15 @@
+[package]
+name = "stratumx_quality_sdk_ingress_matrix"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+link_ingress_packets = { path = "../../../3.sdk/l5.0-link-ingress-packets" }
+link_ingress_controls = { path = "../../../3.sdk/l5.1-link-ingress-controls" }
+engine_handle_refs = { path = "../../../3.sdk/l5.10-engine-handle-refs" }
+legality_gates = { path = "../../../3.sdk/l5.9-legality-gates" }
+sdk_compat = { path = "../../../3.sdk/l5-compat" }
+transport_policies = { path = "../../../3.sdk/l5.8-transport-policies" }
+
+[dev-dependencies]
+serde_json = { workspace = true }

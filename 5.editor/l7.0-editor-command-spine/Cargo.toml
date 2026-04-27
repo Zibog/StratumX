@@ -1,0 +1,23 @@
+[package]
+name = "stratumx-editor-l7-0-editor-command-spine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+uuid = { workspace = true, features = ["v4"] }
+image = "0.25"
+stratumx_tooling_l6_1_command_envelopes = { path = "../../4.tooling/l6.1-command-envelopes" }
+engine_world = { path = "../../2.engine/l0-world-truth" }
+engine_material = { path = "../../2.engine/l0.5-shared-world-property-substrate" }
+editor_dto_law = { path = "../../3.sdk/l5.9-editor-dto-law" }
+egui = { version = "0.32", optional = true }
+
+[features]
+desktop = ["egui"]
+
+[lib]
+path = "src/editor_command_spine.rs"

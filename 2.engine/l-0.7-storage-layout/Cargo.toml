@@ -1,0 +1,17 @@
+[package]
+name = "engine_storage_layout"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Storage layout descriptors for ECS memory organization"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["ecs", "storage", "stratumx"]
+categories = ["data-structures", "game-development"]
+
+[dependencies]
+engine_core = { path = "../l-1-foundation" }
+bitflags.workspace = true
+serde.workspace = true
+smallvec.workspace = true

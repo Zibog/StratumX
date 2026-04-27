@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 7be7ed2651b89f4835ec94ec03595a56c4d140a52bd9ee2c21fe7237d051a87b # shrinks to candidate = TestFileCandidate { path: "C:\\Users\\CheCat\\AppData\\Local\\Temp\\.tmpQ7PBOR\\5.editor/l7.0-editor-command-spine/src/test.rs", test_type: Unit, target_suite: "", dependencies: [] }

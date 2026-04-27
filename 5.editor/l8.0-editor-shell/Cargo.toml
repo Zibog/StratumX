@@ -1,0 +1,33 @@
+[package]
+name = "stratumx-editor-l8-0-editor-shell"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid = { workspace = true, features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+dirs = "5.0"
+editor_dto_law = { path = "../../3.sdk/l5.9-editor-dto-law" }
+stratumx_tooling_l6_0_tool_session = { path = "../../4.tooling/l6.0-tool-session" }
+stratumx_tooling_l6_1_command_envelopes = { path = "../../4.tooling/l6.1-command-envelopes" }
+stratumx_tooling_l6_6_tool_diagnostics_events = { path = "../../4.tooling/l6.6-tool-diagnostics-events" }
+engine_world = { path = "../../2.engine/l0-world-truth" }
+engine_material = { path = "../../2.engine/l0.5-shared-world-property-substrate" }
+engine_startup = { path = "../../2.engine/l4-startup" }
+rfd = "0.14"
+egui = { version = "0.31", optional = true }
+eframe = { version = "0.31", optional = true }
+
+[features]
+desktop = ["dep:egui", "dep:eframe"]
+
+[dev-dependencies]
+tempfile = "3.8"
+proptest = "1.4"
+
+[lib]
+path = "src/editor_shell.rs"

@@ -1,0 +1,58 @@
+1774781651689	editor	session	trace file created
+1774781651717	editor	startup	desktop editor shell initialised
+1774781660079	selection	select	ObjectHandle(<opaque:b5add7fc67e64910>)
+1774781662997	selection	select	ObjectHandle(<opaque:215d83d34b64736a>)
+1774781685183	selection	select	ObjectHandle(<opaque:b5add7fc67e64910>)
+1774781685333	selection	select	ObjectHandle(<opaque:b5add7fc67e64910>)
+1774781689699	project	save	./artifacts/editor-project.json
+1774781690114	project	load	./artifacts/editor-project.json
+1774781690454	validation	run	0 diagnostics
+1774781690837	runtime	preview	preview:climate-sky:5
+1774781691287	build	build	build:306:13:climate-sky|climate-weather|logic-root|material-root|quest-quest|quest-trigger|scene-root|ui-audio|ui-hud|world-root|zone-logic|zone-scene|zone-world
+1774781691587	build	release	release:dev:build:306:13:climate-sky|climate-weather|logic-root|material-root|quest-quest|quest-trigger|scene-root|ui-audio|ui-hud|world-root|zone-logic|zone-scene|zone-world
+1774781691894	runtime	play	play-in-editor
+1774781692171	runtime	play	simulate
+1774781692781	runtime	play	step-simulation
+1774781694161	selection	select	ObjectHandle(<opaque:a4d31070d122b816>)
+1774781694523	selection	select	ObjectHandle(<opaque:55d754f7c9ed6591>)
+1774781694823	selection	select	ObjectHandle(<opaque:6634b0bda4fe8a7b>)
+1774781695090	selection	select	ObjectHandle(<opaque:157dbcb1260ec7ee>)
+1774781695413	selection	select	ObjectHandle(<opaque:819e0257143b0bb8>)
+1774781695840	validation	run	0 diagnostics
+1774781696240	runtime	preview	preview:zone-scene:1
+1774781696557	build	build	build:306:13:climate-sky|climate-weather|logic-root|material-root|quest-quest|quest-trigger|scene-root|ui-audio|ui-hud|world-root|zone-logic|zone-scene|zone-world
+1774781696840	build	release	release:dev:build:306:13:climate-sky|climate-weather|logic-root|material-root|quest-quest|quest-trigger|scene-root|ui-audio|ui-hud|world-root|zone-logic|zone-scene|zone-world
+1774781697146	runtime	play	play-in-editor
+1774781697426	authoring	create-template	OpenWorldScaffold -> 3 object(s)
+1774781698569	selection	select	ObjectHandle(<opaque:157dbcb1260ec7ee>)
+1774781709587	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)
+1774781710216	selection	select	ObjectHandle(<opaque:a4d31070d122b816>)
+1774781710562	selection	select	ObjectHandle(<opaque:1e9f734161d62dd9>)
+1774781711957	inspector	set-field	bundle=open-world-core
+1774781712399	content	reimport	9.assets/dev/mock_mesh.glb
+1774781713367	selection	select	ObjectHandle(<opaque:53d1166d79c4dddf>)
+1774781716361	authoring	create-object	World ObjectHandle(<opaque:7548c4fcbe6ef526>)
+1774781717104	authoring	create-template	OpenWorldScaffold -> 3 object(s)
+1774781718049	authoring	create-template	TerrainMaterialStack -> 2 object(s)
+1774781718946	authoring	create-template	QuestGameplaySlice -> 2 object(s)
+1774781719663	authoring	create-template	TerrainMaterialStack -> 2 object(s)
+1774781720344	authoring	create-template	WeatherEnvironmentProfile -> 2 object(s)
+1774781721095	authoring	create-template	AudioUiPack -> 2 object(s)
+1774781723651	inspector	set-field	override_state=Clean
+1774781724071	inspector	clear-field	source_prefab
+1774781724072	inspector	set-field	override_state=Clean
+1774781724462	prefab	open-source	None
+1774781724912	prefab	diff	new-object-hud
+1774781725218	validation	run	0 diagnostics
+1774781725532	bake	request	new-object-hud
+1774781728906	runtime	play	simulate
+1774781729304	build	release	release:dev:build:306:13:climate-sky|climate-weather|logic-root|material-root|quest-quest|quest-trigger|scene-root|ui-audio|ui-hud|world-root|zone-logic|zone-scene|zone-world
+1774781729761	runtime	play	play-in-editor
+1774781730145	runtime	play	simulate
+1774781730496	runtime	play	step-simulation
+1774781731946	selection	select	ObjectHandle(<opaque:a4d31070d122b816>)
+1774781732766	project	save	./artifacts/editor-project.json
+1774781740091	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)
+1774781740248	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)
+1774781740511	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)
+1774781740684	selection	select	ObjectHandle(<opaque:fd8c671699409cfa>)

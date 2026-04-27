@@ -1,0 +1,14 @@
+[package]
+name = "stratumx-editor-l10-6-template-preset-and-scaffold-service"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+stratumx_tooling_l6_0_tool_session = { path = "../../4.tooling/l6.0-tool-session" }
+
+[lib]
+path = "src/editor_template_preset_and_scaffold_service.rs"

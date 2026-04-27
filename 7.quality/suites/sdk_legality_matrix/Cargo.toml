@@ -1,0 +1,11 @@
+[package]
+name = "stratumx_quality_sdk_legality_matrix"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+legality_gates = { path = "../../../3.sdk/l5.9-legality-gates" }
+sdk_compat = { path = "../../../3.sdk/l5-compat" }
+transport_policies = { path = "../../../3.sdk/l5.8-transport-policies" }
+
+[dev-dependencies]

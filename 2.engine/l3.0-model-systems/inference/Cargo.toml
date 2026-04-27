@@ -1,0 +1,20 @@
+[package]
+name = "engine_inference"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Model inference for prediction and estimation"
+repository = "https://github.com/stratumx/stratumx"
+keywords = ["inference", "model", "stratumx"]
+categories = ["game-development", "algorithms"]
+
+[dependencies]
+engine_core = { path = "../../l-1-foundation" }
+engine_world = { path = "../../l0-world-truth" }
+engine_ecs = { path = "../../l-0.2-ecs-assembly" }
+serde.workspace = true
+
+[lib]
+path = "src/engine_inference.rs"

@@ -1,0 +1,12 @@
+{
+  "profile_name": "Incoming Storm",
+  "coverage": 0.6,
+  "density": 0.75,
+  "vertical_growth": 1.2,
+  "precipitation_rate": 15.0,
+  "lightning_probability": 0.3,
+  "wind_speed_multiplier": 1.5,
+  "cell_count": 4,
+  "cell_radius_km": 3.0,
+  "evolution_rate": 0.15
+}

@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Setup
+        shell: bash
+        run: bash ./scripts/setup-dev.sh
+
+      - name: Tests
+        shell: bash
+        run: bash ./scripts/test-all.sh
+
+      - name: Smoke
+        shell: bash
+        run: bash ./scripts/smoke-all.sh
+
+      - name: Bench
+        shell: bash
+        run: bash ./scripts/bench-all.sh
+
+      - name: Metrics
+        shell: bash
+        run: bash ./scripts/metrics-all.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-artifacts
+          path: artifacts/SSSSS

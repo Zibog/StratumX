@@ -1,0 +1,16 @@
+[package]
+name = "stratumx-editor-l9-0-world-authoring-suite"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+uuid = { workspace = true, features = ["v4"] }
+engine_material = { path = "../../2.engine/l0.5-shared-world-property-substrate" }
+engine_world = { path = "../../2.engine/l0-world-truth" }
+
+[lib]
+path = "src/editor_world_authoring_suite.rs"
