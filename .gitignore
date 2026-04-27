@@ -52,3 +52,11 @@ out/
 
 # Github Copilot persisted session migrations, see: https://github.com/microsoft/copilot-intellij-feedback/issues/712#issuecomment-3322062215
 .idea/**/copilot.data.migration.*.xml
+
+# I see there are some AI tools used
+# Gonna ignore them all for now
+.kiro
+.qwen
+
+# User-specific stuff (VSCode)
+.vscode
