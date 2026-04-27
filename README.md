@@ -7,6 +7,13 @@
 
 ## Quick Start
 
+### Clone the repository
+
+```bash
+git clone https://github.com/Zibog/StratumX.git
+cd StratumX
+```
+
 ### Launch Editor
 
 ```bash
