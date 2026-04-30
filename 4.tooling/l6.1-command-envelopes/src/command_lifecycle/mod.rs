@@ -2,8 +2,11 @@
 //
 // Manages the lifecycle state machine and envelope tracking for commands.
 
-mod stages;
+mod errors;
+mod observations;
+mod state;
 mod tracker;
+mod transitions;
 
-pub use stages::CommandLifecycleState;
+pub use state::CommandLifecycleState;
 pub use tracker::{CommandEnvelope, CommandLifecycleTracker};

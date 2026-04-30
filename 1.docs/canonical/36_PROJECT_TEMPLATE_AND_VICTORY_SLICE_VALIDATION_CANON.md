@@ -1,6 +1,6 @@
 # Project Template and Victory Slice Validation Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define the minimal product template and the runtime signature used to validate success.

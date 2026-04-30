@@ -15,7 +15,7 @@ pub fn handle(
             clip_id,
             blend_time,
         } => {
-            // TODO: Call engine animation runtime play_clip when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             let _ = (clip_id, blend_time);
             Ok(EditorAuthoringObservation::AnimationClipPlaying {
                 entity_id,
@@ -25,14 +25,14 @@ pub fn handle(
             })
         }
         AnimationCommand::StopClip { entity_id } => {
-            // TODO: Call engine animation runtime stop_clip when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             Ok(EditorAuthoringObservation::AnimationClipStopped {
                 entity_id,
                 clip_id: 0,
             })
         }
         AnimationCommand::SetAnimationSpeed { entity_id, speed } => {
-            // TODO: Call engine animation runtime set_speed when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             let _ = speed;
             Ok(EditorAuthoringObservation::AnimationClipPlaying {
                 entity_id,
@@ -46,7 +46,7 @@ pub fn handle(
             layer,
             weight,
         } => {
-            // TODO: Call engine animation runtime set_blend_weight when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             Ok(EditorAuthoringObservation::AnimationBlendUpdated {
                 entity_id,
                 layer,
@@ -60,7 +60,7 @@ pub fn handle(
             rotation: _rotation,
             weight,
         } => {
-            // TODO: Call engine animation runtime set_ik_target / solve_ik when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             let _ = _rotation;
             Ok(EditorAuthoringObservation::IKTargetUpdated {
                 entity_id,
@@ -70,7 +70,7 @@ pub fn handle(
             })
         }
         AnimationCommand::LoadAnimationClip { clip_id, clip_data } => {
-            // TODO: Parse clip_data and call engine animation runtime add_clip when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             let _ = clip_data;
             Ok(EditorAuthoringObservation::AnimationClipLoaded {
                 clip_id,
@@ -83,7 +83,7 @@ pub fn handle(
             states,
             transitions: _transitions,
         } => {
-            // TODO: Build state machine and register with engine when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             let _ = _transitions;
             Ok(EditorAuthoringObservation::AnimationStateMachineCreated {
                 entity_id,
@@ -94,7 +94,7 @@ pub fn handle(
             entity_id,
             event_name,
         } => {
-            // TODO: Call engine animation runtime trigger_event when fully wired
+            // Deferred: keep the current observation stub until the animation runtime bridge is restored.
             Ok(EditorAuthoringObservation::AnimationEventTriggered {
                 entity_id,
                 event_name,

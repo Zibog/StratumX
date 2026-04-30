@@ -1,5 +1,5 @@
-use std::path::{Path, PathBuf};
 use std::fs;
+use std::path::{Path, PathBuf};
 
 /// Represents a misplaced heavy test found outside 7.quality
 #[derive(Debug, Clone)]
@@ -12,11 +12,11 @@ pub struct MisplacedTest {
 /// Types of heavy tests that must be in 7.quality
 #[derive(Debug, Clone, PartialEq)]
 pub enum TestType {
-    Integration,    // tests/ directory
-    Property,       // proptest/quickcheck usage
-    Matrix,         // matrix test infrastructure
-    Hygiene,        // hygiene test infrastructure
-    Benchmark,      // benches/ directory
+    Integration, // tests/ directory
+    Property,    // proptest/quickcheck usage
+    Matrix,      // matrix test infrastructure
+    Hygiene,     // hygiene test infrastructure
+    Benchmark,   // benches/ directory
 }
 
 impl TestType {
@@ -63,9 +63,12 @@ pub fn check_test_placement(repo_root: &Path) -> Result<Vec<MisplacedTest>, Stri
 }
 
 /// Scan for integration tests in tests/ directories
-fn scan_for_integration_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> Result<(), String> {
-    let entries = fs::read_dir(dir)
-        .map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
+fn scan_for_integration_tests(
+    dir: &Path,
+    violations: &mut Vec<MisplacedTest>,
+) -> Result<(), String> {
+    let entries =
+        fs::read_dir(dir).map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
 
     for entry in entries {
         let entry = entry.map_err(|e| format!("Failed to read entry: {}", e))?;
@@ -90,7 +93,9 @@ fn scan_for_integration_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -
                             violations.push(MisplacedTest {
                                 path: test_path.clone(),
                                 test_type: TestType::Integration,
-                                reason: format!("Integration test found in tests/ directory outside 7.quality"),
+                                reason:
+                                    "Integration test found in tests/ directory outside 7.quality"
+                                        .to_string(),
                             });
                         }
                     }
@@ -107,8 +112,8 @@ fn scan_for_integration_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -
 
 /// Scan for property-based tests (proptest/quickcheck usage)
 fn scan_for_property_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> Result<(), String> {
-    let entries = fs::read_dir(dir)
-        .map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
+    let entries =
+        fs::read_dir(dir).map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
 
     for entry in entries {
         let entry = entry.map_err(|e| format!("Failed to read entry: {}", e))?;
@@ -133,13 +138,15 @@ fn scan_for_property_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> R
 
             // Check for proptest/quickcheck usage
             let has_proptest = content.contains("use proptest::") || content.contains("proptest!");
-            let has_quickcheck = content.contains("use quickcheck::") || content.contains("quickcheck!");
+            let has_quickcheck =
+                content.contains("use quickcheck::") || content.contains("quickcheck!");
 
             if has_proptest || has_quickcheck {
                 violations.push(MisplacedTest {
                     path: path.to_path_buf(),
                     test_type: TestType::Property,
-                    reason: format!("Property-based test (proptest/quickcheck) found outside 7.quality"),
+                    reason: "Property-based test (proptest/quickcheck) found outside 7.quality"
+                        .to_string(),
                 });
             }
         }
@@ -150,8 +157,8 @@ fn scan_for_property_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> R
 
 /// Scan for benchmark tests in benches/ directories
 fn scan_for_benchmark_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> Result<(), String> {
-    let entries = fs::read_dir(dir)
-        .map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
+    let entries =
+        fs::read_dir(dir).map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
 
     for entry in entries {
         let entry = entry.map_err(|e| format!("Failed to read entry: {}", e))?;
@@ -176,7 +183,9 @@ fn scan_for_benchmark_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> 
                             violations.push(MisplacedTest {
                                 path: bench_path.clone(),
                                 test_type: TestType::Benchmark,
-                                reason: format!("Benchmark test found in benches/ directory outside 7.quality"),
+                                reason:
+                                    "Benchmark test found in benches/ directory outside 7.quality"
+                                        .to_string(),
                             });
                         }
                     }
@@ -194,21 +203,39 @@ fn scan_for_benchmark_tests(dir: &Path, violations: &mut Vec<MisplacedTest>) -> 
 /// Format violations for display
 pub fn format_violations(violations: &[MisplacedTest]) -> String {
     if violations.is_empty() {
-        return String::from("✓ Test Placement Check: PASS\n  All heavy tests are correctly located in 7.quality\n");
+        return String::from(
+            "✓ Test Placement Check: PASS\n  All heavy tests are correctly located in 7.quality\n",
+        );
     }
 
     let mut output = String::new();
-    output.push_str(&format!("✗ Test Placement Check: FAIL\n"));
-    output.push_str(&format!("  Found {} misplaced heavy test(s) outside 7.quality:\n\n", violations.len()));
+    output.push_str("✗ Test Placement Check: FAIL\n");
+    output.push_str(&format!(
+        "  Found {} misplaced heavy test(s) outside 7.quality:\n\n",
+        violations.len()
+    ));
 
     // Group by test type
-    for test_type in &[TestType::Integration, TestType::Property, TestType::Matrix, TestType::Hygiene, TestType::Benchmark] {
-        let type_violations: Vec<_> = violations.iter().filter(|v| &v.test_type == test_type).collect();
+    for test_type in &[
+        TestType::Integration,
+        TestType::Property,
+        TestType::Matrix,
+        TestType::Hygiene,
+        TestType::Benchmark,
+    ] {
+        let type_violations: Vec<_> = violations
+            .iter()
+            .filter(|v| &v.test_type == test_type)
+            .collect();
         if type_violations.is_empty() {
             continue;
         }
 
-        output.push_str(&format!("  {} ({} found):\n", test_type.as_str(), type_violations.len()));
+        output.push_str(&format!(
+            "  {} ({} found):\n",
+            test_type.as_str(),
+            type_violations.len()
+        ));
         for violation in type_violations {
             output.push_str(&format!("    - {}\n", violation.path.display()));
             output.push_str(&format!("      Reason: {}\n", violation.reason));
@@ -249,13 +276,11 @@ mod tests {
 
     #[test]
     fn test_format_violations_with_tests() {
-        let violations = vec![
-            MisplacedTest {
-                path: PathBuf::from("2.engine/some-package/tests/integration_test.rs"),
-                test_type: TestType::Integration,
-                reason: "Integration test found in tests/ directory outside 7.quality".to_string(),
-            },
-        ];
+        let violations = vec![MisplacedTest {
+            path: PathBuf::from("2.engine/some-package/tests/integration_test.rs"),
+            test_type: TestType::Integration,
+            reason: "Integration test found in tests/ directory outside 7.quality".to_string(),
+        }];
         let output = format_violations(&violations);
         assert!(output.contains("FAIL"));
         assert!(output.contains("Integration Test"));

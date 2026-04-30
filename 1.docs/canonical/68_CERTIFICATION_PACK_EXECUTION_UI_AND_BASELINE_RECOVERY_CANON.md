@@ -1,6 +1,6 @@
 # Certification Pack Execution UI And Baseline Recovery Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Close the certification loop for heavy-domain packs.

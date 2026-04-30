@@ -2,8 +2,7 @@
 //!
 //! Manages material profiles, entity bindings, and diagnostics.
 
-mod diagnostics;
-mod service;
+pub mod service;
 mod types;
 
 // Re-export all public types and functions for backward compatibility

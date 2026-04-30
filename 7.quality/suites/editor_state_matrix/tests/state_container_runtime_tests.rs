@@ -60,6 +60,7 @@ fn state_container_system_formats_ownership_violations() {
         state_id: StateId::ProjectIdentity,
         owners: vec![OwnerId::ProjectState, OwnerId::WorkspaceState],
         violation_type: ViolationType::MultipleOwners,
+        message: None,
     };
 
     assert!(violation.to_user_message().contains("multiple owners"));

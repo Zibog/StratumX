@@ -52,6 +52,3 @@ pub fn register_core_actions(registry: &mut ActionRegistry) {
     domain_diagnostics::register(registry);
     domain_build::register(registry);
 }
-
-#[cfg(test)]
-mod tests;

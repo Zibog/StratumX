@@ -1,6 +1,6 @@
 # World Scale Runtime Stitched Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Provide the stitched reading spine for world-scale runtime law so large-world continuity can be implemented without guessing how geodesy, precision, representational rings, distant observability, and retained causality fit together.

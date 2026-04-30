@@ -51,7 +51,11 @@ fn shell_button_ids_returns_non_empty_list() {
 fn shell_button_ids_all_start_with_btn_view() {
     let ids = shell_button_ids();
     for id in &ids {
-        assert!(id.starts_with("btn.view."), "ID {} is not a shell button", id);
+        assert!(
+            id.starts_with("btn.view."),
+            "ID {} is not a shell button",
+            id
+        );
     }
 }
 

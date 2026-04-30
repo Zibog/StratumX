@@ -1,6 +1,6 @@
 # First Honest Viewport Bringup Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Freeze the minimum legal bring-up sequence for the first honest editor viewport.
@@ -62,3 +62,53 @@ The first honest viewport is not complete until the shell can legally perform:
 - editor `45`, `48`, `114`, `115`, `117`
 - sdk `64`, `78`
 - tooling `67`, `82`
+
+
+## v31 graphics-port bring-up clarification
+The first honest viewport must bring up through StratumX Native Graphics Port.
+
+Minimum backend sequence:
+1. resolve backend policy;
+2. publish selected backend and fallback chain;
+3. use null backend for headless validation;
+4. use Vulkan only as first real backend, not as editor truth;
+5. show DX12/Metal/platform-native stubs as truthful reserved slots;
+6. publish backend caps before first frame;
+7. publish black-frame reason if present fails.
+
+The first honest viewport is complete only when the operator can see backend class, policy, feature tier, present path, capture readiness, and first blocker.
+
+
+---
+# V32 Honest Viewport Completion Rules
+
+## Bring-up sequence
+1. null frame-plan validation;
+2. backend doctor visible in editor;
+3. real backend present path selected by policy;
+4. clear/present with backend metadata;
+5. named framegraph diagnostics;
+6. terrain/proof mesh visible;
+7. sky/background visible;
+8. material visual baseline active;
+9. exposure/tonemap active;
+10. capture artifact retained;
+11. black-frame failure can be forced and explained.
+
+## Viewport badges
+Viewport must display or link to:
+- backend class;
+- backend status;
+- selected policy;
+- feature tier;
+- shader target;
+- present state;
+- surface extent;
+- frame-in-flight state;
+- fallback rung;
+- capture readiness;
+- first blocker;
+- validation warning count when available.
+
+## Forbidden shortcuts
+A viewport is not honest if it uses a separate editor-only renderer, a UI-only texture without frame metadata, or native backend handles in editor code.

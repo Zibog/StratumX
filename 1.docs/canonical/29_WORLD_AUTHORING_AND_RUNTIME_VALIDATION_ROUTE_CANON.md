@@ -1,6 +1,6 @@
 # World Authoring And Runtime Validation Route Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze one world-family route where authoring, chunk rebuild, validation, simulation, save/restore, compare, capture, and degraded posture are read as a single system.

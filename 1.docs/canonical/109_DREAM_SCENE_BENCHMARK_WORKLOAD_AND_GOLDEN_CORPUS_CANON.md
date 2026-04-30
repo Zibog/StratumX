@@ -1,6 +1,6 @@
 # Dream Scene Benchmark Workload And Golden Corpus Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define the canonical workload packs, golden scenes, and compare expectations for the dream-stack so performance, visual proof, and release readiness are measured against the same retained truth.

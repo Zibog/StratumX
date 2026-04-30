@@ -4,6 +4,7 @@
 
 use std::path::PathBuf;
 
+#[derive(Default)]
 pub struct ProjectState {
     pub project_id: Option<String>,
     pub project_path: Option<PathBuf>,
@@ -11,10 +12,7 @@ pub struct ProjectState {
 
 impl ProjectState {
     pub fn new() -> Self {
-        Self {
-            project_id: None,
-            project_path: None,
-        }
+        Self::default()
     }
 
     pub fn is_open(&self) -> bool {

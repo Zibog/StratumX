@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [lib]
-path = "src/sdk_ingress_controls.rs"
+path = "src/sdk_ingress_controls/mod.rs"
 
 [dependencies]
 sdk_compat = { path = "../l5-compat" }

@@ -12,7 +12,7 @@ impl EnvironmentAuthoringState {
     }
 
     pub fn sync_from_world(&mut self, world: &WorldState) -> Result<(), String> {
-        if let Some(scene) = world.vertical_slice_scene() {
+        if let Some(scene) = world.proof_region_scene() {
             self.time_of_day = scene.sky.celestial.time_of_day_hours;
             self.present = true;
             self.engine_bridge.sync_from_world(world)?;

@@ -1,6 +1,6 @@
 # Heavy Domain Atlas Coverage Test Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define the mandatory atlas-coverage test that prevents phase drift between workload promises and executable routes.

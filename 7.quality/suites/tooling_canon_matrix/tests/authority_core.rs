@@ -37,7 +37,7 @@ fn canonical_level_is_static_str() {
 
 #[test]
 fn marker_default_constructs() {
-    let marker = L60AuthorityCoreMarker::default();
+    let marker = L60AuthorityCoreMarker;
     assert_eq!(marker, L60AuthorityCoreMarker);
 }
 

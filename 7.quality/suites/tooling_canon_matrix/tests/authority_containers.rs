@@ -1,10 +1,10 @@
 // Tests for l6.0-authority-core: Container lifecycle and operations
 
-use stratumx_tooling_l6_0_authority_core::containers::{
-    AudioAuthorityContainer, TerrainAuthorityContainer,
-};
 use stratumx_tooling_l6_0_authority_core::containers::audio::{
     AcousticProfile, AudioSource, AudioSourceType, AudioZone,
+};
+use stratumx_tooling_l6_0_authority_core::containers::{
+    AudioAuthorityContainer, TerrainAuthorityContainer,
 };
 
 // ============================================================================
@@ -69,13 +69,13 @@ fn audio_lifecycle_transitions() {
     let mut container = AudioAuthorityContainer::new();
     assert_eq!(
         container.lifecycle_state(),
-        stratumx_tooling_l6_0_authority_core::containers::audio_authority_container::AudioLifecycleState::Uninitialized
+        stratumx_tooling_l6_0_authority_core::containers::audio::AudioLifecycleState::Uninitialized
     );
 
     container.initialize().expect("initialize should succeed");
     assert_eq!(
         container.lifecycle_state(),
-        stratumx_tooling_l6_0_authority_core::containers::audio_authority_container::AudioLifecycleState::Initialized
+        stratumx_tooling_l6_0_authority_core::containers::audio::AudioLifecycleState::Initialized
     );
     assert!(container.is_initialized());
 
@@ -84,7 +84,7 @@ fn audio_lifecycle_transitions() {
     container.dispose().expect("dispose should succeed");
     assert_eq!(
         container.lifecycle_state(),
-        stratumx_tooling_l6_0_authority_core::containers::audio_authority_container::AudioLifecycleState::Disposed
+        stratumx_tooling_l6_0_authority_core::containers::audio::AudioLifecycleState::Disposed
     );
 
     assert!(container.dispose().is_err());
@@ -141,9 +141,11 @@ fn audio_zone_operations() {
     container.add_zone(zone.clone()).unwrap();
     assert_eq!(container.query_zones().len(), 1);
 
-    container.update_zone("zone_0", |z| {
-        z.name = "UpdatedZone".to_string();
-    }).unwrap();
+    container
+        .update_zone("zone_0", |z| {
+            z.name = "UpdatedZone".to_string();
+        })
+        .unwrap();
     assert_eq!(container.query_zones()[0].name, "UpdatedZone");
 }
 
@@ -163,9 +165,11 @@ fn audio_profile_operations() {
     container.add_profile(profile).unwrap();
     assert_eq!(container.query_profiles().len(), 1);
 
-    container.update_profile("prof_0", |p| {
-        p.name = "UpdatedProfile".to_string();
-    }).unwrap();
+    container
+        .update_profile("prof_0", |p| {
+            p.name = "UpdatedProfile".to_string();
+        })
+        .unwrap();
     assert_eq!(container.query_profiles()[0].name, "UpdatedProfile");
 
     container.remove_profile("prof_0").unwrap();

@@ -4,8 +4,8 @@
 // ============================================================================
 
 use stratumx_tooling_l6_14_release_runtime::first_result_verification::{
-    BuildArtifact, ExportArtifact, FIRST_RESULT_SIGNATURE, FirstResultVerifier, LaunchTrace,
-    ReleaseChain,
+    BuildArtifact, ExportArtifact, FirstResultVerifier, LaunchTrace, ReleaseChain,
+    FIRST_RESULT_SIGNATURE,
 };
 use tool_evidence_capture::{
     ArtifactRef, ArtifactType, CertificationEngine, CertificationVerdict, CompareEngine,
@@ -178,7 +178,10 @@ fn evidence_capture_release_artifacts() {
     };
 
     assert_eq!(bundle.verdict, EvidenceVerdict::Green);
-    assert_eq!(bundle.artifacts[0].artifact_type, ArtifactType::CompareDigest);
+    assert_eq!(
+        bundle.artifacts[0].artifact_type,
+        ArtifactType::CompareDigest
+    );
 }
 
 #[test]

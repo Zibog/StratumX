@@ -128,8 +128,8 @@ fn get_workspace_members(root: &Path) -> Result<HashSet<String>, String> {
     let content = fs::read_to_string(&cargo_toml_path)
         .map_err(|e| format!("Failed to read Cargo.toml: {}", e))?;
 
-    let toml: toml::Value = toml::from_str(&content)
-        .map_err(|e| format!("Failed to parse Cargo.toml: {}", e))?;
+    let toml: toml::Value =
+        toml::from_str(&content).map_err(|e| format!("Failed to parse Cargo.toml: {}", e))?;
 
     let members = toml
         .get("workspace")
@@ -153,8 +153,8 @@ fn has_workspace_excludes(root: &Path) -> Result<bool, String> {
     let content = fs::read_to_string(&cargo_toml_path)
         .map_err(|e| format!("Failed to read Cargo.toml: {}", e))?;
 
-    let toml: toml::Value = toml::from_str(&content)
-        .map_err(|e| format!("Failed to parse Cargo.toml: {}", e))?;
+    let toml: toml::Value =
+        toml::from_str(&content).map_err(|e| format!("Failed to parse Cargo.toml: {}", e))?;
 
     if let Some(workspace) = toml.get("workspace") {
         if let Some(exclude) = workspace.get("exclude") {
@@ -344,7 +344,10 @@ fn test_get_workspace_members() {
     let members = get_workspace_members(&root).expect("Failed to get workspace members");
 
     // Should have workspace members
-    assert!(!members.is_empty(), "Should have at least one workspace member");
+    assert!(
+        !members.is_empty(),
+        "Should have at least one workspace member"
+    );
 
     println!("Found {} workspace members", members.len());
 }
@@ -355,7 +358,10 @@ fn test_get_metadata_packages() {
     let packages = get_metadata_packages(&root).expect("Failed to get metadata packages");
 
     // Should have packages in metadata
-    assert!(!packages.is_empty(), "Should have at least one package in metadata");
+    assert!(
+        !packages.is_empty(),
+        "Should have at least one package in metadata"
+    );
 
     println!("Found {} packages in metadata", packages.len());
 }
@@ -376,7 +382,8 @@ fn test_has_workspace_excludes() {
 fn test_workspace_truth_integrity() {
     let root = get_workspace_root();
 
-    let filesystem_packages = get_filesystem_packages(&root).expect("Failed to get filesystem packages");
+    let filesystem_packages =
+        get_filesystem_packages(&root).expect("Failed to get filesystem packages");
     let workspace_members = get_workspace_members(&root).expect("Failed to get workspace members");
     let metadata_packages = get_metadata_packages(&root).expect("Failed to get metadata packages");
 
@@ -398,13 +405,11 @@ fn test_workspace_truth_integrity() {
     );
 
     // Find any discrepancies
-    let missing_from_workspace: Vec<_> = filesystem_packages
-        .difference(&workspace_members)
-        .collect();
+    let missing_from_workspace: Vec<_> =
+        filesystem_packages.difference(&workspace_members).collect();
 
-    let missing_from_metadata: Vec<_> = filesystem_packages
-        .difference(&metadata_packages)
-        .collect();
+    let missing_from_metadata: Vec<_> =
+        filesystem_packages.difference(&metadata_packages).collect();
 
     if !missing_from_workspace.is_empty() {
         println!("Missing from workspace:");

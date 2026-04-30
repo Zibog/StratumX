@@ -18,7 +18,7 @@ impl GpuViewportRenderer {
         width: u32,
         height: u32,
     ) -> Result<(), String> {
-        let (time_of_day, sun_elevation) = if let Some(scene) = world.vertical_slice_scene() {
+        let (time_of_day, sun_elevation) = if let Some(scene) = world.proof_region_scene() {
             (
                 scene.sky.celestial.time_of_day_hours,
                 scene.sky.celestial.sun_elevation_deg,

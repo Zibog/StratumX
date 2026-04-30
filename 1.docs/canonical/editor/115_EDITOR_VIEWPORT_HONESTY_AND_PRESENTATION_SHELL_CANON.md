@@ -1,6 +1,6 @@
 # Editor Viewport Honesty And Presentation Shell Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Freeze the primary viewport as an honest world-editing surface and define how split or detached viewports stay lawful.
@@ -90,3 +90,31 @@ The shell must expose:
 - no debug-only renderer as the editor viewport while runtime uses another chain;
 - no secondary viewport that swallows the only backend diagnostics;
 - no stage where the operator must leave the viewport entirely just to understand what the world is doing.
+
+
+## v31 graphics backend badge law
+The viewport shell must expose StratumX Native Graphics Port posture:
+- backend policy;
+- selected backend;
+- backend status;
+- feature tier;
+- shader target set;
+- present path;
+- capture readiness;
+- first blocker;
+- fallback chain.
+
+The viewport may not say “Vulkan renderer”. It must say the selected StratumX graphics backend.
+
+
+---
+# V32 Editor Viewport Closure
+
+## Honest viewport law
+An editor viewport is honest only if backend is selected by policy, surface/present path is declared, framegraph route is used, SDK packets are published, tooling capture/doctor routes are available, black-frame failures are classified, and no native backend handles leak into editor UI.
+
+## Required badges
+Backend class, backend status, policy, feature tier, present state, surface extent, shader target, fallback rung, capture readiness, first blocker, and timing availability.
+
+## Required controls
+Backend policy selector, render doctor, capture frame, compare against golden, recover swapchain/backend, reset camera, material id overlay, missing resource overlay, framegraph diagnostics, shader/material diagnostics.

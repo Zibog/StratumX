@@ -52,6 +52,7 @@ members = [
   "5.editor/l7.0-editor-command-spine",
   "5.editor/l8.0-editor-shell",
   "5.editor/l8.1-viewport-system",
+  "5.editor/editor-state-containers",
   "5.editor/l8.2-outliner-system",
   "5.editor/l8.3-content-browser-system",
   "5.editor/l8.4-inspector-system",

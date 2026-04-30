@@ -42,7 +42,7 @@ pub mod focus_recovery;
 mod action_dispatch_core;
 pub use action_dispatch_core::ActionDispatcher;
 
-mod action_registry;
+pub mod action_registry;
 pub use action_registry::ActionRegistry;
 
 mod registry_builder;

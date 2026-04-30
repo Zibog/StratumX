@@ -1,6 +1,6 @@
 # Content Organization And Runtime Binding Route Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 Content organization and runtime binding form the lawful handoff between imported assets and runtime-owned truth.
 

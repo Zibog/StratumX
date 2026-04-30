@@ -1,5 +1,5 @@
 // Tactics Command Handlers
-// TODO: Re-implement against new engine squad_tactics API when available.
+// Deferred: re-integrate against the new engine squad_tactics API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;

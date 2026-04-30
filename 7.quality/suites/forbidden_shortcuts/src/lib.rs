@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod tests {
+    use proptest::prelude::*;
     use repo_hygiene::{ForbiddenShortcut, ForbiddenShortcutScanner};
     use std::path::PathBuf;
-    use proptest::prelude::*;
 
     #[test]
     fn desktop_app_target_files_have_no_forbidden_shortcuts_outside_adapter() {
@@ -250,7 +250,7 @@ mod tests {
 
             // Property: The scanner (acting as a lint) must be able to detect each type of violation
             // We verify this by checking that the scanner has the capability to detect each violation type
-            match &*violation_type {
+            match violation_type {
                 "editor_imports_engine" => {
                     // Verify scanner can detect editor→engine imports
                     let test_line = "use l0_world_truth::WorldState;";
@@ -317,7 +317,7 @@ mod tests {
 
             // Property: Higher layers must not import engine types directly
             // They must use SDK DTOs (boundary types) instead
-            match &*source_layer {
+            match source_layer {
                 "5.editor" => {
                     // Editor must use SDK DTOs, not engine types
                     let violations = scanner.scan_layer_boundaries();
@@ -344,4 +344,3 @@ mod tests {
         }
     }
 }
-

@@ -1,6 +1,6 @@
 # Detached Fragment Sleep Merge And Host Absorption Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the cheap runtime law for fragments, chunks, splinters, shards, clods, and residue that briefly behave like falling objects and then become compact host-owned state.

@@ -7,17 +7,15 @@
 //!
 //! **Validates: Requirements 6.5, SDK contract wall integrity**
 
+use legality_gates::*;
+use link_egress_observations::{
+    BallisticSimulationResultDto, CameraDto, DamageMemoryDto, ImpactResultDto, ImpactVerdictDto,
+    LayerDamageDto, LayerImpactEventDto, MaterialLayerDto, MaterialStackDto, RuntimeEventDto,
+    SceneDto, ShotLogEntryDto, TerrainPatchDto, VerticalSliceObservation, WallDto, WeaponDto,
+};
 use link_ingress_packets::{
     EditorAuthoringCommand, VerticalSliceCommand, VerticalSliceIngressPacket,
 };
-use link_egress_observations::{
-    VerticalSliceObservation,
-    SceneDto, TerrainPatchDto, WallDto, WeaponDto, CameraDto,
-    MaterialStackDto, MaterialLayerDto, DamageMemoryDto, LayerDamageDto,
-    BallisticSimulationResultDto, ImpactResultDto, ImpactVerdictDto, LayerImpactEventDto,
-    RuntimeEventDto, ShotLogEntryDto,
-};
-use legality_gates::*;
 use sdk_compat::LegalityVerdict;
 use transport_policies::{
     default_transport_policy, FramingKind, TransportPolicy, MAX_PACKET_BYTES,
@@ -210,12 +208,9 @@ fn all_rejections_carry_descriptive_info() {
         assert!(result.is_err());
         let err = result.unwrap_err();
         assert_eq!(err.verdict, LegalityVerdict::Illegal);
-        match err.reason {
-            sdk_compat::LegalityRejectionReason::InvalidInput { field, message } => {
-                assert!(!field.is_empty(), "field name must not be empty");
-                assert!(!message.is_empty(), "message must not be empty");
-            }
-            _ => {}
+        if let sdk_compat::LegalityRejectionReason::InvalidInput { field, message } = err.reason {
+            assert!(!field.is_empty(), "field name must not be empty");
+            assert!(!message.is_empty(), "message must not be empty");
         }
     }
 }
@@ -228,10 +223,15 @@ fn all_rejections_carry_descriptive_info() {
 fn vertical_slice_command_round_trips_json() {
     let commands = vec![
         VerticalSliceCommand::BootstrapScene,
-        VerticalSliceCommand::FireTestShot { weapon_entity_id: 42 },
+        VerticalSliceCommand::FireTestShot {
+            weapon_entity_id: 42,
+        },
         VerticalSliceCommand::ResetScene,
         VerticalSliceCommand::SelectEntity { entity_id: 7 },
-        VerticalSliceCommand::AssignMaterialStack { entity_id: 7, stack_id: 3 },
+        VerticalSliceCommand::AssignMaterialStack {
+            entity_id: 7,
+            stack_id: 3,
+        },
     ];
 
     for cmd in commands {
@@ -282,10 +282,27 @@ fn impact_verdict_round_trips() {
 #[test]
 fn runtime_event_dto_round_trips() {
     let events = vec![
-        RuntimeEventDto::ShotFired { tick: 100, weapon: 3 },
-        RuntimeEventDto::ProjectileImpact { tick: 105, target: 2, energy_j: 3000.0 },
-        RuntimeEventDto::SegmentCracked { tick: 106, entity: 2, layer: 0, segment: 5 },
-        RuntimeEventDto::SegmentReleased { tick: 107, entity: 2, layer: 0, segment: 5 },
+        RuntimeEventDto::ShotFired {
+            tick: 100,
+            weapon: 3,
+        },
+        RuntimeEventDto::ProjectileImpact {
+            tick: 105,
+            target: 2,
+            energy_j: 3000.0,
+        },
+        RuntimeEventDto::SegmentCracked {
+            tick: 106,
+            entity: 2,
+            layer: 0,
+            segment: 5,
+        },
+        RuntimeEventDto::SegmentReleased {
+            tick: 107,
+            entity: 2,
+            layer: 0,
+            segment: 5,
+        },
     ];
 
     for event in events {
@@ -526,8 +543,15 @@ fn full_vertical_slice_observation_round_trips() {
             }],
         }),
         runtime_events: vec![
-            RuntimeEventDto::ShotFired { tick: 100, weapon: 3 },
-            RuntimeEventDto::ProjectileImpact { tick: 105, target: 2, energy_j: 3000.0 },
+            RuntimeEventDto::ShotFired {
+                tick: 100,
+                weapon: 3,
+            },
+            RuntimeEventDto::ProjectileImpact {
+                tick: 105,
+                target: 2,
+                energy_j: 3000.0,
+            },
         ],
         shot_log: vec![ShotLogEntryDto {
             tick: 100,
@@ -565,7 +589,9 @@ fn editor_authoring_command_scene_round_trips() {
     use link_ingress_packets::SceneCommand;
 
     let commands = vec![
-        EditorAuthoringCommand::Scene(SceneCommand::CreateEmpty { scene_name: "test".to_string() }),
+        EditorAuthoringCommand::Scene(SceneCommand::CreateEmpty {
+            scene_name: "test".to_string(),
+        }),
         EditorAuthoringCommand::Scene(SceneCommand::ListEntities),
         EditorAuthoringCommand::Scene(SceneCommand::DeleteEntity { entity_id: 7 }),
     ];
@@ -600,15 +626,15 @@ fn transport_policy_round_trips_json() {
 
 #[test]
 fn bridge_control_round_trips_json() {
-    use link_ingress_controls::{
-        BridgeControl, IngressControlEnvelopeId, IngressControlKind,
-    };
     use engine_handle_refs::{RuntimeHandle, SessionHandle};
     use legality_gates::LegalityGateId;
+    use link_ingress_controls::{BridgeControl, IngressControlEnvelopeId, IngressControlKind};
 
     let control = BridgeControl::new(
         IngressControlEnvelopeId(1),
-        IngressControlKind::SetLabel { label: "test".to_string() },
+        IngressControlKind::SetLabel {
+            label: "test".to_string(),
+        },
         RuntimeHandle::new(1),
         SessionHandle::new(1),
         0,
@@ -617,7 +643,10 @@ fn bridge_control_round_trips_json() {
 
     let json = serde_json::to_string(&control).unwrap();
     let decoded: BridgeControl = serde_json::from_str(&json).unwrap();
-    assert_eq!(control.ingress_control_envelope_id, decoded.ingress_control_envelope_id);
+    assert_eq!(
+        control.ingress_control_envelope_id,
+        decoded.ingress_control_envelope_id
+    );
     assert_eq!(control.target_runtime_handle, decoded.target_runtime_handle);
     assert_eq!(control.source_session_handle, decoded.source_session_handle);
 }
@@ -629,10 +658,8 @@ fn bridge_control_round_trips_json() {
 #[test]
 fn sdk_ingress_types_are_distinct_from_engine_types() {
     let _sdk_cmd = VerticalSliceCommand::BootstrapScene;
-    let _editor_cmd = EditorAuthoringCommand::Scene(
-        link_ingress_packets::SceneCommand::ListEntities,
-    );
-    assert!(true);
+    let _editor_cmd =
+        EditorAuthoringCommand::Scene(link_ingress_packets::SceneCommand::ListEntities);
 }
 
 #[test]
@@ -676,9 +703,7 @@ fn sdk_packet_entity_ids_are_plain_not_typed_handles() {
 #[test]
 fn all_sdk_command_types_are_distinct() {
     let vs_cmd = VerticalSliceCommand::BootstrapScene;
-    let ea_cmd = EditorAuthoringCommand::Scene(
-        link_ingress_packets::SceneCommand::ListEntities,
-    );
+    let ea_cmd = EditorAuthoringCommand::Scene(link_ingress_packets::SceneCommand::ListEntities);
     let _ = (vs_cmd, ea_cmd);
 }
 

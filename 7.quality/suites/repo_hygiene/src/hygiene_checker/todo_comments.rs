@@ -9,7 +9,7 @@ impl HygieneChecker {
 
         if let Ok(entries) = self.walk_production_code() {
             for entry in entries {
-                if !entry.extension().is_some_and(|ext| ext == "rs") {
+                if entry.extension().and_then(|ext| ext.to_str()) != Some("rs") {
                     continue;
                 }
 

@@ -1,6 +1,5 @@
 // Tests for l6.1-command-envelopes: CommandEnvelope, PromotedCommand, canonical schema
 
-use serde_json;
 use stratumx_tooling_l6_1_command_envelopes::*;
 
 // ============================================================================
@@ -23,7 +22,7 @@ fn canonical_level_not_empty() {
 
 #[test]
 fn marker_default() {
-    let m = L61CommandEnvelopesMarker::default();
+    let m = L61CommandEnvelopesMarker;
     assert_eq!(m, L61CommandEnvelopesMarker);
 }
 
@@ -83,8 +82,14 @@ fn lifecycle_state_variants() {
 
 #[test]
 fn lifecycle_state_equality() {
-    assert_eq!(CommandLifecycleState::Accepted, CommandLifecycleState::Accepted);
-    assert_ne!(CommandLifecycleState::Accepted, CommandLifecycleState::Running);
+    assert_eq!(
+        CommandLifecycleState::Accepted,
+        CommandLifecycleState::Accepted
+    );
+    assert_ne!(
+        CommandLifecycleState::Accepted,
+        CommandLifecycleState::Running
+    );
 }
 
 #[test]
@@ -141,7 +146,7 @@ fn envelope_new_with_string_route() {
 #[test]
 fn envelope_transition_to_running() {
     let mut env = CommandEnvelope::new(1, "route.test.v1", vec![]);
-    env.transition_to(CommandLifecycleState::Running, None);
+    let _ = env.transition_to(CommandLifecycleState::Running, None);
     assert_eq!(env.lifecycle_state, CommandLifecycleState::Running);
     assert!(env.error_message.is_none());
 }
@@ -149,14 +154,14 @@ fn envelope_transition_to_running() {
 #[test]
 fn envelope_transition_to_success() {
     let mut env = CommandEnvelope::new(1, "route.test.v1", vec![]);
-    env.transition_to(CommandLifecycleState::Success, None);
+    let _ = env.transition_to(CommandLifecycleState::Success, None);
     assert_eq!(env.lifecycle_state, CommandLifecycleState::Success);
 }
 
 #[test]
 fn envelope_transition_to_failure() {
     let mut env = CommandEnvelope::new(1, "route.test.v1", vec![]);
-    env.transition_to(
+    let _ = env.transition_to(
         CommandLifecycleState::RetryableFailure,
         Some("network error".into()),
     );
@@ -167,7 +172,7 @@ fn envelope_transition_to_failure() {
 #[test]
 fn envelope_transition_to_terminal_failure() {
     let mut env = CommandEnvelope::new(1, "route.test.v1", vec![]);
-    env.transition_to(
+    let _ = env.transition_to(
         CommandLifecycleState::TerminalFailure,
         Some("permanent error".into()),
     );
@@ -179,7 +184,7 @@ fn envelope_timestamp_updates_on_transition() {
     let mut env = CommandEnvelope::new(1, "route.test.v1", vec![]);
     let initial_ts = env.last_update_timestamp;
     std::thread::sleep(std::time::Duration::from_millis(2));
-    env.transition_to(CommandLifecycleState::Running, None);
+    let _ = env.transition_to(CommandLifecycleState::Running, None);
     assert!(env.last_update_timestamp >= initial_ts);
 }
 
@@ -903,16 +908,18 @@ fn canonical_envelope_from_route() {
         preview_trigger: None,
         proof_mode: None,
     });
-    let envelope = CanonicalCommandEnvelope::from_route(route, payload, SourceSurface::MaterialPanel);
+    let envelope =
+        CanonicalCommandEnvelope::from_route(route, payload, SourceSurface::MaterialPanel);
     assert_eq!(envelope.command_id.as_str(), route.command_id);
 }
 
 #[test]
 fn canonical_envelope_domain() {
-    let route =
-        canonical_route_by_action_id("material.duplicate_profile.requested").expect("canonical route exists");
+    let route = canonical_route_by_action_id("material.duplicate_profile.requested")
+        .expect("canonical route exists");
     let payload = CommandPayload::Material(MaterialPayload::default());
-    let envelope = CanonicalCommandEnvelope::from_route(route, payload, SourceSurface::MaterialPanel);
+    let envelope =
+        CanonicalCommandEnvelope::from_route(route, payload, SourceSurface::MaterialPanel);
     assert_eq!(envelope.domain(), RouteDomain::Material);
 }
 

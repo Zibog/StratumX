@@ -1,6 +1,6 @@
 # Graphics Capability Matrix
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Map graphics capability families to the active production contour using one vocabulary: truth owner, owner surfaces, button namespace, canonical pack ids, the root frame delivery chain frozen in `42`, and the backend / feature ladder frozen in engine `103–104`.
@@ -45,3 +45,32 @@ No optional accelerator may become the only lawful way to render materials, cove
 | photoreal old-hardware fallback | old-floor lighting/media/rung legality | `engine/126` | `editor/126` | certification rows in `editor/110` | `pack.photoreal_old_hardware` | `document_gold` |
 | foliage/fur/hair microgeometry | representation ladder, wetness/char, silhouette law | `engine/127 + engine/106` | `editor/125` | fur/groom rows in `editor/110` | `pack.foliage_fur_microgeometry` | `document_gold` |
 | VFX taxonomy and truth separation | debris/smoke/sparks/fluid/ash/dust families | `engine/129` | `editor/97 + editor/120 + editor/121 + editor/122` | VFX and destruction rows in `editor/110` | `pack.vfx_runtime_taxonomy` | `document_gold` |
+
+
+## v31 Graphics Port expansion
+| Capability family | Root chain role | Engine truth owners | Editor production surfaces | Button namespace | Canonical pack ids | Current posture |
+|---|---|---|---|---|---|---|
+| StratumX Native Graphics Port | backend-neutral render contract and native backend driver law | `engine/140–144` + root `121`, `123` | `editor/139`, `editor/142` | backend/device/render-doctor rows in `editor/110` | `pack.graphics_backend_policy + pack.graphics_backend_caps` | `document_gold_impl_open` |
+| photoreal first rendering lane | terrain/sky/material/PBR/shadow/exposure/capture proof path | `engine/145–148` + root `122` | `editor/140–142` | photoreal/capture/material visual truth rows in `editor/110` | `pack.photoreal_first_lane + pack.render_capture_black_frame` | `document_gold_impl_open` |
+| shader backend target pipeline | HLSL-first variants to SPIR-V/DXIL/Metal/platform targets | `engine/146` | `editor/141` | shader cook/material route rows in `editor/110` | `pack.shader_variant_backend_target` | `document_gold_impl_open` |
+
+---
+
+# V33 graphics practical manual assimilation
+
+Stack version: `SX-CANON/1.0.27/STACK-v33`
+
+## Practical graphics completion requirement
+
+The graphics capability matrix is complete only when the following practical surfaces exist in documentation and code:
+
+| Capability | Minimum completion |
+|---|---|
+| Backend selection | Policy resolver reports selected backend, fallback chain, disabled fast paths, and first blocker. |
+| Surface/present | Surface creation, swapchain creation, acquire, submit, present, resize, lost surface, and device lost recovery are documented and tested. |
+| Framegraph | Every showable frame is produced by a declared framegraph, not ad-hoc draw calls. |
+| Shader pipeline | HLSL source, target outputs, variants, reflection, errors, cache keys, fallback shader, and hot reload policy are documented. |
+| Visual baseline | Terrain, sky, directional light, PBR material, shadow seed, exposure, tonemap, capture metadata. |
+| Diagnostics | Black-frame, missing material, shader failure, present failure, and invalid camera have exact codes and recovery routes. |
+
+A beautiful frame is not valid because it looks good once. It is valid when it is reproducible, diagnosable, capturable, comparable, and recoverable.

@@ -1,4 +1,4 @@
-﻿//! Runtime Mode Service
+//! Runtime Mode Service
 //!
 //! Domain service for runtime control including preview mode and simulation management.
 //! Abstraction Level: L3 (Runtime Control)

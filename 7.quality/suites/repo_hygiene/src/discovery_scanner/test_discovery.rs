@@ -8,22 +8,20 @@ impl DiscoveryScanner {
     pub fn scan_test_files(&self) -> Vec<TestFileCandidate> {
         let mut candidates = Vec::new();
 
-        for entry in self.walk_repo() {
-            if let Ok(entry) = entry {
-                let path = entry.path();
-                if !path.is_file() || !Self::is_rust_file(path) {
-                    continue;
-                }
+        for entry in self.walk_repo().flatten() {
+            let path = entry.path();
+            if !path.is_file() || !Self::is_rust_file(path) {
+                continue;
+            }
 
-                if self.is_test_file(path) {
-                    if let Ok(content) = fs::read_to_string(path) {
-                        candidates.push(TestFileCandidate {
-                            path: path.to_path_buf(),
-                            test_type: TestType::detect_from_file(path, &content),
-                            target_suite: self.determine_target_suite(path),
-                            dependencies: self.extract_dependencies(&content),
-                        });
-                    }
+            if self.is_test_file(path) {
+                if let Ok(content) = fs::read_to_string(path) {
+                    candidates.push(TestFileCandidate {
+                        path: path.to_path_buf(),
+                        test_type: TestType::detect_from_file(path, &content),
+                        target_suite: self.determine_target_suite(path),
+                        dependencies: self.extract_dependencies(&content),
+                    });
                 }
             }
         }

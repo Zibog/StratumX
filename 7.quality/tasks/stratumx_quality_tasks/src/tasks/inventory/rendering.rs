@@ -48,7 +48,7 @@ fn write_giant_files_section(md: &mut String, giant_files: &[&TestFileInventory]
                 ));
             }
         }
-        md.push_str("\n");
+        md.push('\n');
     }
 }
 
@@ -68,7 +68,7 @@ fn write_size_categories_section(md: &mut String, inventory: &[TestFileInventory
             counts.get(*category).copied().unwrap_or(0)
         ));
     }
-    md.push_str("\n");
+    md.push('\n');
 }
 
 fn write_giant_families_section(md: &mut String, giant_files: &[&TestFileInventory]) {
@@ -88,7 +88,7 @@ fn write_giant_families_section(md: &mut String, giant_files: &[&TestFileInvento
                 family.name, family.test_count, family.line_range.0, family.line_range.1
             ));
         }
-        md.push_str("\n");
+        md.push('\n');
     }
 }
 
@@ -106,7 +106,7 @@ fn write_support_section(md: &mut String, inventory: &[TestFileInventory]) {
     for (kind, count) in counts {
         md.push_str(&format!("- {}: {} instances\n", kind, count));
     }
-    md.push_str("\n");
+    md.push('\n');
 
     md.push_str("### Detailed Locations\n\n");
     for file in files_with_support {
@@ -117,7 +117,7 @@ fn write_support_section(md: &mut String, inventory: &[TestFileInventory]) {
                 support.kind, support.name, support.line_range.0
             ));
         }
-        md.push_str("\n");
+        md.push('\n');
     }
 }
 
@@ -160,7 +160,7 @@ fn write_domain_summary_section(md: &mut String, inventory: &[TestFileInventory]
             domain, files, tests
         ));
     }
-    md.push_str("\n");
+    md.push('\n');
 }
 
 fn write_summary_statistics(md: &mut String, inventory: &[TestFileInventory]) {

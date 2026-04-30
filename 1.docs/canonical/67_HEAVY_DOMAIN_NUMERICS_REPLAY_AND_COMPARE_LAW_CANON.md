@@ -1,6 +1,6 @@
 # Heavy Domain Numerics Replay And Compare Law Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This law pulls numerics, replay windows, quantization, and compare tolerances directly into heavy-domain closure.

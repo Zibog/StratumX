@@ -124,5 +124,5 @@ fn test_owner_distribution() {
 
     // Verify we have at least some entries for each major owner
     // (This is a sanity check, not a strict requirement)
-    assert!(owner_counts.len() > 0, "No owners found in inventory");
+    assert!(!owner_counts.is_empty(), "No owners found in inventory");
 }

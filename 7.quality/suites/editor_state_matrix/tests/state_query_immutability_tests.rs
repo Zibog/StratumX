@@ -13,8 +13,8 @@ mod tests {
     use stratumx_editor_state_containers::{
         AudioRegistryState, AudioSource, AudioSourceId, AudioSourceType, DiagnosticMessage,
         DiagnosticSource, DiagnosticsState, MaterialProfile, MaterialProfileId,
-        MaterialRegistryState, PanelId, SelectionState, SessionState, Severity,
-        StateModification, StateQueries, WorldIdentity,
+        MaterialRegistryState, PanelId, SelectionState, SessionState, Severity, StateModification,
+        StateQueries, WorldIdentity,
     };
     use uuid::Uuid;
 
@@ -90,12 +90,12 @@ mod tests {
             }
 
             // ================================================================
-            // Test 4: get_open_panels returns immutable slice
+            // Test 4: get_open_panels returns copied panel IDs
             // ================================================================
             let open_panels = queries.get_open_panels();
-            // Verify we got an immutable slice
+            // Verify we got copied panel IDs
             let _panel_count = open_panels.len();
-            for panel in open_panels {
+            for panel in &open_panels {
                 let _panel_id = &panel.0;
             }
 
@@ -103,10 +103,10 @@ mod tests {
             prop_assert_eq!(open_panels.len(), state_config.open_panels.len());
 
             // ================================================================
-            // Test 5: get_material_profiles returns Vec of immutable references
+            // Test 5: get_material_profiles returns copied profiles
             // ================================================================
             let profiles = queries.get_material_profiles();
-            // Verify we got immutable references
+            // Verify we got copied values
             for profile in &profiles {
                 let _profile_id = &profile.profile_id;
                 let _profile_name = &profile.profile_name;
@@ -117,13 +117,12 @@ mod tests {
             prop_assert_eq!(profiles.len(), state_config.material_profiles.len());
 
             // ================================================================
-            // Test 6: get_audio_sources returns Vec of immutable references
+            // Test 6: get_audio_sources returns copied sources
             // ================================================================
             let audio_sources = queries.get_audio_sources();
-            // Verify we got immutable references
+            // Verify we got copied values
             for source in &audio_sources {
-                let _source_id = &source.source_id;
-                let _source_name = &source.source_name;
+                let _source_id = &source.id;
                 let _source_type = &source.source_type;
             }
 
@@ -131,11 +130,11 @@ mod tests {
             prop_assert_eq!(audio_sources.len(), state_config.audio_sources.len());
 
             // ================================================================
-            // Test 7: get_diagnostics returns immutable slice
+            // Test 7: get_diagnostics returns copied diagnostics
             // ================================================================
             let diagnostics = queries.get_diagnostics();
-            // Verify we got an immutable slice
-            for diagnostic in diagnostics {
+            // Verify we got copied values
+            for diagnostic in &diagnostics {
                 let _severity = &diagnostic.severity;
                 let _message = &diagnostic.message;
                 let _source = &diagnostic.source;
@@ -271,21 +270,16 @@ mod tests {
     fn audio_source_strategy() -> impl Strategy<Value = AudioSource> {
         (
             any::<[u8; 16]>().prop_map(|bytes| AudioSourceId::new(Uuid::from_bytes(bytes))),
-            "[a-z]{3,10}",
             audio_source_type_strategy(),
         )
-            .prop_map(|(source_id, name, source_type)| {
-                AudioSource::new(source_id, name, source_type)
-            })
+            .prop_map(|(source_id, source_type)| AudioSource::new(source_id, source_type))
     }
 
     /// Strategy for generating audio source types
     fn audio_source_type_strategy() -> impl Strategy<Value = AudioSourceType> {
         prop_oneof![
             Just(AudioSourceType::Ambient),
-            Just(AudioSourceType::Impact),
-            Just(AudioSourceType::Continuous),
-            Just(AudioSourceType::Trigger),
+            Just(AudioSourceType::Point),
         ]
     }
 
@@ -354,20 +348,20 @@ mod tests {
             self.session_state.focused_panel.as_ref()
         }
 
-        fn get_open_panels(&self) -> &[PanelId] {
-            &self.session_state.open_panels
+        fn get_open_panels(&self) -> Vec<PanelId> {
+            self.session_state.open_panels.clone()
         }
 
-        fn get_material_profiles(&self) -> Vec<&MaterialProfile> {
-            self.material_state.material_profiles.values().collect()
+        fn get_material_profiles(&self) -> Vec<MaterialProfile> {
+            self.material_state.material_profiles.clone()
         }
 
-        fn get_audio_sources(&self) -> Vec<&AudioSource> {
-            self.audio_state.audio_sources.values().collect()
+        fn get_audio_sources(&self) -> Vec<AudioSource> {
+            self.audio_state.sources.clone()
         }
 
-        fn get_diagnostics(&self) -> &[DiagnosticMessage] {
-            &self.diagnostics_state.messages
+        fn get_diagnostics(&self) -> Vec<DiagnosticMessage> {
+            self.diagnostics_state.messages.clone()
         }
 
         fn has_project(&self) -> bool {
@@ -486,7 +480,7 @@ mod tests {
     }
 
     #[test]
-    fn test_get_open_panels_returns_immutable_slice() {
+    fn test_get_open_panels_returns_copied_values() {
         let mut session_state = SessionState::new();
         session_state.add_open_panel(PanelId("viewport".to_string()));
         session_state.add_open_panel(PanelId("inspector".to_string()));
@@ -499,16 +493,16 @@ mod tests {
             has_project: true,
         };
 
-        // Get immutable slice
+        // Get copied values
         let panels = queries.get_open_panels();
         assert_eq!(panels.len(), 2);
 
-        // The following would not compile (immutable slice):
+        // Mutating this local Vec would not affect shared state:
         // panels.push(PanelId("material".to_string()));
     }
 
     #[test]
-    fn test_get_material_profiles_returns_immutable_references() {
+    fn test_get_material_profiles_returns_copied_values() {
         let mut material_state = MaterialRegistryState::new();
         let profile_id = MaterialProfileId::new(Uuid::new_v4());
         let profile = MaterialProfile::new(profile_id, "Test Profile".to_string());
@@ -522,19 +516,19 @@ mod tests {
             has_project: true,
         };
 
-        // Get immutable references
+        // Get copied values
         let profiles = queries.get_material_profiles();
         assert_eq!(profiles.len(), 1);
 
-        let profile = profiles[0];
+        let profile = &profiles[0];
         assert_eq!(profile.profile_name, "Test Profile");
 
-        // The following would not compile (immutable reference):
+        // Mutating this local clone would not affect shared state:
         // profile.profile_name = "Modified".to_string();
     }
 
     #[test]
-    fn test_get_diagnostics_returns_immutable_slice() {
+    fn test_get_diagnostics_returns_copied_values() {
         let mut diagnostics_state = DiagnosticsState::new();
         diagnostics_state.add_message(DiagnosticMessage {
             severity: Severity::Error,
@@ -553,11 +547,11 @@ mod tests {
             has_project: true,
         };
 
-        // Get immutable slice
+        // Get copied values
         let diagnostics = queries.get_diagnostics();
         assert_eq!(diagnostics.len(), 1);
 
-        // The following would not compile (immutable slice):
+        // Mutating this local Vec would not affect shared state:
         // diagnostics.push(DiagnosticMessage { ... });
     }
 
@@ -615,14 +609,10 @@ mod tests {
     }
 
     #[test]
-    fn test_get_audio_sources_returns_immutable_references() {
+    fn test_get_audio_sources_returns_copied_values() {
         let mut audio_state = AudioRegistryState::new();
         let source_id = AudioSourceId::new(Uuid::new_v4());
-        let source = AudioSource::new(
-            source_id.clone(),
-            "Test Source".to_string(),
-            AudioSourceType::Ambient,
-        );
+        let source = AudioSource::new(source_id.clone(), AudioSourceType::Ambient);
         audio_state.add_source(source);
 
         let queries = MockStateQueries {
@@ -633,14 +623,15 @@ mod tests {
             has_project: true,
         };
 
-        // Get immutable references
+        // Get copied values
         let sources = queries.get_audio_sources();
         assert_eq!(sources.len(), 1);
 
-        let source = sources[0];
-        assert_eq!(source.source_name, "Test Source");
+        let source = &sources[0];
+        assert_eq!(source.id, source_id);
+        assert_eq!(source.source_type, AudioSourceType::Ambient);
 
-        // The following would not compile (immutable reference):
-        // source.source_name = "Modified".to_string();
+        // Mutating this local clone would not affect shared state:
+        // source.source_type = AudioSourceType::Point;
     }
 }

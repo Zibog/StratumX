@@ -1,7 +1,7 @@
 //! Comprehensive tests for stratumx_route_test_support crate
 
-use stratumx_route_test_support::*;
 use std::collections::BTreeSet;
+use stratumx_route_test_support::*;
 
 // ---------------------------------------------------------------------------
 // manifest_button_ids tests
@@ -195,7 +195,10 @@ fn dispatch_button_returns_envelope() {
 #[test]
 fn dispatch_button_envelope_has_correct_button_id() {
     let envelope = dispatch_button("btn.material.bind_light_response", ()).unwrap();
-    assert_eq!(envelope.route_metadata.button_id, "btn.material.bind_light_response");
+    assert_eq!(
+        envelope.route_metadata.button_id,
+        "btn.material.bind_light_response"
+    );
 }
 
 // ---------------------------------------------------------------------------
@@ -214,14 +217,10 @@ fn full_dispatch_execute_workflow() {
 #[test]
 fn many_routes_are_dispatchable() {
     // Test a representative sample of routes
-    let test_routes = [
-        "btn.material.bind_light_response",
-    ];
+    let test_routes = ["btn.material.bind_light_response"];
 
     for button_id in test_routes {
-        let result = std::panic::catch_unwind(|| {
-            dispatch_button(button_id, ())
-        });
+        let result = std::panic::catch_unwind(|| dispatch_button(button_id, ()));
         match result {
             Ok(Ok(_)) => {}
             Ok(Err(_)) => {}

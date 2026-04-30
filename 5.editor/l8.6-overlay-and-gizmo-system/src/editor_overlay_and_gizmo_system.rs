@@ -1,7 +1,8 @@
-//! Editor Overlay and Gizmo System
-//!
-//! Role: Viewport overlays, gizmos, and visual manipulation handles.
-//! Owns: Gizmo rendering, transform handles, selection overlays.
+//! FUTURE_STUB: this crate is intentionally not product-integrated yet.
+//! It must not be counted as implemented editor functionality until wired into the active product spine.
+
+//! Role: viewport overlays, gizmos, and visual manipulation handles.
+//! Owns: gizmo rendering, transform handles, and selection overlays when integration begins.
 
 pub use serde::{Deserialize, Serialize};
 

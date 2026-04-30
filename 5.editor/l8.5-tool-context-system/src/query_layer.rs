@@ -1,4 +1,4 @@
-﻿//! Query Layer
+//! Query Layer
 //!
 //! Non-authoritative read-only interface for state access.
 //! The query layer can be destroyed and recreated without data loss.

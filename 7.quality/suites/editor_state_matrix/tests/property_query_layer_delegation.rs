@@ -130,7 +130,7 @@ proptest! {
         // Direct access to owner container
         let direct_panels = {
             let ws = workspace_state.lock().unwrap();
-            ws.get_open_panels().to_vec()
+            ws.get_open_panels()
         };
         let direct_focused = {
             let ws = workspace_state.lock().unwrap();
@@ -179,9 +179,6 @@ proptest! {
         let direct_diagnostics = {
             let ds = diagnostics_state.lock().unwrap();
             ds.get_messages_by_severity(severity)
-                .into_iter()
-                .cloned()
-                .collect::<Vec<_>>()
         };
         let direct_all = {
             let ds = diagnostics_state.lock().unwrap();
@@ -251,11 +248,11 @@ proptest! {
         };
         let direct_terrain = {
             let ws = world_state.lock().unwrap();
-            ws.get_terrain_state().cloned()
+            ws.get_terrain_state().clone()
         };
         let direct_environment = {
             let ws = world_state.lock().unwrap();
-            ws.get_environment_state().cloned()
+            ws.get_environment_state().clone()
         };
 
         // Verify equivalence (compare is_some() since TerrainState/EnvironmentState don't implement PartialEq)

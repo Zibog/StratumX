@@ -1,6 +1,6 @@
 # Tooling Conveyor Import Cook Certification Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Provide the stitched reading spine for import, canonicalization, cook, benchmark, compare, proof, and release-seal routing so the tooling layer reads as one conveyor rather than a bag of routes.

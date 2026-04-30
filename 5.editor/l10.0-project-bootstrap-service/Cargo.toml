@@ -9,6 +9,7 @@ authors.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 stratumx_tooling_l6_0_tool_session = { path = "../../4.tooling/l6.0-tool-session" }
+stratumx-editor-l8-0-editor-shell = { path = "../l8.0-editor-shell" }
 eframe = { version = "0.31", optional = true }
 
 [features]

@@ -1,6 +1,6 @@
 # Material Light Transmission And Shadow Response Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze light interaction as a strict branch of material law so transmission, diffusion, reflectance modulation, and shadow behavior are no longer scattered across graphics, atmosphere, damage, and wetness prose.

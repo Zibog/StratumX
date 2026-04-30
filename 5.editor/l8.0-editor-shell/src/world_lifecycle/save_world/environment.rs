@@ -2,11 +2,11 @@
 
 use editor_dto_law::SkyBinding;
 use engine_material::WeatherRegime;
-use engine_world::VerticalSliceScene;
+use engine_world::ProofRegionScene;
 use std::fs;
 use std::path::Path;
 
-pub fn save_environment_binding(path: &Path, scene: &VerticalSliceScene) -> Result<(), String> {
+pub fn save_environment_binding(path: &Path, scene: &ProofRegionScene) -> Result<(), String> {
     let env_dir = path.join("environment");
     fs::create_dir_all(&env_dir).map_err(|e| format!("Failed to create environment dir: {}", e))?;
 

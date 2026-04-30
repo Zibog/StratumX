@@ -614,7 +614,7 @@ fn bench_network(c: &mut Criterion) {
     });
     c.bench_function("engine_net_sync_snapshot", |b| {
         b.iter(|| {
-            let service = NetSyncService::new(NetSyncConfig {
+            let mut service = NetSyncService::new(NetSyncConfig {
                 max_interest_regions: 4,
             });
             for _ in 0..STANDARD_BATCH {

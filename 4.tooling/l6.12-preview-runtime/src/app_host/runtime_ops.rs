@@ -107,7 +107,7 @@ impl Default for EditorHostRuntimeOps {
 
 /// Validate that a runtime mode transition is allowed.
 fn validate_runtime_transition(from: RuntimeMode, to: RuntimeMode) -> Result<(), String> {
-    // All transitions are allowed for now; extend with forbidden rules as needed.
+    // All transitions are currently allowed; extend with forbidden rules as needed.
     let _ = (from, to);
     Ok(())
 }

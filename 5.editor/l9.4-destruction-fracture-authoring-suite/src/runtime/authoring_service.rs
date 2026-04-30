@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use crate::model::{
-    DestructionError, DisabledReason, FieldConfig, FieldId, Overlay, OverlayId, ObjectHandle,
+    DestructionError, DisabledReason, FieldConfig, FieldId, ObjectHandle, Overlay, OverlayId,
 };
 use crate::runtime::capture_system::{CaptureData, ComparisonResult, FieldState};
 
@@ -61,9 +61,7 @@ impl DestructionAuthoringSuite {
         }
 
         // Validate overlay
-        overlay
-            .validate()
-            .map_err(DestructionError::OverlayError)?;
+        overlay.validate().map_err(DestructionError::OverlayError)?;
 
         // Create new overlay
         let overlay_id = OverlayId::new(self.next_overlay_id);

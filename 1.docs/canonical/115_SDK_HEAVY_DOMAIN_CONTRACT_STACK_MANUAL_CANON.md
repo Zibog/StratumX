@@ -1,6 +1,6 @@
 # SDK Heavy Domain Contract Stack Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Provide the stitched reading spine for heavy-domain public contracts so implementers can move from runtime truth to public packets, observations, transactions, replay, and compare without inventing extra bridge law.

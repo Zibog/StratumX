@@ -8,7 +8,7 @@
 
 # Material Centric Operator Surface Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze one explicit material-centric operator surface so the editor no longer spreads material-owned authoring across labs without a canonical center.
@@ -156,3 +156,21 @@ The material-centric surface must expose lawful exits to:
 
 These exits may be secondary surfaces.
 They may not force the operator to abandon material-owned identity and reason chains.
+
+---
+
+# V34 hybrid material editor closure
+
+Stack version: `SX-CANON/1.0.28/STACK-v34`
+
+The material lab must present runtime profile families as the primary path:
+
+1. choose family;
+2. bind texture channels;
+3. set parameter block;
+4. bind physical/acoustic/light response refs;
+5. preview;
+6. capture;
+7. later optionally open graph authoring to generate the same profile row.
+
+The graph editor must never be the only way to create a valid material. Profile-first authoring is mandatory for fast engine bring-up.

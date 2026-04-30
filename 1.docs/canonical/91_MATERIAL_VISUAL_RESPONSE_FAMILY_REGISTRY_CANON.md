@@ -1,6 +1,6 @@
 # Material Visual Response Family Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the mandatory registry for material-owned visual response families so damage visuals, overlays, aftermath, debris reveal, and material-derived VFX no longer rely on distributed vocabulary.

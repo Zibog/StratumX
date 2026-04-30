@@ -1,14 +1,14 @@
 // World manifest saving - canonical package format
 
 use editor_dto_law::{SourceLineage, StableWorldId, WorldPackageManifest, WorldRole};
-use engine_world::VerticalSliceScene;
+use engine_world::ProofRegionScene;
 use std::fs;
 use std::path::Path;
 
 pub fn save_world_manifest(
     path: &Path,
     world_ref: StableWorldId,
-    scene: &VerticalSliceScene,
+    scene: &ProofRegionScene,
 ) -> Result<(), String> {
     let timestamp = chrono::Utc::now().to_rfc3339();
 

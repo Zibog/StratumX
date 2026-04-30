@@ -1,6 +1,6 @@
 # Gameplay System Authoring And Legality Route Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 Gameplay authoring becomes lawful only when each authored change declares mutation class, allowed scope, route id, rollback anchor, and proof-region applicability.
 

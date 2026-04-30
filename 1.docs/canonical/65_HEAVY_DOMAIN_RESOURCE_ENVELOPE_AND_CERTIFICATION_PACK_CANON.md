@@ -1,6 +1,6 @@
 # 65_HEAVY_DOMAIN_RESOURCE_ENVELOPE_AND_CERTIFICATION_PACK_CANON
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Declare coarse resource envelopes for mixed heavy-domain certification packs.

@@ -105,14 +105,11 @@ fn test_migration_destination_mapping() {
     let command_spine_path = repo
         .root
         .join("5.editor/l7.0-editor-command-spine/src/command_tests.rs");
-    let dest = migrator.determine_destination(&command_spine_path);
+    let dest = migrator
+        .determine_destination(&command_spine_path)
+        .expect("Should determine destination for command_spine");
     assert!(
-        dest.is_some(),
-        "Should determine destination for command_spine"
-    );
-    assert!(
-        dest.unwrap()
-            .to_str()
+        dest.to_str()
             .unwrap()
             .contains("editor_canon_matrix/command_spine"),
         "Should map to editor_canon_matrix/command_spine"
@@ -122,14 +119,11 @@ fn test_migration_destination_mapping() {
     let shell_path = repo
         .root
         .join("5.editor/l8.0-editor-shell/src/shell_tests.rs");
-    let dest = migrator.determine_destination(&shell_path);
+    let dest = migrator
+        .determine_destination(&shell_path)
+        .expect("Should determine destination for editor_shell");
     assert!(
-        dest.is_some(),
-        "Should determine destination for editor_shell"
-    );
-    assert!(
-        dest.unwrap()
-            .to_str()
+        dest.to_str()
             .unwrap()
             .contains("editor_canon_matrix/editor_shell"),
         "Should map to editor_canon_matrix/editor_shell"
@@ -139,14 +133,11 @@ fn test_migration_destination_mapping() {
     let app_path = repo
         .root
         .join("6.apps/editor/stratumx_editor_app/src/desktop_app/panel_tests.rs");
-    let dest = migrator.determine_destination(&app_path);
+    let dest = migrator
+        .determine_destination(&app_path)
+        .expect("Should determine destination for desktop_app");
     assert!(
-        dest.is_some(),
-        "Should determine destination for desktop_app"
-    );
-    assert!(
-        dest.unwrap()
-            .to_str()
+        dest.to_str()
             .unwrap()
             .contains("editor_app_matrix/desktop_app"),
         "Should map to editor_app_matrix/desktop_app"
@@ -282,9 +273,7 @@ proptest! {
 
     let result = migrator.migrate_test(&candidate);
 
-    if result.is_ok() {
-        let migration_result = result.unwrap();
-
+    if let Ok(migration_result) = result {
         // Verify regression files were moved
         assert!(
             !migration_result.regression_files_moved.is_empty(),

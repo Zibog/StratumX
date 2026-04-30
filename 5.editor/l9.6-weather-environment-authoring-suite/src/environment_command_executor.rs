@@ -1,4 +1,4 @@
-﻿//! Environment Command Executor
+//! Environment Command Executor
 //!
 //! Executes environment-related commands (time, weather, clouds, fog) by mutating world state.
 //! This is the ONLY place where environment mutations should occur from the editor layer.

@@ -53,7 +53,7 @@ fn check_for_bom(dir: &Path, violations: &mut Vec<String>) {
 
         if path.is_dir() {
             check_for_bom(&path, violations);
-        } else if path.extension().map_or(false, |e| e == "rs") {
+        } else if path.extension().is_some_and(|e| e == "rs") {
             if let Ok(bytes) = fs::read(&path) {
                 // Check for UTF-8 BOM: EF BB BF
                 if bytes.len() >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF {

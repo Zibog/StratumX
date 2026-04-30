@@ -8,6 +8,7 @@ authors.workspace = true
 [dependencies]
 serde.workspace = true
 serde_json.workspace = true
+stratumx_editor_state_containers = { path = "../editor-state-containers" }
 
 [features]
 desktop = []

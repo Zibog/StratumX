@@ -1,0 +1,13 @@
+[package]
+name = "stratumx_editor_state_containers"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+uuid = { workspace = true, features = ["v4"] }
+stratumx-editor-l8-10-diagnostics-surface = { path = "../l8.10-diagnostics-surface" }
+engine_world = { path = "../../2.engine/l0-world-truth" }

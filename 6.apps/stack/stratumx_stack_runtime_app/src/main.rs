@@ -1,6 +1,6 @@
 use clap::Parser;
 use engine_core::EngineCoreResult;
-use engine_runtime::{RuntimeKernel, RuntimeConfig, RuntimeProfile};
+use engine_runtime::{RuntimeConfig, RuntimeKernel, RuntimeProfile};
 
 #[derive(Parser, Debug)]
 #[command(name = "stratumx_stack_runtime_app")]

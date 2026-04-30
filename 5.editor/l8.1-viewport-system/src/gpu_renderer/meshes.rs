@@ -24,7 +24,7 @@ pub(crate) fn create_empty_terrain_mesh() -> (Vec<Vertex>, Vec<u16>) {
     (vertices, indices)
 }
 pub(crate) fn create_terrain_mesh_from_world(world: &WorldState) -> (Vec<Vertex>, Vec<u16>) {
-    if let Some(scene) = world.vertical_slice_scene() {
+    if let Some(scene) = world.proof_region_scene() {
         let terrain = &scene.terrain;
         let res_x = terrain.resolution[0] as usize;
         let res_z = terrain.resolution[1] as usize;
@@ -126,7 +126,7 @@ pub(crate) fn create_cloud_meshes(
     let mut vertices = Vec::new();
     let mut indices = Vec::new();
 
-    if let Some(scene) = world.vertical_slice_scene() {
+    if let Some(scene) = world.proof_region_scene() {
         let sky = &scene.sky;
 
         let cloud_coverage = match sky.weather_director.target_regime {

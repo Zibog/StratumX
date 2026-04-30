@@ -6,6 +6,7 @@
 mod errors;
 mod rules;
 mod validators;
+mod verdicts;
 
-pub use errors::ValidationResult;
 pub use validators::validate_command;
+pub use verdicts::ValidationResult;

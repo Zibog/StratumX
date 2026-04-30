@@ -1,6 +1,6 @@
 # Material First Acoustic Response Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze acoustic response as a first-class derivative of material law so sound-family selection, state modifiers, hollowness, leakage, occlusion, and cheap substitution are driven by material truth rather than ad hoc audio-only logic.

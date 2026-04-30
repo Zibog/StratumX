@@ -1,6 +1,6 @@
 # World Scale Geodesy Coordinate And Far Causality Constitution Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the exact coordinate, precision, rebasing, and far-causality law for a 1:1-scale world.

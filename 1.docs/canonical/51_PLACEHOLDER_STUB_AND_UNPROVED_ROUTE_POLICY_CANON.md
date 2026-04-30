@@ -1,6 +1,6 @@
 # Placeholder Stub and Unproved Route Policy Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Allow stubs only when they are visible, named, and replaceable.

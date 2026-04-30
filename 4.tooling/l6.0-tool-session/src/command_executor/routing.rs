@@ -5,10 +5,12 @@
 
 use super::core::CommandExecutor;
 use crate::{ToolingError, ToolingRuntime};
+use link_ingress_packets::VerticalSliceIngressPacket;
 use stratumx_tooling_l6_1_command_envelopes::PromotedCommand;
 
 pub fn route_promoted_command(
     executor: &mut CommandExecutor,
+    command_id: u64,
     command: PromotedCommand,
     runtime: &mut ToolingRuntime,
 ) -> Result<Vec<u8>, ToolingError> {
@@ -111,14 +113,45 @@ pub fn route_promoted_command(
         | PromotedCommand::ShellActivateSkyLab => executor.shell_executor.execute(command, runtime),
 
         // Scene commands (legacy vertical slice) - delegated to packet executor
-        // through canonical SDK ingress boundary. These are temporary shim calls
-        // pending full migration to command envelope execution.
-        PromotedCommand::SceneBootstrap
-        | PromotedCommand::SceneFireTestShot { .. }
-        | PromotedCommand::SceneReset => {
-            // Deferred: route through canonical SDK ingress packet handler
-            // For now, return a placeholder success response
-            Ok(vec![])
+        // through the canonical SDK ingress boundary and real preview runtime session.
+        PromotedCommand::SceneBootstrap => {
+            let observation = executor
+                .packet_executor
+                .execute_packet(VerticalSliceIngressPacket::bootstrap_scene(command_id))
+                .map_err(ToolingError::Message)?;
+            serde_json::to_vec(&observation).map_err(|error| {
+                ToolingError::Message(format!(
+                    "scene observation serialization failed: {}",
+                    error
+                ))
+            })
+        }
+        PromotedCommand::SceneFireTestShot { weapon_entity_id } => {
+            let observation = executor
+                .packet_executor
+                .execute_packet(VerticalSliceIngressPacket::fire_test_shot(
+                    command_id,
+                    *weapon_entity_id,
+                ))
+                .map_err(ToolingError::Message)?;
+            serde_json::to_vec(&observation).map_err(|error| {
+                ToolingError::Message(format!(
+                    "scene observation serialization failed: {}",
+                    error
+                ))
+            })
+        }
+        PromotedCommand::SceneReset => {
+            let observation = executor
+                .packet_executor
+                .execute_packet(VerticalSliceIngressPacket::reset_scene(command_id))
+                .map_err(ToolingError::Message)?;
+            serde_json::to_vec(&observation).map_err(|error| {
+                ToolingError::Message(format!(
+                    "scene observation serialization failed: {}",
+                    error
+                ))
+            })
         }
     }
 }

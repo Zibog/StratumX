@@ -202,7 +202,7 @@ fn test_hygiene_report_format() {
 
     // Verify report structure
     assert!(
-        report.violations.len() > 0,
+        !report.violations.is_empty(),
         "Report should contain violations"
     );
     assert!(

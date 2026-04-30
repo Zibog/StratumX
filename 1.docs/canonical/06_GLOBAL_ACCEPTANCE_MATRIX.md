@@ -1,13 +1,13 @@
 # Global Acceptance Matrix
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This matrix states what must be true for the active contour to count as one sealed canonical system rather than an accretion of patch waves.
 
 | Row | Requirement | Status | Notes |
 |---|---|---|---|
-| ROOT-001 | one active stack marker governs the active contour | pass | the governing marker is `SX-CANON/1.0.24/STACK-v30` |
+| ROOT-001 | one active stack marker governs the active contour | pass | the governing marker is `SX-CANON/1.0.28/STACK-v34` |
 | ROOT-002 | root doctrine is orchestration-grade and not scaffold-grade | pass | root `40`, `42`, `43`, `71–83` remain the authoritative orchestration spine |
 | ROOT-003 | material-first closure is singular and active | pass | root `84–98` remain integrated into the active contour |
 | ROOT-004 | native backend portability law is explicit | pass | root `100`, engine `103–107`, sdk `64–78`, tooling `67–82`, editor `115` align |

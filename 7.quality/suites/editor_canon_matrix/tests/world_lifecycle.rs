@@ -1,25 +1,4 @@
-//! World Lifecycle: проверка жизненного цикла мира в редакторе
-
-#[test]
-fn world_create() {
-    // Проверка создания мира
-    assert!(true, "World create placeholder");
-}
-
-#[test]
-fn world_open() {
-    // Проверка открытия мира
-    assert!(true, "World open placeholder");
-}
-
-#[test]
-fn world_save() {
-    // Проверка сохранения мира
-    assert!(true, "World save placeholder");
-}
-
-#[test]
-fn world_close() {
-    // Проверка закрытия мира
-    assert!(true, "World close placeholder");
-}
+// World Lifecycle: проверка жизненного цикла мира в редакторе
+//
+// Note: Placeholder assert!(true) tests removed per Phase 1 cleanup.
+// Real tests must be implemented when world lifecycle surface is integrated.

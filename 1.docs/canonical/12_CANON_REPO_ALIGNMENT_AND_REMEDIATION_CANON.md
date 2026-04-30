@@ -1,6 +1,6 @@
 # Canon, Repo Alignment, and Remediation Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This document freezes the code-aware normalization plan for turning the current repository from split-brain posture into one honest editor product spine.

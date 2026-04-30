@@ -36,10 +36,9 @@ fn test_destination_mapping_command_spine() {
     let source = repo
         .path()
         .join("5.editor/l7.0-editor-command-spine/src/command_tests.rs");
-    let dest = migrator.determine_destination(&source);
-
-    assert!(dest.is_some());
-    let dest = dest.unwrap();
+    let dest = migrator
+        .determine_destination(&source)
+        .expect("Expected command spine destination");
     assert!(dest.to_string_lossy().contains("7.quality/suites"));
     assert!(dest
         .to_string_lossy()
@@ -55,10 +54,9 @@ fn test_destination_mapping_editor_shell() {
     let source = repo
         .path()
         .join("5.editor/l8.0-editor-shell/src/shell_tests.rs");
-    let dest = migrator.determine_destination(&source);
-
-    assert!(dest.is_some());
-    let dest = dest.unwrap();
+    let dest = migrator
+        .determine_destination(&source)
+        .expect("Expected editor shell destination");
     assert!(dest.to_string_lossy().contains("7.quality/suites"));
     assert!(dest
         .to_string_lossy()
@@ -74,10 +72,9 @@ fn test_destination_mapping_desktop_app() {
     let source = repo
         .path()
         .join("6.apps/editor/stratumx_editor_app/src/desktop_app/panel_tests.rs");
-    let dest = migrator.determine_destination(&source);
-
-    assert!(dest.is_some());
-    let dest = dest.unwrap();
+    let dest = migrator
+        .determine_destination(&source)
+        .expect("Expected desktop app destination");
     assert!(dest.to_string_lossy().contains("7.quality/suites"));
     assert!(dest
         .to_string_lossy()
@@ -93,10 +90,9 @@ fn test_destination_mapping_tool_session() {
     let source = repo
         .path()
         .join("4.tooling/l6.0-tool-session/src/session_tests.rs");
-    let dest = migrator.determine_destination(&source);
-
-    assert!(dest.is_some());
-    let dest = dest.unwrap();
+    let dest = migrator
+        .determine_destination(&source)
+        .expect("Expected tool session destination");
     assert!(dest.to_string_lossy().contains("7.quality/suites"));
     assert!(dest
         .to_string_lossy()
@@ -112,10 +108,9 @@ fn test_destination_mapping_state_containers() {
     let source = repo
         .path()
         .join("5.editor/editor-state-containers/src/container_tests.rs");
-    let dest = migrator.determine_destination(&source);
-
-    assert!(dest.is_some());
-    let dest = dest.unwrap();
+    let dest = migrator
+        .determine_destination(&source)
+        .expect("Expected state containers destination");
     assert!(dest.to_string_lossy().contains("7.quality/suites"));
     assert!(dest
         .to_string_lossy()
@@ -164,10 +159,9 @@ fn test_something() {
 
     // Perform dry-run migration
     let migrator = TestMigrator::new(repo.path().to_path_buf(), true);
-    let result = migrator.migrate_test(&candidate);
-
-    assert!(result.is_ok());
-    let migration_result = result.unwrap();
+    let migration_result = migrator
+        .migrate_test(&candidate)
+        .expect("Dry-run migration should succeed");
 
     // Verify source path is correct
     assert_eq!(migration_result.source_path, source_path);
@@ -370,10 +364,9 @@ fn test_regression_file_detection() {
         .join("7.quality/suites/editor_canon_matrix/command_spine/property_test.rs");
 
     let migrator = TestMigrator::new(repo.path().to_path_buf(), false);
-    let result = migrator.preserve_regression_files(&source_path, &dest_path);
-
-    assert!(result.is_ok());
-    let moved_files = result.unwrap();
+    let moved_files = migrator
+        .preserve_regression_files(&source_path, &dest_path)
+        .expect("Regression file preservation should succeed");
 
     // Should have moved the regression file
     assert_eq!(moved_files.len(), 1);
@@ -399,10 +392,9 @@ fn test_regression_file_preservation_no_regressions() {
         .join("7.quality/suites/editor_canon_matrix/command_spine/test.rs");
 
     let migrator = TestMigrator::new(repo.path().to_path_buf(), false);
-    let result = migrator.preserve_regression_files(&source_path, &dest_path);
-
-    assert!(result.is_ok());
-    let moved_files = result.unwrap();
+    let moved_files = migrator
+        .preserve_regression_files(&source_path, &dest_path)
+        .expect("Regression file preservation should succeed");
 
     // Should have no moved files
     assert_eq!(moved_files.len(), 0);
@@ -430,10 +422,9 @@ fn test_regression_file_preservation_multiple_files() {
         .join("7.quality/suites/editor_canon_matrix/command_spine/property_test.rs");
 
     let migrator = TestMigrator::new(repo.path().to_path_buf(), false);
-    let result = migrator.preserve_regression_files(&source_path, &dest_path);
-
-    assert!(result.is_ok());
-    let moved_files = result.unwrap();
+    let moved_files = migrator
+        .preserve_regression_files(&source_path, &dest_path)
+        .expect("Regression file preservation should succeed");
 
     // Should have moved both regression files
     assert_eq!(moved_files.len(), 2);
@@ -453,11 +444,9 @@ fn test_compilation_verification_tracks_status() {
     fs::write(&test_path, "#[test] fn test() { assert!(true); }").unwrap();
 
     let migrator = TestMigrator::new(repo.path().to_path_buf(), false);
-    let result = migrator.verify_compilation(&test_path);
-
-    // Should return a compilation status (may succeed or fail depending on environment)
-    assert!(result.is_ok());
-    let status = result.unwrap();
+    let status = migrator
+        .verify_compilation(&test_path)
+        .expect("Compilation verification should return a status");
 
     // Status should be one of the valid enum values
     assert!(matches!(

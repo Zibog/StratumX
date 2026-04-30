@@ -55,7 +55,7 @@ fn check_module_references(dir: &Path, violations: &mut Vec<(String, usize, Stri
 
         if path.is_dir() {
             check_module_references(&path, violations);
-        } else if path.extension().map_or(false, |e| e == "rs") {
+        } else if path.extension().is_some_and(|e| e == "rs") {
             if let Ok(content) = fs::read_to_string(&path) {
                 let relative_path = path
                     .strip_prefix(workspace_root)
@@ -65,14 +65,26 @@ fn check_module_references(dir: &Path, violations: &mut Vec<(String, usize, Stri
 
                 let parent_dir = path.parent().unwrap();
 
+                let mut skip_next_mod = false;
                 for (line_num, line) in content.lines().enumerate() {
                     let trimmed = line.trim();
 
+                    // Skip next mod if previous line had #[cfg(...)] or #[path = "..."]
+                    if trimmed.starts_with("#[cfg(") || trimmed.starts_with("#[path") {
+                        skip_next_mod = true;
+                        continue;
+                    }
+
                     // Match "mod module_name;" or "pub mod module_name;"
                     if let Some(module_name) = extract_module_declaration(trimmed) {
+                        if skip_next_mod {
+                            skip_next_mod = false;
+                            continue;
+                        }
+
                         // Check if module file exists in same directory or as subdirectory
                         let module_file_sibling = parent_dir.join(format!("{}.rs", module_name));
-                        let module_dir_child = parent_dir.join(&module_name).join("mod.rs");
+                        let module_dir_child = parent_dir.join(module_name).join("mod.rs");
 
                         // For non-mod.rs files, also check in subdirectory named after the file
                         let file_stem = path.file_stem().unwrap().to_str().unwrap();
@@ -86,15 +98,15 @@ fn check_module_references(dir: &Path, violations: &mut Vec<(String, usize, Stri
                             None
                         };
                         let module_dir_in_subdir = if file_stem != "mod" {
-                            Some(parent_dir.join(file_stem).join(&module_name).join("mod.rs"))
+                            Some(parent_dir.join(file_stem).join(module_name).join("mod.rs"))
                         } else {
                             None
                         };
 
                         let exists = module_file_sibling.exists()
                             || module_dir_child.exists()
-                            || module_file_in_subdir.as_ref().map_or(false, |p| p.exists())
-                            || module_dir_in_subdir.as_ref().map_or(false, |p| p.exists());
+                            || module_file_in_subdir.as_ref().is_some_and(|p| p.exists())
+                            || module_dir_in_subdir.as_ref().is_some_and(|p| p.exists());
 
                         if !exists {
                             let mut expected_paths = Vec::new();

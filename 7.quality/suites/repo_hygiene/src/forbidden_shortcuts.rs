@@ -34,70 +34,70 @@ impl ForbiddenShortcutScanner {
     /// Scan for layer boundary violations across the entire codebase
     pub fn scan_layer_boundaries(&self) -> Vec<ForbiddenShortcutViolation> {
         let mut violations = Vec::new();
-        
+
         // Check editor layer doesn't import engine types directly
         violations.extend(self.scan_editor_to_engine_violations());
-        
+
         // Check tooling layer doesn't import editor types
         violations.extend(self.scan_tooling_to_editor_violations());
-        
+
         // Check apps don't contain domain logic
         violations.extend(self.scan_apps_domain_logic());
-        
+
         violations
     }
 
     fn scan_editor_to_engine_violations(&self) -> Vec<ForbiddenShortcutViolation> {
         let mut violations = Vec::new();
         let editor_dir = self.repo_root.join("5.editor");
-        
+
         if !editor_dir.exists() {
             return violations;
         }
-        
+
         let mut editor_files = Vec::new();
         self.walk_rust_files(&editor_dir, &mut editor_files);
-        
+
         for file in editor_files {
             violations.extend(self.scan_file_for_engine_imports(&file));
         }
-        
+
         violations
     }
 
     fn scan_tooling_to_editor_violations(&self) -> Vec<ForbiddenShortcutViolation> {
         let mut violations = Vec::new();
         let tooling_dir = self.repo_root.join("4.tooling");
-        
+
         if !tooling_dir.exists() {
             return violations;
         }
-        
+
         let mut tooling_files = Vec::new();
         self.walk_rust_files(&tooling_dir, &mut tooling_files);
-        
+
         for file in tooling_files {
             violations.extend(self.scan_file_for_editor_imports(&file));
         }
-        
+
         violations
     }
 
     fn scan_apps_domain_logic(&self) -> Vec<ForbiddenShortcutViolation> {
         let mut violations = Vec::new();
         let apps_dir = self.repo_root.join("6.apps");
-        
+
         if !apps_dir.exists() {
             return violations;
         }
-        
+
         let mut app_files = Vec::new();
         self.walk_rust_files(&apps_dir, &mut app_files);
-        
+
         for file in app_files {
             violations.extend(self.scan_file_for_domain_logic(&file));
         }
-        
+
         violations
     }
 
@@ -106,26 +106,26 @@ impl ForbiddenShortcutScanner {
             Ok(content) => content,
             Err(_) => return Vec::new(),
         };
-        
+
         let mut violations = Vec::new();
-        
+
         for (index, line) in content.lines().enumerate() {
             let trimmed = line.trim();
-            
+
             // Check for direct engine imports (use statements from 2.engine packages)
             if trimmed.starts_with("use ") && self.is_engine_import(trimmed) {
                 let imported_type = self.extract_import_path(trimmed);
                 violations.push(ForbiddenShortcutViolation {
                     file: path.to_path_buf(),
                     line: index + 1,
-                    shortcut: ForbiddenShortcut::EditorImportsEngine { 
-                        imported_type: imported_type.clone() 
+                    shortcut: ForbiddenShortcut::EditorImportsEngine {
+                        imported_type: imported_type.clone(),
                     },
                     snippet: trimmed.to_string(),
                 });
             }
         }
-        
+
         violations
     }
 
@@ -134,26 +134,26 @@ impl ForbiddenShortcutScanner {
             Ok(content) => content,
             Err(_) => return Vec::new(),
         };
-        
+
         let mut violations = Vec::new();
-        
+
         for (index, line) in content.lines().enumerate() {
             let trimmed = line.trim();
-            
+
             // Check for editor imports (use statements from 5.editor packages)
             if trimmed.starts_with("use ") && self.is_editor_import(trimmed) {
                 let imported_type = self.extract_import_path(trimmed);
                 violations.push(ForbiddenShortcutViolation {
                     file: path.to_path_buf(),
                     line: index + 1,
-                    shortcut: ForbiddenShortcut::ToolingImportsEditor { 
-                        imported_type: imported_type.clone() 
+                    shortcut: ForbiddenShortcut::ToolingImportsEditor {
+                        imported_type: imported_type.clone(),
                     },
                     snippet: trimmed.to_string(),
                 });
             }
         }
-        
+
         violations
     }
 
@@ -162,12 +162,12 @@ impl ForbiddenShortcutScanner {
             Ok(content) => content,
             Err(_) => return Vec::new(),
         };
-        
+
         let mut violations = Vec::new();
-        
+
         for (index, line) in content.lines().enumerate() {
             let trimmed = line.trim();
-            
+
             // Check for domain logic patterns in apps
             // Domain logic indicators: complex business logic, state management, validation
             if self.is_domain_logic_pattern(trimmed) {
@@ -175,14 +175,14 @@ impl ForbiddenShortcutScanner {
                 violations.push(ForbiddenShortcutViolation {
                     file: path.to_path_buf(),
                     line: index + 1,
-                    shortcut: ForbiddenShortcut::AppContainsDomainLogic { 
-                        pattern: pattern.clone() 
+                    shortcut: ForbiddenShortcut::AppContainsDomainLogic {
+                        pattern: pattern.clone(),
                     },
                     snippet: trimmed.to_string(),
                 });
             }
         }
-        
+
         violations
     }
 
@@ -227,42 +227,44 @@ impl ForbiddenShortcutScanner {
     pub fn is_domain_logic_pattern(&self, line: &str) -> bool {
         // Domain logic patterns that shouldn't be in apps
         // These are heuristics - apps should only have bootstrap/wiring
-        
+
         // Skip comments and simple declarations
         if line.starts_with("//") || line.starts_with("/*") {
             return false;
         }
-        
+
         // Skip UI event handlers - these are legitimate app concerns
-        if line.contains("handle_shortcuts") || 
-           line.contains("handle_input") ||
-           line.contains("handle_event") ||
-           line.contains("handle_ui") {
+        if line.contains("handle_shortcuts")
+            || line.contains("handle_input")
+            || line.contains("handle_event")
+            || line.contains("handle_ui")
+        {
             return false;
         }
-        
+
         // Check for complex validation logic (not simple input validation)
-        if line.contains("validate_") && line.contains("fn ") && 
-           !line.contains("validate_input") {
+        if line.contains("validate_") && line.contains("fn ") && !line.contains("validate_input") {
             return true;
         }
-        
+
         // Check for business rule implementations
-        if (line.contains("calculate_") || line.contains("compute_")) && 
-           line.contains("fn ") &&
-           !line.contains("calculate_layout") {
+        if (line.contains("calculate_") || line.contains("compute_"))
+            && line.contains("fn ")
+            && !line.contains("calculate_layout")
+        {
             return true;
         }
-        
+
         // Check for state mutation logic (not simple setters or UI state)
-        if line.contains("mut ") && (
-            line.contains("process_command") || 
-            line.contains("apply_rules") ||
-            line.contains("execute_business")
-        ) && line.contains("fn ") {
+        if line.contains("mut ")
+            && (line.contains("process_command")
+                || line.contains("apply_rules")
+                || line.contains("execute_business"))
+            && line.contains("fn ")
+        {
             return true;
         }
-        
+
         false
     }
 
@@ -424,13 +426,13 @@ mod tests {
     #[test]
     fn detects_editor_importing_engine_types() {
         let scanner = ForbiddenShortcutScanner::new(PathBuf::from("/fake/repo"));
-        
+
         let line = "use l0_world_truth::WorldState;";
         assert!(scanner.is_engine_import(line));
-        
+
         let line = "use crate::l1::runtime::Runtime;";
         assert!(scanner.is_engine_import(line));
-        
+
         let line = "use l5_link_ingress_packets::Command;";
         assert!(!scanner.is_engine_import(line));
     }
@@ -438,13 +440,13 @@ mod tests {
     #[test]
     fn detects_tooling_importing_editor_types() {
         let scanner = ForbiddenShortcutScanner::new(PathBuf::from("/fake/repo"));
-        
+
         let line = "use l7_editor_command_spine::EditorCommand;";
         assert!(scanner.is_editor_import(line));
-        
+
         let line = "use l8_editor_shell::Shell;";
         assert!(scanner.is_editor_import(line));
-        
+
         let line = "use l6_authority_core::Authority;";
         assert!(!scanner.is_editor_import(line));
     }
@@ -452,20 +454,20 @@ mod tests {
     #[test]
     fn detects_domain_logic_in_apps() {
         let scanner = ForbiddenShortcutScanner::new(PathBuf::from("/fake/repo"));
-        
+
         // Should detect validation functions (not input validation)
         assert!(scanner.is_domain_logic_pattern("fn validate_world_state() {"));
-        
+
         // Should detect calculation functions (not layout)
         assert!(scanner.is_domain_logic_pattern("fn calculate_terrain_height() {"));
-        
+
         // Should detect business logic processors
         assert!(scanner.is_domain_logic_pattern("fn process_command mut data() {"));
-        
+
         // Should NOT detect simple bootstrap code
         assert!(!scanner.is_domain_logic_pattern("fn main() {"));
         assert!(!scanner.is_domain_logic_pattern("// This is a comment about validation"));
-        
+
         // Should NOT detect UI event handlers
         assert!(!scanner.is_domain_logic_pattern("fn handle_shortcuts(&mut self) {"));
         assert!(!scanner.is_domain_logic_pattern("fn handle_input(&mut self) {"));
@@ -474,10 +476,10 @@ mod tests {
     #[test]
     fn extracts_import_paths_correctly() {
         let scanner = ForbiddenShortcutScanner::new(PathBuf::from("/fake/repo"));
-        
+
         let path = scanner.extract_import_path("use l0_world_truth::WorldState;");
         assert_eq!(path, "l0_world_truth::WorldState");
-        
+
         let path = scanner.extract_import_path("use crate::l1::runtime::Runtime;");
         assert_eq!(path, "crate::l1::runtime");
     }

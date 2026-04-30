@@ -23,7 +23,7 @@ fn regression_command_spine_bootstrap_repeatable() {
         let bootstrapper = ReferenceRegionBootstrapper::new(scene);
         let state = bootstrapper
             .bootstrap(&mut world)
-            .expect(&format!("bootstrap run {}", run));
+            .unwrap_or_else(|_| panic!("bootstrap run {}", run));
 
         // Verify consistent results
         assert_eq!(
@@ -55,7 +55,7 @@ fn regression_command_spine_save_load_repeatable() {
 
         let bytes = world
             .snapshot_bytes(run + 1)
-            .expect(&format!("serialize run {}", run));
+            .unwrap_or_else(|_| panic!("serialize run {}", run));
         assert!(!bytes.is_empty(), "Run {}: snapshot bytes", run);
     }
 }

@@ -3,6 +3,7 @@
 //! Per canon 02_STACK_MAP: L8.0 = shell host only, no domain logic.
 //! Domain logic lives in L8.1+ systems.
 
+#[derive(Default)]
 pub struct EditorShell {
     pub project_id: Option<String>,
     pub active_panels: Vec<String>,
@@ -10,9 +11,6 @@ pub struct EditorShell {
 
 impl EditorShell {
     pub fn new() -> Self {
-        Self {
-            project_id: None,
-            active_panels: Vec::new(),
-        }
+        Self::default()
     }
 }

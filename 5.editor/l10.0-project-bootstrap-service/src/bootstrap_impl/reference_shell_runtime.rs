@@ -51,15 +51,11 @@ impl EditorProduct {
             },
             assistant_surface: AssistantSurface {
                 goal_draft: String::new(),
-                staged_proposal: None,
             },
             diagnostics_surface: DiagnosticsSurface {
                 diagnostics: Vec::new(),
             },
-            build_release_surface: BuildReleaseSurface {
-                last_build: None,
-                last_release: None,
-            },
+            build_release_surface: BuildReleaseSurface { last_build: None },
             world_suite: WorldAuthoringSuite {
                 world_roots: vec![world],
             },

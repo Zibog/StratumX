@@ -522,10 +522,7 @@ fn format_missing_components(missing: &[serde_json::Value]) -> String {
     output
 }
 
-fn format_canonical_packages(
-    canonical: &[CanonicalPackage],
-    actual: &HashSet<String>,
-) -> String {
+fn format_canonical_packages(canonical: &[CanonicalPackage], actual: &HashSet<String>) -> String {
     let mut output = String::new();
     for pkg in canonical {
         let status = if actual.contains(&pkg.name) {
@@ -541,7 +538,8 @@ fn format_canonical_packages(
 fn format_heavy_domains(domains: &[HeavyDomain]) -> String {
     let mut output = String::new();
     for domain in domains {
-        let complete = domain.has_engine && domain.has_sdk && domain.has_tooling && domain.has_editor;
+        let complete =
+            domain.has_engine && domain.has_sdk && domain.has_tooling && domain.has_editor;
         let status = if complete { "✓" } else { "✗" };
         output.push_str(&format!(
             "{} {} (engine:{} sdk:{} tooling:{} editor:{})\n",

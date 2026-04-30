@@ -90,11 +90,12 @@ proptest! {
         );
 
         // Verify all events are SaveGenerationIncremented
-        for event in captured_events.iter() {
-            match event {
-                ProjectStateEvent::SaveGenerationIncremented { .. } => {},
-                _ => prop_assert!(false, "Expected SaveGenerationIncremented event"),
-            }
+        for (index, event) in captured_events.iter().enumerate() {
+            prop_assert_eq!(
+                event,
+                &format!("SaveGenerationIncremented:{}", index + 1),
+                "Expected save-generation event sequence to remain exact"
+            );
         }
 
         // ====================================================================
@@ -164,7 +165,7 @@ proptest! {
         let world_events = Arc::new(Mutex::new(Vec::new()));
         let world_events_clone = world_events.clone();
         world_state.set_event_callback(Box::new(move |event| {
-            world_events_clone.lock().unwrap().push(event);
+            world_events_clone.lock().unwrap().push(event.to_string());
         }));
 
         // Perform mutations through container methods
@@ -211,6 +212,27 @@ proptest! {
             (if mutation_ops.update_environment_state { 1 } else { 0 }) +
             mutation_ops.diagnostics_to_add;
         prop_assert_eq!(captured_world_events.len(), expected_event_count);
+        if mutation_ops.update_terrain_state {
+            prop_assert!(
+                captured_world_events.iter().any(|event| *event == "TerrainStateUpdated"),
+                "Terrain mutation should emit TerrainStateUpdated"
+            );
+        }
+        if mutation_ops.update_environment_state {
+            prop_assert!(
+                captured_world_events.iter().any(|event| *event == "EnvironmentStateUpdated"),
+                "Environment mutation should emit EnvironmentStateUpdated"
+            );
+        }
+        let diagnostic_events = captured_world_events
+            .iter()
+            .filter(|event| **event == "DiagnosticAdded")
+            .count();
+        prop_assert_eq!(
+            diagnostic_events,
+            mutation_ops.diagnostics_to_add,
+            "Each diagnostic mutation should emit DiagnosticAdded"
+        );
 
         // ====================================================================
         // Test 4: Material_Registry_State mutations occur through container
@@ -478,10 +500,7 @@ mod unit_tests {
         // Verify event was emitted
         let captured_events = events.lock().unwrap();
         assert_eq!(captured_events.len(), 1);
-        assert!(matches!(
-            captured_events[0],
-            ProjectStateEvent::SaveGenerationIncremented { new_generation: 1 }
-        ));
+        assert_eq!(captured_events[0], "SaveGenerationIncremented:1");
     }
 
     #[test]
@@ -521,7 +540,7 @@ mod unit_tests {
         let events = Arc::new(Mutex::new(Vec::new()));
         let events_clone = events.clone();
         world_state.set_event_callback(Box::new(move |event| {
-            events_clone.lock().unwrap().push(event);
+            events_clone.lock().unwrap().push(event.to_string());
         }));
 
         // Mutate through container method
@@ -534,10 +553,7 @@ mod unit_tests {
         // Verify event was emitted
         let captured_events = events.lock().unwrap();
         assert_eq!(captured_events.len(), 1);
-        assert!(matches!(
-            captured_events[0],
-            WorldStateEvent::TerrainStateUpdated
-        ));
+        assert_eq!(captured_events[0], "TerrainStateUpdated");
     }
 
     #[test]

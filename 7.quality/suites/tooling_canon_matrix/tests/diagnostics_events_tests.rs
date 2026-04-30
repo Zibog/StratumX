@@ -22,13 +22,16 @@ fn canonical_level_not_empty() {
 
 #[test]
 fn marker_default() {
-    let m = L66ToolDiagnosticsEventsMarker::default();
+    let m = L66ToolDiagnosticsEventsMarker;
     assert_eq!(m, L66ToolDiagnosticsEventsMarker);
 }
 
 #[test]
 fn marker_equality() {
-    assert_eq!(L66ToolDiagnosticsEventsMarker, L66ToolDiagnosticsEventsMarker);
+    assert_eq!(
+        L66ToolDiagnosticsEventsMarker,
+        L66ToolDiagnosticsEventsMarker
+    );
 }
 
 #[test]
@@ -127,12 +130,7 @@ fn diagnostic_severity_roundtrip() {
 
 #[test]
 fn diagnostic_event_new() {
-    let event = DiagnosticEvent::new(
-        1,
-        DiagnosticSeverity::Info,
-        "test_source",
-        "Test message",
-    );
+    let event = DiagnosticEvent::new(1, DiagnosticSeverity::Info, "test_source", "Test message");
     assert_eq!(event.event_id, 1);
     assert_eq!(event.severity, DiagnosticSeverity::Info);
     assert_eq!(event.source, "test_source");
@@ -143,8 +141,8 @@ fn diagnostic_event_new() {
 
 #[test]
 fn diagnostic_event_with_command_id() {
-    let event = DiagnosticEvent::new(2, DiagnosticSeverity::Error, "src", "err")
-        .with_command_id(42);
+    let event =
+        DiagnosticEvent::new(2, DiagnosticSeverity::Error, "src", "err").with_command_id(42);
     assert_eq!(event.command_id, Some(42));
 }
 
@@ -179,8 +177,8 @@ fn diagnostic_event_equality() {
 
 #[test]
 fn diagnostic_event_clone() {
-    let event = DiagnosticEvent::new(1, DiagnosticSeverity::Warning, "src", "warn")
-        .with_command_id(10);
+    let event =
+        DiagnosticEvent::new(1, DiagnosticSeverity::Warning, "src", "warn").with_command_id(10);
     let cloned = event.clone();
     assert_eq!(event.event_id, cloned.event_id);
     assert_eq!(event.command_id, cloned.command_id);
@@ -203,8 +201,8 @@ fn diagnostic_event_serializes() {
 
 #[test]
 fn diagnostic_event_serializes_with_command() {
-    let event =
-        DiagnosticEvent::new(5, DiagnosticSeverity::Error, "build", "compile error").with_command_id(99);
+    let event = DiagnosticEvent::new(5, DiagnosticSeverity::Error, "build", "compile error")
+        .with_command_id(99);
     let json = serde_json::to_value(&event).unwrap();
     assert_eq!(json["command_id"], 99);
 }
@@ -289,12 +287,7 @@ fn publisher_event_ids_increment() {
 #[test]
 fn publisher_publish_with_command() {
     let mut pub_ = DiagnosticsPublisher::new();
-    let id = pub_.publish_with_command(
-        DiagnosticSeverity::Error,
-        "build",
-        "compile error",
-        42,
-    );
+    let id = pub_.publish_with_command(DiagnosticSeverity::Error, "build", "compile error", 42);
     assert_eq!(id, 1);
     assert_eq!(pub_.events().len(), 1);
     assert_eq!(pub_.events()[0].command_id, Some(42));
@@ -382,11 +375,7 @@ fn publisher_source_filter() {
     pub_.publish(DiagnosticSeverity::Info, "lint", "lint msg");
     pub_.publish(DiagnosticSeverity::Info, "build", "another build msg");
 
-    let build_count = pub_
-        .events()
-        .iter()
-        .filter(|e| e.source == "build")
-        .count();
+    let build_count = pub_.events().iter().filter(|e| e.source == "build").count();
     assert_eq!(build_count, 2);
 }
 
@@ -394,7 +383,7 @@ fn publisher_source_filter() {
 fn publisher_large_volume() {
     let mut pub_ = DiagnosticsPublisher::new();
     for i in 0..100 {
-        pub_.publish(DiagnosticSeverity::Info, "src", &format!("msg {}", i));
+        pub_.publish(DiagnosticSeverity::Info, "src", format!("msg {}", i));
     }
     assert_eq!(pub_.events().len(), 100);
     assert_eq!(pub_.events()[99].message, "msg 99");
@@ -403,7 +392,11 @@ fn publisher_large_volume() {
 #[test]
 fn publisher_event_message_content() {
     let mut pub_ = DiagnosticsPublisher::new();
-    pub_.publish(DiagnosticSeverity::Warning, "validator", "missing field 'name'");
+    pub_.publish(
+        DiagnosticSeverity::Warning,
+        "validator",
+        "missing field 'name'",
+    );
     let event = &pub_.events()[0];
     assert!(event.message.contains("missing field"));
 }

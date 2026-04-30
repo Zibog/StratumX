@@ -2,7 +2,7 @@
 
 use super::WorldLifecycleManager;
 use editor_dto_law::{BindPosture, ProfileRef, StableWorldId, WorldBindState, WorldOpenResult};
-use engine_world::{EntityId, TerrainPatchState, VerticalSliceScene, WorldState};
+use engine_world::{EntityId, TerrainPatchState, ProofRegionScene, WorldState};
 use uuid::Uuid;
 
 /// Default material profile from registry
@@ -42,7 +42,7 @@ impl WorldLifecycleManager {
         // Use canonical material profile from registry
         let _terrain_material_profile = ProfileRef(default_terrain_material_profile());
 
-        let scene = VerticalSliceScene {
+        let scene = ProofRegionScene {
             scene_name: "Startup World".to_string(),
             terrain: TerrainPatchState {
                 entity_id: EntityId(1),
@@ -111,7 +111,7 @@ impl WorldLifecycleManager {
             sky_bundle_path: Some("shared/sky/sky_bundle.json".to_string()),
         };
 
-        world.set_vertical_slice_scene(scene);
+        world.set_proof_region_scene(scene);
 
         self.world_state = Some(world);
         self.current_world = Some(world_ref);

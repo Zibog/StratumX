@@ -17,9 +17,9 @@ cargo test -p forbidden_shortcuts --lib -- `
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""
-    Write-Host "✓ Layer boundary checks passed!" -ForegroundColor Green
+    Write-Host "PASS: Layer boundary checks passed!" -ForegroundColor Green
 } else {
     Write-Host ""
-    Write-Host "✗ Layer boundary violations found!" -ForegroundColor Red
+    Write-Host "FAIL: Layer boundary violations found!" -ForegroundColor Red
     exit 1
 }

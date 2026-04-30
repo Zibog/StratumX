@@ -1,6 +1,6 @@
 # Material Consequence Tiering And Sleep Wake Law Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the cheap-but-honest runtime law that lets a world material sleep with full behavioral meaning and wake only when a legal trigger demands consequence.

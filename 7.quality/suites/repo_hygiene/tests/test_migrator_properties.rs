@@ -89,12 +89,9 @@ proptest! {
         let source_path = repo.path().join(&source_dir).join(&test_filename);
 
         // Determine destination
-        let destination = migrator.determine_destination(&source_path);
-
-        // Property: Destination should be determined for known source directories
-        prop_assert!(destination.is_some(), "Destination should be determined for known source directory");
-
-        let destination = destination.unwrap();
+        let destination = migrator
+            .determine_destination(&source_path)
+            .expect("Destination should be determined for known source directory");
         let expected_suite = expected_destination_for_source(&source_dir);
 
         // Property: Destination should be in the correct suite
@@ -194,11 +191,9 @@ fn test_another() {
 
         // Perform migration in dry-run mode
         let migrator = TestMigrator::new(repo.path().to_path_buf(), true);
-        let result = migrator.migrate_test(&candidate);
-
-        // Property: Migration should succeed
-        prop_assert!(result.is_ok(), "Migration should succeed");
-
+        let _migration_result = migrator
+            .migrate_test(&candidate)
+            .expect("Migration should succeed");
         // In dry-run mode, source file should still exist with original content
         let source_content = fs::read_to_string(&source_path).unwrap();
 
@@ -256,13 +251,9 @@ fn test_something() {
 
         // Perform migration in dry-run mode
         let migrator = TestMigrator::new(repo.path().to_path_buf(), true);
-        let result = migrator.migrate_test(&candidate);
-
-        // Property: Migration should succeed
-        prop_assert!(result.is_ok(), "Migration should succeed");
-
-        // In dry-run mode, we can't verify actual import updates, but the mechanism should exist
-        let _migration_result = result.unwrap();
+        let _migration_result = migrator
+            .migrate_test(&candidate)
+            .expect("Migration should succeed");
 
         // Property: Import count tracking should exist
         // (In dry-run mode, this will be 0, but the mechanism should exist)
@@ -326,13 +317,9 @@ proptest! {
 
         // Perform migration in dry-run mode
         let migrator = TestMigrator::new(repo.path().to_path_buf(), true);
-        let result = migrator.migrate_test(&candidate);
-
-        // Property: Migration should succeed
-        prop_assert!(result.is_ok(), "Migration should succeed");
-
-        // In dry-run mode, we can't verify actual file moves, but the mechanism should exist
-        let _migration_result = result.unwrap();
+        let _migration_result = migrator
+            .migrate_test(&candidate)
+            .expect("Migration should succeed");
 
         // Property: Regression files list tracking should exist
         prop_assert!(
@@ -384,12 +371,9 @@ fn test_something() {
 
         // Perform migration in dry-run mode
         let migrator = TestMigrator::new(repo.path().to_path_buf(), true);
-        let result = migrator.migrate_test(&candidate);
-
-        // Property: Migration should succeed
-        prop_assert!(result.is_ok(), "Migration should succeed");
-
-        let migration_result = result.unwrap();
+        let migration_result = migrator
+            .migrate_test(&candidate)
+            .expect("Migration should succeed");
 
         // Property: Compilation status should be tracked
         // In dry-run mode, this will be NotAttempted, but the field should exist

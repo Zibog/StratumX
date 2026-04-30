@@ -1,6 +1,6 @@
 # Material Response Family Vocabulary And Normalization Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the mandatory normalized vocabulary for material-owned reaction families so the canon no longer stops at `*_profile_ref` ownership and instead names the exact family classes that physics, audio, visual, light, runtime, editor, world, sdk, and tooling must share.

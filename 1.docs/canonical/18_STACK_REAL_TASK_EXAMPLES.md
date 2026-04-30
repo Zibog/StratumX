@@ -1,6 +1,6 @@
 # Stack Real Task Examples
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Examples
 - Create a project for desktop and save a legal workspace.

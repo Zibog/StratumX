@@ -1,6 +1,6 @@
 # Dream Scene Operator Workload Atlas Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Production-visible workload rows
 | Phenomenon | Primary editor buttons | Tooling route cluster | SDK family cluster | Engine truth owner | Compare mode | Recovery |

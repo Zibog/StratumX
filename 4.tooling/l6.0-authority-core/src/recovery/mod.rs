@@ -1,10 +1,16 @@
 // Authority Core Recovery
 //
-// Recovery strategies for authority container operations.
-// Defines explicit recovery targets and strategies for common failure modes.
+// Recovery policies for authority container operations.
+// Split by role so retry, rollback, focus repair, and evidence tracking stay isolated.
 
-mod policies;
-mod strategies;
+mod errors;
+mod evidence_recovery;
+mod focus_recovery;
+mod policy_ids;
+mod retry_policy;
+mod rollback_policy;
 
-pub use policies::{ErrorState, RecoveryContext, RecoveryManager, RecoveryTarget};
-pub use strategies::{ErrorClass, RecoveryStrategy};
+pub use errors::{ErrorClass, ErrorState};
+pub use evidence_recovery::RecoveryManager;
+pub use policy_ids::{RecoveryStrategy, RecoveryTarget};
+pub use retry_policy::RecoveryContext;

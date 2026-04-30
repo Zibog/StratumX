@@ -1,5 +1,5 @@
 // Population Command Handlers
-// TODO: Re-implement against new engine agents API when available.
+// Deferred: re-integrate against the new engine agents API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;
@@ -64,8 +64,8 @@ pub fn handle(
             faction_id,
             reputation,
         }),
-        PopulationCommand::GetNpcFaction => Ok(EditorAuthoringObservation::NpcFactionInfo {
-            faction_info: None,
-        }),
+        PopulationCommand::GetNpcFaction => {
+            Ok(EditorAuthoringObservation::NpcFactionInfo { faction_info: None })
+        }
     }
 }

@@ -190,7 +190,7 @@ proptest! {
         ]),
     ) {
         let field_name = format!("material_{}", domain_pattern);
-        let ui_path = format!("6.apps/editor/src/material_panel.rs");
+        let ui_path = "6.apps/editor/src/material_panel.rs".to_string();
 
         let entry = OwnerInventoryEntry {
             entity_name: field_name.clone(),

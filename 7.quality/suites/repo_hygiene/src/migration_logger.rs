@@ -152,11 +152,7 @@ impl MigrationLogger {
         // For simplicity, we'll use the debug format
         // In production, you might want to use chrono or time crate
         match time.duration_since(SystemTime::UNIX_EPOCH) {
-            Ok(duration) => {
-                let secs = duration.as_secs();
-                let datetime = Self::unix_to_datetime(secs);
-                datetime
-            }
+            Ok(duration) => Self::unix_to_datetime(duration.as_secs()),
             Err(_) => "Unknown Time".to_string(),
         }
     }
@@ -201,7 +197,7 @@ impl MigrationLogger {
 
     /// Check if a year is a leap year
     fn is_leap_year(year: u64) -> bool {
-        (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+        (year.is_multiple_of(4) && !year.is_multiple_of(100)) || year.is_multiple_of(400)
     }
 
     /// Format compilation status for display

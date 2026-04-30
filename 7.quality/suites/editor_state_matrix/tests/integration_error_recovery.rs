@@ -34,6 +34,10 @@ impl FailingCacheEntry {
 }
 
 impl CacheEntry for FailingCacheEntry {
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+
     fn is_valid(&self) -> bool {
         self.valid
     }
@@ -121,16 +125,15 @@ fn test_initialization_failure_reporting() {
         Ok(_) => {
             // Success case - no violations
         }
-        Err(violations) => {
-            // If there were violations, verify they have actionable messages
-            for violation in violations {
-                let message = violation.to_user_message();
-                assert!(!message.is_empty(), "Violation message should not be empty");
-                assert!(
-                    message.len() > 10,
-                    "Violation message should be descriptive"
-                );
-            }
+        Err(message) => {
+            assert!(
+                !message.is_empty(),
+                "Initialization error should not be empty"
+            );
+            assert!(
+                message.len() > 10,
+                "Initialization error should be descriptive"
+            );
         }
     }
 }
@@ -159,7 +162,7 @@ fn test_cache_rebuild_failure_graceful_degradation() {
             .expect("Failed to create state container system"),
     );
 
-    let cache_layer = Arc::new(CacheLayer::new(state_system.clone()));
+    let mut cache_layer = CacheLayer::new(state_system.clone());
 
     // Register a cache that will fail to rebuild
     let failing_cache = Box::new(FailingCacheEntry::new(vec![StateId::ProjectState], true));
@@ -202,6 +205,7 @@ fn test_error_reporting_with_violations() {
         state_id: StateId::ProjectState,
         owners: vec![],
         violation_type: ViolationType::NoOwner,
+        message: None,
     };
 
     let message = violation.to_user_message();
@@ -226,11 +230,13 @@ fn test_multiple_violations_reporting() {
             state_id: StateId::ProjectState,
             owners: vec![],
             violation_type: ViolationType::NoOwner,
+            message: None,
         },
         OwnershipViolation {
             state_id: StateId::WorkspaceState,
             owners: vec![],
             violation_type: ViolationType::NoOwner,
+            message: None,
         },
     ];
 
@@ -321,7 +327,7 @@ fn test_cache_layer_recovery_after_clear() {
             .expect("Failed to create state container system"),
     );
 
-    let cache_layer = Arc::new(CacheLayer::new(state_system.clone()));
+    let mut cache_layer = CacheLayer::new(state_system.clone());
 
     // Register a cache
     let cache = Box::new(FailingCacheEntry::new(vec![StateId::ProjectState], false));

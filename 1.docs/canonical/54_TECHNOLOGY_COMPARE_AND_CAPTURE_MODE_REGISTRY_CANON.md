@@ -1,6 +1,6 @@
 # Technology Compare And Capture Mode Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This registry freezes the canonical ids for compare and capture behavior.

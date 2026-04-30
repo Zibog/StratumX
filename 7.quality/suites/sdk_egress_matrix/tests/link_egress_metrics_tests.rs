@@ -86,7 +86,11 @@ fn test_metric_kind_inequality() {
 
 #[test]
 fn test_metric_kind_all_variants_distinct() {
-    let kinds = [MetricKind::Counter, MetricKind::Gauge, MetricKind::Histogram];
+    let kinds = [
+        MetricKind::Counter,
+        MetricKind::Gauge,
+        MetricKind::Histogram,
+    ];
     for i in 0..kinds.len() {
         for j in (i + 1)..kinds.len() {
             assert_ne!(kinds[i], kinds[j]);
@@ -408,16 +412,14 @@ fn test_batch_after_empty_result() {
         publication_cursor: 5,
         quality_flag: MetricQualityFlag::Full,
         profile: CompatibilityProfile::Diagnostics,
-        records: vec![
-            MetricRecord {
-                cursor: 1,
-                epoch: 100,
-                name: "a".to_string(),
-                value: 1.0,
-                unit: "u".to_string(),
-                kind: MetricKind::Counter,
-            },
-        ],
+        records: vec![MetricRecord {
+            cursor: 1,
+            epoch: 100,
+            name: "a".to_string(),
+            value: 1.0,
+            unit: "u".to_string(),
+            kind: MetricKind::Counter,
+        }],
     };
 
     let result = batch_after(&batch, 10, 10);
@@ -491,16 +493,14 @@ fn test_batch_after_preserves_metadata() {
         publication_cursor: 5,
         quality_flag: MetricQualityFlag::Degraded,
         profile: CompatibilityProfile::Automation,
-        records: vec![
-            MetricRecord {
-                cursor: 10,
-                epoch: 1000,
-                name: "x".to_string(),
-                value: 1.0,
-                unit: "u".to_string(),
-                kind: MetricKind::Gauge,
-            },
-        ],
+        records: vec![MetricRecord {
+            cursor: 10,
+            epoch: 1000,
+            name: "x".to_string(),
+            value: 1.0,
+            unit: "u".to_string(),
+            kind: MetricKind::Gauge,
+        }],
     };
 
     let result = batch_after(&batch, 5, 10);

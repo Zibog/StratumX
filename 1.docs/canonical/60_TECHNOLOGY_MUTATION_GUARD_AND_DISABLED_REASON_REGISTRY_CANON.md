@@ -1,6 +1,6 @@
 # Technology Mutation Guard And Disabled Reason Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This registry freezes canonical mutation-guard and disabled-reason ids so lawful editor behavior is machine-readable.

@@ -1,6 +1,6 @@
 # Material Persistence And Aftermath Response Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the registry-grade law for `matresp.persistence.*` so persistence is no longer a thin companion note next to stronger visual/audio/light branches.

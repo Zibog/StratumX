@@ -76,7 +76,7 @@ fn complete_authoring_to_runtime_cycle() {
             weapon_entity_id: 3,
         })
         .expect("submit fire");
-    let fire_result = executor.execute_command(fire_cmd, &mut runtime);
+    let fire_result = executor.dispatch_command(fire_cmd, &mut runtime);
 
     assert!(
         fire_result.is_ok(),
@@ -191,7 +191,7 @@ fn authoring_material_then_fire_uses_updated_material() {
             weapon_entity_id: 3,
         })
         .expect("submit");
-    let fire_result = executor.execute_command(fire_cmd, &mut runtime);
+    let fire_result = executor.dispatch_command(fire_cmd, &mut runtime);
 
     // Shot should succeed with updated material
     assert!(
@@ -292,7 +292,7 @@ fn authoring_weapon_position_then_fire_from_new_position() {
             weapon_entity_id: 3,
         })
         .expect("submit");
-    let fire_result = executor.execute_command(fire_cmd, &mut runtime);
+    let fire_result = executor.dispatch_command(fire_cmd, &mut runtime);
 
     // Shot should succeed from new position
     assert!(

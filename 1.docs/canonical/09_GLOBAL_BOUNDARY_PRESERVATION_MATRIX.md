@@ -1,6 +1,6 @@
 # Global Boundary Preservation Matrix
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This document preserves the legal boundaries between packages in the StratumX canonical stack.

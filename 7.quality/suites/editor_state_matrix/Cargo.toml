@@ -13,6 +13,7 @@ stratumx_repo_hygiene_support = { path = "../../support/stratumx_repo_hygiene_su
 stratumx-editor-l8-5-tool-context-system = { path = "../../../5.editor/l8.5-tool-context-system" }
 stratumx-editor-l8-10-diagnostics-surface = { path = "../../../5.editor/l8.10-diagnostics-surface" }
 stratumx-editor-l9-0-world-authoring-suite = { path = "../../../5.editor/l9.0-world-authoring-suite" }
+stratumx_editor_state_containers = { path = "../../../5.editor/editor-state-containers" }
 engine_material = { path = "../../../2.engine/l0.5-shared-world-property-substrate" }
 engine_world = { path = "../../../2.engine/l0-world-truth" }
 proptest.workspace = true
@@ -24,3 +25,4 @@ path = "src/lib.rs"
 
 [dev-dependencies]
 tempfile = "3"
+serde = { workspace = true, features = ["derive"] }

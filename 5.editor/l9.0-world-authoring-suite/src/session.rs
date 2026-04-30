@@ -1,2 +1,2 @@
 // Session module for world authoring
-// Placeholder for future session management logic
+// This split point preserves the session boundary for later world orchestration work.

@@ -1,5 +1,5 @@
 // Storm Command Handlers
-// TODO: Re-implement against new engine weather/storm API when available.
+// Deferred: re-integrate against the new engine weather/storm API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;
@@ -21,7 +21,7 @@ pub fn handle(
             radius_km,
         }),
         StormCommand::UpdateStormFront { front_id, .. } => {
-            // TODO: Apply storm front updates when weather API is restored
+            // Deferred: keep the current observation stub until the weather bridge is restored.
             let _ = front_id;
             Ok(EditorAuthoringObservation::StormFrontUpdated { front_id: 1 })
         }

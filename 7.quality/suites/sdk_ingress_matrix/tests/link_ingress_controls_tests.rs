@@ -158,7 +158,11 @@ fn test_control_kind_all_variants_distinct() {
     ];
     for i in 0..kinds.len() {
         for j in (i + 1)..kinds.len() {
-            assert_ne!(kinds[i], kinds[j], "Kind {} should differ from kind {}", i, j);
+            assert_ne!(
+                kinds[i], kinds[j],
+                "Kind {} should differ from kind {}",
+                i, j
+            );
         }
     }
 }
@@ -182,7 +186,10 @@ fn test_bridge_control_creation() {
         submission_order_key: 0,
         legality_gate_id: LegalityGateId(1),
     };
-    assert_eq!(control.ingress_control_envelope_id, IngressControlEnvelopeId(100));
+    assert_eq!(
+        control.ingress_control_envelope_id,
+        IngressControlEnvelopeId(100)
+    );
     assert!(control.target_object_handle.is_none());
     assert_eq!(control.submission_order_key, 0);
 }

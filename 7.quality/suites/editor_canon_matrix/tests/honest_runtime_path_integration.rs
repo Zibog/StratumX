@@ -15,7 +15,7 @@ fn scene_commands_require_session() {
     let cmd = PromotedCommand::SceneBootstrap;
     let command_id = executor.submit_command(cmd).expect("submit");
 
-    let result = executor.execute_command(command_id, &mut runtime);
+    let result = executor.dispatch_command(command_id, &mut runtime);
     assert!(result.is_err(), "Should fail without session");
 
     let state = executor.get_envelope(command_id).unwrap().lifecycle_state;
@@ -36,7 +36,7 @@ fn scene_commands_with_session_succeed() {
     let cmd = PromotedCommand::SceneBootstrap;
     let command_id = executor.submit_command(cmd).expect("submit");
 
-    let result = executor.execute_command(command_id, &mut runtime);
+    let result = executor.dispatch_command(command_id, &mut runtime);
     assert!(result.is_ok(), "Should succeed with session: {:?}", result);
 
     let state = executor.get_envelope(command_id).unwrap().lifecycle_state;
@@ -56,7 +56,7 @@ fn scene_fire_test_shot_with_session() {
     };
     let command_id = executor.submit_command(cmd).expect("submit");
 
-    let result = executor.execute_command(command_id, &mut runtime);
+    let result = executor.dispatch_command(command_id, &mut runtime);
     assert!(
         result.is_ok(),
         "Fire test shot should succeed: {:?}",
@@ -78,7 +78,7 @@ fn scene_reset_with_session() {
     let cmd = PromotedCommand::SceneReset;
     let command_id = executor.submit_command(cmd).expect("submit");
 
-    let result = executor.execute_command(command_id, &mut runtime);
+    let result = executor.dispatch_command(command_id, &mut runtime);
     assert!(result.is_ok(), "Scene reset should succeed: {:?}", result);
 
     let state = executor.get_envelope(command_id).unwrap().lifecycle_state;
@@ -98,7 +98,7 @@ fn full_scene_workflow_through_honest_path() {
         .submit_command(PromotedCommand::SceneBootstrap)
         .expect("submit bootstrap");
     executor
-        .execute_command(bootstrap_cmd, &mut runtime)
+        .dispatch_command(bootstrap_cmd, &mut runtime)
         .expect("execute bootstrap");
     assert_eq!(
         executor
@@ -114,7 +114,7 @@ fn full_scene_workflow_through_honest_path() {
         })
         .expect("submit fire");
     executor
-        .execute_command(fire_cmd, &mut runtime)
+        .dispatch_command(fire_cmd, &mut runtime)
         .expect("execute fire");
     assert_eq!(
         executor.get_envelope(fire_cmd).unwrap().lifecycle_state,
@@ -125,7 +125,7 @@ fn full_scene_workflow_through_honest_path() {
         .submit_command(PromotedCommand::SceneReset)
         .expect("submit reset");
     executor
-        .execute_command(reset_cmd, &mut runtime)
+        .dispatch_command(reset_cmd, &mut runtime)
         .expect("execute reset");
     assert_eq!(
         executor.get_envelope(reset_cmd).unwrap().lifecycle_state,

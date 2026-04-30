@@ -7,12 +7,10 @@ use stratumx_route_test_support::{
     execute_button_in_context, routes_by_prefix, ToolSessionContext,
 };
 use stratumx_tooling_l6_14_release_runtime::first_result_verification::{
-    BuildArtifact, ExportArtifact, FIRST_RESULT_SIGNATURE, FirstResultVerifier, LaunchTrace,
-    ReleaseChain,
+    BuildArtifact, ExportArtifact, FirstResultVerifier, LaunchTrace, ReleaseChain,
+    FIRST_RESULT_SIGNATURE,
 };
-use tool_evidence_capture::{
-    ArtifactRef, ArtifactType, EvidenceBundle, EvidenceVerdict,
-};
+use tool_evidence_capture::{ArtifactRef, ArtifactType, EvidenceBundle, EvidenceVerdict};
 
 // ============================================================================
 // First Result Signature Verification
@@ -185,7 +183,10 @@ fn tunnel_slice_destruction_diagnostics() {
     };
 
     assert_eq!(bundle.verdict, EvidenceVerdict::Green);
-    assert_eq!(bundle.artifacts[0].artifact_type, ArtifactType::DiagnosticsLog);
+    assert_eq!(
+        bundle.artifacts[0].artifact_type,
+        ArtifactType::DiagnosticsLog
+    );
 }
 
 // ============================================================================
@@ -200,11 +201,10 @@ fn world_lifecycle_project_create() {
         result.focus_target.is_some(),
         "Project creation must produce a focus target"
     );
-    assert!(
-        ctx.executed_buttons
-            .iter()
-            .any(|b| b == "btn.project.new_project")
-    );
+    assert!(ctx
+        .executed_buttons
+        .iter()
+        .any(|b| b == "btn.project.new_project"));
 }
 
 #[test]
@@ -256,8 +256,7 @@ fn world_lifecycle_material_authoring() {
     execute_button_in_context(&mut ctx, "btn.terrain.save_chunks", ());
     execute_button_in_context(&mut ctx, "btn.sky.set_weather_regime", ());
 
-    let result =
-        execute_button_in_context(&mut ctx, "btn.material.bind_light_response", ());
+    let result = execute_button_in_context(&mut ctx, "btn.material.bind_light_response", ());
     assert!(
         result.focus_target.is_some(),
         "Material authoring must produce a focus target"
@@ -275,11 +274,10 @@ fn world_lifecycle_viewport_capture() {
     execute_button_in_context(&mut ctx, "btn.material.bind_light_response", ());
     execute_button_in_context(&mut ctx, "btn.material.preview_blast", ());
 
-    assert!(
-        ctx.executed_buttons
-            .iter()
-            .any(|b| b == "btn.material.preview_blast")
-    );
+    assert!(ctx
+        .executed_buttons
+        .iter()
+        .any(|b| b == "btn.material.preview_blast"));
 }
 
 #[test]
@@ -288,8 +286,7 @@ fn world_lifecycle_material_proof_capture() {
     execute_button_in_context(&mut ctx, "btn.project.new_project", ());
     execute_button_in_context(&mut ctx, "btn.world.open_world_package", ());
 
-    let result =
-        execute_button_in_context(&mut ctx, "btn.material.capture_proof_artifacts", ());
+    let result = execute_button_in_context(&mut ctx, "btn.material.capture_proof_artifacts", ());
     assert!(
         result.artifact_ref.is_some(),
         "Proof capture must produce an artifact reference"

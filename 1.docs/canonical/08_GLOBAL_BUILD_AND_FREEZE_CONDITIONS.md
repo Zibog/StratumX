@@ -1,6 +1,6 @@
 # Global Build And Freeze Conditions
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This document defines when the entire canonical archive may be treated as globally frozen.

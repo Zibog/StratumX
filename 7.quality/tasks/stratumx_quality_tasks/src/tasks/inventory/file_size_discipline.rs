@@ -42,8 +42,8 @@ pub fn check_file_size_discipline(repo_root: &Path) -> Result<Vec<FileSizeViolat
 
 /// Recursively scan a directory for Rust files
 fn scan_directory(dir: &Path, violations: &mut Vec<FileSizeViolation>) -> Result<(), String> {
-    let entries = fs::read_dir(dir)
-        .map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
+    let entries =
+        fs::read_dir(dir).map_err(|e| format!("Failed to read directory {:?}: {}", dir, e))?;
 
     for entry in entries {
         let entry = entry.map_err(|e| format!("Failed to read entry: {}", e))?;
@@ -68,8 +68,8 @@ fn scan_directory(dir: &Path, violations: &mut Vec<FileSizeViolation>) -> Result
 
 /// Check a single file for size violations
 fn check_file(path: &Path, violations: &mut Vec<FileSizeViolation>) -> Result<(), String> {
-    let content = fs::read_to_string(path)
-        .map_err(|e| format!("Failed to read file {:?}: {}", path, e))?;
+    let content =
+        fs::read_to_string(path).map_err(|e| format!("Failed to read file {:?}: {}", path, e))?;
 
     let loc = count_lines_of_code(&content);
 
@@ -147,7 +147,10 @@ pub fn format_violations(violations: &[FileSizeViolation]) -> String {
     justified.sort_by(|a, b| b.loc.cmp(&a.loc));
 
     if !unjustified.is_empty() {
-        output.push_str(&format!("Files requiring split or justification ({}):\n", unjustified.len()));
+        output.push_str(&format!(
+            "Files requiring split or justification ({}):\n",
+            unjustified.len()
+        ));
         for violation in unjustified {
             output.push_str(&format!(
                 "  - {:?} ({} LOC)\n",
@@ -158,7 +161,10 @@ pub fn format_violations(violations: &[FileSizeViolation]) -> String {
     }
 
     if !justified.is_empty() {
-        output.push_str(&format!("Files with justification ({}):\n", justified.len()));
+        output.push_str(&format!(
+            "Files with justification ({}):\n",
+            justified.len()
+        ));
         for violation in justified {
             output.push_str(&format!(
                 "  - {:?} ({} LOC) [JUSTIFIED]\n",

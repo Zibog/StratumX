@@ -11,6 +11,16 @@ pub mod diagnostics;
 pub mod environment;
 pub mod material;
 pub mod material_observations;
+mod observation;
+mod observation_animation;
+mod observation_audio;
+mod observation_diagnostics;
+mod observation_environment;
+mod observation_living;
+mod observation_material;
+mod observation_runtime;
+mod observation_scene;
+mod observation_terrain;
 pub mod reason_chain;
 pub mod runtime;
 pub mod scene;
@@ -32,9 +42,9 @@ pub use environment::{AssetStatusDto, SkyBundleStatusDto, StormFrontDto};
 pub use material::{
     AuthoringMaterialLayerDto, AuthoringMaterialStackDto, MaterialArchetypeDto, MaterialSlotDto,
 };
+pub use observation::EditorAuthoringObservation;
 pub use reason_chain::ReasonChainEntryDto;
 pub use terrain::{AuthoringTerrainPatchDto, SurfaceRegionDto};
-pub use types::EditorAuthoringObservation;
 pub use world::{
     ActorDto, ActorPresetDto, AssetDto, AuthoringSceneDto, EntityDetailsDto, EntityDto,
     TransformDto,

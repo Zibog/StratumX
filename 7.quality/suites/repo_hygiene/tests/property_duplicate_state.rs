@@ -83,7 +83,7 @@ proptest! {
         for entry in &inventory.entries {
             entity_ownership
                 .entry(entry.entity_name.clone())
-                .or_insert_with(Vec::new)
+                .or_default()
                 .push((entry.target_owner.clone(), entry.current_path.clone()));
         }
 
@@ -119,7 +119,7 @@ proptest! {
 
             file_field_ownership
                 .entry(key)
-                .or_insert_with(Vec::new)
+                .or_default()
                 .push(entry.target_owner.clone());
         }
 
@@ -164,7 +164,7 @@ proptest! {
         for entry in &inventory.entries {
             entity_owners
                 .entry(entry.entity_name.clone())
-                .or_insert_with(HashSet::new)
+                .or_default()
                 .insert(entry.target_owner.clone());
         }
 
@@ -195,7 +195,7 @@ proptest! {
             .expect("Failed to load owner inventory");
 
         // Define the 4 canonical owner containers
-        let owner_containers = vec![
+        let owner_containers = [
             "ProjectOwner",
             "WorkspaceOwner",
             "WorldOwner",
@@ -214,7 +214,7 @@ proptest! {
 
                 field_containers
                     .entry(key)
-                    .or_insert_with(HashSet::new)
+                    .or_default()
                     .insert(entry.target_owner.clone());
             }
         }
@@ -304,7 +304,7 @@ fn test_each_entity_has_single_owner() {
     for entry in &inventory.entries {
         entity_owners
             .entry(entry.entity_name.clone())
-            .or_insert_with(HashSet::new)
+            .or_default()
             .insert(entry.target_owner.clone());
     }
 
@@ -341,7 +341,7 @@ fn test_no_fields_in_multiple_owner_containers() {
     let inventory =
         OwnerInventory::load_from_file(&inventory_path).expect("Failed to load owner inventory");
 
-    let owner_containers = vec![
+    let owner_containers = [
         "ProjectOwner",
         "WorkspaceOwner",
         "WorldOwner",
@@ -357,7 +357,7 @@ fn test_no_fields_in_multiple_owner_containers() {
 
             field_containers
                 .entry(key)
-                .or_insert_with(HashSet::new)
+                .or_default()
                 .insert(entry.target_owner.clone());
         }
     }

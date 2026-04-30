@@ -1,6 +1,6 @@
 # Resource Pressure Operator Visible Law Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define one ruthless, operator-visible pressure vocabulary for heavy-domain certification on the declared old-hardware floor.

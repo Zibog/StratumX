@@ -1,6 +1,6 @@
 # Task Routing and Ownership Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This document maps asks to legal routes across the stack.

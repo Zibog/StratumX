@@ -15,14 +15,9 @@ pub enum AnimationCommand {
         blend_time: f32,
     },
     /// Stop the currently playing animation clip on an entity.
-    StopClip {
-        entity_id: u32,
-    },
+    StopClip { entity_id: u32 },
     /// Set the playback speed multiplier for an entity's animation.
-    SetAnimationSpeed {
-        entity_id: u32,
-        speed: f32,
-    },
+    SetAnimationSpeed { entity_id: u32, speed: f32 },
     /// Set the blend weight for an animation layer on an entity.
     SetAnimationWeight {
         entity_id: u32,
@@ -38,10 +33,7 @@ pub enum AnimationCommand {
         weight: f32,
     },
     /// Load an animation clip into the engine from serialized clip data.
-    LoadAnimationClip {
-        clip_id: u32,
-        clip_data: Vec<u8>,
-    },
+    LoadAnimationClip { clip_id: u32, clip_data: Vec<u8> },
     /// Create an animation state machine on an entity with states and transitions.
     CreateAnimationStateMachine {
         entity_id: u32,
@@ -49,10 +41,7 @@ pub enum AnimationCommand {
         transitions: Vec<AnimationTransitionDef>,
     },
     /// Trigger a named event in an entity's animation state machine.
-    TriggerAnimationEvent {
-        entity_id: u32,
-        event_name: String,
-    },
+    TriggerAnimationEvent { entity_id: u32, event_name: String },
 }
 
 /// Definition of a single state within an animation state machine.
@@ -110,12 +99,7 @@ impl AnimationIngressPacket {
     }
 
     /// Construct a SetAnimationWeight packet.
-    pub fn set_animation_weight(
-        request_id: u64,
-        entity_id: u32,
-        layer: u8,
-        weight: f32,
-    ) -> Self {
+    pub fn set_animation_weight(request_id: u64, entity_id: u32, layer: u8, weight: f32) -> Self {
         Self {
             command: AnimationCommand::SetAnimationWeight {
                 entity_id,
@@ -173,11 +157,7 @@ impl AnimationIngressPacket {
     }
 
     /// Construct a TriggerAnimationEvent packet.
-    pub fn trigger_animation_event(
-        request_id: u64,
-        entity_id: u32,
-        event_name: String,
-    ) -> Self {
+    pub fn trigger_animation_event(request_id: u64, entity_id: u32, event_name: String) -> Self {
         Self {
             command: AnimationCommand::TriggerAnimationEvent {
                 entity_id,

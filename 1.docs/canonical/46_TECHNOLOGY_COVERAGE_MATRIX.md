@@ -1,6 +1,6 @@
 # Technology Coverage Matrix
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Track whether each major technology family has one root law, one engine truth owner or explicit exception, one SDK bridge, one tooling route, one editor surface, and one honest posture.
@@ -32,3 +32,19 @@ Track whether each major technology family has one root law, one engine truth ow
 ## Honesty law
 `document_gold` means the family is closed in docs across root, engine, sdk, tooling, and editor.
 It does **not** mean broad runtime implementation proof is complete.
+
+---
+
+# V33 coverage target updates
+
+Stack version: `SX-CANON/1.0.27/STACK-v33`
+
+## V33 coverage target updates
+
+| Domain | Previous posture | V33 target posture |
+|---|---|---|
+| Graphics practical output | Strong architecture, partial cookbook | Document-gold practical manuals through canonical + developer/user/API/tutorial/troubleshooting spine. |
+| Netcode | Below 50% | Minimum 75% document readiness: authority, replication, interest, prediction, rollback, desync, multiplayer playtest. |
+| Asset/model pipeline | Above 50%, missing manual depth | Document-gold import/cook/bind/troubleshoot flow. |
+| Audio authoring | Above 50%, missing authoring graph/manual | Document-gold authoring/bank/material sound/audition flow. |
+| Documentation spine | Implicit | Explicit Unreal-style branches with role separation and non-redefinition rule. |

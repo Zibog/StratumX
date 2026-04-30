@@ -1,6 +1,6 @@
 # Product Artifact And Executable Identity Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze how a built product is identified and how artifacts are traced back to the route that produced them.

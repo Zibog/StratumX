@@ -1,6 +1,6 @@
 # Control Capability Matrix
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Map capability families to the active production contour using one vocabulary: truth owner, owner surfaces, button namespace, canonical pack ids, and current posture.

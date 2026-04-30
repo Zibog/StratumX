@@ -8,7 +8,7 @@ use std::sync::{Arc, Mutex};
 use stratumx_editor_state_containers::{
     BasicEventBus, CacheLayer, DiagnosticsState, EditorHost, EditorServices, EventBus,
     ProjectIdentity, ProjectState, QueryLayer, StateContainerSystem, WorkspaceIdentity,
-    WorkspaceState,
+    WorkspaceState, WorldIdentity, WorldState,
 };
 use uuid::Uuid;
 
@@ -36,6 +36,15 @@ fn create_test_editor_host() -> EditorHost {
     )));
     let workspace_state = Arc::new(Mutex::new(WorkspaceState::new()));
     let diagnostics_state = Arc::new(Mutex::new(DiagnosticsState::new()));
+    let world_identity = WorldIdentity::new(
+        Uuid::new_v4(),
+        "test-world".to_string(),
+        PathBuf::from("test-world"),
+    );
+    let world_state = Arc::new(Mutex::new(WorldState::new(
+        world_identity,
+        "snapshot_123".to_string(),
+    )));
 
     // Create state container system
     let state_system = Arc::new(
@@ -60,7 +69,7 @@ fn create_test_editor_host() -> EditorHost {
     let services = EditorServices::new(
         project_state,
         workspace_state,
-        None,
+        Some(world_state),
         diagnostics_state,
         event_bus,
     )
@@ -215,16 +224,27 @@ fn test_minimal_business_logic_line_count() {
         .join("5.editor")
         .join("editor-state-containers")
         .join("src")
-        .join("editor_host.rs");
+        .join("runtime")
+        .join("services.rs");
     let content = fs::read_to_string(&editor_host_path).expect("Failed to read EditorHost file");
+    let editor_host_block = {
+        let host_impl_start = content
+            .find("impl EditorHost")
+            .expect("EditorHost impl not found");
+        let host_impl_end = content[host_impl_start..]
+            .find("pub trait EventBus")
+            .map(|offset| host_impl_start + offset)
+            .expect("EventBus trait boundary not found");
+        &content[host_impl_start..host_impl_end]
+    };
 
     // Count lines in lifecycle methods (allowed)
     let lifecycle_methods = ["pub fn new(", "pub fn initialize(", "pub fn shutdown("];
     let mut lifecycle_lines = 0;
 
     for method in lifecycle_methods.iter() {
-        if let Some(start) = content.find(method) {
-            let after_method = &content[start..];
+        if let Some(start) = editor_host_block.find(method) {
+            let after_method = &editor_host_block[start..];
             if let Some(end) = after_method
                 .find("\n    pub fn ")
                 .or_else(|| after_method.find("\n}"))
@@ -246,8 +266,8 @@ fn test_minimal_business_logic_line_count() {
     let mut delegation_lines = 0;
 
     for method in delegation_methods.iter() {
-        if let Some(start) = content.find(method) {
-            let after_method = &content[start..];
+        if let Some(start) = editor_host_block.find(method) {
+            let after_method = &editor_host_block[start..];
             if let Some(end) = after_method
                 .find("\n    pub fn ")
                 .or_else(|| after_method.find("\n}"))
@@ -259,13 +279,7 @@ fn test_minimal_business_logic_line_count() {
     }
 
     // Count total code lines (excluding comments, whitespace, and tests)
-    let code_before_tests = if let Some(test_start) = content.find("#[cfg(test)]") {
-        &content[..test_start]
-    } else {
-        &content
-    };
-
-    let total_lines: usize = code_before_tests
+    let total_lines: usize = editor_host_block
         .lines()
         .filter(|line| {
             let trimmed = line.trim();

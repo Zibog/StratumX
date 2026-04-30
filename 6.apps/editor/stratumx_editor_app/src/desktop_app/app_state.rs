@@ -2,10 +2,12 @@
 
 use std::path::Path;
 
-use eframe::egui;
 use editor_dto_law::WeatherRegime;
+use eframe::egui;
 use stratumx_editor_l8_0_editor_shell::ShellRuntime;
-use stratumx_editor_l8_10_diagnostics_surface::desktop::diagnostics_state::{DiagnosticsState, DiagnosticsTab};
+use stratumx_editor_l8_10_diagnostics_surface::desktop::diagnostics_state::{
+    DiagnosticsState, DiagnosticsTab,
+};
 use stratumx_editor_l8_1_viewport_system::viewport_camera_controller::ViewportCameraController;
 
 /// Selection context for inspector panel — stub type.

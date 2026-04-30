@@ -4,7 +4,9 @@ use crate::editor_host::EditorHost;
 pub struct ShellBootstrap;
 
 impl ShellBootstrap {
-    pub fn new() -> Self { Self }
+    pub fn new() -> Self {
+        Self
+    }
     pub fn bootstrap(&mut self) -> Result<EditorHost, String> {
         let mut host = EditorHost::default();
         host.initialize()?;
@@ -14,5 +16,7 @@ impl ShellBootstrap {
 }
 
 impl Default for ShellBootstrap {
-    fn default() -> Self { Self::new() }
+    fn default() -> Self {
+        Self::new()
+    }
 }

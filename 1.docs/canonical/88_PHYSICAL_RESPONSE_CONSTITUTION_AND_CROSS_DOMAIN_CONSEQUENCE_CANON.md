@@ -1,6 +1,6 @@
 # Physical Response Constitution And Cross-Domain Consequence Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the master contour that unifies physical response across materials, rigid bodies, soft bodies, thermal/wetness state, fracture/collapse, ballistics, hydrology, and traversal/nav consequence.

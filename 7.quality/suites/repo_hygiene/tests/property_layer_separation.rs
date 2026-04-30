@@ -198,8 +198,9 @@ proptest! {
         {
             let path = entry.path();
             if path.is_file() && path.extension().and_then(|s| s.to_str()) == Some("rs") {
-                let imports = extract_imports(path)
-                    .expect(&format!("Failed to extract imports from {}", path.display()));
+                let imports = extract_imports(path).unwrap_or_else(|_| {
+                    panic!("Failed to extract imports from {}", path.display())
+                });
 
                 // Check each import from 5.editor
                 for import in imports {

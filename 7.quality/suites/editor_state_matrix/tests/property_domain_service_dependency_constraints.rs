@@ -75,6 +75,7 @@ impl DomainServiceType {
             OwnerId::ProjectState => AbstractionLevel::L2Infrastructure,
             OwnerId::WorkspaceState => AbstractionLevel::L2Infrastructure,
             OwnerId::WorldState => AbstractionLevel::L2Infrastructure,
+            OwnerId::Custom(_) => AbstractionLevel::L2Infrastructure,
         }
     }
 

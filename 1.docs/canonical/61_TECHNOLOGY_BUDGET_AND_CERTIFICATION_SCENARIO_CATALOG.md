@@ -1,6 +1,6 @@
 # 61_TECHNOLOGY_BUDGET_AND_CERTIFICATION_SCENARIO_CATALOG
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Name the canonical scenario packs that tie mixed heavy domains to budgets, compare modes, and baseline families.

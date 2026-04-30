@@ -1,6 +1,6 @@
 # Thin RHI And Backend Seam Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Freeze the engine-owned graphics seam that sits above Direct3D 12 and Vulkan backends without turning the canon into a backend-specific religion.
@@ -106,3 +106,8 @@ The adapter must still implement the engine-facing seam for:
 ## No-fake-universal-API law
 The thin RHI is not allowed to swell into a fake “all graphics APIs are the same” layer.
 Its job is to stabilize the frontend contract, not to erase native differences.
+
+
+## v31 naming and seam clarification
+The active implementation name for this seam is **StratumX Native Graphics Port**.
+The seam stays thin by splitting into surface, device, resource, pipeline, and frame seams. It must not become a fake universal graphics API or a Vulkan-shaped frontend.

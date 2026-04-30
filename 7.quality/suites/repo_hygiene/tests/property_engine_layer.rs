@@ -9,7 +9,6 @@
 /// - Property 27: Deterministic Engine Tests
 /// - Property 28: Critical Invariant Property Tests
 /// - Property 30: World Field Persistence Round-Trip
-
 use std::fs;
 use std::path::{Path, PathBuf};
 
@@ -27,7 +26,7 @@ fn get_workspace_root() -> PathBuf {
 /// Get all Rust files in a directory recursively
 fn get_rust_files(dir: &Path) -> Vec<PathBuf> {
     let mut files = Vec::new();
-    
+
     if let Ok(entries) = fs::read_dir(dir) {
         for entry in entries.flatten() {
             let path = entry.path();
@@ -45,7 +44,7 @@ fn get_rust_files(dir: &Path) -> Vec<PathBuf> {
             }
         }
     }
-    
+
     files
 }
 
@@ -53,37 +52,36 @@ fn get_rust_files(dir: &Path) -> Vec<PathBuf> {
 fn has_editor_or_tooling_imports(file_path: &Path) -> bool {
     if let Ok(content) = fs::read_to_string(file_path) {
         // Check for editor imports
-        if content.contains("use") && (
-            content.contains("5.editor") ||
-            content.contains("stratumx-editor") ||
-            content.contains("stratumx_editor") ||
-            content.contains("editor_") && content.contains("path =")
-        ) {
+        if content.contains("use")
+            && (content.contains("5.editor")
+                || content.contains("stratumx-editor")
+                || content.contains("stratumx_editor")
+                || content.contains("editor_") && content.contains("path ="))
+        {
             return true;
         }
-        
+
         // Check for tooling imports
-        if content.contains("use") && (
-            content.contains("4.tooling") ||
-            content.contains("stratumx_tooling") ||
-            content.contains("tooling_") && content.contains("path =")
-        ) {
+        if content.contains("use")
+            && (content.contains("4.tooling")
+                || content.contains("stratumx_tooling")
+                || content.contains("tooling_") && content.contains("path ="))
+        {
             return true;
         }
     }
-    
+
     false
 }
 
 /// Check if a file contains SDK DTO imports
 fn has_sdk_dto_imports(file_path: &Path) -> bool {
     if let Ok(content) = fs::read_to_string(file_path) {
-        content.contains("use") && (
-            content.contains("3.sdk") ||
-            content.contains("link_ingress") ||
-            content.contains("link_egress") ||
-            content.contains("editor_dto")
-        )
+        content.contains("use")
+            && (content.contains("3.sdk")
+                || content.contains("link_ingress")
+                || content.contains("link_egress")
+                || content.contains("editor_dto"))
     } else {
         false
     }
@@ -103,25 +101,29 @@ fn has_sdk_dto_imports(file_path: &Path) -> bool {
 fn property_8_engine_layer_purity() {
     let workspace_root = get_workspace_root();
     let engine_dir = workspace_root.join("2.engine");
-    
+
     assert!(engine_dir.exists(), "Engine directory not found");
-    
+
     let rust_files = get_rust_files(&engine_dir);
-    assert!(!rust_files.is_empty(), "No Rust files found in engine directory");
-    
+    assert!(
+        !rust_files.is_empty(),
+        "No Rust files found in engine directory"
+    );
+
     let mut violations = Vec::new();
-    
+
     for file in &rust_files {
         if has_editor_or_tooling_imports(file) {
             violations.push(file.strip_prefix(&workspace_root).unwrap().to_path_buf());
         }
     }
-    
+
     if !violations.is_empty() {
         panic!(
             "Engine layer purity violation: {} files import editor/tooling types:\n{}",
             violations.len(),
-            violations.iter()
+            violations
+                .iter()
                 .map(|p| format!("  - {:?}", p))
                 .collect::<Vec<_>>()
                 .join("\n")
@@ -147,25 +149,29 @@ fn property_8_engine_layer_purity() {
 fn property_9_no_type_duplication_between_engine_and_sdk() {
     let workspace_root = get_workspace_root();
     let engine_dir = workspace_root.join("2.engine");
-    
+
     assert!(engine_dir.exists(), "Engine directory not found");
-    
+
     let rust_files = get_rust_files(&engine_dir);
-    assert!(!rust_files.is_empty(), "No Rust files found in engine directory");
-    
+    assert!(
+        !rust_files.is_empty(),
+        "No Rust files found in engine directory"
+    );
+
     let mut violations = Vec::new();
-    
+
     for file in &rust_files {
         if has_sdk_dto_imports(file) {
             violations.push(file.strip_prefix(&workspace_root).unwrap().to_path_buf());
         }
     }
-    
+
     if !violations.is_empty() {
         panic!(
             "Type duplication violation: {} engine files import SDK DTO types:\n{}",
             violations.len(),
-            violations.iter()
+            violations
+                .iter()
                 .map(|p| format!("  - {:?}", p))
                 .collect::<Vec<_>>()
                 .join("\n")
@@ -190,9 +196,9 @@ fn property_9_no_type_duplication_between_engine_and_sdk() {
 fn property_27_deterministic_engine_tests() {
     let workspace_root = get_workspace_root();
     let engine_dir = workspace_root.join("2.engine");
-    
+
     assert!(engine_dir.exists(), "Engine directory not found");
-    
+
     // Get all engine packages
     let engine_packages: Vec<_> = fs::read_dir(&engine_dir)
         .expect("Failed to read engine directory")
@@ -200,16 +206,16 @@ fn property_27_deterministic_engine_tests() {
         .filter(|e| e.path().is_dir())
         .map(|e| e.file_name().to_string_lossy().to_string())
         .collect();
-    
+
     assert!(!engine_packages.is_empty(), "No engine packages found");
-    
+
     // Check that each package has tests (either in src or in 7.quality)
     let mut packages_without_tests = Vec::new();
-    
+
     for package in &engine_packages {
         let package_dir = engine_dir.join(package);
         let src_dir = package_dir.join("src");
-        
+
         // Check for test modules in src
         let has_tests = if src_dir.exists() {
             get_rust_files(&src_dir).iter().any(|f| {
@@ -222,12 +228,12 @@ fn property_27_deterministic_engine_tests() {
         } else {
             false
         };
-        
+
         if !has_tests {
             packages_without_tests.push(package.clone());
         }
     }
-    
+
     // Allow some packages to not have tests if they're pure type definitions
     // or if tests are in 7.quality (which we can't easily verify here)
     // For now, we just report packages without tests
@@ -235,19 +241,17 @@ fn property_27_deterministic_engine_tests() {
         println!(
             "Note: {} engine packages have no inline tests (may have tests in 7.quality):\n{}",
             packages_without_tests.len(),
-            packages_without_tests.iter()
+            packages_without_tests
+                .iter()
                 .map(|p| format!("  - {}", p))
                 .collect::<Vec<_>>()
                 .join("\n")
         );
     }
-    
+
     // Test passes if we found at least some packages with tests
     let packages_with_tests = engine_packages.len() - packages_without_tests.len();
-    assert!(
-        packages_with_tests > 0,
-        "No engine packages have tests"
-    );
+    assert!(packages_with_tests > 0, "No engine packages have tests");
 }
 
 // ============================================================================
@@ -268,9 +272,9 @@ fn property_27_deterministic_engine_tests() {
 fn property_28_critical_invariant_property_tests() {
     let workspace_root = get_workspace_root();
     let engine_dir = workspace_root.join("2.engine");
-    
+
     assert!(engine_dir.exists(), "Engine directory not found");
-    
+
     // Critical packages that must have invariant documentation
     let critical_packages = vec![
         "l-0.2-ecs-assembly",
@@ -280,12 +284,12 @@ fn property_28_critical_invariant_property_tests() {
         "l-0.1-world-spatial",
         "l0-world-truth",
     ];
-    
+
     let mut packages_without_invariants = Vec::new();
-    
+
     for package in &critical_packages {
         let lib_file = engine_dir.join(package).join("src").join("lib.rs");
-        
+
         if lib_file.exists() {
             if let Ok(content) = fs::read_to_string(&lib_file) {
                 // Check for invariant documentation
@@ -295,12 +299,13 @@ fn property_28_critical_invariant_property_tests() {
             }
         }
     }
-    
+
     if !packages_without_invariants.is_empty() {
         panic!(
             "Critical invariant documentation missing in {} packages:\n{}",
             packages_without_invariants.len(),
-            packages_without_invariants.iter()
+            packages_without_invariants
+                .iter()
                 .map(|p| format!("  - {}", p))
                 .collect::<Vec<_>>()
                 .join("\n")
@@ -326,25 +331,29 @@ fn property_28_critical_invariant_property_tests() {
 fn property_30_world_field_persistence_round_trip() {
     // This test is implemented in the engine_material package tests
     // We verify here that the package exists and has the necessary tests
-    
+
     let workspace_root = get_workspace_root();
-    let substrate_dir = workspace_root.join("2.engine").join("l0.5-shared-world-property-substrate");
-    
-    assert!(substrate_dir.exists(), "World property substrate package not found");
-    
+    let substrate_dir = workspace_root
+        .join("2.engine")
+        .join("l0.5-shared-world-property-substrate");
+
+    assert!(
+        substrate_dir.exists(),
+        "World property substrate package not found"
+    );
+
     // Check that runtime.rs has persistence tests
     let runtime_file = substrate_dir.join("src").join("runtime.rs");
     assert!(runtime_file.exists(), "Runtime module not found");
-    
-    let content = fs::read_to_string(&runtime_file)
-        .expect("Failed to read runtime.rs");
-    
+
+    let content = fs::read_to_string(&runtime_file).expect("Failed to read runtime.rs");
+
     // Verify persistence round-trip tests exist
     assert!(
         content.contains("test_persistence_round_trip") || content.contains("persistence"),
         "Persistence round-trip tests not found in runtime.rs"
     );
-    
+
     // Verify partial resume tests exist
     assert!(
         content.contains("test_partial_resume") || content.contains("partial"),
@@ -371,11 +380,13 @@ mod tests {
     fn test_get_rust_files() {
         let workspace_root = get_workspace_root();
         let engine_dir = workspace_root.join("2.engine");
-        
+
         if engine_dir.exists() {
             let files = get_rust_files(&engine_dir);
             assert!(!files.is_empty());
-            assert!(files.iter().all(|f| f.extension().and_then(|s| s.to_str()) == Some("rs")));
+            assert!(files
+                .iter()
+                .all(|f| f.extension().and_then(|s| s.to_str()) == Some("rs")));
         }
     }
 }

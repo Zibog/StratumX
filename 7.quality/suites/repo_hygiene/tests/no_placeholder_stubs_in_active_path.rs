@@ -50,7 +50,7 @@ fn check_for_placeholders(dir: &Path, violations: &mut Vec<(String, usize, Strin
 
         if path.is_dir() {
             check_for_placeholders(&path, violations);
-        } else if path.extension().map_or(false, |e| e == "rs") {
+        } else if path.extension().is_some_and(|e| e == "rs") {
             if let Ok(content) = fs::read_to_string(&path) {
                 let relative_path = path
                     .strip_prefix(workspace_root)

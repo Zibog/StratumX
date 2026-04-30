@@ -32,7 +32,7 @@ fn canonical_level_contains_preview() {
 
 #[test]
 fn marker_default() {
-    let m = L612PreviewRuntimeMarker::default();
+    let m = L612PreviewRuntimeMarker;
     assert_eq!(m, L612PreviewRuntimeMarker);
 }
 
@@ -196,7 +196,6 @@ fn crate_exports_editor_authoring_session() {
 #[test]
 fn initialize_function_exists() {
     // Just verify the function signature is accessible
-    let _fn = initialize_vertical_slice_in_executor as fn(
-        &mut stratumx_tooling_l6_0_tool_session::CommandExecutor,
-    ) -> Result<(), String>;
+    let _fn = initialize_vertical_slice_in_executor
+        as fn(&mut stratumx_tooling_l6_0_tool_session::CommandExecutor) -> Result<(), String>;
 }

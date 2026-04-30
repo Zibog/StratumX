@@ -86,29 +86,32 @@ proptest! {
         state_system.set_world_state(Arc::new(Mutex::new(world_state)));
 
         let state_system = Arc::new(state_system);
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register terrain preview cache
         let terrain_cache = Box::new(TerrainPreviewCache::new());
         cache_layer.register_cache(CacheId::TerrainPreview, terrain_cache);
 
         // Track expected metrics manually
-        let mut expected_hits = 0u64;
-        let mut expected_misses = 0u64;
-        let mut expected_invalidations = 0u64;
-        let mut expected_rebuilds = 0u64;
+        let mut expected_hits = 0usize;
+        let mut expected_misses = 0usize;
+        let mut expected_invalidations = 0usize;
+        let mut expected_rebuilds = 0usize;
 
-        // Cache starts invalid, so first access will be a miss + rebuild
-        let mut cache_is_valid = false;
+        let mut cache_is_valid = cache_layer
+            .is_cache_valid(CacheId::TerrainPreview)
+            .expect("registered cache should report validity");
 
         // Execute operations and track expected metrics
         for op in operations {
             match op {
                 CacheOperation::Access => {
                     let _ = cache_layer.get_or_compute(CacheId::TerrainPreview, |entry| {
-                        let terrain_entry = entry as *const dyn stratumx_editor_state_containers::CacheEntry;
-                        let terrain_entry = unsafe { &*(terrain_entry as *const TerrainPreviewCache) };
-                        Some(terrain_entry.get_preview_data().to_vec())
+                        let terrain_entry = entry
+                            .as_any()
+                            .downcast_ref::<TerrainPreviewCache>()
+                            .expect("terrain preview cache entry");
+                        Some(terrain_entry.entry_count())
                     });
 
                     if cache_is_valid {

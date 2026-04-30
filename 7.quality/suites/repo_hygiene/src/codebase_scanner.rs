@@ -79,7 +79,7 @@ impl CodebaseState {
         let mut current_struct: Option<String> = None;
         let lines: Vec<&str> = content.lines().collect();
 
-        for (_i, line) in lines.iter().enumerate() {
+        for line in &lines {
             let trimmed = line.trim();
 
             // Detect struct definitions

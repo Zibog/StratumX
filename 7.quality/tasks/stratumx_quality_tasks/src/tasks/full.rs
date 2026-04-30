@@ -7,16 +7,14 @@ pub fn run(ctx: &QualityContext) -> Result<(), String> {
         ctx.record_stage("verify", "stratumx_quality_tasks verify", || {
             verify::run(ctx, false)
         })
-        .map_err(|err| {
-            let _ = ctx.write_task_summary("full", &stages, Some(&err));
-            err
+        .inspect_err(|err| {
+            let _ = ctx.write_task_summary("full", &stages, Some(err));
         })?,
     );
     stages.push(
         ctx.record_stage("smoke", "stratumx_quality_tasks smoke", || smoke::run(ctx))
-            .map_err(|err| {
-                let _ = ctx.write_task_summary("full", &stages, Some(&err));
-                err
+            .inspect_err(|err| {
+                let _ = ctx.write_task_summary("full", &stages, Some(err));
             })?,
     );
 
@@ -33,9 +31,8 @@ pub fn run(ctx: &QualityContext) -> Result<(), String> {
     ]);
     stages.push(
         ctx.run_cargo("full-matrix", &string_args(&args))
-            .map_err(|err| {
-                let _ = ctx.write_task_summary("full", &stages, Some(&err));
-                err
+            .inspect_err(|err| {
+                let _ = ctx.write_task_summary("full", &stages, Some(err));
             })?,
     );
     ctx.write_task_summary("full", &stages, None)

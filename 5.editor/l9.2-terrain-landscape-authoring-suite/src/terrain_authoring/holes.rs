@@ -10,7 +10,7 @@ impl TerrainAuthoring {
         center: [f32; 2],
         radius: f32,
     ) -> Result<(), String> {
-        if let Some(scene) = world.vertical_slice_scene_mut() {
+        if let Some(scene) = world.proof_region_scene_mut() {
             let terrain = &mut scene.terrain;
 
             if terrain.hole_mask.is_none() {
@@ -61,7 +61,7 @@ impl TerrainAuthoring {
         center: [f32; 2],
         radius: f32,
     ) -> Result<(), String> {
-        if let Some(scene) = world.vertical_slice_scene_mut() {
+        if let Some(scene) = world.proof_region_scene_mut() {
             let terrain = &mut scene.terrain;
 
             if terrain.hole_mask.is_none() {

@@ -14,7 +14,7 @@ impl super::startup::VerticalSliceSession {
         let scene = self
             .runtime
             .world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("Scene not found")?;
         scene.terrain.origin = new_position;
         Ok(())
@@ -24,7 +24,7 @@ impl super::startup::VerticalSliceSession {
         let scene = self
             .runtime
             .world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("Scene not found")?;
         scene.wall.position = new_position;
         Ok(())
@@ -34,7 +34,7 @@ impl super::startup::VerticalSliceSession {
         let scene = self
             .runtime
             .world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("Scene not found")?;
         scene.wall.stack_id = engine_world::MaterialStackId(stack_id);
         Ok(())
@@ -47,7 +47,7 @@ impl super::startup::VerticalSliceSession {
         let scene = self
             .runtime
             .world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("Scene not found")?;
         scene.weapon.position = new_position;
         Ok(())
@@ -57,7 +57,7 @@ impl super::startup::VerticalSliceSession {
         let scene = self
             .runtime
             .world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("Scene not found")?;
         scene.weapon.aim_direction = new_direction;
         Ok(())

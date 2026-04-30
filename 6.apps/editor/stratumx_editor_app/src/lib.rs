@@ -8,8 +8,8 @@
 #![deny(unused_variables)]
 #![warn(dead_code)]
 
+pub mod app_runtime;
 #[cfg(feature = "desktop")]
 pub mod desktop_app;
 pub mod editor_host;
-pub mod app_runtime;
 pub mod shell_bootstrap;

@@ -1,3 +1,6 @@
+//! FUTURE_STUB: this crate is intentionally not product-integrated yet.
+//! It must not be counted as implemented editor functionality until wired into the active product spine.
+
 pub use serde::{Deserialize, Serialize};
 pub use serde_json;
 pub use std::{
@@ -30,7 +33,7 @@ pub struct EditorProduct {
 }
 impl EditorProduct {
     pub fn refresh_from_tooling(&mut self) -> Result<(), ToolingError> {
-        Ok(())
+        Err(inactive_surface_error())
     }
     pub fn run_build(&mut self) -> Result<BuildArtifact, ToolingError> {
         let build = self.tooling.build_current();
@@ -59,4 +62,11 @@ impl EditorProduct {
         let preview = self.tooling.preview_object(handle)?;
         Ok(Some(preview))
     }
+}
+
+fn inactive_surface_error() -> ToolingError {
+    ToolingError::Message(
+        "FUTURE_STUB: build/release surface is not wired into the active editor product spine"
+            .to_string(),
+    )
 }

@@ -15,7 +15,7 @@ impl TerrainAuthoringState {
             .map_err(|e| format!("Failed to create terrain directory: {}", e))?;
 
         let scene = world
-            .vertical_slice_scene()
+            .proof_region_scene()
             .ok_or("No active scene found")?;
         let terrain = &scene.terrain;
         let chunk_size = terrain.chunk_size as usize;

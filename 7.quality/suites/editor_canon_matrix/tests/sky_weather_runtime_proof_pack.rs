@@ -30,13 +30,13 @@ fn default_sky_state_exists_in_runtime() {
             wind_vector,
             storm_front_count,
         } => {
-            assert!(time_of_day_hours >= 0.0 && time_of_day_hours <= 24.0);
-            assert!(day_of_year >= 1 && day_of_year <= 365);
-            assert!(latitude_deg >= -90.0 && latitude_deg <= 90.0);
-            assert!(sun_elevation_deg >= -90.0 && sun_elevation_deg <= 90.0);
-            assert!(sun_intensity >= 0.0 && sun_intensity <= 1.0);
-            assert!(cloud_coverage >= 0.0 && cloud_coverage <= 1.0);
-            assert!(fog_density >= 0.0 && fog_density <= 1.0);
+            assert!((0.0..=24.0).contains(&time_of_day_hours));
+            assert!((1..=365).contains(&day_of_year));
+            assert!((-90.0..=90.0).contains(&latitude_deg));
+            assert!((-90.0..=90.0).contains(&sun_elevation_deg));
+            assert!((0.0..=1.0).contains(&sun_intensity));
+            assert!((0.0..=1.0).contains(&cloud_coverage));
+            assert!((0.0..=1.0).contains(&fog_density));
             assert!(!rain_enabled || rain_intensity_mm_per_hour >= 0.0);
             assert_eq!(wind_vector.len(), 3);
             assert_eq!(storm_front_count, 0);
@@ -355,8 +355,8 @@ fn get_sky_diagnostics_returns_valid_summary() {
             assert!(!rain_enabled, "Default sky has no rain");
             assert!(rain_intensity >= 0.0);
             assert!(wind_magnitude >= 0.0);
-            assert!(fog_density >= 0.0 && fog_density <= 1.0);
-            assert!(cloud_coverage >= 0.0 && cloud_coverage <= 1.0);
+            assert!((0.0..=1.0).contains(&fog_density));
+            assert!((0.0..=1.0).contains(&cloud_coverage));
         }
         _ => panic!("Expected SkyDiagnosticsRead observation"),
     }

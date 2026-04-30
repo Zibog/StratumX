@@ -1,6 +1,6 @@
 # Cross-Technology Budget Arbitration Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the engine-side runtime truth doctrine for cross-technology budget arbitration.
@@ -54,3 +54,42 @@ Promotion beyond `doc_closed_impl_open` requires:
 
 ## Current posture
 `doc_closed_impl_open` unless explicitly upgraded by the implementation reality ledger.
+
+---
+
+# V34 world/entity/scheduler implementation decisions
+
+Stack version: `SX-CANON/1.0.28/STACK-v34`
+
+## World hierarchy
+
+`World → Region → Sector → Cell → Chunk → Entity/Surface/Field`.
+
+Authoring coordinates may use stable high precision global positions. Runtime hot simulation uses cell-local coordinates. Streaming loads chunks; regions are packaging/authoring scopes.
+
+## Entity model
+
+`WorldEntity` is stable identity. Components are data. Systems own behavior. Editor object is authoring projection, not runtime truth.
+
+## Scheduler model
+
+Engine owns the phase scheduler. Domains publish jobs into phases. Domains do not spawn arbitrary global threads.
+
+Required phases:
+
+1. Input
+2. AuthoringCommands
+3. WorldMutation
+4. Simulation
+5. Physics
+6. AI
+7. Animation
+8. AudioPrepare
+9. RenderExtract
+10. RenderSubmit
+11. Diagnostics
+12. Persistence
+
+## Physics strategy
+
+StratumX may use a replaceable physics kernel adapter for collision/motion. StratumX truth remains above it in material response, topology, field substrate, aftermath, diagnostics, and persistence.

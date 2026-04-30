@@ -14,7 +14,7 @@ use uuid::Uuid;
 use stratumx_editor_state_containers::{
     BasicEventBus, CacheLayer, DiagnosticsState, EditorHost, EditorServices, EventBus,
     ProjectIdentity, ProjectState, QueryLayer, StateContainerSystem, WorkspaceIdentity,
-    WorkspaceState,
+    WorkspaceState, WorldIdentity, WorldState,
 };
 
 fn create_test_editor_host() -> EditorHost {
@@ -36,6 +36,15 @@ fn create_test_editor_host() -> EditorHost {
     )));
     let workspace_state = Arc::new(Mutex::new(WorkspaceState::new()));
     let diagnostics_state = Arc::new(Mutex::new(DiagnosticsState::new()));
+    let world_identity = WorldIdentity::new(
+        Uuid::new_v4(),
+        "Test World".to_string(),
+        PathBuf::from("/test/world"),
+    );
+    let world_state = Arc::new(Mutex::new(WorldState::new(
+        world_identity,
+        "snapshot_123".to_string(),
+    )));
 
     // Create state container system
     let state_system = Arc::new(
@@ -60,7 +69,7 @@ fn create_test_editor_host() -> EditorHost {
     let services = EditorServices::new(
         project_state,
         workspace_state,
-        None,
+        Some(world_state),
         diagnostics_state,
         event_bus,
     )

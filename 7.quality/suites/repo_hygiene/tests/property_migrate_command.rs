@@ -101,12 +101,12 @@ proptest! {
 
         // Property: The migration result contains all information needed for a diff
         prop_assert!(
-            result.source_path.to_string_lossy().len() > 0,
+            !result.source_path.to_string_lossy().is_empty(),
             "Source path should be non-empty"
         );
 
         prop_assert!(
-            result.destination_path.to_string_lossy().len() > 0,
+            !result.destination_path.to_string_lossy().is_empty(),
             "Destination path should be non-empty"
         );
 

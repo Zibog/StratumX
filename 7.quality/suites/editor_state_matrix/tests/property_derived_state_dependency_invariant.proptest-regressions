@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc b0609b968aa03cdbe965bd3e969f7a23ec43db3c628fd3a48ccd9b893bcfd4e8 # shrinks to derived_state1 = TerrainPreviewCache, derived_state2 = MaterialRegistryCache

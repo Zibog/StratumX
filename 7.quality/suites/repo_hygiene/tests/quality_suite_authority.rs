@@ -101,8 +101,10 @@ fn scan_for_property_tests(dir: &Path, misplaced: &mut Vec<PathBuf>) {
                 // Read file content
                 if let Ok(content) = fs::read_to_string(&path) {
                     // Check for proptest/quickcheck usage
-                    let has_proptest = content.contains("use proptest::") || content.contains("proptest!");
-                    let has_quickcheck = content.contains("use quickcheck::") || content.contains("quickcheck!");
+                    let has_proptest =
+                        content.contains("use proptest::") || content.contains("proptest!");
+                    let has_quickcheck =
+                        content.contains("use quickcheck::") || content.contains("quickcheck!");
 
                     if has_proptest || has_quickcheck {
                         misplaced.push(path);
@@ -248,16 +250,24 @@ fn test_quality_suites_directory_exists() {
     let suites_dir = std::path::Path::new("7.quality/suites");
     assert!(suites_dir.exists(), "7.quality/suites directory must exist");
 }
-    
+
 #[test]
 fn test_quality_suites_are_comprehensive() {
     let suites_dir = std::path::Path::new("7.quality/suites");
     let suite_count = std::fs::read_dir(suites_dir)
         .expect("Failed to read suites directory")
-        .filter(|e| e.as_ref().map(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false)).unwrap_or(false))
+        .filter(|e| {
+            e.as_ref()
+                .map(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
+                .unwrap_or(false)
+        })
         .count();
-    
-    assert!(suite_count >= 20, "Should have at least 20 quality suites, found {}", suite_count);
+
+    assert!(
+        suite_count >= 20,
+        "Should have at least 20 quality suites, found {}",
+        suite_count
+    );
 }
 
 #[test]
@@ -282,7 +292,10 @@ fn test_no_tests_dir_in_sdk() {
 fn test_get_workspace_root() {
     let root = get_workspace_root();
     assert!(root.exists(), "Workspace root must exist");
-    assert!(root.join("Cargo.toml").exists(), "Workspace root must contain Cargo.toml");
+    assert!(
+        root.join("Cargo.toml").exists(),
+        "Workspace root must contain Cargo.toml"
+    );
 }
 
 #[test]
