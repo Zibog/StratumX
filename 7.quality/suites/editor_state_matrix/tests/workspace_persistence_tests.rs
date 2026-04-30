@@ -10,7 +10,7 @@ mod tests {
     use proptest::prelude::*;
     use std::collections::HashMap;
     use stratumx_editor_state_containers::{
-        DockPosition, DockingConfig, PanelGeometry, PanelId, WorkspaceState,
+        DockPosition, DockingConfig, PanelGeometry, PanelId, WorkspaceOwner, WorkspaceState,
     };
     use tempfile::NamedTempFile;
 
@@ -116,12 +116,6 @@ mod tests {
                     "Panel {:?} height not preserved",
                     panel_id
                 );
-                prop_assert_eq!(
-                    geometry.dock_position,
-                    restored_geometry.dock_position,
-                    "Panel {:?} dock position not preserved",
-                    panel_id
-                );
             }
 
             // Verify focused panel is preserved
@@ -186,7 +180,15 @@ mod tests {
                     focused_panel,
                     docking_configuration,
                 )| {
+                    let mut workspace_owner = WorkspaceOwner::new();
+                    workspace_owner.schema_version = schema_version;
+                    workspace_owner.open_panel_ids = open_panel_ids.clone();
+                    workspace_owner.panel_positions = panel_positions.clone();
+                    workspace_owner.focused_panel = focused_panel.clone();
+                    workspace_owner.docking_configuration = docking_configuration.clone();
+                    
                     WorkspaceState {
+                        workspace_owner,
                         schema_version,
                         open_panel_ids,
                         panel_positions,
@@ -261,23 +263,8 @@ mod tests {
             0.0f32..2000.0f32,   // y position
             100.0f32..1920.0f32, // width (min 100, max typical screen width)
             100.0f32..1080.0f32, // height (min 100, max typical screen height)
-            dock_position_strategy(),
         )
-            .prop_map(|(x, y, width, height, dock_position)| {
-                PanelGeometry::new(x, y, width, height, dock_position)
-            })
-    }
-
-    /// Strategy for generating dock positions
-    fn dock_position_strategy() -> impl Strategy<Value = DockPosition> {
-        prop_oneof![
-            Just(DockPosition::Floating),
-            Just(DockPosition::Left),
-            Just(DockPosition::Right),
-            Just(DockPosition::Top),
-            Just(DockPosition::Bottom),
-            Just(DockPosition::Center),
-        ]
+            .prop_map(|(x, y, width, height)| PanelGeometry::new(x, y, width, height))
     }
 
     /// Strategy for generating docking configurations
@@ -370,7 +357,6 @@ mod tests {
         let mut layout = WorkspaceState::new();
 
         let dock_positions = vec![
-            DockPosition::Floating,
             DockPosition::Left,
             DockPosition::Right,
             DockPosition::Top,
@@ -380,7 +366,7 @@ mod tests {
 
         for (i, dock_pos) in dock_positions.into_iter().enumerate() {
             let panel_id = PanelId::new(format!("panel_{}", i));
-            let geometry = PanelGeometry::new(
+            let geometry = PanelGeometry::docked(
                 (i as f32) * 100.0,
                 (i as f32) * 100.0,
                 300.0,

@@ -1,5 +1,6 @@
 // Authoring Session State
 
+use super::proof_state::EditorProofState;
 use crate::VerticalSliceSession;
 use link_egress_observations::*;
 use link_ingress_packets::*;
@@ -19,10 +20,7 @@ pub struct EditorAuthoringSession {
     pub(super) stacks: HashMap<u16, AuthoringMaterialStackDto>,
     pub(super) actors: HashMap<u32, ActorDto>,
     pub(super) active_actor: Option<u32>,
-
-    // Material world state
-    pub(super) fire_object_burning: bool,
-    pub(super) barrel_water_liters: f32,
+    pub(super) proof_state: EditorProofState,
 }
 
 impl Default for EditorAuthoringSession {
@@ -45,8 +43,7 @@ impl EditorAuthoringSession {
             stacks: HashMap::new(),
             actors: HashMap::new(),
             active_actor: None,
-            fire_object_burning: false,
-            barrel_water_liters: 0.0,
+            proof_state: EditorProofState::default(),
         }
     }
 
@@ -54,6 +51,7 @@ impl EditorAuthoringSession {
         let session = VerticalSliceSession::new()?;
         let scene_name = session.authoring_get_scene_summary()?.scene_name;
         self.vertical_slice_session = Some(session);
+        self.proof_state = EditorProofState::default();
         // Only set active_scene if not already set (e.g., by CreateEmpty with a custom name)
         if self.active_scene.is_none() {
             self.active_scene = Some(scene_name);
@@ -116,9 +114,15 @@ impl EditorAuthoringSession {
             EditorAuthoringCommand::Ecology(cmd) => super::ecology_commands::handle(self, cmd),
             EditorAuthoringCommand::Sky(cmd) => super::sky_commands::handle(self, cmd),
             EditorAuthoringCommand::Storm(cmd) => super::storm_commands::handle(self, cmd),
-            EditorAuthoringCommand::Animation(cmd) => {
-                super::animation_commands::handle(self, cmd)
-            }
+            EditorAuthoringCommand::Animation(cmd) => super::animation_commands::handle(self, cmd),
+        }
+    }
+
+    pub(super) fn ensure_runtime_session(&self) -> Result<(), String> {
+        if self.vertical_slice_session.is_some() {
+            Ok(())
+        } else {
+            Err("Runtime session not initialized".into())
         }
     }
 }

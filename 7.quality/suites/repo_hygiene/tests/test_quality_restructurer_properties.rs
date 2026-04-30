@@ -51,12 +51,9 @@ fn prop_test_suite_categorization() {
     let restructurer = QualityRestructurer::new(repo_root.clone());
 
     proptest!(|(candidate in arb_test_candidate(repo_root.clone()))| {
-        let result = restructurer.categorize_test(&candidate);
-
-        // Should successfully categorize all valid source paths
-        prop_assert!(result.is_ok());
-
-        let target_path = result.unwrap();
+        let target_path = restructurer
+            .categorize_test(&candidate)
+            .expect("Should successfully categorize all valid source paths");
         let target_str = target_path.to_string_lossy();
 
         // Verify the target path is in the quality suites directory

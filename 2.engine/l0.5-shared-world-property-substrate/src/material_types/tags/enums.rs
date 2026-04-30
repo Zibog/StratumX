@@ -70,8 +70,6 @@ pub enum SegmentationMode {
 }
 
 #[allow(dead_code)]
-#[allow(dead_code)]
-#[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum SegmentState {
     Intact,

@@ -9,10 +9,4 @@ mod tests {
         let world = create_test_world();
         assert!(world.vertical_slice_scene().is_none());
     }
-
-    #[test]
-    fn test_viewport_mode_transitions() {
-        // Test viewport mode switching
-        assert!(true);
-    }
 }

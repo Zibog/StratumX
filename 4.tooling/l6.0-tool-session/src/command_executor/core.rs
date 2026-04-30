@@ -12,7 +12,7 @@ use crate::{ToolingError, ToolingRuntime};
 use link_ingress_packets::PacketExecutor;
 use serde_json;
 use stratumx_tooling_l6_1_command_envelopes::{
-    CommandEnvelope, CommandLifecycleState, PromotedCommand,
+    validate_command, CommandEnvelope, CommandLifecycleState, PromotedCommand, ValidationResult,
 };
 
 // REAL RUNTIME PATH: CommandExecutor now owns PacketExecutor
@@ -84,10 +84,8 @@ impl CommandExecutor {
         let payload = serde_json::to_vec(&command)
             .map_err(|e| ToolingError::Message(format!("command serialization failed: {}", e)))?;
 
-        let mut envelope = CommandEnvelope::new(command_id, command.route_id(), payload);
-        let _ = envelope.transition_to(CommandLifecycleState::Accepted, None);
-
-        self.active_envelopes.push(envelope);
+        self.active_envelopes
+            .push(CommandEnvelope::new(command_id, command.route_id(), payload));
         Ok(command_id)
     }
 
@@ -98,33 +96,61 @@ impl CommandExecutor {
     ) -> Result<Vec<u8>, ToolingError> {
         use super::routing::route_promoted_command;
 
-        let envelope = self
+        let envelope_index = self
             .active_envelopes
             .iter_mut()
-            .find(|e| e.command_id == command_id)
+            .position(|envelope| envelope.command_id == command_id)
             .ok_or(ToolingError::Message("command not found".into()))?;
 
-        let _ = envelope.transition_to(CommandLifecycleState::Running, None);
+        let command: PromotedCommand =
+            match serde_json::from_slice(&self.active_envelopes[envelope_index].payload) {
+                Ok(command) => command,
+                Err(error) => {
+                    let message = format!("command deserialization failed: {}", error);
+                    self.active_envelopes[envelope_index]
+                        .transition_to(
+                            CommandLifecycleState::TerminalFailure,
+                            Some(message.clone()),
+                        )
+                        .map_err(ToolingError::Message)?;
+                    return Err(ToolingError::Message(message));
+                }
+            };
 
-        let command: PromotedCommand = serde_json::from_slice(&envelope.payload)
-            .map_err(|e| ToolingError::Message(format!("command deserialization failed: {}", e)))?;
+        match validate_command(&command) {
+            ValidationResult::Valid => {
+                self.active_envelopes[envelope_index]
+                    .transition_to(CommandLifecycleState::Validated, None)
+                    .map_err(ToolingError::Message)?;
+            }
+            ValidationResult::Invalid { errors } => {
+                let message = errors.join("; ");
+                self.active_envelopes[envelope_index]
+                    .transition_to(
+                        CommandLifecycleState::TerminalFailure,
+                        Some(message.clone()),
+                    )
+                    .map_err(ToolingError::Message)?;
+                return Err(ToolingError::Message(message));
+            }
+        }
 
-        let result = route_promoted_command(self, command, runtime);
+        self.active_envelopes[envelope_index]
+            .transition_to(CommandLifecycleState::Running, None)
+            .map_err(ToolingError::Message)?;
 
-        let envelope = self
-            .active_envelopes
-            .iter_mut()
-            .find(|e| e.command_id == command_id)
-            .ok_or(ToolingError::Message("command not found".into()))?;
+        let result = route_promoted_command(self, command_id, command, runtime);
 
         match &result {
-            Ok(_) => {
-                let _ = envelope.transition_to(CommandLifecycleState::Success, None);
-            }
-            Err(e) => {
-                let _ = envelope
-                    .transition_to(CommandLifecycleState::RetryableFailure, Some(e.to_string()));
-            }
+            Ok(_) => self.active_envelopes[envelope_index]
+                .transition_to(CommandLifecycleState::Success, None)
+                .map_err(ToolingError::Message)?,
+            Err(error) => self.active_envelopes[envelope_index]
+                .transition_to(
+                    CommandLifecycleState::RetryableFailure,
+                    Some(error.to_string()),
+                )
+                .map_err(ToolingError::Message)?,
         }
 
         result

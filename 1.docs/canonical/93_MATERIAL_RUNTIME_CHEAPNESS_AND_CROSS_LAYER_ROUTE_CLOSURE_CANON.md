@@ -1,6 +1,6 @@
 # Material Runtime Cheapness And Cross Layer Route Closure Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze one mandatory cheap-runtime contract and one class-wide implementation-tail contract for all material-owned routes.

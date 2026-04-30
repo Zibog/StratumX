@@ -1,3 +1,9 @@
+//! FUTURE_STUB.
+//!
+//! This crate is present as a canonical future surface.
+//! It is not part of the active product spine yet.
+//! It must not be counted as product-complete.
+
 mod model;
 mod runtime;
 

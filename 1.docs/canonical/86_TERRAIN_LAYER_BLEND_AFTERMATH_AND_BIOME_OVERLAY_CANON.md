@@ -1,6 +1,6 @@
 # Terrain Layer Blend, Aftermath, And Biome Overlay Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze how terrain layers, biome litter, structural scatter, and aftermath overlays coexist so that terrain authoring is materially truthful, blend-safe, and cheap enough for world-scale use.

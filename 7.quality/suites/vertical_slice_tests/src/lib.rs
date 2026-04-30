@@ -1,9 +1,9 @@
-/// Vertical Slice End-to-End Tests
-///
-/// Tests for Properties 24-26:
-/// - Property 24: Vertical Slice Completeness - each active slice has all 4 layers
-/// - Property 25: Incomplete Slice Marking - incomplete slices are marked "future"
-/// - Property 26: Vertical Slice End-to-End Testing - each active slice works end-to-end
+//! Vertical Slice End-to-End Tests
+//!
+//! Tests for Properties 24-26:
+//! - Property 24: Vertical Slice Completeness - each active slice has all 4 layers
+//! - Property 25: Incomplete Slice Marking - incomplete slices are marked "future"
+//! - Property 26: Vertical Slice End-to-End Testing - each active slice works end-to-end
 
 pub const AUDIT_REPORT_PATH: &str = "../../data/generated/vertical_slice_audit.json";
 

@@ -37,7 +37,7 @@ fn test_migration_rollback_on_compilation_failure() {
         let compilation_result = migrator.verify_compilation(&migration_result.destination_path);
 
         match compilation_result {
-            Ok(CompilationStatus::Failed { .. }) => {
+            Ok(CompilationStatus::Failed) => {
                 // Expected: compilation failed
                 // In a real implementation, rollback would occur here
                 println!("Compilation failed as expected");

@@ -1,4 +1,4 @@
-﻿//! Terrain Authoring Service
+//! Terrain Authoring Service
 //!
 //! Domain service for terrain editing operations including heightmap manipulation and layer management.
 //! Abstraction Level: L4 (Authoring Tools)

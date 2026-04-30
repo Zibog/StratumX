@@ -9,19 +9,17 @@ impl DiscoveryScanner {
     pub fn scan_hygiene_violations(&self) -> Vec<HygieneViolation> {
         let mut violations = Vec::new();
 
-        for entry in self.walk_repo() {
-            if let Ok(entry) = entry {
-                let path = entry.path();
-                if !path.is_file() || !Self::is_rust_file(path) {
-                    continue;
-                }
+        for entry in self.walk_repo().flatten() {
+            let path = entry.path();
+            if !path.is_file() || !Self::is_rust_file(path) {
+                continue;
+            }
 
-                if let Ok(content) = fs::read_to_string(path) {
-                    violations.extend(self.check_line_count(path, &content));
-                    violations.extend(self.check_test_file_in_src(path));
-                    violations.extend(self.check_todo_comments(path, &content));
-                    violations.extend(self.check_allow_attributes(path, &content));
-                }
+            if let Ok(content) = fs::read_to_string(path) {
+                violations.extend(self.check_line_count(path, &content));
+                violations.extend(self.check_test_file_in_src(path));
+                violations.extend(self.check_todo_comments(path, &content));
+                violations.extend(self.check_allow_attributes(path, &content));
             }
         }
 

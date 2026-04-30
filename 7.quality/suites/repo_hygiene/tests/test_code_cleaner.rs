@@ -152,7 +152,7 @@ fn test_host_bypass_remediation_suggestions() {
 
     let cleaner = CodeCleaner::new(repo_root.clone());
     let bypasses = cleaner.identify_host_bypasses();
-    assert!(bypasses.len() > 0);
+    assert!(!bypasses.is_empty());
     assert!(bypasses[0].suggested_action.contains("SaveFile"));
     assert!(bypasses[0].suggested_action.contains("Command_Spine"));
 
@@ -168,7 +168,7 @@ fn test_host_bypass_remediation_suggestions() {
 
     let cleaner = CodeCleaner::new(repo_root.clone());
     let bypasses = cleaner.identify_host_bypasses();
-    assert!(bypasses.len() > 0);
+    assert!(!bypasses.is_empty());
     assert!(bypasses[0].suggested_action.contains("OpenFile"));
 
     // Clean up for next test
@@ -183,7 +183,7 @@ fn test_host_bypass_remediation_suggestions() {
 
     let cleaner = CodeCleaner::new(repo_root);
     let bypasses = cleaner.identify_host_bypasses();
-    assert!(bypasses.len() > 0);
+    assert!(!bypasses.is_empty());
     assert!(bypasses[0].suggested_action.contains("dialog"));
 }
 
@@ -242,7 +242,7 @@ fn test_identify_registration_blobs_detects_mixed_concerns() {
 
     assert_eq!(blobs.len(), 1);
     assert!(blobs[0].mixed_concerns.len() >= 2);
-    assert!(blobs[0].suggested_decomposition.len() > 0);
+    assert!(!blobs[0].suggested_decomposition.is_empty());
 }
 
 #[test]
@@ -296,7 +296,7 @@ fn test_detect_mixed_concerns() {
     let cleaner = CodeCleaner::new(repo_root);
     let blobs = cleaner.identify_registration_blobs();
 
-    assert!(blobs.len() > 0);
+    assert!(!blobs.is_empty());
     let concerns = &blobs[0].mixed_concerns;
     assert!(concerns.iter().any(|c| c.contains("Command")));
     assert!(concerns.iter().any(|c| c.contains("Panel")));
@@ -327,9 +327,9 @@ fn test_suggest_decomposition_multiple_concerns() {
     let cleaner = CodeCleaner::new(repo_root);
     let blobs = cleaner.identify_registration_blobs();
 
-    assert!(blobs.len() > 0);
+    assert!(!blobs.is_empty());
     let suggestions = &blobs[0].suggested_decomposition;
-    assert!(suggestions.len() > 0);
+    assert!(!suggestions.is_empty());
     assert!(suggestions.iter().any(|s| s.contains("separate")));
 }
 
@@ -363,12 +363,12 @@ impl ParserPanel {
     let cleaner = CodeCleaner::new(repo_root);
     let violations = cleaner.identify_domain_logic_in_ui();
 
-    assert!(violations.len() > 0);
+    assert!(!violations.is_empty());
     let parser_violations: Vec<_> = violations
         .iter()
         .filter(|v| matches!(v.violation_type, DomainLogicType::Parser))
         .collect();
-    assert!(parser_violations.len() > 0);
+    assert!(!parser_violations.is_empty());
     assert!(parser_violations[0]
         .suggested_target_layer
         .contains("domain service"));
@@ -403,7 +403,7 @@ impl ValidatorPanel {
         .iter()
         .filter(|v| matches!(v.violation_type, DomainLogicType::Validator))
         .collect();
-    assert!(validator_violations.len() > 0);
+    assert!(!validator_violations.is_empty());
     assert!(validator_violations[0]
         .suggested_target_layer
         .contains("validation service"));
@@ -438,7 +438,7 @@ impl BusinessPanel {
         .iter()
         .filter(|v| matches!(v.violation_type, DomainLogicType::BusinessRule))
         .collect();
-    assert!(business_violations.len() > 0);
+    assert!(!business_violations.is_empty());
     assert!(business_violations[0]
         .suggested_target_layer
         .contains("business logic"));
@@ -509,9 +509,9 @@ fn test_generate_cleanup_report_aggregates_all_issues() {
     let cleaner = CodeCleaner::new(repo_root);
     let report = cleaner.generate_cleanup_report();
 
-    assert!(report.host_bypasses.len() > 0);
-    assert!(report.registration_blobs.len() > 0);
-    assert!(report.domain_logic_violations.len() > 0);
+    assert!(!report.host_bypasses.is_empty());
+    assert!(!report.registration_blobs.is_empty());
+    assert!(!report.domain_logic_violations.is_empty());
     assert_eq!(
         report.total_issues,
         report.host_bypasses.len()
@@ -551,7 +551,7 @@ fn test_cleanup_report_includes_remediation_guidance() {
     let report = cleaner.generate_cleanup_report();
 
     // Verify remediation guidance is included
-    assert!(report.host_bypasses.len() > 0);
+    assert!(!report.host_bypasses.is_empty());
     assert!(!report.host_bypasses[0].suggested_action.is_empty());
     assert!(report.host_bypasses[0]
         .suggested_action

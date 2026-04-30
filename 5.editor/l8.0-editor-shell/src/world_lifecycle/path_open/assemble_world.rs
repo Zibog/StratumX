@@ -2,7 +2,7 @@
 
 use super::{load_environment, load_terrain};
 use editor_dto_law::WorldPackageManifest;
-use engine_world::{EntityId, VerticalSliceScene, WorldState};
+use engine_world::{EntityId, ProofRegionScene, WorldState};
 use std::path::Path;
 
 pub(super) fn assemble_world_from_manifest(
@@ -18,7 +18,7 @@ pub(super) fn assemble_world_from_manifest(
     let terrain_state = load_terrain::load_terrain_from_package(world_path, manifest)?;
     let sky_state = load_environment::load_sky_from_package(world_path, manifest)?;
 
-    let scene = VerticalSliceScene {
+    let scene = ProofRegionScene {
         scene_name: manifest.world_label.clone(),
         terrain: terrain_state,
         wall: engine_world::WallState {
@@ -42,7 +42,7 @@ pub(super) fn assemble_world_from_manifest(
         sky_bundle_path: Some("shared/sky/sky_bundle.json".to_string()),
     };
 
-    world.set_vertical_slice_scene(scene);
+    world.set_proof_region_scene(scene);
 
     Ok(world)
 }

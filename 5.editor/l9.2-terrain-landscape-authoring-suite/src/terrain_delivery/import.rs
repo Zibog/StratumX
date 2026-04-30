@@ -39,7 +39,7 @@ impl TerrainAuthoringState {
         }
 
         // Update terrain state
-        if let Some(scene) = world.vertical_slice_scene_mut() {
+        if let Some(scene) = world.proof_region_scene_mut() {
             // Set terrain properties
             scene.terrain.resolution = [width, height];
             scene.terrain.height_samples = height_samples;

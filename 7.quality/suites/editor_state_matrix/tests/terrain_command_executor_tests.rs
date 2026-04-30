@@ -3,7 +3,7 @@ use std::fs;
 use engine_material::SkyWeatherState;
 use engine_world::{
     CameraState, EntityId, MaterialStackId, TerrainLayerMaterialState, TerrainPatchState,
-    VerticalSliceScene, WallState, WeaponProfileId, WeaponState, WorldState,
+    ProofRegionScene, WallState, WeaponProfileId, WeaponState, WorldState,
 };
 use stratumx_editor_state_containers::runtime::terrain_command_executor::RuntimeHostAccess;
 use stratumx_editor_state_containers::runtime::terrain_command_executor::TerrainCommandExecutor;
@@ -26,7 +26,7 @@ impl RuntimeHostAccess for MockRuntimeHost {
 
 fn create_host() -> MockRuntimeHost {
     let mut world = WorldState::new();
-    world.set_vertical_slice_scene(VerticalSliceScene {
+    world.set_proof_region_scene(ProofRegionScene {
         scene_name: "Test Scene".to_string(),
         terrain: TerrainPatchState {
             entity_id: EntityId(1),
@@ -89,15 +89,18 @@ fn terrain_command_executor_imports_square_raw_and_r16_heightmaps() {
     fs::write(&raw_path, vec![0u8; 256 * 256]).unwrap();
     fs::write(&r16_path, vec![0u8; 256 * 256 * 2]).unwrap();
 
-    let executor = TerrainCommandExecutor::new();
     let mut host = create_host();
+    let mut executor = TerrainCommandExecutor::new(MockRuntimeHost {
+        world: WorldState::new(),
+        terrain_gpu_dirty: false,
+    });
 
     assert!(executor.import_heightmap(&mut host, &raw_path).is_ok());
     assert!(executor.import_heightmap(&mut host, &r16_path).is_ok());
     assert!(host.terrain_gpu_dirty);
     assert_eq!(
         host.world
-            .vertical_slice_scene()
+            .proof_region_scene()
             .unwrap()
             .terrain
             .resolution,
@@ -113,8 +116,11 @@ fn terrain_command_executor_rejects_invalid_raw_and_r16_inputs() {
     fs::write(&raw_path, vec![0u8; 99]).unwrap();
     fs::write(&r16_path, vec![0u8; 255]).unwrap();
 
-    let executor = TerrainCommandExecutor::new();
     let mut host = create_host();
+    let mut executor = TerrainCommandExecutor::new(MockRuntimeHost {
+        world: WorldState::new(),
+        terrain_gpu_dirty: false,
+    });
 
     assert!(executor.import_heightmap(&mut host, &raw_path).is_err());
     assert!(executor.import_heightmap(&mut host, &r16_path).is_err());

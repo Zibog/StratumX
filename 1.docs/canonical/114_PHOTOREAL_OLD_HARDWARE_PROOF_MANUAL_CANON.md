@@ -1,6 +1,6 @@
 # Photoreal Old Hardware Proof Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Provide the stitched reading spine for photoreal quality, lighting, shadow ladders, fallback law, and old-floor proof so visual ambition and hardware honesty stay coupled.
@@ -29,3 +29,26 @@ This manual stitches:
 
 ## Current posture
 `document_gold / stitched_manual_closed`
+
+
+## v31 photoreal first-lane linkage
+Photoreal proof now starts with the Graphics Port first lane defined in root `122` and engine `145–148`.
+The old-hardware proof manual must consume backend feature tiers, disabled optional features, residency rung, shadow tier, and capture artifacts from the Graphics Port packet families in sdk `89–91`.
+
+
+---
+# V32 Old-Floor Visual Proof Closure
+
+## Minimum old-floor fallback rows
+| Feature | High path later | Old-floor path now | Required packet |
+|---|---|---|---|
+| shadows | cascaded/high resolution | single low-res or disabled verdict | `feature.shadow.degraded` |
+| local lights | clustered/many lights | capped local light count | `feature.local_light.capped` |
+| transient light | full muzzle flash lighting | one-frame simple light or emissive fallback | `feature.transient_light.degraded` |
+| terrain textures | high-res mips | lower mip/checker fallback | `resource.texture.degraded` |
+| sky | advanced atmosphere | gradient/basic atmosphere | `feature.sky.degraded` |
+| post | advanced post stack | exposure+tonemap only | `feature.post.degraded` |
+| capture | image+metadata+timing | metadata-only if image unavailable | `capture.degraded` |
+
+## Proof rule
+A feature is not photoreal-gold until it has a normal path, old-floor fallback, visible editor badge, SDK packet, tooling evidence, and golden-frame expectation.

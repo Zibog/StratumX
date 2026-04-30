@@ -1,12 +1,17 @@
-//! l4-startup: Thin engine assembly and initialization
-//!
-//! Provides startup orchestration, world initialization, asset bootstrapping,
-//! and assembly of core engine systems from lower foundation layers.
+#![deny(unused_imports)]
+#![deny(unused_variables)]
+#![deny(dead_code)]
 
-mod types;
-mod runtime;
-mod validation;
-mod queries;
-mod exports;
+pub use asset_root::*;
+pub use sky_bundle::*;
+pub use startup_assembly::*;
+pub use startup_types::*;
 
-pub use exports::*;
+pub mod asset_root;
+pub mod sky_bundle;
+mod startup_assembly;
+pub mod startup_reference_seed;
+mod startup_types;
+mod startup_validation;
+
+pub use startup_reference_seed::{launch_startup_reference_seed, StartupReferenceSeedRuntime};

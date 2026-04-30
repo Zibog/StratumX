@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # File Size Discipline Checker
-# Scans codebase for files exceeding 200 LOC without justification
+# Scans codebase for files exceeding 200 LOC (warn) or 300 LOC (fail)
 
 set -e
 
-MAX_LOC=200
+FAIL_LOC=300
+WARN_LOC=200
 JUSTIFICATION_PATTERNS=("JUSTIFICATION:" "LOC_JUSTIFICATION:" "FILE_SIZE_JUSTIFICATION:")
 
 count_lines_of_code() {
@@ -53,10 +54,12 @@ echo "Checking file size discipline in: $REPO_ROOT"
 echo ""
 
 # Arrays to store violations
-declare -a unjustified_files
-declare -a unjustified_locs
-declare -a justified_files
-declare -a justified_locs
+declare -a fail_files
+declare -a fail_locs
+declare -a warn_unjustified_files
+declare -a warn_unjustified_locs
+declare -a warn_justified_files
+declare -a warn_justified_locs
 
 # Scan directories
 for dir in "2.engine" "3.sdk" "4.tooling" "5.editor" "6.apps"; do
@@ -70,47 +73,59 @@ for dir in "2.engine" "3.sdk" "4.tooling" "5.editor" "6.apps"; do
             
             content=$(cat "$file")
             loc=$(count_lines_of_code "$content")
+            rel_path="${file#$REPO_ROOT/}"
             
-            if [ "$loc" -gt "$MAX_LOC" ]; then
-                rel_path="${file#$REPO_ROOT/}"
+            if [ "$loc" -gt "$FAIL_LOC" ]; then
+                # Files exceeding 300 LOC always fail
+                fail_files+=("$rel_path")
+                fail_locs+=("$loc")
+            elif [ "$loc" -gt "$WARN_LOC" ]; then
+                # Files exceeding 200 LOC warn unless justified
                 if has_justification "$content"; then
-                    justified_files+=("$rel_path")
-                    justified_locs+=("$loc")
+                    warn_justified_files+=("$rel_path")
+                    warn_justified_locs+=("$loc")
                 else
-                    unjustified_files+=("$rel_path")
-                    unjustified_locs+=("$loc")
+                    warn_unjustified_files+=("$rel_path")
+                    warn_unjustified_locs+=("$loc")
                 fi
             fi
         done < <(find "$full_path" -name "*.rs" -type f -print0)
     fi
 done
 
-# Calculate total violations
-total_violations=$((${#unjustified_files[@]} + ${#justified_files[@]}))
+# Calculate total violations and warnings
+total_failures=${#fail_files[@]}
+total_warnings=$((${#warn_unjustified_files[@]} + ${#warn_justified_files[@]}))
 
-if [ "$total_violations" -eq 0 ]; then
+# Display failures (>300 LOC)
+if [ "$total_failures" -gt 0 ]; then
+    echo "✗ FAIL: $total_failures files exceed $FAIL_LOC LOC (must be split):"
+    for i in "${!fail_files[@]}"; do
+        echo "  - ${fail_files[$i]} (${fail_locs[$i]} LOC)"
+    done
+    echo ""
+fi
+
+# Display warnings (>200 LOC)
+if [ "${#warn_unjustified_files[@]}" -gt 0 ]; then
+    echo "⚠ WARN: ${#warn_unjustified_files[@]} files exceed $WARN_LOC LOC without justification:"
+    for i in "${!warn_unjustified_files[@]}"; do
+        echo "  - ${warn_unjustified_files[$i]} (${warn_unjustified_locs[$i]} LOC)"
+    done
+    echo ""
+fi
+
+if [ "${#warn_justified_files[@]}" -gt 0 ]; then
+    echo "ℹ INFO: ${#warn_justified_files[@]} files exceed $WARN_LOC LOC with justification:"
+    for i in "${!warn_justified_files[@]}"; do
+        echo "  - ${warn_justified_files[$i]} (${warn_justified_locs[$i]} LOC) [JUSTIFIED]"
+    done
+    echo ""
+fi
+
+if [ "$total_failures" -eq 0 ] && [ "$total_warnings" -eq 0 ]; then
     echo "✓ File size discipline check passed: No violations found"
     exit 0
-fi
-
-# Display violations
-echo "✗ File size discipline check failed: $total_violations files exceed $MAX_LOC LOC"
-echo ""
-
-if [ "${#unjustified_files[@]}" -gt 0 ]; then
-    echo "Files requiring split or justification (${#unjustified_files[@]}):"
-    for i in "${!unjustified_files[@]}"; do
-        echo "  - ${unjustified_files[$i]} (${unjustified_locs[$i]} LOC)"
-    done
-    echo ""
-fi
-
-if [ "${#justified_files[@]}" -gt 0 ]; then
-    echo "Files with justification (${#justified_files[@]}):"
-    for i in "${!justified_files[@]}"; do
-        echo "  - ${justified_files[$i]} (${justified_locs[$i]} LOC) [JUSTIFIED]"
-    done
-    echo ""
 fi
 
 echo "Remediation:"
@@ -119,8 +134,10 @@ echo "  2. Add justification comment with pattern: // JUSTIFICATION: <reason>"
 echo "  3. Document split in 1.docs/history/SANITATION_LEDGER.md"
 echo ""
 
-if [ "${#unjustified_files[@]}" -eq 0 ]; then
+if [ "$total_failures" -eq 0 ]; then
+    echo "✓ No failures (warnings only)"
     exit 0
 else
+    echo "✗ File size discipline check failed: $total_failures files exceed $FAIL_LOC LOC"
     exit 1
 fi

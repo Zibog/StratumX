@@ -12,18 +12,19 @@
 mod tests {
     use proptest::prelude::*;
     use std::path::PathBuf;
-    use stratumx_editor_state_containers::owners::diagnostics_owner::{
-        DiagnosticMessage, DiagnosticSource, DiagnosticsOwner, FailureCode, Severity, TraceId,
-        TraceLineage,
+    use stratumx_editor_state_containers::{
+        DiagnosticMessage, DiagnosticSource, DockPosition, EnvironmentState, FailureCode,
+        Severity, TraceId, TraceLineage,
     };
+    use stratumx_editor_state_containers::owners::diagnostics_owner::DiagnosticsOwner;
     use stratumx_editor_state_containers::owners::project_owner::{
-        ContentSnapshot, ProjectIdentity, ProjectOwner, WorkspaceIdentity,
+        ProjectIdentity, ProjectOwner, WorkspaceIdentity,
     };
     use stratumx_editor_state_containers::owners::workspace_owner::{
-        DockPosition, PanelGeometry, PanelId, WorkspaceOwner,
+        PanelGeometry, PanelId, WorkspaceOwner,
     };
     use stratumx_editor_state_containers::owners::world_owner::{
-        EnvironmentState, TerrainState, WorldIdentity, WorldOwner,
+        TerrainState, WorldIdentity, WorldOwner,
     };
     use stratumx_editor_state_containers::queries::diagnostics_queries::{
         DiagnosticsFailureCodesView, DiagnosticsMessagesView, DiagnosticsSummaryView,
@@ -93,12 +94,7 @@ mod tests {
 
             // Add snapshots
             for i in 0..snapshot_count {
-                owner.add_snapshot(ContentSnapshot::new(
-                    Uuid::new_v4(),
-                    i as u64,
-                    format!("Snapshot {}", i),
-                    vec![i as u8],
-                ));
+                owner.add_snapshot(format!("Snapshot {}", i));
             }
 
             // Capture initial state
@@ -136,18 +132,22 @@ mod tests {
             // Add panels
             for i in 0..panel_count {
                 let panel_id = PanelId::new(format!("panel_{}", i));
-                let dock_position = if i < docked_count {
-                    DockPosition::Left
+                let geometry = if i < docked_count {
+                    PanelGeometry::docked(
+                        i as f32 * 100.0,
+                        i as f32 * 100.0,
+                        800.0,
+                        600.0,
+                        DockPosition::Left,
+                    )
                 } else {
-                    DockPosition::Floating
+                    PanelGeometry::floating(
+                        i as f32 * 100.0,
+                        i as f32 * 100.0,
+                        800.0,
+                        600.0,
+                    )
                 };
-                let geometry = PanelGeometry::new(
-                    i as f32 * 100.0,
-                    i as f32 * 100.0,
-                    800.0,
-                    600.0,
-                    dock_position,
-                );
                 owner.add_panel(panel_id, geometry);
             }
 

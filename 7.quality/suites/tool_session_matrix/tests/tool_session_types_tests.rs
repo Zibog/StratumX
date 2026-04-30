@@ -1,8 +1,7 @@
 // Tests for l6.0-tool-session: types, errors, publications, transactions
 
-use serde_json;
-use stratumx_tooling_l6_0_tool_session::*;
 use stratumx_tooling_l6_0_tool_session::common::publication::PublicationChange;
+use stratumx_tooling_l6_0_tool_session::*;
 
 // ============================================================================
 // ObjectHandle tests
@@ -203,10 +202,7 @@ fn disabled_reason_deserializes() {
 
 #[test]
 fn disabled_reason_equality() {
-    assert_eq!(
-        DisabledReason::NoWorldOpen,
-        DisabledReason::NoWorldOpen
-    );
+    assert_eq!(DisabledReason::NoWorldOpen, DisabledReason::NoWorldOpen);
     assert_ne!(DisabledReason::NoWorldOpen, DisabledReason::NoProjectOpen);
 }
 
@@ -337,9 +333,7 @@ fn tool_snapshot_with_objects() {
         fields: Default::default(),
         tags: Default::default(),
     };
-    let snap = ToolSnapshot {
-        objects: vec![obj],
-    };
+    let snap = ToolSnapshot { objects: vec![obj] };
     assert_eq!(snap.objects.len(), 1);
 }
 
@@ -971,7 +965,7 @@ fn planned_goal_serializes() {
 
 #[test]
 fn marker_default() {
-    let m = L60ToolSessionMarker::default();
+    let m = L60ToolSessionMarker;
     assert_eq!(m, L60ToolSessionMarker);
 }
 

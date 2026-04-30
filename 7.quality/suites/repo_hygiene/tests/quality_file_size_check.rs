@@ -139,7 +139,7 @@ fn scan_directory_for_rust_files(
         if path.is_dir() {
             // Recursively scan subdirectories
             scan_directory_for_rust_files(&path, quality_root, violations, is_test_file);
-        } else if path.extension().map_or(false, |e| e == "rs") {
+        } else if path.extension().is_some_and(|e| e == "rs") {
             check_file_size(&path, quality_root, violations, is_test_file);
         }
     }

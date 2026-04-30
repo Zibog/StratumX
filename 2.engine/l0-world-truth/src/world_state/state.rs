@@ -1,13 +1,18 @@
 use crate::{
-    EntityDamageMemory, EntityMaterialBinding, ImpactRecord, MaterialWorldExecutor, ReadModel,
-    RuntimeEvent, ShotRecord, VerticalSliceScene,
+    EntityDamageMemory, EntityMaterialBinding, ImpactRecord, MaterialWorldExecutor,
+    ProofRegionScene, RuntimeEvent, ShotRecord, WorldApplyJournal, WorldCausalSummary,
+    WorldManifest,
 };
 use engine_core::Tick;
 use engine_ecs::EcsSubstrate;
 use engine_world_region::RegionSubstrate;
+use engine_world_spatial::{
+    CellFrameRef, GeoAnchorRef, PrecisionZoneCode, RebaseDeltaRef, RegionFrameRef,
+};
 
 #[derive(Debug)]
 pub struct WorldState {
+    pub(crate) manifest: WorldManifest,
     pub(crate) ecs: EcsSubstrate,
     pub(crate) regions: RegionSubstrate,
     pub(crate) tick: Tick,
@@ -17,8 +22,14 @@ pub struct WorldState {
     pub(crate) shot_log: Vec<ShotRecord>,
     pub(crate) impact_log: Vec<ImpactRecord>,
     pub(crate) runtime_events: Vec<RuntimeEvent>,
-    pub(crate) vertical_slice_scene: Option<VerticalSliceScene>,
+    pub(crate) proof_region_scene: Option<ProofRegionScene>,
     pub(crate) material_world: MaterialWorldExecutor,
+    pub(crate) last_apply_journal: WorldApplyJournal,
+    pub(crate) last_causal_summary: WorldCausalSummary,
+    pub(crate) geo_anchor_ref: GeoAnchorRef,
+    pub(crate) active_region_frame_ref: Option<RegionFrameRef>,
+    pub(crate) active_cell_frame_ref: Option<CellFrameRef>,
+    pub(crate) last_rebase_delta_ref: Option<RebaseDeltaRef>,
 }
 
 impl Default for WorldState {
@@ -29,7 +40,14 @@ impl Default for WorldState {
 
 impl WorldState {
     pub fn new() -> Self {
-        Self {
+        Self::new_with_manifest(WorldManifest::canonical_test_manifest())
+            .expect("canonical test world manifest must validate")
+    }
+
+    pub fn new_with_manifest(manifest: WorldManifest) -> engine_core::EngineCoreResult<Self> {
+        manifest.validate()?;
+        Ok(Self {
+            manifest,
             ecs: EcsSubstrate::new(),
             regions: RegionSubstrate::default(),
             tick: Tick(0),
@@ -39,91 +57,27 @@ impl WorldState {
             shot_log: Vec::new(),
             impact_log: Vec::new(),
             runtime_events: Vec::new(),
-            vertical_slice_scene: None,
+            proof_region_scene: None,
             material_world: MaterialWorldExecutor::new(45.0),
-        }
-    }
-
-    pub fn material_world(&self) -> &MaterialWorldExecutor {
-        &self.material_world
-    }
-
-    pub fn material_world_mut(&mut self) -> &mut MaterialWorldExecutor {
-        &mut self.material_world
-    }
-
-    pub fn ecs_mut(&mut self) -> &mut EcsSubstrate {
-        &mut self.ecs
-    }
-
-    pub fn regions_mut(&mut self) -> &mut RegionSubstrate {
-        &mut self.regions
-    }
-
-    pub fn read_model(&self) -> ReadModel {
-        ReadModel {
-            tick: self.tick,
-            epoch: self.epoch,
-        }
-    }
-
-    pub fn set_vertical_slice_scene(&mut self, scene: VerticalSliceScene) {
-        self.vertical_slice_scene = Some(scene);
-    }
-
-    pub fn vertical_slice_scene(&self) -> Option<&VerticalSliceScene> {
-        self.vertical_slice_scene.as_ref()
-    }
-
-    pub fn vertical_slice_scene_mut(&mut self) -> Option<&mut VerticalSliceScene> {
-        self.vertical_slice_scene.as_mut()
-    }
-
-    pub fn add_material_binding(&mut self, binding: EntityMaterialBinding) {
-        self.material_bindings.push(binding);
-    }
-
-    pub fn material_bindings(&self) -> &[EntityMaterialBinding] {
-        &self.material_bindings
-    }
-
-    pub fn add_damage_memory(&mut self, memory: EntityDamageMemory) {
-        self.damage_memory.push(memory);
-    }
-
-    pub fn damage_memory_mut(&mut self) -> &mut Vec<EntityDamageMemory> {
-        &mut self.damage_memory
-    }
-
-    pub fn damage_memory(&self) -> &[EntityDamageMemory] {
-        &self.damage_memory
-    }
-
-    pub fn log_shot(&mut self, record: ShotRecord) {
-        self.shot_log.push(record);
-    }
-
-    pub fn shot_log(&self) -> &[ShotRecord] {
-        &self.shot_log
-    }
-
-    pub fn log_impact(&mut self, record: ImpactRecord) {
-        self.impact_log.push(record);
-    }
-
-    pub fn impact_log(&self) -> &[ImpactRecord] {
-        &self.impact_log
-    }
-
-    pub fn emit_event(&mut self, event: RuntimeEvent) {
-        self.runtime_events.push(event);
-    }
-
-    pub fn runtime_events(&self) -> &[RuntimeEvent] {
-        &self.runtime_events
-    }
-
-    pub fn current_tick(&self) -> Tick {
-        self.tick
+            last_apply_journal: WorldApplyJournal {
+                tick: Tick(0),
+                epoch: 0,
+                publish_passes: 0,
+                segment_count: 0,
+                segments: Vec::new(),
+            },
+            last_causal_summary: WorldCausalSummary {
+                region_keys: Vec::new(),
+                family_tags: Vec::new(),
+                publish_passes: 0,
+                near_region_frame_ref: None,
+                far_phenomenon_track_refs: Vec::new(),
+                precision_zone_code: PrecisionZoneCode::ReducedExact,
+            },
+            geo_anchor_ref: GeoAnchorRef::new([0, 0, 0]),
+            active_region_frame_ref: None,
+            active_cell_frame_ref: None,
+            last_rebase_delta_ref: None,
+        })
     }
 }

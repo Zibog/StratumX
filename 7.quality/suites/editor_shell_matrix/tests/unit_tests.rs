@@ -1,16 +1,15 @@
 use std::fs;
 
-use tempfile::tempdir;
-
 use stratumx_editor_l8_0_editor_shell::{
     filter_command_palette, DockPosition, DockingManager, GeneratedQualitySummary, LayoutState,
     ProjectDialogKind, ShellRuntime, WorkspaceStage,
 };
+use stratumx_test_support::create_temp_dir;
 use stratumx_tooling_l6_1_command_envelopes::PromotedCommand;
 
 #[test]
 fn shell_runtime_persists_and_restores_layout() {
-    let temp = tempdir().expect("tempdir");
+    let temp = create_temp_dir();
     let layout_path = temp.path().join("layout.json");
 
     let mut runtime = ShellRuntime::new();
@@ -32,7 +31,7 @@ fn shell_runtime_persists_and_restores_layout() {
 
 #[test]
 fn shell_runtime_loads_generated_quality_summary() {
-    let temp = tempdir().expect("tempdir");
+    let temp = create_temp_dir();
     let generated = temp.path().join("generated");
     fs::create_dir_all(generated.join("test-results")).expect("test-results dir");
     fs::create_dir_all(generated.join("metrics")).expect("metrics dir");
@@ -91,7 +90,7 @@ fn command_palette_filter_returns_matching_entries() {
 
 #[test]
 fn generated_quality_summary_load_reads_status_and_metrics() {
-    let temp = tempdir().expect("tempdir");
+    let temp = create_temp_dir();
     let generated = temp.path().join("generated");
     fs::create_dir_all(generated.join("test-results")).expect("test-results dir");
     fs::create_dir_all(generated.join("metrics")).expect("metrics dir");
@@ -126,7 +125,7 @@ fn generated_quality_summary_load_reads_status_and_metrics() {
 
 #[test]
 fn layout_state_load_round_trip_matches_saved_panels() {
-    let temp = tempdir().expect("tempdir");
+    let temp = create_temp_dir();
     let path = temp.path().join("layout.json");
     let layout = LayoutState::from_visible_panels(&[
         "viewport".to_string(),
@@ -196,7 +195,7 @@ fn shell_runtime_new_project_dialog_submits_project_create_command() {
 
 #[test]
 fn shell_runtime_open_world_dialog_requires_world_json() {
-    let temp = tempdir().expect("tempdir");
+    let temp = create_temp_dir();
     let world_dir = temp.path().join("broken_world");
     fs::create_dir_all(&world_dir).expect("world dir");
 
@@ -212,7 +211,7 @@ fn shell_runtime_open_world_dialog_requires_world_json() {
 
 #[test]
 fn layout_round_trip_preserves_docking_position() {
-    let temp = tempdir().expect("tempdir");
+    let temp = create_temp_dir();
     let path = temp.path().join("layout.json");
     let mut layout =
         LayoutState::from_visible_panels(&["viewport".to_string(), "inspector".to_string()]);

@@ -12,3 +12,7 @@ stratumx_route_test_support = { path = "../../support/stratumx_route_test_suppor
 
 [lib]
 path = "src/lib.rs"
+
+[dev-dependencies]
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true

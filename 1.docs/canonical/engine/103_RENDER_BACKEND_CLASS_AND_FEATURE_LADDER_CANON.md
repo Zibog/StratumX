@@ -1,6 +1,6 @@
 # Render Backend Class And Feature Ladder Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Freeze the runtime backend seam, capability-query law, optional-accelerator ladder, and forbidden baseline shortcuts for graphics.
@@ -127,3 +127,10 @@ Both must publish the same diagnostic classes:
 ## Portability note
 Cross-platform law is satisfied by stable contracts and explicit backend families.
 It is not satisfied by collapsing every API into an over-wide pseudo-API with hidden costs.
+
+
+## v31 backend class clarification
+Backend classes are now implemented as StratumX Native Graphics Port backend drivers.
+Vulkan remains required as first real backend and benchmark/parity path.
+Direct3D 12, Metal, and platform-native ports are first-class backend slots and must exist as truthful stubs before they are real implementations.
+Null/headless is mandatory and must validate frame plans.

@@ -74,7 +74,7 @@ impl OwnershipCompletenessValidator {
         for entry in &self.inventory.entries {
             entity_owners
                 .entry(entry.entity_name.clone())
-                .or_insert_with(Vec::new)
+                .or_default()
                 .push(entry.target_owner.clone());
         }
 

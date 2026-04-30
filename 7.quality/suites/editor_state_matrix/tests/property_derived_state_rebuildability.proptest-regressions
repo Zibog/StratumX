@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 331d8ee03448886f14167dcbb2332450c55c4b6f333b4f34250e064990cce1c3 # shrinks to world_id = WorldIdentity { world_id: 00000000-0000-0000-0000-000000000000, world_name: "a 00a", world_path: "///a/a" }, terrain = TerrainState { resolution: (256, 256), bounds: (100.0, 100.0), material: "aaaaa", modification_count: 0 }

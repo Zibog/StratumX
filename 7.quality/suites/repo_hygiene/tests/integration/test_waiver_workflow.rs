@@ -38,10 +38,8 @@ fn test_waiver_registry_loading() {
     let waiver_path = repo.root.join("7.quality/suites/repo_hygiene/waivers.toml");
 
     // Load waiver registry
-    let result = WaiverRegistry::load_from_file(&waiver_path);
-    assert!(result.is_ok(), "Should successfully load waiver registry");
-
-    let registry = result.unwrap();
+    let registry = WaiverRegistry::load_from_file(&waiver_path)
+        .expect("Should successfully load waiver registry");
 
     // Verify waiver entries were loaded
     assert!(

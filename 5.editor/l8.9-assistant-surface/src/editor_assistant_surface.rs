@@ -1,3 +1,6 @@
+//! FUTURE_STUB: this crate is intentionally not product-integrated yet.
+//! It must not be counted as implemented editor functionality until wired into the active product spine.
+
 pub use serde::{Deserialize, Serialize};
 pub use serde_json;
 pub use std::{
@@ -22,7 +25,7 @@ pub struct EditorProduct {
 }
 impl EditorProduct {
     pub fn refresh_from_tooling(&mut self) -> Result<(), ToolingError> {
-        Ok(())
+        Err(inactive_surface_error())
     }
     pub fn stage_assistant_goal(&mut self, goal: impl Into<String>) -> u64 {
         let goal = goal.into();
@@ -44,4 +47,11 @@ impl EditorProduct {
     pub fn planned_goal(&self, goal: impl Into<String>) -> PlannedGoal {
         self.tooling.plan_goal(goal)
     }
+}
+
+fn inactive_surface_error() -> ToolingError {
+    ToolingError::Message(
+        "FUTURE_STUB: assistant surface is not wired into the active editor product spine"
+            .to_string(),
+    )
 }

@@ -11,9 +11,9 @@ use proptest::prelude::*;
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 use stratumx_editor_state_containers::{
-    CacheId, CacheLayer, DiagnosticsState, MaterialRegistryCache, ProjectIdentity, ProjectState,
-    StateContainerSystem, TerrainPreviewCache, TerrainState, WorkspaceIdentity, WorkspaceState,
-    WorldIdentity, WorldState,
+    CacheId, CacheLayer, ChunkId, DiagnosticsState, MaterialRegistryCache, ProjectIdentity,
+    ProjectState, StateContainerSystem, TerrainPreviewCache, TerrainState, WorkspaceIdentity,
+    WorkspaceState, WorldIdentity, WorldState,
 };
 use uuid::Uuid;
 
@@ -77,7 +77,7 @@ proptest! {
         state_system.set_world_state(Arc::new(Mutex::new(world_state)));
 
         let state_system = Arc::new(state_system);
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register terrain preview cache
         let terrain_cache = Box::new(TerrainPreviewCache::new());
@@ -85,9 +85,16 @@ proptest! {
 
         // Build initial cache
         let initial_preview = cache_layer.get_or_compute(CacheId::TerrainPreview, |entry| {
-            let terrain_entry = entry as *const dyn stratumx_editor_state_containers::CacheEntry;
-            let terrain_entry = unsafe { &*(terrain_entry as *const TerrainPreviewCache) };
-            Some(terrain_entry.get_preview_data().to_vec())
+            let terrain_entry = entry
+                .as_any()
+                .downcast_ref::<TerrainPreviewCache>()
+                .expect("terrain preview cache entry");
+            Some((
+                terrain_entry.entry_count(),
+                terrain_entry
+                    .get_preview_data(&ChunkId { x: 0, y: 0 })
+                    .cloned(),
+            ))
         });
 
         // Invalidate cache
@@ -95,9 +102,16 @@ proptest! {
 
         // Rebuild cache
         let rebuilt_preview = cache_layer.get_or_compute(CacheId::TerrainPreview, |entry| {
-            let terrain_entry = entry as *const dyn stratumx_editor_state_containers::CacheEntry;
-            let terrain_entry = unsafe { &*(terrain_entry as *const TerrainPreviewCache) };
-            Some(terrain_entry.get_preview_data().to_vec())
+            let terrain_entry = entry
+                .as_any()
+                .downcast_ref::<TerrainPreviewCache>()
+                .expect("terrain preview cache entry");
+            Some((
+                terrain_entry.entry_count(),
+                terrain_entry
+                    .get_preview_data(&ChunkId { x: 0, y: 0 })
+                    .cloned(),
+            ))
         });
 
         // Verify equivalence
@@ -135,7 +149,7 @@ mod material_registry_tests {
                 .expect("Failed to create state system"),
         );
 
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register material registry cache
         let material_cache = Box::new(MaterialRegistryCache::new());
@@ -143,8 +157,10 @@ mod material_registry_tests {
 
         // Build initial cache
         let initial_count = cache_layer.get_or_compute(CacheId::MaterialRegistry, |entry| {
-            let material_entry = entry as *const dyn stratumx_editor_state_containers::CacheEntry;
-            let material_entry = unsafe { &*(material_entry as *const MaterialRegistryCache) };
+            let material_entry = entry
+                .as_any()
+                .downcast_ref::<MaterialRegistryCache>()
+                .expect("material registry cache entry");
             Some(material_entry.get_all_profiles().len())
         });
 
@@ -153,8 +169,10 @@ mod material_registry_tests {
 
         // Rebuild cache
         let rebuilt_count = cache_layer.get_or_compute(CacheId::MaterialRegistry, |entry| {
-            let material_entry = entry as *const dyn stratumx_editor_state_containers::CacheEntry;
-            let material_entry = unsafe { &*(material_entry as *const MaterialRegistryCache) };
+            let material_entry = entry
+                .as_any()
+                .downcast_ref::<MaterialRegistryCache>()
+                .expect("material registry cache entry");
             Some(material_entry.get_all_profiles().len())
         });
 

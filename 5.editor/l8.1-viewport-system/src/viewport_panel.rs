@@ -1,1 +1,1 @@
-// Viewport panel stub - real logic is in editor app crate 
+// Viewport panel stub - real logic is in editor app crate

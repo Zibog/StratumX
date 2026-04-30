@@ -14,12 +14,10 @@ categories = ["game-development", "data-structures"]
 engine_core = { path = "../l-1-foundation" }
 engine_world = { path = "../l0-world-truth" }
 engine_material = { path = "../l0.5-shared-world-property-substrate" }
+engine_kinetics = { path = "../l2-critical-simulation-families/kinetics" }
 engine_runtime = { path = "../l1-runtime-kernel/runtime" }
 engine_runtime_headless = { path = "../l1-runtime-kernel/runtime-headless" }
 engine_runtime_realtime = { path = "../l1-runtime-kernel/runtime-realtime" }
 engine_content = { path = "../l3.2-resource-systems" }
 serde.workspace = true
 serde_json.workspace = true
-
-[lib]
-path = "src/engine_startup.rs"

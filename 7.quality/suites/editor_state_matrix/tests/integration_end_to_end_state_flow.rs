@@ -33,6 +33,10 @@ impl MockCacheEntry {
 }
 
 impl CacheEntry for MockCacheEntry {
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+
     fn is_valid(&self) -> bool {
         self.valid
     }
@@ -83,7 +87,7 @@ fn test_end_to_end_state_flow() {
     );
 
     // Step 3: Register derived state dependencies
-    let cache_layer = Arc::new(CacheLayer::new(state_system.clone()));
+    let mut cache_layer = CacheLayer::new(state_system.clone());
 
     // Register a cache that depends on ProjectState
     let cache_entry = Box::new(MockCacheEntry::new(vec![StateId::ProjectState]));
@@ -192,7 +196,7 @@ fn test_end_to_end_state_flow_with_world() {
     );
 
     // Create cache layer and query layer
-    let _cache_layer = Arc::new(CacheLayer::new(state_system.clone()));
+    let _cache_layer = CacheLayer::new(state_system.clone());
     let query_layer = QueryLayer::new(state_system.clone());
 
     // Query world state
@@ -240,7 +244,7 @@ fn test_end_to_end_cache_rebuild() {
     );
 
     // Create cache layer
-    let cache_layer = Arc::new(CacheLayer::new(state_system.clone()));
+    let mut cache_layer = CacheLayer::new(state_system.clone());
 
     // Register cache
     let cache_entry = Box::new(MockCacheEntry::new(vec![StateId::ProjectState]));

@@ -5,13 +5,11 @@
 // Property 14: Tooling Layer Purity
 
 use proptest::prelude::*;
-use stratumx_tooling_l6_1_command_envelopes::{
-    CommandEnvelope, CommandLifecycleState, CommandLifecycleTracker, PromotedCommand,
-};
 use stratumx_tooling_l6_0_authority_core::{
     ErrorClass, RecoveryManager, RecoveryStrategy, ToolingConveyor,
 };
-use stratumx_tooling_l6_14_release_runtime::FirstResultVerifier;
+use stratumx_tooling_l6_14_release_runtime::first_result_verification::FirstResultVerifier;
+use stratumx_tooling_l6_1_command_envelopes::{CommandLifecycleState, CommandLifecycleTracker};
 
 // ============================================================================
 // Property 12: Tooling Command Lifecycle Completeness
@@ -87,7 +85,7 @@ proptest! {
         // Go through full lifecycle to RetryableFailure
         tracker.validate_command(id, true).unwrap();
         tracker.start_execution(id).unwrap();
-        tracker.publish_result(id, false, Some("retry: transient error")).unwrap();
+        tracker.publish_result(id, false, Some("retry: transient error".to_string())).unwrap();
 
         let state = tracker.get_state(id).unwrap();
         prop_assert_eq!(*state, CommandLifecycleState::RetryableFailure);
@@ -140,7 +138,7 @@ proptest! {
         prop_assert!(state.requires_rollback, "Registry corruption must require rollback");
 
         // Invalid lifecycle transition also requires rollback
-        manager.register_error(&format!("{}_2", operation_name), "invalid transition", ErrorClass::InvalidLifecycleTransition);
+        manager.register_error(format!("{}_2", operation_name), "invalid transition", ErrorClass::InvalidLifecycleTransition);
         let state = manager.get_error_state(&format!("{}_2", operation_name)).unwrap();
         prop_assert!(state.requires_rollback, "Invalid lifecycle transition must require rollback");
     }
@@ -262,7 +260,10 @@ fn test_lifecycle_with_conveyor() {
     // The command's result can trigger conveyor processing
     let result = conveyor.process_asset("mat_001", "/assets/mat.mat");
     assert!(result.is_ok());
-    assert_eq!(result.unwrap().current_stage, stratumx_tooling_l6_0_authority_core::ConveyorStage::Certified);
+    assert_eq!(
+        result.unwrap().current_stage,
+        stratumx_tooling_l6_0_authority_core::ConveyorStage::Certified
+    );
 }
 
 #[test]
@@ -276,8 +277,13 @@ fn test_recovery_with_lifecycle() {
     tracker.start_execution(id).unwrap();
 
     // Simulate execution failure
-    tracker.publish_result(id, false, Some("retry: timeout")).unwrap();
-    assert_eq!(tracker.get_state(id).unwrap(), &CommandLifecycleState::RetryableFailure);
+    tracker
+        .publish_result(id, false, Some("retry: timeout".to_string()))
+        .unwrap();
+    assert_eq!(
+        tracker.get_state(id).unwrap(),
+        &CommandLifecycleState::RetryableFailure
+    );
 
     // Track in recovery manager
     recovery.register_error("material.create", "timeout", ErrorClass::Timeout);
@@ -297,7 +303,8 @@ fn test_release_verification_in_pipeline() {
         "verify_001".to_string(),
         "project_001".to_string(),
         "build_001".to_string(),
-        stratumx_tooling_l6_14_release_runtime::first_result_verification::FIRST_RESULT_SIGNATURE.to_string(),
+        stratumx_tooling_l6_14_release_runtime::first_result_verification::FIRST_RESULT_SIGNATURE
+            .to_string(),
         vec!["launch ok".to_string()],
     );
 

@@ -11,6 +11,12 @@ pub enum SpatialValidationError {
     InvalidTransformScale,
     /// Chunk radius for halo operation is invalid.
     InvalidHaloRadius,
+    /// Precision zone is incompatible with the requested spatial carrier.
+    InvalidPrecisionZone,
+    /// Rebase publication must describe a real anchor move.
+    InvalidRebaseDelta,
+    /// Far phenomenon track is missing required identity.
+    InvalidFarPhenomenonTrack,
 }
 
 impl fmt::Display for SpatialValidationError {
@@ -24,6 +30,21 @@ impl fmt::Display for SpatialValidationError {
             }
             Self::InvalidHaloRadius => {
                 write!(f, "Halo radius must be valid")
+            }
+            Self::InvalidPrecisionZone => {
+                write!(f, "Precision zone is incompatible with this carrier")
+            }
+            Self::InvalidRebaseDelta => {
+                write!(
+                    f,
+                    "Rebase publication requires distinct source and target anchors"
+                )
+            }
+            Self::InvalidFarPhenomenonTrack => {
+                write!(
+                    f,
+                    "Far phenomenon track requires stable identity and family tag"
+                )
             }
         }
     }

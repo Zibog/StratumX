@@ -1,3 +1,9 @@
+//! FUTURE_STUB.
+//!
+//! This crate is present as a canonical future surface.
+//! It is not part of the active product spine yet.
+//! It must not be counted as product-complete.
+
 pub use serde::{Deserialize, Serialize};
 pub use serde_json;
 pub use std::{

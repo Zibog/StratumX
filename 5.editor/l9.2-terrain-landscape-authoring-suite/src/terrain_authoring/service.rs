@@ -6,8 +6,8 @@
 //! **Requirements: 6.2, 6.4**
 
 use super::types::*;
-use editor_dto_law::TerrainManifest;
 use crate::{TerrainAuthoring, TerrainDeliveryThread};
+use editor_dto_law::TerrainManifest;
 
 /// Terrain Authoring Service - owns terrain truth
 ///

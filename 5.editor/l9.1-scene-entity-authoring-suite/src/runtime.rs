@@ -1,3 +1,3 @@
 //! Runtime integration
 
-// Placeholder for runtime integration
+// This module reserves runtime-facing hooks for later scene integration.

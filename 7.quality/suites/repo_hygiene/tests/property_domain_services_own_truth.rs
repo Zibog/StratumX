@@ -168,21 +168,19 @@ fn test_material_registry_not_in_ui_panel() {
         let lower_path = entry.current_path.to_lowercase();
 
         // Check for material registry in UI panels
-        if lower_path.contains("material_panel")
+        if (lower_path.contains("material_panel")
             || lower_path.contains("material_browser")
-            || lower_path.contains("material_inspector")
-        {
-            if (lower_name.contains("registry")
+            || lower_path.contains("material_inspector"))
+            && (lower_name.contains("registry")
                 || lower_name.contains("available_profiles")
                 || lower_name.contains("profiles"))
-                && entry.classification == StateClassification::Persistable
-            {
-                violations.push(format!(
-                    "Material registry field '{}' found in UI panel at {}. \
-                     Material registry should live in MaterialAuthoringService, not UI panels.",
-                    entry.entity_name, entry.current_path
-                ));
-            }
+            && entry.classification == StateClassification::Persistable
+        {
+            violations.push(format!(
+                "Material registry field '{}' found in UI panel at {}. \
+                 Material registry should live in MaterialAuthoringService, not UI panels.",
+                entry.entity_name, entry.current_path
+            ));
         }
     }
 
@@ -208,18 +206,17 @@ fn test_terrain_manifest_not_in_ui_panel() {
         let lower_path = entry.current_path.to_lowercase();
 
         // Check for terrain manifest in UI panels
-        if lower_path.contains("terrain_panel") || lower_path.contains("terrain_editor") {
-            if (lower_name.contains("manifest")
+        if (lower_path.contains("terrain_panel") || lower_path.contains("terrain_editor"))
+            && (lower_name.contains("manifest")
                 || lower_name.contains("chunk_dirtiness")
                 || lower_name.contains("layer_bindings"))
-                && entry.classification == StateClassification::Persistable
-            {
-                violations.push(format!(
-                    "Terrain manifest field '{}' found in UI panel at {}. \
-                     Terrain manifest should live in TerrainAuthoringService, not UI panels.",
-                    entry.entity_name, entry.current_path
-                ));
-            }
+            && entry.classification == StateClassification::Persistable
+        {
+            violations.push(format!(
+                "Terrain manifest field '{}' found in UI panel at {}. \
+                 Terrain manifest should live in TerrainAuthoringService, not UI panels.",
+                entry.entity_name, entry.current_path
+            ));
         }
     }
 
@@ -245,23 +242,20 @@ fn test_environment_bindings_not_in_ui_panel() {
         let lower_path = entry.current_path.to_lowercase();
 
         // Check for environment bindings in UI panels
-        if lower_path.contains("environment_panel")
+        if (lower_path.contains("environment_panel")
             || lower_path.contains("sky_editor")
-            || lower_path.contains("weather_editor")
-        {
-            if (lower_name.contains("binding")
+            || lower_path.contains("weather_editor"))
+            && (lower_name.contains("binding")
                 || lower_name.contains("sky_profile")
                 || lower_name.contains("weather_regime")
                 || lower_name.contains("cloud_profile"))
-                && entry.classification == StateClassification::Persistable
-            {
-                violations.push(format!(
-                    "Environment binding field '{}' found in UI panel at {}. \
-                     Environment bindings should live in EnvironmentAuthoringService, not UI panels.",
-                    entry.entity_name,
-                    entry.current_path
-                ));
-            }
+            && entry.classification == StateClassification::Persistable
+        {
+            violations.push(format!(
+                "Environment binding field '{}' found in UI panel at {}. \
+                 Environment bindings should live in EnvironmentAuthoringService, not UI panels.",
+                entry.entity_name, entry.current_path
+            ));
         }
     }
 
@@ -287,22 +281,20 @@ fn test_audio_registry_not_in_ui_panel() {
         let lower_path = entry.current_path.to_lowercase();
 
         // Check for audio registry in UI panels
-        if lower_path.contains("audio_panel")
+        if (lower_path.contains("audio_panel")
             || lower_path.contains("audio_browser")
-            || lower_path.contains("audio_mixer")
-        {
-            if (lower_name.contains("registry")
+            || lower_path.contains("audio_mixer"))
+            && (lower_name.contains("registry")
                 || lower_name.contains("sources")
                 || lower_name.contains("zones")
                 || lower_name.contains("sound_profile_bindings"))
-                && entry.classification == StateClassification::Persistable
-            {
-                violations.push(format!(
-                    "Audio registry field '{}' found in UI panel at {}. \
-                     Audio registry should live in AudioAuthoringService, not UI panels.",
-                    entry.entity_name, entry.current_path
-                ));
-            }
+            && entry.classification == StateClassification::Persistable
+        {
+            violations.push(format!(
+                "Audio registry field '{}' found in UI panel at {}. \
+                 Audio registry should live in AudioAuthoringService, not UI panels.",
+                entry.entity_name, entry.current_path
+            ));
         }
     }
 

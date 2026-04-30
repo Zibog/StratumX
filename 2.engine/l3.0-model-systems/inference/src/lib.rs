@@ -1,10 +1,13 @@
-//! Model inference substrate for synthetic generation
-//! **Owner**: engine_inference — Inference pipeline and tensor operations
+mod config;
+mod digest;
+mod error;
+mod receipt;
+mod service;
+mod types;
 
-pub mod types;
-pub mod runtime;
-pub mod validation;
-pub mod queries;
-pub mod exports;
-
-pub use exports::*;
+pub use config::*;
+pub use digest::*;
+pub use error::*;
+pub use receipt::*;
+pub use service::*;
+pub use types::*;

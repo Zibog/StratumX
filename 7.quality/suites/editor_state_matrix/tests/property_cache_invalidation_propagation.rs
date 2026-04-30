@@ -57,6 +57,10 @@ impl MockCacheEntry {
 }
 
 impl CacheEntry for MockCacheEntry {
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+
     fn is_valid(&self) -> bool {
         self.valid
     }
@@ -96,7 +100,7 @@ proptest! {
     #[test]
     fn property_cache_invalidation_propagation_selective(changed_state in owner_state_id()) {
         let state_system = create_test_system();
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register caches with different dependencies
         let cache1 = Box::new(MockCacheEntry::new(vec![StateId::ProjectState]));
@@ -155,7 +159,7 @@ proptest! {
     #[test]
     fn property_cache_invalidation_propagation_completeness(changed_state in owner_state_id()) {
         let state_system = create_test_system();
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register multiple caches that depend on the same state
         let cache1 = Box::new(MockCacheEntry::new(vec![changed_state.clone()]));
@@ -199,7 +203,7 @@ proptest! {
     #[test]
     fn property_cache_invalidation_propagation_no_false_positives(changed_state in owner_state_id()) {
         let state_system = create_test_system();
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Determine an independent state (one that's different from changed_state)
         let independent_state = match changed_state {
@@ -241,7 +245,7 @@ mod unit_tests {
     #[test]
     fn test_selective_invalidation() {
         let state_system = create_test_system();
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register caches with different dependencies
         let cache1 = Box::new(MockCacheEntry::new(vec![StateId::ProjectState]));
@@ -264,7 +268,7 @@ mod unit_tests {
     #[test]
     fn test_complete_invalidation() {
         let state_system = create_test_system();
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register multiple caches that depend on the same state
         let cache1 = Box::new(MockCacheEntry::new(vec![StateId::ProjectState]));
@@ -283,7 +287,7 @@ mod unit_tests {
     #[test]
     fn test_no_false_positives() {
         let state_system = create_test_system();
-        let cache_layer = CacheLayer::new(state_system.clone());
+        let mut cache_layer = CacheLayer::new(state_system.clone());
 
         // Register a cache that depends on WorkspaceState
         let cache = Box::new(MockCacheEntry::new(vec![StateId::WorkspaceState]));

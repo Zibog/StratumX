@@ -17,6 +17,4 @@ engine_ecs = { path = "../../l-0.2-ecs-assembly" }
 engine_world = { path = "../../l0-world-truth" }
 engine_world_region = { path = "../../l-0.05-world-region" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_runtime.rs"
+bincode.workspace = true

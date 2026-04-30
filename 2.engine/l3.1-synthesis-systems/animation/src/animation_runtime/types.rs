@@ -1,4 +1,6 @@
+use engine_core::EngineCoreError;
 use serde::{Deserialize, Serialize};
+use std::fmt;
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct IkJoint {
@@ -37,4 +39,68 @@ pub struct AnimationState {
     pub current_time: f32,
     pub playing: bool,
     pub speed: f32,
+}
+
+/// Failure reasons for animation operations.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum AnimationFailureReason {
+    MissingSkeleton,
+    MissingClip,
+    InvalidSampleTime,
+    BudgetRejected,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct AnimationFailure {
+    reason: AnimationFailureReason,
+    message: &'static str,
+}
+
+impl AnimationFailure {
+    pub const fn new(reason: AnimationFailureReason, message: &'static str) -> Self {
+        Self { reason, message }
+    }
+
+    pub const fn reason(self) -> AnimationFailureReason {
+        self.reason
+    }
+
+    pub const fn message(self) -> &'static str {
+        self.message
+    }
+
+    pub fn into_engine_core_error(self) -> EngineCoreError {
+        EngineCoreError::InvalidDescriptor(self.message)
+    }
+}
+
+impl From<AnimationFailure> for EngineCoreError {
+    fn from(failure: AnimationFailure) -> Self {
+        failure.into_engine_core_error()
+    }
+}
+
+impl fmt::Display for AnimationFailure {
+    fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(formatter, "{:?}: {}", self.reason, self.message)
+    }
+}
+
+impl std::error::Error for AnimationFailure {}
+
+/// Animation quality tier.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum AnimationTier {
+    FullPose,
+    ReducedPose,
+    RootMotionOnly,
+    Disabled,
+}
+
+/// Receipt for animation operation with deterministic digest.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct AnimationReceipt {
+    pub selected_tier: AnimationTier,
+    pub sampled_frame: u64,
+    pub deterministic_digest: u64,
 }

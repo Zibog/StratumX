@@ -1,6 +1,6 @@
 # Wide Code Wave Entry And Exit Gate Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 State when broad implementation may start, what each implementation phase must close, and when the archive may honestly claim wide code-wave readiness.

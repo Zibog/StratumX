@@ -1,6 +1,6 @@
 # Operator Chain Certify Freeze And Evidence Route Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This file defines one no-leak operator chain for canonical authoring and certification:

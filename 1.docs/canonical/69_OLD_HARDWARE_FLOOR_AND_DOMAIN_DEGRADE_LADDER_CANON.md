@@ -1,6 +1,6 @@
 # Old Hardware Floor And Domain Degrade Ladder Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define ruthless degrade ladders for the declared 10-year-old hardware floor.

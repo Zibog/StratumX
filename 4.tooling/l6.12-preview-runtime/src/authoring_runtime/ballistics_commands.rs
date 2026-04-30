@@ -1,11 +1,11 @@
 // Ballistics Command Handlers
-// TODO: Re-implement against new engine kinetics/ballistic_simulation API when available.
+// Deferred: re-integrate against the new engine kinetics/ballistic_simulation API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;
 use link_egress_observations::{
-    BallisticSimulationResultDto, EditorAuthoringObservation, ImpactResultDto,
-    ImpactVerdictDto, LayerImpactEventDto,
+    BallisticSimulationResultDto, EditorAuthoringObservation, ImpactResultDto, ImpactVerdictDto,
+    LayerImpactEventDto,
 };
 use link_ingress_packets::BallisticsCommand;
 
@@ -15,7 +15,7 @@ pub fn handle(
 ) -> Result<EditorAuthoringObservation, String> {
     match cmd {
         BallisticsCommand::FireActiveActor { .. } => {
-            // TODO: Execute ballistics through engine kinetic_simulation
+            // Deferred: keep the current observation stub until the kinetic simulation bridge is restored.
             Ok(EditorAuthoringObservation::BallisticResult {
                 result: BallisticSimulationResultDto {
                     impacts: vec![ImpactResultDto {

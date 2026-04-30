@@ -1,10 +1,13 @@
-//! Generative model substrate for procedural synthesis
-//! **Owner**: engine_generation — Procedural generation pipeline
+mod config;
+mod digest;
+mod error;
+mod receipt;
+mod service;
+mod types;
 
-pub mod types;
-pub mod runtime;
-pub mod validation;
-pub mod queries;
-pub mod exports;
-
-pub use exports::*;
+pub use config::*;
+pub use digest::*;
+pub use error::*;
+pub use receipt::*;
+pub use service::*;
+pub use types::*;

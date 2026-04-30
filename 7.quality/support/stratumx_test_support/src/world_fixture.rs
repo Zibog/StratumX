@@ -4,7 +4,7 @@ use editor_dto_law::StableWorldId;
 use engine_material::SkyWeatherState;
 use engine_world::{
     CameraState, EntityId, MaterialStackId, TerrainLayerMaterialState, TerrainPatchState,
-    VerticalSliceScene, WallState, WeaponProfileId, WeaponState, WorldState,
+    ProofRegionScene, WallState, WeaponProfileId, WeaponState, WorldState,
 };
 use uuid::Uuid;
 
@@ -16,7 +16,7 @@ pub fn create_test_world() -> WorldState {
 /// Creates a world with a vertical slice scene
 pub fn create_world_with_scene() -> WorldState {
     let mut world = WorldState::new();
-    world.set_vertical_slice_scene(VerticalSliceScene {
+    world.set_proof_region_scene(ProofRegionScene {
         scene_name: "Test Scene".to_string(),
         terrain: TerrainPatchState {
             entity_id: EntityId(1),

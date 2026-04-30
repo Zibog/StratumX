@@ -1,6 +1,6 @@
 # Cross Domain World Field Substrate And Conflict Law Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define one canonical field substrate for wetness, heat, smoke density, contamination, wind, visibility obscuration, sound pressure hints, and anomaly fields.

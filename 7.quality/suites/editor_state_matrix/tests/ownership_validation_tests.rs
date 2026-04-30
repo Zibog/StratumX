@@ -122,7 +122,7 @@ fn test_detect_circular_dependencies() {
     assert!(!violations.is_empty());
     assert!(violations
         .iter()
-        .all(|v| v.violation_type == ViolationType::CircularDependency));
+        .all(|v| v.violation_type == ViolationType::CyclicDependency));
 }
 
 /// Test validation during initialization
@@ -225,6 +225,7 @@ fn test_ownership_violation_messages() {
         state_id: StateId::ProjectIdentity,
         owners: vec![OwnerId::ProjectState, OwnerId::WorkspaceState],
         violation_type: ViolationType::MultipleOwners,
+        message: None,
     };
     let message = violation.to_user_message();
     assert!(message.contains("multiple owners"));
@@ -235,6 +236,7 @@ fn test_ownership_violation_messages() {
         state_id: StateId::ProjectIdentity,
         owners: vec![],
         violation_type: ViolationType::NoOwner,
+        message: None,
     };
     let message = violation.to_user_message();
     assert!(message.contains("no owner"));
@@ -243,10 +245,11 @@ fn test_ownership_violation_messages() {
     let violation = OwnershipViolation {
         state_id: StateId::MaterialRegistryCache,
         owners: vec![],
-        violation_type: ViolationType::CircularDependency,
+        violation_type: ViolationType::CyclicDependency,
+        message: None,
     };
     let message = violation.to_user_message();
-    assert!(message.contains("Circular dependency"));
+    assert!(message.contains("cyclic dependency"));
 }
 
 /// Test validation prevents initialization on violations

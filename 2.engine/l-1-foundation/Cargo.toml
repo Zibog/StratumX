@@ -19,6 +19,3 @@ realtime = []
 glam.workspace = true
 serde.workspace = true
 thiserror.workspace = true
-
-[lib]
-path = "src/engine_core.rs"

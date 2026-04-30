@@ -1,7 +1,7 @@
 # StratumX Game Engine
 
 **Version:** 0.1.0
-**Stack:** SX-CANON/1.0.24/STACK-v30
+**Stack:** SX-CANON/1.0.28/STACK-v34
 
 ---
 
@@ -27,7 +27,7 @@ Or directly:
 cargo run -p stratumx_editor_app --features desktop -- --gui
 ```
 
-This is the **only** production editor launch command.
+This is the production editor launch command.
 The `desktop` feature and `--gui` flag are required.
 Without `--gui`, the app runs validation/headless mode instead of the desktop editor.
 
@@ -41,68 +41,32 @@ tools/stack-runtime.sh    # Stack runtime
 
 ### Verify Quality
 
-All supported quality commands are now accessible via workspace:
+All supported quality commands are available from workspace root:
 
 ```bash
-# Format check + quality verify
-tools/verify.sh  # or cargo run -p stratumx_quality_tasks -- verify
-
-# Run smoke tests
-tools/smoke.sh   # or cargo run -p stratumx_quality_tasks -- smoke
-
-# Run full test suite
-tools/full.sh    # or cargo run -p stratumx_quality_tasks -- full
-
-# Run benchmarks
-tools/bench.sh   # or cargo run -p stratumx_quality_tasks -- bench
-
-# Generate metrics
-tools/metrics.sh # or cargo run -p stratumx_quality_tasks -- metrics
-
-# Generate evidence
-tools/evidence.sh # or cargo run -p stratumx_quality_tasks -- evidence
-
-# Generate inventory (includes root cleanliness check)
-tools/inventory.sh # or cargo run -p stratumx_quality_tasks -- inventory
-
-# Check layer boundaries (architectural discipline)
-tools/check-layer-boundaries.sh # or tools/check-layer-boundaries.ps1
-
-# Run comprehensive health check
-tools/doctor.sh  # or cargo run -p stratumx_quality_tasks -- doctor
+tools/verify.sh
+tools/smoke.sh
+tools/full.sh
+tools/bench.sh
+tools/metrics.sh
+tools/evidence.sh
+tools/inventory.sh
+tools/check-layer-boundaries.sh
+tools/check-file-size-discipline.sh
+tools/check-test-placement.ps1
+tools/doctor.sh
 ```
 
-**Doctor Health Check** includes:
-1. Workspace truth validation
-2. Root cleanliness check
-3. Format check (cargo fmt)
-4. Lint check (cargo clippy)
-5. Test suite (cargo test)
-6. Quality verify
-7. Smoke tests
+## Workspace Validation Policy
 
----
+`cargo build` may use engine-only `default-members`.
+Full validation is always:
 
-## Entrypoints
-
-StratumX provides several application entrypoints:
-
-### Editor
-- **Script:** `tools/editor.sh` / `tools/editor.ps1`
-- **Direct:** `cargo run -p stratumx_editor_app --features desktop -- --gui`
-- **Purpose:** Production editor with desktop GUI
-- **Requirements:** `desktop` feature and `--gui` flag required
-
-### Engine Runtimes
-- **Headless:** `tools/engine-headless.sh` / `tools/engine-headless.ps1`
-  - Runs engine without graphics (for servers, CI/CD)
-- **Realtime:** `tools/engine-realtime.sh` / `tools/engine-realtime.ps1`
-  - Runs engine with realtime rendering
-- **Stack Runtime:** `tools/stack-runtime.sh` / `tools/stack-runtime.ps1`
-  - Full stack runtime with all systems
-
-### Quality Commands
-All quality commands are documented in the "Verify Quality" section above.
+```bash
+cargo check --workspace
+cargo test --workspace
+tools/full
+```
 
 ---
 
@@ -110,19 +74,28 @@ All quality commands are documented in the "Verify Quality" section above.
 
 StratumX is organized into layered packages:
 
-- **1.docs/** - Canonical documentation and architecture (120+ canon documents)
-- **2.engine/** - Core engine runtime (33 packages: ECS, world, physics, rendering, ~13.3k LOC)
-- **3.sdk/** - SDK layer (9 packages: DTOs, handles, compatibility, ~4.6k LOC)
-- **4.tooling/** - Tooling runtime (7 packages: preview, validation, build, ~9.2k LOC)
-- **5.editor/** - Editor systems (39 packages: shell, viewport, authoring suites, ~32.9k LOC)
-- **6.apps/** - Thin host/bootstrap only (5 packages: editor app, engine apps, ~738 LOC)
-- **7.quality/** - Quality assurance (35 packages: test suites, harnesses, ~98k LOC)
+- **1.docs/** - Canonical documentation and architecture
+- **2.engine/** - Core engine runtime
+- **3.sdk/** - SDK layer
+- **4.tooling/** - Tooling runtime
+- **5.editor/** - Editor systems
+- **6.apps/** - Thin host/bootstrap only
+- **7.quality/** - Quality assurance
 - **tools/** - Convenience wrapper scripts
 
-**Workspace Members:** 128 active packages
-**Total Active Code:** ~60k LOC (excluding quality)
+## Project Truth
 
-All packages are now part of the unified workspace for consistent build and verification.
+- Current canon marker: `SX-CANON/1.0.28/STACK-v34`
+- Workspace packages: 131 active Cargo packages, all included in `workspace.members`
+- Layer dependency violations: must be 0
+- Test policy: heavy/integration/property/matrix tests live under `7.quality`
+- Current phase: gold-clean repository stabilization before new implementation sprint
+- Next implementation sprint after cleanup: Native Graphics Port + asset/material pipeline seed
+
+LOC counts are tracked by quality inventory tooling. Do not hand-maintain exact LOC numbers in README unless refreshed by `tools/doctor`.
+Docs are ahead of code in graphics, assets, audio, netcode and dream-scene heavy domains. This is expected until implementation sprints catch up.
+
+All active packages are part of the unified workspace. Use `--workspace` when you want full-repository validation instead of engine-only `default-members`.
 
 ---
 
@@ -135,7 +108,13 @@ Canonical documentation is in `1.docs/canonical/`:
 - `02_STACK_MAP.md` - Stack architecture
 - `03_PACKAGE_ROLE_MAP.md` - Package responsibilities
 - `04_GLOBAL_DEPENDENCY_MODEL.md` - Dependency rules
-- And 90+ more canonical documents
+
+Cleanup and status ledgers:
+
+- [`CODE_CLEANUP_STATUS_LEDGER.md`](1.docs/developer_docs/CODE_CLEANUP_STATUS_LEDGER.md)
+- [`CODE_VS_CANON_STATUS_LEDGER.md`](1.docs/developer_docs/CODE_VS_CANON_STATUS_LEDGER.md)
+- [`ACTIVE_EDITOR_PRODUCT_SPINE.md`](5.editor/ACTIVE_EDITOR_PRODUCT_SPINE.md)
+- [`crate_status_ledger.md`](7.quality/inventory/crate_status_ledger.md)
 
 ---
 
@@ -143,63 +122,49 @@ Canonical documentation is in `1.docs/canonical/`:
 
 All editor-engine communication uses frozen DTOs from:
 
-```
+```text
 3.sdk/l5.9-editor-dto-law
 ```
 
-**Single source of truth. No drift. No TypeScript mirrors.**
+Single source of truth. No drift. No mirrors.
 
 ---
 
 ## Development Status
 
-**Current Focus:** 100% Canon Code Coverage Execution
+**Current Focus:** gold-clean repository stabilization before new implementation sprint
 
-The project is executing a 10-phase stabilization plan:
-- Phase A: Workspace truth (COMPLETE)
-- Phase B: Root command surface and meta hygiene (IN PROGRESS)
-- Phases C-J: Engine/SDK/Tooling/Editor massive code closure
+This pass is for cleanup only:
 
-See `STRATUMX_100_PERCENT_CANON_CODE_COVERAGE_EXECUTION_PLAN.md` for details.
+- workspace truth and root/meta cleanup
+- test centralization into `7.quality`
+- monolith splitting without behavior changes
+- crate classification and honest ledgers
 
 ---
 
 ## Workspace Truth
 
-**Workspace Model:** Full Truth (Option 1)
+**Workspace Model:** Full truth
 
 All active packages are included in the unified workspace with no exclusions:
-- **2.engine:** 33 packages (L-0.05 through L4)
-- **3.sdk:** 9 packages (L5 contract wall)
-- **4.tooling:** 7 packages (L6 orchestration)
-- **5.editor:** 35 packages (L7-L11 authoring surface)
-  - L7: Command spine (1 package)
-  - L8: Editor systems (11 packages)
-  - L9: Authoring suites (12 packages)
-  - L10: Editor services (8 packages)
-  - L11: Collaboration surfaces (6 packages)
-- **6.apps:** 5 packages (thin hosts only)
-- **7.quality:** 39 packages (test suites and support)
 
-**Total:** 128 workspace members
-**Exclusions:** None (honest topology)
+- Active Cargo packages: 131
+- Workspace members: 131
+- Packages outside workspace: 0
+- Exclusions: None
 
-All packages are accessible via standard `cargo` commands from root.
-All root commands (verify, full, bench, metrics, evidence, inventory, doctor) work without `--manifest-path` workarounds.
+The default workspace members are engine-focused for fast local iteration. Full validation uses `cargo check --workspace`, `cargo test --workspace`, and the `tools/*` command surface.
+
+All packages are accessible via standard `cargo` commands from root, but root `cargo build` still follows engine-only `default-members`. Use `cargo check --workspace` and `cargo test --workspace` for full validation.
 
 ### Workspace Validation
 
 To verify workspace integrity:
 
 ```bash
-tools/validate-workspace.sh  # Linux/macOS
-tools/validate-workspace.ps1 # Windows
-```
-
-Or run as part of doctor checks:
-
-```bash
-tools/doctor.sh  # Includes workspace validation
+tools/validate-workspace.sh
+tools/validate-workspace.ps1
 ```
 
 ---
@@ -213,8 +178,8 @@ MIT OR Apache-2.0
 ## Contributing
 
 StratumX follows strict canonical architecture:
-1. Read relevant docs in `1.docs/canonical/`
-2. Follow layer boundaries (no upward dependencies)
-3. Use frozen DTO law (`3.sdk/l5.9-editor-dto-law`)
-4. Respect spine freeze policy
 
+1. Read relevant docs in `1.docs/canonical/`
+2. Follow layer boundaries
+3. Use frozen DTO law (`3.sdk/l5.9-editor-dto-law`)
+4. Respect stabilization and spine discipline

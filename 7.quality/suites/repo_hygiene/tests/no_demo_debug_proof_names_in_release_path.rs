@@ -62,7 +62,7 @@ fn check_for_forbidden_names(dir: &Path, violations: &mut Vec<String>) {
             }
 
             check_for_forbidden_names(&path, violations);
-        } else if path.extension().map_or(false, |e| e == "rs") {
+        } else if path.extension().is_some_and(|e| e == "rs") {
             let relative_path = path
                 .strip_prefix(workspace_root)
                 .unwrap()

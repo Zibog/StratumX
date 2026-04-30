@@ -1,6 +1,6 @@
 # Technology Decomposition and Ownership Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Decompose the technology stack into owned domains and name the owner of each one.

@@ -1,6 +1,5 @@
 // Terrain Authoring - модульная структура
 
-pub mod types;
 pub mod dirty_regions;
 pub mod flatten;
 pub mod holes;
@@ -9,6 +8,7 @@ pub mod paint;
 pub mod sculpt;
 pub mod service;
 pub mod sync;
+pub mod types;
 
 pub use service::TerrainAuthoringService;
 pub use types::*;
@@ -38,23 +38,48 @@ impl TerrainAuthoring {
         }
     }
 
-    pub fn sculpt_raise(&mut self, _world: &mut engine_world::WorldState, _center: [f32; 2], _radius: f32, _strength: f32) -> Result<(), String> {
-        // TODO: implement terrain sculpt raise
+    pub fn sculpt_raise(
+        &mut self,
+        _world: &mut engine_world::WorldState,
+        _center: [f32; 2],
+        _radius: f32,
+        _strength: f32,
+    ) -> Result<(), String> {
+        // Deferred: preserve the current no-op behavior until terrain sculpt raise is wired.
         Ok(())
     }
 
-    pub fn sculpt_lower(&mut self, _world: &mut engine_world::WorldState, _center: [f32; 2], _radius: f32, _strength: f32) -> Result<(), String> {
-        // TODO: implement terrain sculpt lower
+    pub fn sculpt_lower(
+        &mut self,
+        _world: &mut engine_world::WorldState,
+        _center: [f32; 2],
+        _radius: f32,
+        _strength: f32,
+    ) -> Result<(), String> {
+        // Deferred: preserve the current no-op behavior until terrain sculpt lower is wired.
         Ok(())
     }
 
-    pub fn sculpt_smooth(&mut self, _world: &mut engine_world::WorldState, _center: [f32; 2], _radius: f32, _strength: f32) -> Result<(), String> {
-        // TODO: implement terrain sculpt smooth
+    pub fn sculpt_smooth(
+        &mut self,
+        _world: &mut engine_world::WorldState,
+        _center: [f32; 2],
+        _radius: f32,
+        _strength: f32,
+    ) -> Result<(), String> {
+        // Deferred: preserve the current no-op behavior until terrain sculpt smooth is wired.
         Ok(())
     }
 
-    pub fn paint_material(&mut self, _world: &mut engine_world::WorldState, _center: [f32; 2], _radius: f32, _layer_index: u16, _strength: f32) -> Result<(), String> {
-        // TODO: implement terrain paint material
+    pub fn paint_material(
+        &mut self,
+        _world: &mut engine_world::WorldState,
+        _center: [f32; 2],
+        _radius: f32,
+        _layer_index: u16,
+        _strength: f32,
+    ) -> Result<(), String> {
+        // Deferred: preserve the current no-op behavior until terrain material paint is wired.
         Ok(())
     }
 }

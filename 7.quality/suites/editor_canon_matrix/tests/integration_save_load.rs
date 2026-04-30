@@ -2,7 +2,7 @@
 use editor_dto_law::StableWorldId;
 use engine_material::SkyWeatherState;
 use engine_world::{
-    EntityId, TerrainChunk, TerrainLayerMaterialState, TerrainPatchState, VerticalSliceScene,
+    EntityId, TerrainChunk, TerrainLayerMaterialState, TerrainPatchState, ProofRegionScene,
     WorldState,
 };
 use std::fs;
@@ -20,8 +20,8 @@ fn test_save_load_roundtrip_with_terrain() {
 
     // Create terrain with pattern
     let mut height_samples = vec![0.0; 128 * 128];
-    for i in 0..height_samples.len() {
-        height_samples[i] = (i % 50) as f32 + 10.0;
+    for (i, sample) in height_samples.iter_mut().enumerate() {
+        *sample = (i % 50) as f32 + 10.0;
     }
 
     let terrain = TerrainPatchState {
@@ -91,7 +91,7 @@ fn test_save_load_roundtrip_with_terrain() {
     sky.cloud_profile.coverage = 0.6;
     sky.atmosphere.fog_density = 0.2;
 
-    let scene = VerticalSliceScene {
+    let scene = ProofRegionScene {
         scene_name: "Roundtrip Test".to_string(),
         terrain,
         wall: engine_world::WallState {
@@ -115,7 +115,7 @@ fn test_save_load_roundtrip_with_terrain() {
         sky_bundle_path: Some("shared/sky/sky_bundle.json".to_string()),
     };
 
-    world.set_vertical_slice_scene(scene);
+    world.set_proof_region_scene(scene);
 
     // Save
     let world_ref = StableWorldId(Uuid::new_v4());
@@ -257,7 +257,7 @@ fn test_chunk_binary_format() {
         collision_revision: 1,
     };
 
-    let scene = VerticalSliceScene {
+    let scene = ProofRegionScene {
         scene_name: "Chunk Format Test".to_string(),
         terrain,
         wall: engine_world::WallState {
@@ -281,7 +281,7 @@ fn test_chunk_binary_format() {
         sky_bundle_path: Some("shared/sky/sky_bundle.json".to_string()),
     };
 
-    world.set_vertical_slice_scene(scene);
+    world.set_proof_region_scene(scene);
 
     // Save
     let world_ref = StableWorldId(Uuid::new_v4());
@@ -295,7 +295,7 @@ fn test_chunk_binary_format() {
     assert!(chunk_path.exists());
 
     let chunk_bytes = fs::read(&chunk_path).unwrap();
-    assert!(chunk_bytes.len() > 0);
+    assert!(!chunk_bytes.is_empty());
 
     // Load and verify chunk data
     let chunk_data = editor_dto_law::ChunkData::from_bytes(&chunk_bytes).unwrap();
@@ -305,8 +305,7 @@ fn test_chunk_binary_format() {
     println!("Chunk heights[0..10]: {:?}", &chunk_data.heights[0..10]);
     println!(
         "Expected: x=0,y=0 -> 0, x=1,y=0 -> 1, x=0,y=1 (idx={}) -> {}",
-        chunk_res,
-        0 + 1 * 2
+        chunk_res, 2
     );
     assert_eq!(chunk_data.heights[0], 0.0); // x=0, y=0
     assert_eq!(chunk_data.heights[1], 1.0); // x=1, y=0
@@ -320,7 +319,7 @@ fn test_empty_world_save_load() {
 
     // Create minimal world
     let mut world = WorldState::new();
-    let scene = VerticalSliceScene {
+    let scene = ProofRegionScene {
         scene_name: "Empty World".to_string(),
         terrain: TerrainPatchState {
             entity_id: EntityId(1),
@@ -369,7 +368,7 @@ fn test_empty_world_save_load() {
         sky_bundle_path: Some("shared/sky/sky_bundle.json".to_string()),
     };
 
-    world.set_vertical_slice_scene(scene);
+    world.set_proof_region_scene(scene);
 
     // Save
     let world_ref = StableWorldId(Uuid::new_v4());

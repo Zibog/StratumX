@@ -1,6 +1,6 @@
 # Technology Command Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This registry is the authoritative command-id law for canonical operator actions.

@@ -6,6 +6,17 @@ pub mod desktop;
 
 pub mod host;
 
+// Export diagnostics types module
+pub mod diagnostics_types;
+
+// Define ArtifactRef type that's referenced in diagnostics_types
+#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct ArtifactRef {
+    pub path: String,
+    pub line: Option<u32>,
+    pub column: Option<u32>,
+}
+
 pub use serde::{Deserialize, Serialize};
 pub use serde_json;
 pub use std::{

@@ -1,5 +1,5 @@
 // Sky Command Handlers
-// TODO: Re-implement against new engine imaging/lighting API when available.
+// Deferred: re-integrate against the new engine imaging/lighting API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;
@@ -25,21 +25,19 @@ pub fn handle(
             wind_vector: [0.0, 0.0, 0.0],
             storm_front_count: 0,
         }),
-        SkyCommand::GetSkyBundleStatus => {
-            Ok(EditorAuthoringObservation::SkyBundleStatusRead {
-                status: link_egress_observations::SkyBundleStatusDto {
-                    manifest_loaded: false,
-                    bundle_id: None,
-                    stars_status: link_egress_observations::AssetStatusDto::NotRequired,
-                    moon_albedo_status: link_egress_observations::AssetStatusDto::NotRequired,
-                    moon_normal_status: link_egress_observations::AssetStatusDto::NotRequired,
-                    sun_disk_status: link_egress_observations::AssetStatusDto::NotRequired,
-                    blue_noise_status: link_egress_observations::AssetStatusDto::NotRequired,
-                    noise_source_status: link_egress_observations::AssetStatusDto::NotRequired,
-                    noise_source_count: 0,
-                },
-            })
-        }
+        SkyCommand::GetSkyBundleStatus => Ok(EditorAuthoringObservation::SkyBundleStatusRead {
+            status: link_egress_observations::SkyBundleStatusDto {
+                manifest_loaded: false,
+                bundle_id: None,
+                stars_status: link_egress_observations::AssetStatusDto::NotRequired,
+                moon_albedo_status: link_egress_observations::AssetStatusDto::NotRequired,
+                moon_normal_status: link_egress_observations::AssetStatusDto::NotRequired,
+                sun_disk_status: link_egress_observations::AssetStatusDto::NotRequired,
+                blue_noise_status: link_egress_observations::AssetStatusDto::NotRequired,
+                noise_source_status: link_egress_observations::AssetStatusDto::NotRequired,
+                noise_source_count: 0,
+            },
+        }),
         SkyCommand::GetSkyDiagnostics => Ok(EditorAuthoringObservation::SkyDiagnosticsRead {
             storm_front_count: 0,
             rain_enabled: false,
@@ -59,13 +57,13 @@ pub fn handle(
         | SkyCommand::SetRain { .. }
         | SkyCommand::SetWindVector { .. }
         | SkyCommand::StepSkySimulation { .. } => {
-            // TODO: Apply to engine sky state when imaging API is restored
+            // Deferred: keep the current observation stub until the imaging bridge is restored.
             Ok(EditorAuthoringObservation::SkyValueUpdated)
         }
         SkyCommand::SetWeatherRegime { regime } => {
             // Apply weather regime to world state
             let _regime: WeatherRegime = regime;
-            // TODO: Apply to engine weather state when material API is restored
+            // Deferred: keep the current observation stub until the weather bridge is restored.
             Ok(EditorAuthoringObservation::SkyValueUpdated)
         }
     }

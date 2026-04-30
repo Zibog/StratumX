@@ -1,6 +1,6 @@
 # Editor Operator Lane And First Playable Slice Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the human operator lanes that matter most for the dream-stack so the editor grows as a serious workstation rather than a pile of disconnected labs.

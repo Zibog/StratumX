@@ -1,6 +1,6 @@
 # Empty Project To First Proof Operator Playbook Root Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the narrowest honest route from an empty project to one proof-bearing region so the stack can be implemented and certified through one disciplined first-result lane.

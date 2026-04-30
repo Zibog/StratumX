@@ -31,10 +31,7 @@ fn get_app_source_files(root: &Path) -> Result<Vec<PathBuf>, String> {
     }
 
     let mut files = Vec::new();
-    for entry in WalkDir::new(&apps_dir)
-        .into_iter()
-        .filter_map(|e| e.ok())
-    {
+    for entry in WalkDir::new(&apps_dir).into_iter().filter_map(|e| e.ok()) {
         let path = entry.path();
         if path.extension().and_then(|s| s.to_str()) == Some("rs") {
             files.push(path.to_path_buf());
@@ -60,16 +57,20 @@ fn contains_domain_logic(path: &Path) -> Result<Vec<String>, String> {
         (r"fn validate_\w+_rules\(", "validation logic"),
         (r"fn transform_\w+_to_\w+", "transformation logic"),
         (r"fn apply_business_rules", "business rules"),
-        
         // Truth ownership (actual state management, not just holders)
         (r"fn set_\w+_truth\(", "truth mutation"),
         (r"struct \w+Truth \{", "truth ownership"),
-        
         // Duplication of tooling/editor pipelines
-        (r"fn process_command_envelope\(", "command processing duplication"),
+        (
+            r"fn process_command_envelope\(",
+            "command processing duplication",
+        ),
         (r"fn validate_ingress_packet\(", "validation duplication"),
         (r"struct CommandPipeline \{", "pipeline duplication"),
-        (r"struct ValidationPipeline \{", "validation pipeline duplication"),
+        (
+            r"struct ValidationPipeline \{",
+            "validation pipeline duplication",
+        ),
     ];
 
     for (pattern, description) in domain_patterns {
@@ -189,7 +190,7 @@ proptest! {
         let mut heavy_test_files = Vec::new();
 
         for file in &files {
-            if contains_heavy_tests(&file).unwrap_or(false) {
+            if contains_heavy_tests(file).unwrap_or(false) {
                 heavy_test_files.push(file.display().to_string());
             }
         }
@@ -223,36 +224,42 @@ mod tests {
     fn test_get_app_source_files() {
         let root = get_workspace_root();
         let files = get_app_source_files(&root).expect("Failed to get app source files");
-        assert!(!files.is_empty(), "Should find at least one Rust file in 6.apps");
-        
+        assert!(
+            !files.is_empty(),
+            "Should find at least one Rust file in 6.apps"
+        );
+
         // All files should be in 6.apps
         for file in &files {
-            assert!(file.starts_with(&root.join("6.apps")));
+            assert!(file.starts_with(root.join("6.apps")));
         }
     }
 
     #[test]
     fn test_contains_domain_logic() {
         let root = get_workspace_root();
-        
+
         // Test a known thin app (stack utility)
         let stack_utility = root.join("6.apps/stack/stratumx_stack_utility/src/main.rs");
         if stack_utility.exists() {
-            let violations = contains_domain_logic(&stack_utility)
-                .expect("Failed to check stack utility");
-            assert!(violations.is_empty(), "Stack utility should have no domain logic");
+            let violations =
+                contains_domain_logic(&stack_utility).expect("Failed to check stack utility");
+            assert!(
+                violations.is_empty(),
+                "Stack utility should have no domain logic"
+            );
         }
     }
 
     #[test]
     fn test_contains_heavy_tests() {
         let root = get_workspace_root();
-        
+
         // Test a known app without tests
         let stack_utility = root.join("6.apps/stack/stratumx_stack_utility/src/main.rs");
         if stack_utility.exists() {
-            let has_tests = contains_heavy_tests(&stack_utility)
-                .expect("Failed to check for tests");
+            let has_tests =
+                contains_heavy_tests(&stack_utility).expect("Failed to check for tests");
             assert!(!has_tests, "Stack utility should have no heavy tests");
         }
     }
@@ -260,7 +267,7 @@ mod tests {
     #[test]
     fn test_count_loc() {
         let root = get_workspace_root();
-        
+
         // Test LOC counting on a known file
         let stack_utility = root.join("6.apps/stack/stratumx_stack_utility/src/main.rs");
         if stack_utility.exists() {
@@ -278,8 +285,7 @@ mod tests {
         let mut all_violations = Vec::new();
 
         for file in &files {
-            let violations = contains_domain_logic(&file)
-                .expect("Failed to check for domain logic");
+            let violations = contains_domain_logic(file).expect("Failed to check for domain logic");
             all_violations.extend(violations);
         }
 
@@ -299,7 +305,7 @@ mod tests {
         let mut heavy_test_files = Vec::new();
 
         for file in &files {
-            if contains_heavy_tests(&file).unwrap_or(false) {
+            if contains_heavy_tests(file).unwrap_or(false) {
                 heavy_test_files.push(file.display().to_string());
             }
         }

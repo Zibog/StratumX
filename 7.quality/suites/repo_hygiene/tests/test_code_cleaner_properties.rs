@@ -80,7 +80,7 @@ fn prop_violation_reporting_includes_remediation() {
             prop_assert!(!blob.suggested_decomposition.is_empty(),
                 "Registration blob at {} has empty decomposition suggestions",
                 blob.file.display());
-            prop_assert!(blob.suggested_decomposition.len() > 0,
+            prop_assert!(!blob.suggested_decomposition.is_empty(),
                 "Registration blob should have at least one decomposition suggestion");
         }
 
@@ -127,7 +127,7 @@ fn prop_remediation_guidance_is_specific() {
         let cleaner = CodeCleaner::new(repo_root);
         let bypasses = cleaner.identify_host_bypasses();
 
-        prop_assert!(bypasses.len() > 0, "Should detect host bypass");
+        prop_assert!(!bypasses.is_empty(), "Should detect host bypass");
 
         // Property: Remediation should be specific to the method type
         let suggestion = &bypasses[0].suggested_action;
@@ -175,7 +175,7 @@ fn prop_registration_blob_identifies_mixed_concerns() {
         let cleaner = CodeCleaner::new(repo_root);
         let blobs = cleaner.identify_registration_blobs();
 
-        if blobs.len() > 0 {
+        if !blobs.is_empty() {
             let blob = &blobs[0];
 
             // Property: If we have multiple registration types, mixed concerns should be detected
@@ -186,7 +186,7 @@ fn prop_registration_blob_identifies_mixed_concerns() {
 
             // Property: Decomposition suggestions should be provided for mixed concerns
             if blob.mixed_concerns.len() > 1 {
-                prop_assert!(blob.suggested_decomposition.len() > 0,
+                prop_assert!(!blob.suggested_decomposition.is_empty(),
                     "Should provide decomposition suggestions for mixed concerns");
             }
         }
@@ -218,7 +218,7 @@ fn prop_domain_logic_detection_comprehensive() {
         let violations = cleaner.identify_domain_logic_in_ui();
 
         if logic_type != "render" {
-            prop_assert!(violations.len() > 0,
+            prop_assert!(!violations.is_empty(),
                 "Should detect {} violation", logic_type);
 
             // Property: Each violation should have appropriate target layer suggestion

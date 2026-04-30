@@ -1,7 +1,7 @@
 // Tests for l6.14-release-runtime: FirstResultVerification, ReleaseChain
 
-use stratumx_tooling_l6_14_release_runtime::*;
 use stratumx_tooling_l6_14_release_runtime::first_result_verification::*;
+use stratumx_tooling_l6_14_release_runtime::*;
 
 // ============================================================================
 // CANONICAL_LEVEL constant tests
@@ -33,7 +33,7 @@ fn canonical_level_contains_release() {
 
 #[test]
 fn marker_default() {
-    let m = L614ReleaseRuntimeMarker::default();
+    let m = L614ReleaseRuntimeMarker;
     assert_eq!(m, L614ReleaseRuntimeMarker);
 }
 
@@ -238,13 +238,7 @@ fn verifier_verify_signature_incorrect() {
 #[test]
 fn verifier_get_verification() {
     let mut v = FirstResultVerifier::new();
-    v.verify_signature(
-        "v1".into(),
-        "p1".into(),
-        "b1".into(),
-        "sig".into(),
-        vec![],
-    );
+    v.verify_signature("v1".into(), "p1".into(), "b1".into(), "sig".into(), vec![]);
     let retrieved = v.get_verification("v1");
     assert!(retrieved.is_some());
     assert_eq!(retrieved.unwrap().verification_id, "v1");
@@ -259,8 +253,20 @@ fn verifier_get_nonexistent_verification() {
 #[test]
 fn verifier_get_last_verification() {
     let mut v = FirstResultVerifier::new();
-    v.verify_signature("v1".into(), "p1".into(), "b1".into(), "ты победил".into(), vec![]);
-    v.verify_signature("v2".into(), "p1".into(), "b2".into(), "wrong".into(), vec![]);
+    v.verify_signature(
+        "v1".into(),
+        "p1".into(),
+        "b1".into(),
+        "ты победил".into(),
+        vec![],
+    );
+    v.verify_signature(
+        "v2".into(),
+        "p1".into(),
+        "b2".into(),
+        "wrong".into(),
+        vec![],
+    );
     let last = v.get_last_verification();
     assert!(last.is_some());
     assert_eq!(last.unwrap().verification_id, "v2");
@@ -270,14 +276,26 @@ fn verifier_get_last_verification() {
 #[test]
 fn verifier_is_verified_true() {
     let mut v = FirstResultVerifier::new();
-    v.verify_signature("v1".into(), "p1".into(), "b1".into(), "ты победил".into(), vec![]);
+    v.verify_signature(
+        "v1".into(),
+        "p1".into(),
+        "b1".into(),
+        "ты победил".into(),
+        vec![],
+    );
     assert!(v.is_verified("v1"));
 }
 
 #[test]
 fn verifier_is_verified_false() {
     let mut v = FirstResultVerifier::new();
-    v.verify_signature("v1".into(), "p1".into(), "b1".into(), "wrong".into(), vec![]);
+    v.verify_signature(
+        "v1".into(),
+        "p1".into(),
+        "b1".into(),
+        "wrong".into(),
+        vec![],
+    );
     assert!(!v.is_verified("v1"));
 }
 
@@ -290,8 +308,20 @@ fn verifier_is_verified_nonexistent() {
 #[test]
 fn verifier_stores_multiple_verifications() {
     let mut v = FirstResultVerifier::new();
-    v.verify_signature("v1".into(), "p1".into(), "b1".into(), "ты победил".into(), vec![]);
-    v.verify_signature("v2".into(), "p1".into(), "b2".into(), "ты победил".into(), vec![]);
+    v.verify_signature(
+        "v1".into(),
+        "p1".into(),
+        "b1".into(),
+        "ты победил".into(),
+        vec![],
+    );
+    v.verify_signature(
+        "v2".into(),
+        "p1".into(),
+        "b2".into(),
+        "ты победил".into(),
+        vec![],
+    );
     assert!(v.is_verified("v1"));
     assert!(v.is_verified("v2"));
 }

@@ -1,6 +1,6 @@
 # Technology Trace and Diagnostics Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Guarantee one explainable drilldown path for truth publication, denial, degradation, certification outcome, and placeholder visibility.

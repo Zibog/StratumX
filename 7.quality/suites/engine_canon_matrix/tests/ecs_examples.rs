@@ -1,9 +1,16 @@
 use engine_core::Generation;
-use engine_ecs::EcsSubstrate;
+use engine_ecs::{EcsQuery, EcsSubstrate};
+use engine_ecs_query::{
+    AccessDescriptor, Partitionability, QueryAccessMode, QueryDescriptor, QueryLocality,
+};
 use engine_identity::EntityId;
+use smallvec::SmallVec;
 
 fn make_entity(slot: u32) -> EntityId {
-    EntityId { slot, generation: Generation(0) }
+    EntityId {
+        slot,
+        generation: Generation(0),
+    }
 }
 
 #[test]
@@ -60,7 +67,10 @@ fn test_entity_archetype_empty() {
 fn test_ecs_new_equals_default() {
     let ecs1 = EcsSubstrate::new();
     let ecs2 = EcsSubstrate::default();
-    assert_eq!(ecs1.registry().entities().count(), ecs2.registry().entities().count());
+    assert_eq!(
+        ecs1.registry().entities().count(),
+        ecs2.registry().entities().count()
+    );
 }
 
 #[test]
@@ -71,4 +81,25 @@ fn test_registry_ref_does_not_consume_ecs() {
     let _registry_ref = ecs.registry();
     // ECS should still be usable
     assert!(ecs.entity_descriptor(make_entity(1)).is_ok());
+}
+
+#[test]
+fn test_ecs_query_preserves_failure_path() {
+    let ecs = EcsSubstrate::new();
+    let query = EcsQuery::new(ecs.registry());
+    let descriptor = QueryDescriptor {
+        component_set: SmallVec::new(),
+        access: AccessDescriptor {
+            mode: QueryAccessMode::READ,
+            publication_rights: false,
+            scratch: None,
+        },
+        locality: QueryLocality::Cache,
+        partitionability: Partitionability::None,
+        cache_key: 7,
+        filters: SmallVec::new(),
+        joins: SmallVec::new(),
+    };
+
+    assert!(query.execute(&descriptor).is_err());
 }

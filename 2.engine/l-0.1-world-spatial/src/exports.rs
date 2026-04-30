@@ -11,6 +11,11 @@ pub use crate::runtime::{
     spatial_address_for_world_coordinate, to_region_local,
 };
 
+pub use crate::geodesy::{
+    precision_zone_for_coordinate, publish_rebase_delta, CellFrameRef, FarPhenomenonTrackRef,
+    GeoAnchorRef, PrecisionZoneCode, RebaseDeltaRef, RegionFrameRef,
+};
+
 pub use crate::validation::SpatialValidationError;
 
 pub use crate::queries::SpatialQuery;

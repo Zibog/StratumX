@@ -1,6 +1,6 @@
 # Artifact Evidence And Freeze Signal Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This registry freezes canonical artifact, evidence, and freeze signal ids used across compare, capture, certification, and release review.

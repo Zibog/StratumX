@@ -9,7 +9,7 @@ impl TerrainAuthoringState {
             return Err("Terrain not present".to_string());
         }
 
-        if let Some(_scene) = world.vertical_slice_scene() {
+        if let Some(_scene) = world.proof_region_scene() {
             Ok(())
         } else {
             Err("No vertical slice scene in world".to_string())
@@ -17,7 +17,7 @@ impl TerrainAuthoringState {
     }
 
     pub fn sync_from_world(&mut self, world: &WorldState) -> Result<(), String> {
-        if let Some(_scene) = world.vertical_slice_scene() {
+        if let Some(_scene) = world.proof_region_scene() {
             self.present = true;
             Ok(())
         } else {

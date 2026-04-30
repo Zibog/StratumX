@@ -39,18 +39,20 @@
 //! - Round-trip guarantee: load(save(x)) == x
 
 mod exports;
-mod queries;
-mod runtime;
-mod types;
-mod validation;
+pub mod queries;
+pub mod runtime;
+pub mod types;
+pub mod validation;
 
 // Material type submodules
-mod material_types;
 mod destruction_response;
+pub mod fire_weather;
 mod hydrology;
-mod fire_weather;
-mod terrain_response;
+mod material_response;
+mod material_runtime;
+mod material_types;
 mod storm_celestial;
+mod terrain_response;
 
 // Registry and production types
 mod material_registry;

@@ -1,5 +1,5 @@
 // Ecology Command Handlers
-// TODO: Re-implement against new engine creature_ecology API when available.
+// Deferred: re-integrate against the new engine creature_ecology API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;

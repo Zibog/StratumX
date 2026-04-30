@@ -12,7 +12,7 @@ impl TerrainAuthoring {
         target_height: f32,
         strength: f32,
     ) -> Result<(), String> {
-        if let Some(scene) = world.vertical_slice_scene_mut() {
+        if let Some(scene) = world.proof_region_scene_mut() {
             let terrain = &mut scene.terrain;
             let res_x = terrain.resolution[0] as usize;
             let res_y = terrain.resolution[1] as usize;

@@ -60,3 +60,6 @@ out/
 
 # User-specific stuff (VSCode)
 .vscode
+
+# Cleanup scratch directory
+_cleanup_scratch/

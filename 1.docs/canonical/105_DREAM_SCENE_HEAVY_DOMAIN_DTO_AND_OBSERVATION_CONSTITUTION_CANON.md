@@ -1,6 +1,6 @@
 # Dream Scene Heavy Domain DTO And Observation Constitution Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the public-observation and public-packet shape for heavy dream-stack domains so editor, tooling, and certification never fall back to ad-hoc structs or direct engine leakage.

@@ -30,7 +30,7 @@ impl WeatherEngineBridge {
 
     /// Sync local state to engine world
     pub fn sync_to_world(&self, world: &mut WorldState) -> Result<(), String> {
-        if let Some(scene) = world.vertical_slice_scene_mut() {
+        if let Some(scene) = world.proof_region_scene_mut() {
             scene.sky = self.sky_state.clone();
             Ok(())
         } else {
@@ -40,7 +40,7 @@ impl WeatherEngineBridge {
 
     /// Sync from engine world to local state
     pub fn sync_from_world(&mut self, world: &WorldState) -> Result<(), String> {
-        if let Some(scene) = world.vertical_slice_scene() {
+        if let Some(scene) = world.proof_region_scene() {
             self.sky_state = scene.sky.clone();
             Ok(())
         } else {

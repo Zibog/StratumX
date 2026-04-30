@@ -1,6 +1,6 @@
 # Living Runtime Stack Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Provide the stitched reading spine for layered bodies, needs, tactics, ecology, dialogue boundaries, micro-motion, and causality so the living stack can be implemented as one system rather than as scattered heroic subsystems.

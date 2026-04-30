@@ -1,4 +1,4 @@
-﻿//! Project query views
+//! Project query views
 //!
 //! Read-only views of ProjectOwner state implementing ReadModel trait.
 

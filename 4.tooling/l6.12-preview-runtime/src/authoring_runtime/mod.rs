@@ -9,6 +9,7 @@ mod ecology_commands;
 mod material_commands;
 mod nav_door_commands;
 mod population_commands;
+mod proof_state;
 mod reason_chain_commands;
 mod scene_commands;
 mod session;

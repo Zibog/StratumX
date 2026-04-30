@@ -190,7 +190,7 @@ fn bench_simulation_batch(c: &mut Criterion) {
 fn bench_network_batch(c: &mut Criterion) {
     c.bench_function("scenario_network_batch", |b| {
         b.iter(|| {
-            let sync = NetSyncService::new(NetSyncConfig {
+            let mut sync = NetSyncService::new(NetSyncConfig {
                 max_interest_regions: 64,
             });
             let mut transport = NetTransportService::new(NetTransportConfig {

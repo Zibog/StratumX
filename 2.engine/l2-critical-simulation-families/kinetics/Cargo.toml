@@ -19,6 +19,3 @@ engine_world_region = { path = "../../l-0.05-world-region" }
 engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
 engine_memory_control = { path = "../../l1.5-runtime-resource-services/memory-control" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_kinetics.rs"

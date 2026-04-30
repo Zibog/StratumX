@@ -1,4 +1,4 @@
-﻿//! Diagnostics Service
+//! Diagnostics Service
 //!
 //! Domain service for diagnostic collection, trace lineage, and failure code mapping.
 //! Abstraction Level: L2 (Infrastructure)

@@ -1318,7 +1318,10 @@ dependencies = [
 name = "editor_shell_matrix"
 version = "0.1.0"
 dependencies = [
+ "stratumx-editor-l8-0-editor-shell",
  "stratumx_shell_test_support",
+ "stratumx_test_support",
+ "stratumx_tooling_l6_1_command_envelopes",
 ]
 
 [[package]]
@@ -1329,10 +1332,12 @@ dependencies = [
  "engine_world",
  "proptest",
  "repo_hygiene",
+ "serde",
  "serde_json",
  "stratumx-editor-l8-10-diagnostics-surface",
  "stratumx-editor-l8-5-tool-context-system",
  "stratumx-editor-l9-0-world-authoring-suite",
+ "stratumx_editor_state_containers",
  "stratumx_repo_hygiene_support",
  "tempfile",
  "uuid",
@@ -1878,6 +1883,7 @@ dependencies = [
 name = "engine_runtime"
 version = "0.1.0"
 dependencies = [
+ "bincode",
  "engine_core",
  "engine_ecs",
  "engine_handle",
@@ -1923,6 +1929,7 @@ version = "0.1.0"
 dependencies = [
  "engine_content",
  "engine_core",
+ "engine_kinetics",
  "engine_material",
  "engine_runtime",
  "engine_runtime_headless",
@@ -2050,6 +2057,8 @@ dependencies = [
 name = "environment_authoring_matrix"
 version = "0.1.0"
 dependencies = [
+ "serde",
+ "serde_json",
  "stratumx_route_test_support",
 ]
 
@@ -4789,6 +4798,7 @@ dependencies = [
  "eframe",
  "serde",
  "serde_json",
+ "stratumx-editor-l8-0-editor-shell",
  "stratumx_tooling_l6_0_tool_session",
 ]
 
@@ -4964,6 +4974,7 @@ dependencies = [
  "serde",
  "serde_json",
  "stratumx_tooling_l6_0_tool_session",
+ "uuid",
 ]
 
 [[package]]
@@ -5026,6 +5037,7 @@ version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",
+ "stratumx_editor_state_containers",
 ]
 
 [[package]]
@@ -5186,16 +5198,25 @@ dependencies = [
  "stratumx-editor-l8-0-editor-shell",
  "stratumx-editor-l8-1-viewport-system",
  "stratumx-editor-l8-10-diagnostics-surface",
- "stratumx-editor-l8-5-tool-context-system",
  "stratumx-editor-l9-0-world-authoring-suite",
  "stratumx-editor-l9-2-terrain-landscape-authoring-suite",
- "stratumx-editor-l9-3-material-lookdev-authoring-suite",
  "stratumx-editor-l9-6-weather-environment-authoring-suite",
  "stratumx_tooling_l6_12_preview_runtime",
  "stratumx_tooling_l6_1_command_envelopes",
  "thiserror 1.0.69",
  "uuid",
  "wgpu",
+]
+
+[[package]]
+name = "stratumx_editor_state_containers"
+version = "0.1.0"
+dependencies = [
+ "engine_world",
+ "serde",
+ "serde_json",
+ "stratumx-editor-l8-10-diagnostics-surface",
+ "uuid",
 ]
 
 [[package]]
@@ -5365,6 +5386,7 @@ dependencies = [
  "engine_world",
  "link_egress_observations",
  "link_ingress_packets",
+ "serde",
  "serde_json",
  "stratumx_tooling_l6_0_tool_session",
 ]

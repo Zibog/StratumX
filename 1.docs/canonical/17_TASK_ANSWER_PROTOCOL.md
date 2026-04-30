@@ -1,6 +1,6 @@
 # Task Answer Protocol
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Required answer format
 For any stack question, an answer must provide:

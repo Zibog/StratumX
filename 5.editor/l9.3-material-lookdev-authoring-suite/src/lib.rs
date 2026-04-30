@@ -1,4 +1,4 @@
-// Stub modules with missing dependencies - commented out for now
+// The crate root keeps only the active split while the deferred modules stay out of the build.
 // mod material_authoring_service;
 // mod material_cache;
 pub mod material_registry_state;

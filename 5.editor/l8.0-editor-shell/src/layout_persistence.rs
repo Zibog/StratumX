@@ -6,7 +6,7 @@ use crate::panel_registry::{DockPosition, DockingConfig, PanelGeometry};
 use serde::{Deserialize, Serialize};
 use std::{collections::BTreeMap, fs, path::Path};
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct LayoutState {
     #[serde(default)]
     pub panels: Vec<PanelState>,
@@ -46,16 +46,6 @@ fn default_panel_geometry(panel_id: &str, index: usize) -> PanelGeometry {
             300.0,
             200.0,
         ),
-    }
-}
-
-impl Default for LayoutState {
-    fn default() -> Self {
-        Self {
-            panels: Vec::new(),
-            focused_panel: None,
-            docking_configuration: DockingConfig::default(),
-        }
     }
 }
 

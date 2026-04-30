@@ -7,3 +7,8 @@ authors.workspace = true
 
 [dependencies]
 stratumx_shell_test_support = { path = "../../support/stratumx_shell_test_support" }
+
+[dev-dependencies]
+stratumx_editor_l8_0_editor_shell = { package = "stratumx-editor-l8-0-editor-shell", path = "../../../5.editor/l8.0-editor-shell" }
+stratumx_tooling_l6_1_command_envelopes = { path = "../../../4.tooling/l6.1-command-envelopes" }
+stratumx_test_support = { path = "../../support/stratumx_test_support" }

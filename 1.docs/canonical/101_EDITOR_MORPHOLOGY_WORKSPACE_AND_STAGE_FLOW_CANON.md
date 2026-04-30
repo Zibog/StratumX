@@ -1,6 +1,6 @@
 # Editor Morphology Workspace And Stage Flow Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the editor as a believable production workstation.

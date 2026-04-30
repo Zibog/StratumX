@@ -1,5 +1,5 @@
 // Nav/Door/Inventory Command Handlers
-// TODO: Re-implement against new engine navigation/door/inventory API when available.
+// Deferred: re-integrate against the new engine navigation/door/inventory API when it is available.
 // Currently returns stub observations to maintain vertical slice end-to-end flow.
 
 use super::session::EditorAuthoringSession;
@@ -7,36 +7,48 @@ use link_egress_observations::EditorAuthoringObservation;
 use link_ingress_packets::NavDoorInventoryCommand;
 
 pub fn handle(
-    _session: &mut EditorAuthoringSession,
+    session: &mut EditorAuthoringSession,
     cmd: NavDoorInventoryCommand,
 ) -> Result<EditorAuthoringObservation, String> {
     match cmd {
-        NavDoorInventoryCommand::OpenDoor => Ok(EditorAuthoringObservation::DoorOpened),
-        NavDoorInventoryCommand::CloseDoor => Ok(EditorAuthoringObservation::DoorClosed),
+        NavDoorInventoryCommand::OpenDoor => {
+            session.proof_state.open_door();
+            Ok(EditorAuthoringObservation::DoorOpened)
+        }
+        NavDoorInventoryCommand::CloseDoor => {
+            session.proof_state.close_door();
+            Ok(EditorAuthoringObservation::DoorClosed)
+        }
         NavDoorInventoryCommand::SetDoorBlocked { reason } => {
+            session.proof_state.block_door(reason.clone());
             Ok(EditorAuthoringObservation::DoorBlocked { reason })
         }
-        NavDoorInventoryCommand::SetDoorLocked => Ok(EditorAuthoringObservation::DoorLocked),
-        NavDoorInventoryCommand::GetDoorState => Ok(EditorAuthoringObservation::DoorStateInfo {
-            state: "closed".to_string(),
-            blocked_reason: None,
-        }),
-        NavDoorInventoryCommand::SetNavigationPath {
-            start,
-            destination,
-        } => Ok(EditorAuthoringObservation::NavigationPathSet {
-            start,
-            destination,
-        }),
-        NavDoorInventoryCommand::GetNavigationStatus => {
-            Ok(EditorAuthoringObservation::NavigationStatusInfo {
-                status: "clear".to_string(),
-                blocked_reason: None,
+        NavDoorInventoryCommand::SetDoorLocked => {
+            session.proof_state.lock_door();
+            Ok(EditorAuthoringObservation::DoorLocked)
+        }
+        NavDoorInventoryCommand::GetDoorState => {
+            let state = session.proof_state.door_inventory.door_state.as_str().to_string();
+            let blocked_reason = session.proof_state.door_inventory.blocked_reason.clone();
+            Ok(EditorAuthoringObservation::DoorStateInfo {
+                state,
+                blocked_reason,
             })
         }
-        NavDoorInventoryCommand::AddItemToInventory { item_id, item_name, .. } => {
-            Ok(EditorAuthoringObservation::ItemAddedToInventory { item_id, item_name })
+        NavDoorInventoryCommand::SetNavigationPath { start, destination } => {
+            session.proof_state.door_inventory.navigation_path = Some((start, destination));
+            Ok(EditorAuthoringObservation::NavigationPathSet { start, destination })
         }
+        NavDoorInventoryCommand::GetNavigationStatus => {
+            let (status, blocked_reason) = session.proof_state.navigation_status();
+            Ok(EditorAuthoringObservation::NavigationStatusInfo {
+                status,
+                blocked_reason,
+            })
+        }
+        NavDoorInventoryCommand::AddItemToInventory {
+            item_id, item_name, ..
+        } => Ok(EditorAuthoringObservation::ItemAddedToInventory { item_id, item_name }),
         NavDoorInventoryCommand::RemoveItemFromInventory { item_id } => {
             Ok(EditorAuthoringObservation::ItemRemovedFromInventory { item_id })
         }
@@ -60,7 +72,9 @@ pub fn handle(
             Ok(EditorAuthoringObservation::ContainerStateInfo { items: vec![] })
         }
         NavDoorInventoryCommand::SaveProofSceneState => {
-            Ok(EditorAuthoringObservation::ProofSceneStateSaved { state_json: String::new() })
+            Ok(EditorAuthoringObservation::ProofSceneStateSaved {
+                state_json: String::new(),
+            })
         }
         NavDoorInventoryCommand::LoadProofSceneState { .. } => {
             Ok(EditorAuthoringObservation::ProofSceneStateLoaded)
@@ -120,13 +134,11 @@ pub fn handle(
                 count: 0,
             })
         }
-        NavDoorInventoryCommand::GetMemoryUsage => {
-            Ok(EditorAuthoringObservation::MemoryUsage {
-                current_bytes: 0,
-                budget_bytes: 1073741824,
-                usage_percent: 0.0,
-            })
-        }
+        NavDoorInventoryCommand::GetMemoryUsage => Ok(EditorAuthoringObservation::MemoryUsage {
+            current_bytes: 0,
+            budget_bytes: 1073741824,
+            usage_percent: 0.0,
+        }),
         NavDoorInventoryCommand::WorldPosToRegion { position } => {
             let region_key = (0, 0, 0);
             Ok(EditorAuthoringObservation::RegionKeyFromPosition {

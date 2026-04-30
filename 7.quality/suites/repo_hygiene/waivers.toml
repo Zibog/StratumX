@@ -501,3 +501,185 @@ justification = "This execute_* name is a domain or tooling execution verb, not 
 [[execute_bridge_waivers]]
 path = "5.editor/l8.0-editor-shell/src/command_spine/spine_core.rs"
 justification = "This execute_* name is a domain or tooling execution verb, not an editor bridge shim; keep it explicit in the waiver registry."
+
+# ============================================================================
+# Cleanup Baseline Waivers
+# ============================================================================
+
+[[line_limit_waivers]]
+path = "3.sdk/l5.2-link-egress-observations/src/editor_authoring_observations/observation.rs"
+justification = "The observation payload remains above the hygiene threshold after the manual split because it still carries the canonical DTO surface for this domain; keep the debt explicit until the next domain DTO pass."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/audio/mod.rs"
+justification = "The active audio authority container still exceeds the hygiene threshold while its container decomposition remains outside this cleanup manual; keep the debt explicit for the next tooling container pass."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/promoted_commands/builders.rs"
+justification = "The promoted command builders remain above the hygiene threshold after adjacent cleanup work; keep the debt explicit until the builder decomposition pass lands."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/validation/rules.rs"
+justification = "Validation rule tables remain above the hygiene threshold and need a dedicated validation cleanup pass; keep the debt explicit for that follow-up."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/validation/validators.rs"
+justification = "Envelope validator orchestration still exceeds the hygiene threshold and is out of scope for the current cleanup manual; keep the debt explicit until the validator split pass."
+
+[[line_limit_waivers]]
+path = "4.tooling/l6.14-release-runtime/src/first_result_verification/evidence.rs"
+justification = "Release evidence verification remains above the hygiene threshold and needs a dedicated release-runtime decomposition pass; keep the debt explicit until then."
+
+[[line_limit_waivers]]
+path = "5.editor/l8.0-editor-shell/src/command_palette_state.rs"
+justification = "Command palette state remains above the hygiene threshold and needs a focused editor-shell cleanup pass; keep the debt explicit until that pass."
+
+[[line_limit_waivers]]
+path = "5.editor/l8.0-editor-shell/src/editor_shell.rs"
+justification = "Editor shell orchestration remains above the hygiene threshold after the app-host cleanup; keep the debt explicit until the editor-shell decomposition pass."
+
+[[line_limit_waivers]]
+path = "5.editor/l8.10-diagnostics-surface/src/diagnostics_types.rs"
+justification = "Diagnostics type aggregation still exceeds the hygiene threshold even though it is below the manual split threshold; keep the debt explicit until the diagnostics-surface pass lands."
+
+[[line_limit_waivers]]
+path = "5.editor/l8.7-workspace-layout-system/src/queries/workspace_queries.rs"
+justification = "Workspace query helpers remain above the hygiene threshold and need a dedicated workspace-layout cleanup pass; keep the debt explicit until then."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.0-world-authoring-suite/src/persistence/world_persistence_view.rs"
+justification = "World persistence view remains above the hygiene threshold and needs a dedicated world-authoring cleanup pass; keep the debt explicit until then."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.0-world-authoring-suite/src/world_session_service.rs"
+justification = "World session service remains above the hygiene threshold and needs a dedicated world-authoring cleanup pass; keep the debt explicit until then."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.2-terrain-landscape-authoring-suite/src/desktop/terrain_panel.rs"
+justification = "The terrain desktop panel remains above the hygiene threshold and needs a dedicated editor-panel decomposition pass; keep the debt explicit until then."
+
+[[line_limit_waivers]]
+path = "5.editor/l9.6-weather-environment-authoring-suite/src/runtime/authoring_service.rs"
+justification = "Weather authoring service remains above the hygiene threshold and needs a dedicated environment-authoring cleanup pass; keep the debt explicit until then."
+
+
+
+[[allow_attr_waivers]]
+path = "2.engine/l-0.6-storage-access/src/factories.rs"
+justification = "This file still requires a local allow attribute for dormant factory helpers during the current cleanup pass; keep the exception explicit until the factory cleanup pass."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/destruction_response/mod.rs"
+justification = "This module still needs local unused-import allowances while the destruction-response slice remains partially dormant; keep the exception explicit until that slice is reactivated or removed."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/fire_weather/mod.rs"
+justification = "This module still needs local unused-import allowances while the fire-weather slice remains partially dormant; keep the exception explicit until that slice is reactivated or removed."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/hydrology/mod.rs"
+justification = "This module still needs local unused-import allowances while the hydrology slice remains partially dormant; keep the exception explicit until that slice is reactivated or removed."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/material_types/tags/enums.rs"
+justification = "These tag enums still need local dead-code allowances while the broader material taxonomy remains dormant; keep the exception explicit until the tag cleanup pass."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/material_types/tags/types.rs"
+justification = "These tag helper types still need local dead-code allowances while the broader material taxonomy remains dormant; keep the exception explicit until the tag cleanup pass."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/storm_celestial/cloud_field.rs"
+justification = "The cloud-field implementation still needs local dead-code allowances while storm/celestial integration remains partial; keep the exception explicit until that slice is finished."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/storm_celestial/mod.rs"
+justification = "This module still needs local unused-import allowances while the storm/celestial slice remains partially dormant; keep the exception explicit until that slice is reactivated or removed."
+
+[[allow_attr_waivers]]
+path = "2.engine/l0.5-shared-world-property-substrate/src/terrain_response/mod.rs"
+justification = "This module still needs local unused-import allowances while the terrain-response slice remains partially dormant; keep the exception explicit until that slice is reactivated or removed."
+
+[[allow_attr_waivers]]
+path = "4.tooling/l6.0-tool-session/src/command_executor/core.rs"
+justification = "The command-executor core still needs a local allow attribute for dormant helper wiring during this cleanup pass; keep the exception explicit until the executor cleanup pass."
+
+[[allow_attr_waivers]]
+path = "5.editor/l8.1-viewport-system/src/viewport_service.rs"
+justification = "The viewport service still needs local dead-code allowances while desktop-only wiring remains incomplete; keep the exception explicit until the viewport cleanup pass."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.0-authority-core/src/containers/audio/mod.rs"
+justification = "Inline tests remain in the active audio authority container until the tooling container quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.0-authority-core/src/diagnostics.rs"
+justification = "Inline diagnostics tests remain in src until the diagnostics quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/promoted_commands/builders.rs"
+justification = "Inline builder tests remain in src until the command-envelope quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/validation/rules.rs"
+justification = "Inline validation-rule tests remain in src until the validation quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.14-release-runtime/src/first_result_verification/checks.rs"
+justification = "Inline release verification tests remain in src until the release-runtime quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.14-release-runtime/src/first_result_verification/evidence.rs"
+justification = "Inline release evidence tests remain in src until the release-runtime quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.5-tool-context-system/src/session_state/mod.rs"
+justification = "Inline tool-context session-state tests remain in src until the tool-context quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.5-tool-context-system/src/state_queries.rs"
+justification = "Inline tool-context query tests remain in src until the tool-context quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.7-workspace-layout-system/src/persistence/workspace_persistence_view.rs"
+justification = "Inline workspace-persistence tests remain in src until the workspace-layout quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.7-workspace-layout-system/src/queries/workspace_queries.rs"
+justification = "Inline workspace-query tests remain in src until the workspace-layout quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l9.0-world-authoring-suite/src/persistence/world_persistence_view.rs"
+justification = "Inline world-persistence tests remain in src until the world-authoring quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l9.0-world-authoring-suite/src/world_session_service.rs"
+justification = "Inline world-session tests remain in src until the world-authoring quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l9.3-material-lookdev-authoring-suite/src/material_cache.rs"
+justification = "Inline material-cache tests remain in src until the material-lookdev quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/promoted_commands/builders/mod.rs"
+justification = "Heavy inline tests remain in src until the command-envelope quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "4.tooling/l6.1-command-envelopes/src/validation/rules/mod.rs"
+justification = "Heavy inline tests remain in src until the validation quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.7-workspace-layout-system/src/queries/workspace_queries/layout_queries.rs"
+justification = "Heavy inline tests remain in src until the workspace-layout quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l8.7-workspace-layout-system/src/queries/workspace_queries/panel_queries.rs"
+justification = "Heavy inline tests remain in src until the workspace-layout quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[test_in_src_waivers]]
+path = "5.editor/l9.0-world-authoring-suite/src/persistence/world_persistence_view/mod.rs"
+justification = "Heavy inline tests remain in src until the world-authoring quality pass extracts them into 7.quality; keep the debt explicit until then."
+
+[[execute_bridge_waivers]]
+path = "4.tooling/l6.0-tool-session/src/recovery_integration.rs"
+justification = "This execute_* name is a tooling recovery helper verb, not an editor bridge shim; keep it explicit in the waiver registry."

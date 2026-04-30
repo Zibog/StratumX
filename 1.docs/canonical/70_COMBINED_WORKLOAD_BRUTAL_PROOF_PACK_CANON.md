@@ -1,6 +1,6 @@
 # Combined Workload Brutal Proof Pack Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define the mandatory combined proof packs that expose weak glue between heavy-domain families.

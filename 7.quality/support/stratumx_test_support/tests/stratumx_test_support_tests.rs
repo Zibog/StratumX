@@ -145,7 +145,9 @@ fn bridge_runtime_object_view_returns_data() {
     let config = BridgeConfig::default();
     let mut runtime = BridgeRuntime::new(config);
     runtime.open_session("session1");
-    let handle = runtime.register_object("test_obj", ObjectClass::Entity).unwrap();
+    let handle = runtime
+        .register_object("test_obj", ObjectClass::Entity)
+        .unwrap();
     let view = runtime.object_view(handle);
     assert!(view.is_some());
     let view = view.unwrap();
@@ -503,8 +505,7 @@ fn create_test_sky_is_valid() {
     // Sky should be created without panic; scattered weather regime set by default
     assert!(matches!(
         sky.weather_director.target_regime,
-        engine_material::WeatherRegime::Clear
-            | engine_material::WeatherRegime::Scattered
+        engine_material::WeatherRegime::Clear | engine_material::WeatherRegime::Scattered
     ));
 }
 
@@ -551,19 +552,19 @@ fn create_test_package_has_valid_fields() {
 #[test]
 fn create_test_world_is_initially_empty() {
     let world = create_test_world();
-    assert!(world.vertical_slice_scene().is_none());
+    assert!(world.proof_region_scene().is_none());
 }
 
 #[test]
 fn create_world_with_scene_has_scene() {
     let world = create_world_with_scene();
-    assert!(world.vertical_slice_scene().is_some());
+    assert!(world.proof_region_scene().is_some());
 }
 
 #[test]
 fn test_world_id_is_stable() {
     let id = test_world_id();
-    assert!(id.0.to_string().len() > 0);
+    assert!(!id.0.to_string().is_empty());
 }
 
 // ---------------------------------------------------------------------------

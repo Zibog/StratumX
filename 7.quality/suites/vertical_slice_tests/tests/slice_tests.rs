@@ -4,14 +4,16 @@
 // Property 25: Incomplete Slice Marking - incomplete slices are marked "future"
 // Property 26: Vertical Slice End-to-End Testing - each active slice works end-to-end
 
-use link_ingress_packets::{
-    DestructionCommand, EditorAuthoringCommand, EditorAuthoringPacket, MaterialWorldCommand,
-    PopulationCommand, SkyCommand, TacticsCommand, EcologyCommand, NavDoorInventoryCommand,
-    StormCommand, VerticalSliceIngressPacket, VerticalSliceSessionHandle,
-};
 use link_egress_observations::EditorAuthoringObservation;
+use link_ingress_packets::{
+    DestructionCommand, EcologyCommand, EditorAuthoringCommand, EditorAuthoringPacket,
+    MaterialWorldCommand, NavDoorInventoryCommand, PopulationCommand, SkyCommand, StormCommand,
+    TacticsCommand, VerticalSliceIngressPacket, VerticalSliceSessionHandle,
+};
 use stratumx_tooling_l6_12_preview_runtime::VerticalSliceSession;
-use vertical_slice_tests::{get_active_slices, get_future_slices, load_audit_report, slice_has_all_layers};
+use vertical_slice_tests::{
+    get_active_slices, get_future_slices, load_audit_report, slice_has_all_layers,
+};
 
 // ============================================================================
 // Property 24: Vertical Slice Completeness
@@ -138,10 +140,7 @@ fn property_24_audio_reality_has_all_layers() {
         .find(|s| s.get("slice_name").and_then(|v| v.as_str()) == Some("audio-reality"))
         .expect("audio-reality slice should exist");
 
-    assert_eq!(
-        audio.get("status").and_then(|v| v.as_str()),
-        Some("active")
-    );
+    assert_eq!(audio.get("status").and_then(|v| v.as_str()), Some("active"));
     assert!(audio.get("engine_present").and_then(|v| v.as_bool()) == Some(true));
     assert!(audio.get("sdk_present").and_then(|v| v.as_bool()) == Some(true));
     assert!(audio.get("tooling_present").and_then(|v| v.as_bool()) == Some(true));
@@ -222,10 +221,7 @@ fn property_25_release_capture_freeze_is_future() {
     let slices = report.get("slices").and_then(|s| s.as_array()).unwrap();
     let release = slices
         .iter()
-        .find(|s| {
-            s.get("slice_name").and_then(|v| v.as_str())
-                == Some("release-capture-freeze")
-        })
+        .find(|s| s.get("slice_name").and_then(|v| v.as_str()) == Some("release-capture-freeze"))
         .expect("release-capture-freeze slice should exist");
 
     assert_eq!(
@@ -250,9 +246,14 @@ fn property_25_future_slices_excluded_from_active_list() {
 #[test]
 fn property_25_audit_report_has_valid_summary() {
     let report = load_audit_report();
-    let summary = report.get("summary").expect("Audit report should have summary");
+    let summary = report
+        .get("summary")
+        .expect("Audit report should have summary");
 
-    let total = summary.get("total_slices").and_then(|v| v.as_u64()).unwrap_or(0);
+    let total = summary
+        .get("total_slices")
+        .and_then(|v| v.as_u64())
+        .unwrap_or(0);
     let active = summary.get("active").and_then(|v| v.as_u64()).unwrap_or(0);
     let future = summary.get("future").and_then(|v| v.as_u64()).unwrap_or(0);
 
@@ -281,9 +282,11 @@ fn property_26_world_scale_create_and_query_end_to_end() {
 
     // Create empty scene (editor -> SDK packet -> tooling route -> engine)
     let create_packet = EditorAuthoringPacket {
-        command: EditorAuthoringCommand::Scene(link_ingress_packets::scene::SceneCommand::CreateEmpty {
-            scene_name: "test_world".to_string(),
-        }),
+        command: EditorAuthoringCommand::Scene(
+            link_ingress_packets::scene::SceneCommand::CreateEmpty {
+                scene_name: "test_world".to_string(),
+            },
+        ),
         request_id: 1,
     };
     let observation = session
@@ -323,7 +326,10 @@ fn property_26_terrain_list_and_query_end_to_end() {
 
     match observation {
         EditorAuthoringObservation::TerrainPatchList { ref patches } => {
-            assert!(!patches.is_empty(), "Should have at least one terrain patch");
+            assert!(
+                !patches.is_empty(),
+                "Should have at least one terrain patch"
+            );
         }
         _ => panic!("Expected TerrainPatchList observation"),
     }
@@ -398,7 +404,10 @@ fn property_26_destruction_commands_flow_end_to_end() {
         .handle_command(summary_packet)
         .expect("GetDestructionSummary should succeed");
     assert!(
-        matches!(obs, EditorAuthoringObservation::DestructionSummaryInfo { .. }),
+        matches!(
+            obs,
+            EditorAuthoringObservation::DestructionSummaryInfo { .. }
+        ),
         "Should return DestructionSummaryInfo observation"
     );
 
@@ -538,7 +547,10 @@ fn property_26_material_world_commands_flow_end_to_end() {
         .handle_command(ignite_packet)
         .expect("IgniteFireObject should succeed");
     assert!(
-        matches!(obs, EditorAuthoringObservation::FireObjectIgnited { success: true }),
+        matches!(
+            obs,
+            EditorAuthoringObservation::FireObjectIgnited { success: true }
+        ),
         "Should return FireObjectIgnited with success=true"
     );
 
@@ -551,7 +563,10 @@ fn property_26_material_world_commands_flow_end_to_end() {
         .handle_command(fire_state_packet)
         .expect("GetFireObjectState should succeed");
     assert!(
-        matches!(obs, EditorAuthoringObservation::FireObjectState { burning: true, .. }),
+        matches!(
+            obs,
+            EditorAuthoringObservation::FireObjectState { burning: true, .. }
+        ),
         "Should return FireObjectState with burning=true"
     );
 
@@ -592,7 +607,10 @@ fn property_26_living_runtime_population_commands_flow_end_to_end() {
         .handle_command(create_npc_packet)
         .expect("CreateNpcProfile should succeed");
     assert!(
-        matches!(obs, EditorAuthoringObservation::NpcProfileCreated { npc_id: 100, .. }),
+        matches!(
+            obs,
+            EditorAuthoringObservation::NpcProfileCreated { npc_id: 100, .. }
+        ),
         "Should return NpcProfileCreated observation"
     );
 
@@ -630,7 +648,11 @@ fn property_26_living_runtime_tactics_commands_flow_end_to_end() {
         command: EditorAuthoringCommand::Tactics(TacticsCommand::CreateSquad {
             squad_id: 1,
             member_ids: vec![100, 101, 102],
-            roles: vec!["leader".to_string(), "rifleman".to_string(), "medic".to_string()],
+            roles: vec![
+                "leader".to_string(),
+                "rifleman".to_string(),
+                "medic".to_string(),
+            ],
         }),
         request_id: 1,
     };
@@ -638,7 +660,13 @@ fn property_26_living_runtime_tactics_commands_flow_end_to_end() {
         .handle_command(create_squad_packet)
         .expect("CreateSquad should succeed");
     assert!(
-        matches!(obs, EditorAuthoringObservation::SquadCreated { member_count: 3, .. }),
+        matches!(
+            obs,
+            EditorAuthoringObservation::SquadCreated {
+                member_count: 3,
+                ..
+            }
+        ),
         "Should return SquadCreated with correct member count"
     );
 
@@ -677,7 +705,13 @@ fn property_26_living_runtime_ecology_commands_flow_end_to_end() {
         .handle_command(create_creature_packet)
         .expect("CreateCreatureEcology should succeed");
     assert!(
-        matches!(obs, EditorAuthoringObservation::CreatureEcologyCreated { creature_id: 200, .. }),
+        matches!(
+            obs,
+            EditorAuthoringObservation::CreatureEcologyCreated {
+                creature_id: 200,
+                ..
+            }
+        ),
         "Should return CreatureEcologyCreated observation"
     );
 
@@ -764,7 +798,10 @@ fn property_26_vertical_slice_session_bootstrap_and_reset() {
 
     assert!(observation.scene.is_some(), "Scene DTO should exist");
     let scene = observation.scene.unwrap();
-    assert!(!scene.scene_name.is_empty(), "Scene name should not be empty");
+    assert!(
+        !scene.scene_name.is_empty(),
+        "Scene name should not be empty"
+    );
     assert!(scene.terrain.entity_id > 0, "Terrain entity should exist");
 
     // Reset scene
@@ -773,10 +810,7 @@ fn property_26_vertical_slice_session_bootstrap_and_reset() {
         .handle_command(reset_packet)
         .expect("ResetScene should succeed");
 
-    assert!(
-        reset_obs.scene.is_some(),
-        "Scene should exist after reset"
-    );
+    assert!(reset_obs.scene.is_some(), "Scene should exist after reset");
 }
 
 #[test]

@@ -3,12 +3,11 @@
 //! These tests verify universal properties that should hold across all inputs.
 
 use proptest::prelude::*;
-use stratumx_editor_state_containers::{
-    SessionState, StateModification, ValidationErrorCode,
-    EntityId, PanelId, SelectionMode, ToolMode, WorldIdentity,
+use stratumx_editor_l8_5_tool_context_system::{
+    EntityId, PanelId, SelectionMode, SessionState, StateModification, ToolMode,
+    ValidationErrorCode, WorldIdentity,
 };
 use uuid::Uuid;
-use std::path::PathBuf;
 
 // ============================================================================
 // Generators (Strategies)
@@ -40,17 +39,11 @@ fn arbitrary_valid_panel_id() -> impl Strategy<Value = PanelId> {
 
 /// Generate arbitrary WorldIdentity
 fn arbitrary_world_identity() -> impl Strategy<Value = WorldIdentity> {
-    (
-        any::<[u8; 16]>(),
-        "[a-z]{1,20}",
-        "[a-z/]{1,50}",
-    ).prop_map(|(uuid_bytes, name, path)| {
-        WorldIdentity {
+    (any::<[u8; 16]>(), "[a-z]{1,20}", "[a-z/]{1,50}")
+        .prop_map(|(uuid_bytes, name, _path)| WorldIdentity {
             world_id: Uuid::from_bytes(uuid_bytes),
             world_name: name,
-            world_path: PathBuf::from(path),
-        }
-    })
+        })
 }
 
 /// Generate arbitrary valid WorldIdentity (non-nil UUID, non-empty name)
@@ -61,13 +54,11 @@ fn arbitrary_valid_world_identity() -> impl Strategy<Value = WorldIdentity> {
         }),
         "[a-z]{1,20}",
         "[a-z/]{1,50}",
-    ).prop_map(|(uuid_bytes, name, path)| {
-        WorldIdentity {
+    )
+        .prop_map(|(uuid_bytes, name, _path)| WorldIdentity {
             world_id: Uuid::from_bytes(uuid_bytes),
             world_name: name,
-            world_path: PathBuf::from(path),
-        }
-    })
+        })
 }
 
 /// Generate arbitrary SelectionMode
@@ -110,9 +101,9 @@ fn arbitrary_state_modification() -> impl Strategy<Value = StateModification> {
         prop::collection::vec(arbitrary_entity_id(), 0..10)
             .prop_map(StateModification::SetSelection),
         // AddToSelection
-        arbitrary_entity_id().prop_map(StateModification::AddToSelection),
+        arbitrary_entity_id().prop_map(|entity| StateModification::AddToSelection(vec![entity])),
         // RemoveFromSelection
-        arbitrary_entity_id().prop_map(StateModification::RemoveFromSelection),
+        arbitrary_entity_id().prop_map(|entity| StateModification::RemoveFromSelection(vec![entity])),
         // ClearSelection
         Just(StateModification::ClearSelection),
         // SetSelectionMode
@@ -143,9 +134,11 @@ fn arbitrary_valid_state_modification() -> impl Strategy<Value = StateModificati
         prop::collection::vec(arbitrary_valid_entity_id(), 0..10)
             .prop_map(StateModification::SetSelection),
         // AddToSelection with valid entity
-        arbitrary_valid_entity_id().prop_map(StateModification::AddToSelection),
+        arbitrary_valid_entity_id()
+            .prop_map(|entity| StateModification::AddToSelection(vec![entity])),
         // RemoveFromSelection with valid entity
-        arbitrary_valid_entity_id().prop_map(StateModification::RemoveFromSelection),
+        arbitrary_valid_entity_id()
+            .prop_map(|entity| StateModification::RemoveFromSelection(vec![entity])),
         // ClearSelection
         Just(StateModification::ClearSelection),
         // SetSelectionMode
@@ -163,7 +156,7 @@ fn arbitrary_valid_state_modification() -> impl Strategy<Value = StateModificati
 // Validates: Requirements 1.2
 proptest! {
     #![proptest_config(ProptestConfig::with_cases(100))]
-    
+
     #[test]
     fn prop_valid_modifications_pass_validation(modification in arbitrary_valid_state_modification()) {
         let state = SessionState::new();
@@ -176,14 +169,14 @@ proptest! {
 // Validates: Requirements 1.2
 proptest! {
     #![proptest_config(ProptestConfig::with_cases(100))]
-    
+
     #[test]
     fn prop_invalid_modifications_fail_validation_with_descriptive_error(
         modification in arbitrary_state_modification()
     ) {
         let state = SessionState::new();
         let result = state.validate_modification(&modification);
-        
+
         // If validation fails, error must have a descriptive message
         if let Err(error) = result {
             prop_assert!(!error.message.is_empty(), "Error message must not be empty");
@@ -193,10 +186,8 @@ proptest! {
                     ValidationErrorCode::InvalidEntityId
                         | ValidationErrorCode::InvalidPanelId
                         | ValidationErrorCode::InvalidWorldIdentity
-                        | ValidationErrorCode::DuplicateEntry
-                        | ValidationErrorCode::EntryNotFound
-                        | ValidationErrorCode::InvalidStateTransition
-                        | ValidationErrorCode::ConstraintViolation
+                        | ValidationErrorCode::InvalidToolMode
+                        | ValidationErrorCode::InvalidSelectionMode
                 ),
                 "Error must have a valid error code"
             );
@@ -208,28 +199,28 @@ proptest! {
 // Validates: Requirements 1.2
 proptest! {
     #![proptest_config(ProptestConfig::with_cases(100))]
-    
+
     #[test]
     fn prop_state_unchanged_on_validation_failure(
         modification in arbitrary_state_modification()
     ) {
         let mut state = SessionState::new();
-        
+
         // Set some initial state
         let initial_tool_mode = ToolMode::Move;
         state.set_tool_mode(initial_tool_mode);
-        
+
         // Clone state before validation
         let state_before = state.clone();
-        
+
         // Validate modification
         let validation_result = state.validate_modification(&modification);
-        
+
         // State should be unchanged after validation (validation is read-only)
         prop_assert_eq!(state.tool_mode, state_before.tool_mode);
         prop_assert_eq!(state.active_world, state_before.active_world);
         prop_assert_eq!(state.open_panels, state_before.open_panels);
-        
+
         // If validation fails, applying should also fail or not be attempted
         if validation_result.is_err() {
             // State remains unchanged
@@ -242,20 +233,20 @@ proptest! {
 // Validates: Requirements 1.2
 proptest! {
     #![proptest_config(ProptestConfig::with_cases(100))]
-    
+
     #[test]
     fn prop_validated_modifications_can_be_applied(
         modification in arbitrary_valid_state_modification()
     ) {
         let mut state = SessionState::new();
-        
+
         // Validate modification
         let validation_result = state.validate_modification(&modification);
         prop_assert!(validation_result.is_ok(), "Valid modification should pass validation");
-        
+
         // Apply modification
         let apply_result = state.apply_modification(modification.clone());
-        
+
         // Application should succeed for session-related modifications
         // (IncrementSaveGeneration is for ProjectState, so it's expected to fail)
         if !matches!(modification, StateModification::IncrementSaveGeneration) {
@@ -268,17 +259,17 @@ proptest! {
 // Validates: Requirements 1.2
 proptest! {
     #![proptest_config(ProptestConfig::with_cases(100))]
-    
+
     #[test]
     fn prop_nil_entity_ids_rejected(
         entities in prop::collection::vec(Just(Uuid::nil()), 1..5)
     ) {
         let state = SessionState::new();
         let modification = StateModification::SetSelection(entities);
-        
+
         let result = state.validate_modification(&modification);
         prop_assert!(result.is_err(), "Nil entity IDs should be rejected");
-        
+
         if let Err(error) = result {
             prop_assert_eq!(error.code, ValidationErrorCode::InvalidEntityId);
         }
@@ -291,10 +282,10 @@ proptest! {
 fn prop_empty_panel_ids_rejected() {
     let state = SessionState::new();
     let modification = StateModification::AddOpenPanel(PanelId(String::new()));
-    
+
     let result = state.validate_modification(&modification);
     assert!(result.is_err(), "Empty panel IDs should be rejected");
-    
+
     if let Err(error) = result {
         assert_eq!(error.code, ValidationErrorCode::InvalidPanelId);
     }
@@ -308,13 +299,12 @@ fn prop_nil_world_id_rejected() {
     let world = WorldIdentity {
         world_id: Uuid::nil(),
         world_name: "test".to_string(),
-        world_path: PathBuf::from("/test"),
     };
     let modification = StateModification::SetActiveWorld(Some(world));
-    
+
     let result = state.validate_modification(&modification);
     assert!(result.is_err(), "Nil world ID should be rejected");
-    
+
     if let Err(error) = result {
         assert_eq!(error.code, ValidationErrorCode::InvalidWorldIdentity);
     }
@@ -328,13 +318,12 @@ fn prop_empty_world_name_rejected() {
     let world = WorldIdentity {
         world_id: Uuid::new_v4(),
         world_name: String::new(),
-        world_path: PathBuf::from("/test"),
     };
     let modification = StateModification::SetActiveWorld(Some(world));
-    
+
     let result = state.validate_modification(&modification);
     assert!(result.is_err(), "Empty world name should be rejected");
-    
+
     if let Err(error) = result {
         assert_eq!(error.code, ValidationErrorCode::InvalidWorldIdentity);
     }

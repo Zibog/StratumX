@@ -1,6 +1,6 @@
 # Workspace Layout and Savefile Identity Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the durable shape of the project workspace so save/reopen, diagnostics, build, and freeze all point to the same project identity.

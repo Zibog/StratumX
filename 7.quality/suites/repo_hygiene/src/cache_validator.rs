@@ -3,6 +3,12 @@ use crate::CodebaseState;
 /// Validator for cache rebuildability rules
 pub struct CacheRebuildabilityValidator;
 
+impl Default for CacheRebuildabilityValidator {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl CacheRebuildabilityValidator {
     pub fn new() -> Self {
         Self
@@ -42,7 +48,7 @@ impl CacheRebuildabilityValidator {
         let mut violations = Vec::new();
 
         // Cache naming patterns
-        let cache_patterns = vec!["Cache", "cache"];
+        let cache_patterns = ["Cache", "cache"];
 
         for field in &codebase_state.state_fields {
             // Check if this looks like a cache
@@ -144,7 +150,7 @@ impl CacheRebuildabilityValidator {
         let mut violations = Vec::new();
 
         // Query naming patterns
-        let query_patterns = vec!["Query", "query", "View", "view"];
+        let query_patterns = ["Query", "query", "View", "view"];
 
         for field in &codebase_state.state_fields {
             // Check if this looks like a query

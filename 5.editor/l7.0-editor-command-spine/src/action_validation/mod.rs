@@ -32,6 +32,3 @@ impl ActionValidator {
         Ok(())
     }
 }
-
-#[cfg(test)]
-mod tests;

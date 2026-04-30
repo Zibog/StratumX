@@ -1,6 +1,6 @@
 # Damage Field Mask Reveal And Structural Topology Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the cheap-but-honest runtime contour for cracks, holes, splinters, charring, wet spread, and structural weakening without requiring arbitrary mesh surgery.

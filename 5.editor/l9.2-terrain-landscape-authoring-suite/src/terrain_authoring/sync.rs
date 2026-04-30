@@ -39,7 +39,7 @@ impl TerrainAuthoringService {
     }
 
     pub(super) fn capture_world_dirtiness(&mut self, world: &WorldState) {
-        if let Some(scene) = world.vertical_slice_scene() {
+        if let Some(scene) = world.proof_region_scene() {
             for region in &scene.terrain.dirty_regions {
                 self.chunk_dirtiness
                     .insert(ChunkId::new(region.chunk_x, region.chunk_y), true);
@@ -49,12 +49,12 @@ impl TerrainAuthoringService {
 
     pub(super) fn update_manifest_from_world(&mut self, world: &WorldState) -> Result<(), String> {
         let scene = world
-            .vertical_slice_scene()
+            .proof_region_scene()
             .ok_or_else(|| "No active scene found".to_string())?;
         let terrain = &scene.terrain;
 
-        let mut min_height = 0.0;
-        let mut max_height = 0.0;
+        let mut min_height: f32 = 0.0;
+        let mut max_height: f32 = 0.0;
         if let Some(first) = terrain.height_samples.first().copied() {
             min_height = first;
             max_height = first;

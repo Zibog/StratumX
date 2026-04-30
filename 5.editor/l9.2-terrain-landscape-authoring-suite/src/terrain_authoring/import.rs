@@ -61,7 +61,7 @@ impl TerrainAuthoringService {
             .collect::<Vec<_>>();
 
         let scene = world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or_else(|| "No active scene found".to_string())?;
         scene.terrain.resolution = [width, height];
         scene.terrain.height_samples = samples;

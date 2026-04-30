@@ -1,4 +1,4 @@
-﻿//! Event Bus Infrastructure
+//! Event Bus Infrastructure
 //!
 //! Provides event emission and subscription for domain services to communicate
 //! state changes without direct coupling.

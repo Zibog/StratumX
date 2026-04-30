@@ -20,6 +20,3 @@ engine_material = { path = "../l0.5-shared-world-property-substrate" }
 serde.workspace = true
 bincode.workspace = true
 glam.workspace = true
-
-[lib]
-path = "src/engine_world.rs"

@@ -29,10 +29,16 @@ impl ViewportService {
             event_bus: None,
         }
     }
-    pub fn initialize(&mut self) -> Result<(), String> { Ok(()) }
-    pub fn shutdown(&mut self) -> Result<(), String> { Ok(()) }
+    pub fn initialize(&mut self) -> Result<(), String> {
+        Ok(())
+    }
+    pub fn shutdown(&mut self) -> Result<(), String> {
+        Ok(())
+    }
 }
 
 impl Default for ViewportService {
-    fn default() -> Self { Self::new() }
+    fn default() -> Self {
+        Self::new()
+    }
 }

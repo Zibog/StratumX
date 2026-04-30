@@ -1,6 +1,6 @@
 # Document Role And Authority Discipline Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Make it impossible for one file to pretend it is a constitution, manual, catalog, route, lab, and status ledger at the same time.

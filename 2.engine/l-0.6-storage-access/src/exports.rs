@@ -11,3 +11,4 @@ pub use crate::validation::{
 
 // Factories for views/windows
 pub use crate::factories::{make_read_view, make_write_window};
+pub use crate::validation::validate_traversal_entry as traversal_entry_bind;

@@ -45,6 +45,29 @@ impl super::startup::VerticalSliceSession {
     // extract_material_stacks DISABLED - references runtime.materials field
     // moved out of engine_startup during Phase 9 refactoring.
 
+    pub fn extract_material_stacks(&self) -> Result<Vec<MaterialStackDto>, String> {
+        use engine_material::concrete;
+
+        let scene = self
+            .runtime
+            .world
+            .vertical_slice_scene()
+            .ok_or("Scene not found")?;
+
+        let concrete_archetype = concrete();
+
+        Ok(vec![MaterialStackDto {
+            id: scene.wall.stack_id.0,
+            label: "wall_concrete".to_string(),
+            layers: vec![MaterialLayerDto {
+                archetype_id: concrete_archetype.id.0,
+                archetype_label: concrete_archetype.label.clone(),
+                thickness_mm: concrete_archetype.thickness_mm,
+                coverage: 1.0,
+            }],
+        }])
+    }
+
     pub fn extract_damage_memory(&self) -> Result<Vec<DamageMemoryDto>, String> {
         let damage_memory = self.runtime.world.damage_memory();
         Ok(damage_memory

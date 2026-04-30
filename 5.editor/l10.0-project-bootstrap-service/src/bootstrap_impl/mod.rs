@@ -15,11 +15,23 @@ pub use stratumx_tooling::{
 };
 pub use stratumx_tooling_l6_0_tool_session as stratumx_tooling;
 
+pub use stratumx_editor_l8_0_editor_shell::{
+    AnimationCinematicsAuthoringSuite, AssetGateAndApprovalSurface, AssistantSurface,
+    AudioVoiceAuthoringSuite, AutomationAndBatchService, BuildReleaseSurface,
+    BuildValidationReleaseSuite, CollaborationSessionSurface, DestructionFractureAuthoringSuite,
+    DiagnosticsSurface, GraphAuthoringService, ImportExportPipelineService,
+    LearningOnboardingAndHelpSurface, MaterialLookdevAuthoringSuite,
+    PackageMarketAndDependencyService, PlaytestAndCaptureOperations, PluginAndExtensionHost,
+    ProductionDashboardAndTraceability,
+    ProjectBootstrapService as EditorShellProjectBootstrapService, QuestEventLogicAuthoringSuite,
+    ReviewAnnotationSurface, SceneEntityAuthoringSuite, ScriptAndHotReloadService,
+    SimulationAiAuthoringSuite, TemplatePresetAndScaffoldService, TerrainLandscapeAuthoringSuite,
+    UiHudAuthoringSuite, WeatherEnvironmentAuthoringSuite, WorldAuthoringSuite,
+};
+
 mod product;
-mod types;
 
 pub use product::EditorProduct;
-pub use types::*;
 
 mod bootstrap_types;
 mod export_document_runtime;
@@ -28,7 +40,11 @@ mod persistence_runtime;
 mod reference_bootstrap_runtime;
 mod reference_shell_runtime;
 
+mod types;
+pub use types::*;
+
 #[cfg(feature = "desktop")]
+#[path = "../desktop/mod.rs"]
 pub mod desktop;
 
 pub use bootstrap_types::*;

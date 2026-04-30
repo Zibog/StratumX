@@ -19,10 +19,7 @@ pub enum AnimationObservation {
         loop_count: u32,
     },
     /// An animation clip has stopped playing on an entity.
-    AnimationClipStopped {
-        entity_id: u32,
-        clip_id: u32,
-    },
+    AnimationClipStopped { entity_id: u32, clip_id: u32 },
     /// The blend weight for an animation layer on an entity has been updated.
     AnimationBlendUpdated {
         entity_id: u32,
@@ -43,10 +40,7 @@ pub enum AnimationObservation {
         timestamp: f32,
     },
     /// An animation state machine has been created on an entity.
-    AnimationStateMachineCreated {
-        entity_id: u32,
-        state_count: u32,
-    },
+    AnimationStateMachineCreated { entity_id: u32, state_count: u32 },
     /// An error occurred within the animation system for an entity.
     AnimationError {
         entity_id: u32,

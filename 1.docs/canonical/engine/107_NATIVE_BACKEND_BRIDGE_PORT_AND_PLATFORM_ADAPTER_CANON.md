@@ -1,6 +1,6 @@
 # Native Backend Bridge Port And Platform Adapter Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Freeze the implementation law for native backend modules and future platform-port adapters.
@@ -47,3 +47,8 @@ Every active backend module or adapter must publish:
 - engine `103`
 - engine `104`
 - root `100`
+
+
+## v31 platform adapter clarification
+Platform adapters are backend drivers beneath StratumX Native Graphics Port.
+They must publish the same backend status, feature tier, present/capture, and blocker packets as Vulkan, Direct3D 12, Metal, and null backends. Restricted-platform details remain outside the public canon until legal SDK access exists.

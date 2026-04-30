@@ -1,6 +1,6 @@
 # Dream Scene Capture Replay Compare Corpus Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define the retained corpus required to debug, certify, and regress the dream-stack domains.

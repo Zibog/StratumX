@@ -1,17 +1,25 @@
+use crate::material_response::{
+    MaterialInstanceProfile, MaterialResponseProfile, ResponseFamilyRow, SurfaceFamilyProfile,
+};
 use crate::material_types::{
     MaterialArchetype, MaterialArchetypeId, MaterialConfig, MaterialDescriptor, MaterialId,
-    MaterialLookupResult, MaterialStack, MaterialStackId, ReactionRow, ResponseProfileId,
+    MaterialLookupResult, MaterialStack, MaterialStackId, ReactionRow, ResponseFamilyId,
+    ResponseProfileId, SurfaceFamilyId,
 };
 use engine_core::{EngineCoreError, EngineCoreResult};
 use std::collections::BTreeMap;
 
 #[derive(Debug, Clone)]
 pub struct MaterialRegistry {
-    config: MaterialConfig,
-    descriptors: BTreeMap<MaterialId, MaterialDescriptor>,
-    reactions: BTreeMap<ResponseProfileId, ReactionRow>,
-    archetypes: BTreeMap<MaterialArchetypeId, MaterialArchetype>,
-    stacks: BTreeMap<MaterialStackId, MaterialStack>,
+    pub(crate) config: MaterialConfig,
+    pub(crate) descriptors: BTreeMap<MaterialId, MaterialDescriptor>,
+    pub(crate) reactions: BTreeMap<ResponseProfileId, ReactionRow>,
+    pub(crate) archetypes: BTreeMap<MaterialArchetypeId, MaterialArchetype>,
+    pub(crate) stacks: BTreeMap<MaterialStackId, MaterialStack>,
+    pub(crate) surface_families: BTreeMap<SurfaceFamilyId, SurfaceFamilyProfile>,
+    pub(crate) response_profiles: BTreeMap<ResponseProfileId, MaterialResponseProfile>,
+    pub(crate) instance_profiles: BTreeMap<MaterialStackId, MaterialInstanceProfile>,
+    pub(crate) response_family_rows: BTreeMap<ResponseFamilyId, ResponseFamilyRow>,
 }
 
 impl MaterialRegistry {
@@ -22,6 +30,10 @@ impl MaterialRegistry {
             reactions: BTreeMap::new(),
             archetypes: BTreeMap::new(),
             stacks: BTreeMap::new(),
+            surface_families: BTreeMap::new(),
+            response_profiles: BTreeMap::new(),
+            instance_profiles: BTreeMap::new(),
+            response_family_rows: BTreeMap::new(),
         }
     }
 

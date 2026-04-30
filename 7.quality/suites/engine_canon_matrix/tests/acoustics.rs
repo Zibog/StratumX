@@ -17,17 +17,20 @@ fn sound_propagation() {
 
     let result = service
         .synthesize(
-            &WorldState::new(),
-            &EcsSubstrate::new(),
-            &materials(),
-            &ResidencyControlService::new(ResidencyConfig {
-                resident_item_budget: 4,
-                streaming_item_budget: 4,
-            }),
-            &mut transfer,
             AcousticsRequest {
                 source_count: 2,
                 stream_upload_bytes: 24,
+            },
+            AcousticInputs {
+                world: &WorldState::new(),
+                ecs: &EcsSubstrate::new(),
+                materials: &materials(),
+                residency: &ResidencyControlService::new(ResidencyConfig {
+                    resident_item_budget: 4,
+                    streaming_item_budget: 4,
+                }),
+                transfer: &mut transfer,
+                material_id: MaterialId(1),
             },
         )
         .unwrap();

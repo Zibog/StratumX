@@ -1,6 +1,6 @@
 # Native Graphics Bridge And Platform Portability Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.26/STACK-v32`
 
 ## Purpose
 Freeze one engine-owned bridge between renderer truth and native graphics APIs so the archive can ship on Windows, Linux, macOS, and future platform ports without turning the renderer into a fake universal API religion.
@@ -76,3 +76,16 @@ The bridge must stay thin enough that:
 - editor `115`
 - sdk `64`, `65`, `67`, `78`
 - tooling `67`, `68`, `82`
+
+
+## v31 clarification: StratumX Native Graphics Port
+The active architecture is now named **StratumX Native Graphics Port**.
+The previous wording “native graphics bridge” remains compatible as a description, but the authoritative implementation target is the Graphics Port Layer defined in root `121`.
+
+Vulkan is a required first real backend candidate. It is not the default renderer, not the architectural center, and not the shape of engine-facing render APIs.
+
+The bridge must be implemented as backend drivers below a StratumX-owned contract:
+- null/headless mandatory immediately;
+- Vulkan first real backend;
+- Direct3D 12, Metal, and platform-native stubs mandatory immediately;
+- backend policy resolver mandatory before editor viewport relies on any backend.

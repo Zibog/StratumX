@@ -1,6 +1,6 @@
 # Canonical Pack ID Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This file is the only authoritative registry for `pack.*` ids.

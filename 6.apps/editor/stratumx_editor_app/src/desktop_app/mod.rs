@@ -1,10 +1,12 @@
 // Desktop App - Launch-critical thin shell only
 
-pub mod app_helpers;
+pub mod app_commands;
+pub mod app_diagnostics;
+pub mod app_panels;
 pub mod app_state;
-pub mod command_flush;
+pub mod app_update;
+pub mod app_viewport;
 pub mod editor_app;
-pub mod update_loop;
 
 pub use editor_app::EditorApp;
 

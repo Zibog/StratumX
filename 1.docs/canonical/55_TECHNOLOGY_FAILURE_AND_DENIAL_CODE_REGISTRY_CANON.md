@@ -1,6 +1,6 @@
 # Technology Failure And Denial Code Registry Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 This registry freezes canonical failure and denial families so that editor, tooling, sdk, and engine speak one code language.

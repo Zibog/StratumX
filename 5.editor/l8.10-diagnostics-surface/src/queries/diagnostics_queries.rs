@@ -1,4 +1,4 @@
-﻿//! Diagnostics query views
+//! Diagnostics query views
 //!
 //! Read-only views of DiagnosticsOwner state implementing ReadModel trait.
 

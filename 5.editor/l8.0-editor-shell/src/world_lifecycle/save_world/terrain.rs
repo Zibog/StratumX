@@ -1,12 +1,12 @@
 // Terrain package saving - canonical chunk and material layer persistence
 
 use editor_dto_law::{ChunkData, ChunkDescriptor, ChunkHeader, MaterialLayer, TerrainManifest};
-use engine_world::VerticalSliceScene;
+use engine_world::ProofRegionScene;
 use std::fs;
 use std::path::Path;
 use uuid::Uuid;
 
-pub fn save_terrain_package(path: &Path, scene: &VerticalSliceScene) -> Result<(), String> {
+pub fn save_terrain_package(path: &Path, scene: &ProofRegionScene) -> Result<(), String> {
     let terrain_dir = path.join("terrain");
     let chunks_dir = terrain_dir.join("chunks");
     fs::create_dir_all(&chunks_dir).map_err(|e| format!("Failed to create chunks dir: {}", e))?;
@@ -63,7 +63,7 @@ pub fn save_terrain_package(path: &Path, scene: &VerticalSliceScene) -> Result<(
     Ok(())
 }
 
-fn save_chunk_data(chunks_dir: &Path, scene: &VerticalSliceScene) -> Result<(), String> {
+fn save_chunk_data(chunks_dir: &Path, scene: &ProofRegionScene) -> Result<(), String> {
     let chunk_res = scene.terrain.chunk_size as usize;
     let terrain_res_x = scene.terrain.resolution[0] as usize;
 

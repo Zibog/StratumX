@@ -1,7 +1,6 @@
 //! Editor Product Structure
 
-use super::types::*;
-use super::bootstrap_types::*;
+use crate::*;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EditorProduct {

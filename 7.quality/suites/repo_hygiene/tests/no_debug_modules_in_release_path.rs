@@ -40,7 +40,7 @@ fn check_for_debug_modules(dir: &Path, violations: &mut Vec<String>) {
 
         if path.is_dir() {
             check_for_debug_modules(&path, violations);
-        } else if path.extension().map_or(false, |e| e == "rs") {
+        } else if path.extension().is_some_and(|e| e == "rs") {
             let file_name = path.file_name().unwrap().to_str().unwrap();
             if file_name.contains("debug") || file_name.contains("_dbg") {
                 violations.push(

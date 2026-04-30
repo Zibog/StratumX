@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc d651c097972bb3ab2a9799b779c4824fa8a14b06a2edcc204f3808a9264e2adf # shrinks to service_type = RuntimeMode

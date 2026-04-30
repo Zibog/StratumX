@@ -1,7 +1,7 @@
 //! Selection state types.
 
-use serde::{Deserialize, Serialize};
 use crate::EntityId;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum SelectionMode {

@@ -849,9 +849,15 @@ fn freeze_blocker_variants() {
 #[test]
 fn freeze_blocker_descriptions() {
     assert!(FreezeBlocker::NoBaseline.description().contains("baseline"));
-    assert!(FreezeBlocker::NoCompareDigest.description().contains("compare digest"));
-    assert!(FreezeBlocker::MissingArtifacts.description().contains("missing"));
-    assert!(FreezeBlocker::CertificationBlocked.description().contains("blocked"));
+    assert!(FreezeBlocker::NoCompareDigest
+        .description()
+        .contains("compare digest"));
+    assert!(FreezeBlocker::MissingArtifacts
+        .description()
+        .contains("missing"));
+    assert!(FreezeBlocker::CertificationBlocked
+        .description()
+        .contains("blocked"));
 }
 
 #[test]
@@ -1075,11 +1081,27 @@ fn freeze_gate_engine_new_equals_default() {
     let _eng2 = FreezeGateEngine::default();
     // Both should be empty with no hardware floor results
     // Just verify they construct properly
-    assert_eq!(eng1.check_freeze_gate("", &BaselineRegistry::new(), &CompareEngine::new(), &CertificationEngine::new(), &EvidenceBundle {
-        bundle_id: "".into(), pack_id: "".into(), scenario_id: "".into(), build_profile: "".into(),
-        schema_revision: "".into(), timestamp: 0, artifacts: vec![], verdict: EvidenceVerdict::Green,
-        operator_signoff: None,
-    }).pack_id, "");
+    assert_eq!(
+        eng1.check_freeze_gate(
+            "",
+            &BaselineRegistry::new(),
+            &CompareEngine::new(),
+            &CertificationEngine::new(),
+            &EvidenceBundle {
+                bundle_id: "".into(),
+                pack_id: "".into(),
+                scenario_id: "".into(),
+                build_profile: "".into(),
+                schema_revision: "".into(),
+                timestamp: 0,
+                artifacts: vec![],
+                verdict: EvidenceVerdict::Green,
+                operator_signoff: None,
+            }
+        )
+        .pack_id,
+        ""
+    );
 }
 
 #[test]
@@ -1100,7 +1122,8 @@ fn freeze_gate_check_all_blockers() {
         operator_signoff: None,
     };
 
-    let result = gate_eng.check_freeze_gate("pack1", &baseline_reg, &compare_eng, &cert_eng, &evidence);
+    let result =
+        gate_eng.check_freeze_gate("pack1", &baseline_reg, &compare_eng, &cert_eng, &evidence);
     assert!(!result.can_freeze);
     assert!(!result.blockers.is_empty());
 }

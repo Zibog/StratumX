@@ -202,7 +202,7 @@ fn test_residency_state_transitions() {
 fn test_multiple_regions_resident() {
     let mut session = create_session_with_runtime();
 
-    let regions = vec![(0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 0, 0)];
+    let regions = [(0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 0, 0)];
 
     // Load all regions
     for (idx, &region_key) in regions.iter().enumerate() {

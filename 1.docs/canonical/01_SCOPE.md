@@ -1,6 +1,6 @@
 # Global Scope
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## What this archive covers
 
@@ -47,3 +47,36 @@ Pretending it is already `production_gold` is not.
 
 This document is superseded only by constitutional law if a specific engine constitution overrides a global scope claim.
 Within `canonical/`, this document is second in authority only to `05_GLOBAL_AUTHORITY_ORDER.md`.
+
+---
+
+# V34 decision closure: StratumX 1.0 scope
+
+Stack version: `SX-CANON/1.0.28/STACK-v34`
+
+`canonical/` now treats `128_STRATUMX_1_0_PRODUCT_DECISION_AND_ENGINE_BUILD_STRATEGY_CANON.md` as the binding product decision ledger.
+
+## Updated scope statement
+
+StratumX 1.0 covers the **engine foundation** required to keep building the dream-stack cleanly:
+
+- Native Graphics Port and showable frame lane.
+- Canonical DCC/source asset pipeline and cooked runtime packages.
+- Hybrid material model: profile-driven runtime families now, optional graph authoring later.
+- World/cell/chunk format sufficient for large-world authoring.
+- Engine-owned scheduler and truth boundaries.
+- Replaceable backend strategy for graphics, physics kernel, audio device, and future platform ports.
+- SDK/tooling/editor documentation rails sufficient for implementation without guessing.
+
+StratumX 1.0 does **not** promise complete dream-game content, full neural dialogue runtime, complete console backend, full society/ecology simulation, or final multiplayer production stack. These are staged expansions on top of the 1.0 foundation.
+
+## New gold rule
+
+A domain is no longer considered document-gold merely because it has a canonical law. It must have:
+
+1. Canonical decision.
+2. Developer implementation path.
+3. User/operator workflow when editor-facing.
+4. API/reference rows when packetized.
+5. Tutorial or first-result path when user-visible.
+6. Troubleshooting/recovery route when failure-prone.

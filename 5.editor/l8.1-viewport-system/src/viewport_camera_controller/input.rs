@@ -47,6 +47,6 @@ pub fn handle_mouse_look(
 pub fn handle_scroll_speed(ui: &egui::Ui, speed: &mut f32) {
     let scroll_delta = ui.input(|i| i.smooth_scroll_delta.y);
     if scroll_delta != 0.0 {
-        *speed = (*speed + scroll_delta * 0.1).max(1.0).min(100.0);
+        *speed = (*speed + scroll_delta * 0.1).clamp(1.0, 100.0);
     }
 }

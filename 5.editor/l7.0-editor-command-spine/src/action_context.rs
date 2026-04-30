@@ -80,7 +80,6 @@ impl ActionContext {
         !self.selection_state.selected_entities.is_empty()
     }
 
-    #[cfg(test)]
     pub fn test_empty() -> Self {
         Self {
             project_state: None,

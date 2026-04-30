@@ -11,7 +11,7 @@ impl TerrainAuthoringState {
 
         let build_request = self.pending_build.take().unwrap();
         let scene = world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("No active scene found")?;
 
         if build_request.full_rebuild {
@@ -35,7 +35,7 @@ impl TerrainAuthoringState {
     /// Perform full terrain rebuild
     fn perform_full_rebuild(
         &mut self,
-        scene: &mut engine_world::VerticalSliceScene,
+        scene: &mut engine_world::ProofRegionScene,
     ) -> Result<(), String> {
         let terrain = &mut scene.terrain;
 
@@ -69,7 +69,7 @@ impl TerrainAuthoringState {
     /// Perform partial terrain rebuild for specific regions
     fn perform_partial_rebuild(
         &mut self,
-        scene: &mut engine_world::VerticalSliceScene,
+        scene: &mut engine_world::ProofRegionScene,
         regions: &[super::state::TerrainDirtyRegion],
     ) -> Result<(), String> {
         let terrain = &mut scene.terrain;
@@ -105,7 +105,7 @@ impl TerrainAuthoringState {
     }
 
     /// Sync terrain state back to world truth
-    fn sync_state_to_world(&mut self, scene: &mut engine_world::VerticalSliceScene) {
+    fn sync_state_to_world(&mut self, scene: &mut engine_world::ProofRegionScene) {
         // Update chunk states to match authoring state
         for region in &self.dirty_regions {
             if let Some(chunk) = scene

@@ -17,9 +17,9 @@ pub fn handle_get_navigation_status(
 ) -> Result<EditorAuthoringObservation, String> {
     let path = vs.runtime.navigation_path.clone();
     vs.runtime.set_navigation_path(path.start, path.destination);
-    let (status, blocked_reason) = vs.runtime.get_navigation_status();
+    let (status, blocked_reason) = vs.runtime.navigation_status();
     Ok(EditorAuthoringObservation::NavigationStatusInfo {
-        status: format!("{:?}", status),
+        status,
         blocked_reason,
     })
 }

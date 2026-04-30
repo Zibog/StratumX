@@ -40,7 +40,7 @@ impl TerrainAuthoringState {
 
                     self.restore_chunk_data(world, chunk_x, chunk_y, &chunk_data)?;
 
-                    if let Some(scene) = world.vertical_slice_scene_mut() {
+                    if let Some(scene) = world.proof_region_scene_mut() {
                         if let Some(chunk) = scene
                             .terrain
                             .chunks
@@ -92,7 +92,7 @@ impl TerrainAuthoringState {
         chunk_data: &ChunkData,
     ) -> Result<(), String> {
         let scene = world
-            .vertical_slice_scene_mut()
+            .proof_region_scene_mut()
             .ok_or("No active scene found")?;
         let terrain = &mut scene.terrain;
         let chunk_size = terrain.chunk_size as usize;

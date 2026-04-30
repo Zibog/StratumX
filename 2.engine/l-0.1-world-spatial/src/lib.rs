@@ -21,6 +21,12 @@ pub use runtime::{
     spatial_address_for_world_coordinate, to_region_local,
 };
 
+pub mod geodesy;
+pub use geodesy::{
+    precision_zone_for_coordinate, publish_rebase_delta, CellFrameRef, FarPhenomenonTrackRef,
+    GeoAnchorRef, PrecisionZoneCode, RebaseDeltaRef, RegionFrameRef,
+};
+
 pub mod validation;
 pub use validation::SpatialValidationError;
 

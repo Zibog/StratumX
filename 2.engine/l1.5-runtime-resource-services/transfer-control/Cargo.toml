@@ -16,6 +16,3 @@ engine_handle = { path = "../../l-0.8-handle" }
 engine_stream_control = { path = "../stream-control" }
 engine_memory_control = { path = "../memory-control" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_transfer_control.rs"

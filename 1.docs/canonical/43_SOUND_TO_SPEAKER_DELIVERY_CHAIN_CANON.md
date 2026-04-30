@@ -1,6 +1,6 @@
 # Sound to Speaker Delivery Chain Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze the orchestration-grade chain from runtime event and world state to speaker output.
@@ -77,3 +77,25 @@ Audio old-floor proof must retain:
 - `93_AUDIO_EVENT_CLASSIFICATION_EMISSION_AND_TIMING_CANON.md`
 - `editor/62_AUDIO_VOICE_ZONE_AND_MIX_AUTHORING_CANON.md`
 - `editor/95_AUDIO_RUNTIME_AND_MIX_LAB_CANON.md`
+
+---
+
+# V33 authoring-to-speaker closure
+
+Stack version: `SX-CANON/1.0.27/STACK-v33`
+
+## Authoring-to-speaker lifecycle
+
+A sound heard by the player must be traceable through:
+
+1. source asset or generated event;
+2. audio event definition;
+3. material/state variant selection;
+4. emitter/listener relationship;
+5. occlusion/portal/weather/world influence;
+6. priority and mix bus routing;
+7. bank/stream residency;
+8. device output;
+9. diagnostic capture and editor audition proof.
+
+No audio route is release-grade without a material/event matrix row, bank identity, fallback sound, and failure packet.

@@ -57,5 +57,5 @@ fn ownership_validator_reports_cycles_in_dependency_graph() {
 
     assert!(violations
         .iter()
-        .all(|violation| violation.violation_type == ViolationType::CircularDependency));
+        .all(|violation| violation.violation_type == ViolationType::CyclicDependency));
 }

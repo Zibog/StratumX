@@ -1,6 +1,6 @@
 # Release 1.0 Sealing And Stitching Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Define when the archive stops feeling like patch-wave accretion and starts feeling like one sealed canonical system.

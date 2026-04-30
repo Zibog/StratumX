@@ -3,9 +3,7 @@
 use serde::{Deserialize, Serialize};
 use stratumx_tooling::{ToolingError, ToolingRuntime};
 
-use super::types::{
-    CameraTransform, InspectorSystem, SceneId, ViewportData, ViewportSystem,
-};
+use super::types::{CameraTransform, InspectorSystem, SceneId, ViewportData, ViewportSystem};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Default)]
 pub struct EditorProduct {

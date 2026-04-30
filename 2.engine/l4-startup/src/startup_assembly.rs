@@ -1,5 +1,9 @@
-use crate::{NetworkRole, RuntimeLaunchPlan, StartupConfig, StartupReadyAssemblyDecisionSet};
-use engine_core::{EngineCoreError, EngineCoreResult};
+use crate::startup_validation::service_wiring_bitset;
+use crate::{
+    RuntimeLaunchPlan, StartupConfig, StartupFailure, StartupFailureReason,
+    StartupReadyAssemblyDecisionSet, StartupResult,
+};
+use engine_core::{EngineCoreResult, StableDigestBuilder};
 use engine_runtime::RuntimeProfile;
 use engine_runtime_headless::{HeadlessRuntimeConfig, HeadlessRuntimeProfile};
 use engine_runtime_realtime::{RealtimeRuntimeConfig, RealtimeRuntimeProfile};
@@ -7,7 +11,7 @@ use engine_world::WorldState;
 
 #[derive(Debug, Clone)]
 pub struct StartupAssembly {
-    config: StartupConfig,
+    pub(crate) config: StartupConfig,
 }
 
 impl StartupAssembly {
@@ -15,37 +19,21 @@ impl StartupAssembly {
         Self { config }
     }
 
-    fn validation_reason(&self) -> Option<&'static str> {
-        match (self.config.profile, self.config.network_role) {
-            (RuntimeProfile::Headless20, NetworkRole::InteractiveHostAware) => {
-                Some("headless profile cannot bind interactive host-aware role")
-            }
-            (RuntimeProfile::Interactive60, NetworkRole::HeadlessHost) => {
-                Some("interactive profile cannot bind headless host role")
-            }
-            (RuntimeProfile::ListenHost60, NetworkRole::HeadlessHost) => {
-                Some("listen-host profile cannot bind headless host role")
-            }
-            _ => None,
-        }
-    }
-
     pub fn validate(&self) -> StartupReadyAssemblyDecisionSet {
         let reasons = self
-            .validation_reason()
-            .map(|reason| vec![reason.to_string()])
-            .unwrap_or_default();
+            .validation_reasons()
+            .into_iter()
+            .map(|reason| reason.message().to_string())
+            .collect::<Vec<_>>();
         StartupReadyAssemblyDecisionSet {
             accepted: reasons.is_empty(),
             reasons,
         }
     }
 
-    pub fn runtime_launch_plan(&self) -> EngineCoreResult<RuntimeLaunchPlan> {
-        if self.validation_reason().is_some() {
-            return Err(EngineCoreError::InvalidDescriptor(
-                "startup validation failed",
-            ));
+    pub fn runtime_launch_plan(&self) -> StartupResult<RuntimeLaunchPlan> {
+        if let Some(reason) = self.validation_reasons().into_iter().next() {
+            return Err(StartupFailure::for_reason(reason));
         }
         let runtime_pack_count: usize = self
             .config
@@ -61,10 +49,40 @@ impl StartupAssembly {
         })
     }
 
-    pub fn launch_headless(&self, world: WorldState) -> EngineCoreResult<HeadlessRuntimeProfile> {
+    pub fn service_wiring_receipt(&self) -> StartupResult<crate::StartupServiceWiringReceipt> {
+        if let Some(reason) = self.validation_reasons().into_iter().next() {
+            return Err(StartupFailure::for_reason(reason));
+        }
+
+        let wiring = &self.config.service_wiring;
+        let service_bits = service_wiring_bitset(*wiring);
+        let required_service_bits = self.required_service_bits();
+        let wired_count = service_bits.count_ones() as usize;
+        let required_count = required_service_bits.count_ones() as usize;
+        let mut digest = StableDigestBuilder::new();
+        digest
+            .write_bytes(b"engine.startup.service_wiring")
+            .write_u8(self.config.profile as u8)
+            .write_u8(self.config.network_role as u8)
+            .write_u64(required_count as u64)
+            .write_u64(wired_count as u64)
+            .write_u16(required_service_bits)
+            .write_u16(service_bits);
+
+        Ok(crate::StartupServiceWiringReceipt {
+            profile_id: self.config.profile as u64,
+            required_service_count: required_count,
+            wired_service_count: wired_count,
+            required_service_bits,
+            wired_service_bits: service_bits,
+            deterministic_digest: digest.finish().0,
+        })
+    }
+
+    pub fn launch_headless(&self, world: WorldState) -> StartupResult<HeadlessRuntimeProfile> {
         if self.config.profile != RuntimeProfile::Headless20 {
-            return Err(EngineCoreError::InvalidDescriptor(
-                "headless launch requires headless profile",
+            return Err(StartupFailure::for_reason(
+                StartupFailureReason::InvalidHeadlessLaunchProfile,
             ));
         }
         self.runtime_launch_plan()?;
@@ -77,10 +95,10 @@ impl StartupAssembly {
         ))
     }
 
-    pub fn launch_realtime(&self, world: WorldState) -> EngineCoreResult<RealtimeRuntimeProfile> {
+    pub fn launch_realtime(&self, world: WorldState) -> StartupResult<RealtimeRuntimeProfile> {
         if self.config.profile == RuntimeProfile::Headless20 {
-            return Err(EngineCoreError::InvalidDescriptor(
-                "realtime launch requires non-headless profile",
+            return Err(StartupFailure::for_reason(
+                StartupFailureReason::InvalidRealtimeLaunchProfile,
             ));
         }
         self.runtime_launch_plan()?;
@@ -92,5 +110,16 @@ impl StartupAssembly {
                 enqueue_presentable_frames: true,
             },
         )
+        .map_err(|_| StartupFailure::for_reason(StartupFailureReason::InvalidRealtimeRuntimeConfig))
+    }
+
+    pub fn runtime_launch_plan_engine_result(&self) -> EngineCoreResult<RuntimeLaunchPlan> {
+        self.runtime_launch_plan().map_err(Into::into)
+    }
+
+    pub fn service_wiring_receipt_engine_result(
+        &self,
+    ) -> EngineCoreResult<crate::StartupServiceWiringReceipt> {
+        self.service_wiring_receipt().map_err(Into::into)
     }
 }

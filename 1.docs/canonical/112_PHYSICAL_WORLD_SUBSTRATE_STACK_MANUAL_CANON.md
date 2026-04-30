@@ -1,6 +1,6 @@
 # Physical World Substrate Stack Manual Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Provide the stitched reading spine for the physical substrate stack so material pairs, terrain deformation, fragments, hydrology, fire/wetness/smoke/wind, and aftermath all read as one lawful runtime system.

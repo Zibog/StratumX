@@ -5,8 +5,8 @@
       "entity_name": "AppState::shell",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "ShellRuntime",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -20,8 +20,8 @@
       "entity_name": "AppState::last_frame_time",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -35,8 +35,8 @@
       "entity_name": "AppState::camera_controller",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -50,8 +50,8 @@
       "entity_name": "AppState::gpu_texture_id",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -65,8 +65,8 @@
       "entity_name": "AppState::material_editor_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -95,8 +95,8 @@
       "entity_name": "AppState::content_browser_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -110,8 +110,8 @@
       "entity_name": "AppState::sky_editor_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -125,7 +125,7 @@
       "entity_name": "AppState::viewport_preview_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "CacheLayer",
+      "target_owner": "UiTransientState",
       "classification": "Derived",
       "can_mutate": [
         "CacheLayerService"
@@ -140,8 +140,8 @@
       "entity_name": "AppState::environment_profile",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -155,8 +155,8 @@
       "entity_name": "AppState::audio_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -170,8 +170,8 @@
       "entity_name": "AppState::build_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -185,8 +185,8 @@
       "entity_name": "AppState::diagnostics_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -200,8 +200,8 @@
       "entity_name": "AppState::diagnostics_tab",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -215,8 +215,8 @@
       "entity_name": "AppState::inspector_context",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -230,8 +230,8 @@
       "entity_name": "AppState::project_wizard",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -245,8 +245,8 @@
       "entity_name": "AppState::import_export_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -260,8 +260,8 @@
       "entity_name": "AppState::automation_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -275,8 +275,8 @@
       "entity_name": "AppState::quality_state",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -290,8 +290,8 @@
       "entity_name": "AppState::time_of_day",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -320,8 +320,8 @@
       "entity_name": "AppState::cloud_shadows_enabled",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -335,8 +335,8 @@
       "entity_name": "AppState::show_diagnostics",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -350,8 +350,8 @@
       "entity_name": "AppState::show_open_world_dialog",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -365,8 +365,8 @@
       "entity_name": "AppState::world_path_input",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],
@@ -380,8 +380,8 @@
       "entity_name": "AppState::ui_status_message",
       "current_path": "E:\\Development\\StratumX\\6.apps/editor\\stratumx_editor_app\\src\\desktop_app\\app_state.rs",
       "current_owner": "AppState",
-      "target_owner": "WorldOwner",
-      "classification": "Persistable",
+      "target_owner": "UiTransientState",
+      "classification": "Transient",
       "can_mutate": [
         "WorldOwnerService"
       ],

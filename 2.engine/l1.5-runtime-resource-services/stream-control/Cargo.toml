@@ -17,6 +17,3 @@ engine_world = { path = "../../l0-world-truth" }
 engine_world_region = { path = "../../l-0.05-world-region" }
 engine_runtime = { path = "../../l1-runtime-kernel/runtime" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_stream_control.rs"

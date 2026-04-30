@@ -1,6 +1,6 @@
 # Dream Stack Asset Canonicalization Law Canon
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Purpose
 Freeze one canonicalization law for the heavy asset families required by the dream-stack so import, cook, compare, and replay all operate on stable asset identities.

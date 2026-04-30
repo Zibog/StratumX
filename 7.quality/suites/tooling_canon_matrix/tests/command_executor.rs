@@ -10,7 +10,7 @@ fn execute_command() {
     let mut runtime = ToolingRuntime::new();
     let command_id = executor.submit_command(PromotedCommand::BuildRun).unwrap();
 
-    let bytes = executor.execute_command(command_id, &mut runtime).unwrap();
+    let bytes = executor.dispatch_command(command_id, &mut runtime).unwrap();
     let response: String = serde_json::from_slice(&bytes).unwrap();
     let envelope = executor.get_envelope(command_id).unwrap();
 
@@ -28,7 +28,7 @@ fn command_validation() {
         .unwrap();
 
     let err = executor
-        .execute_command(command_id, &mut runtime)
+        .dispatch_command(command_id, &mut runtime)
         .unwrap_err();
     let envelope = executor.get_envelope(command_id).unwrap();
 
@@ -53,7 +53,7 @@ fn command_rollback() {
         .submit_command(PromotedCommand::SceneBootstrap)
         .unwrap();
 
-    let bytes = executor.execute_command(command_id, &mut runtime).unwrap();
+    let bytes = executor.dispatch_command(command_id, &mut runtime).unwrap();
     let payload: serde_json::Value = serde_json::from_slice(&bytes).unwrap();
     let last_request_id = executor.packet_executor_mut().last_request_id();
     let lifecycle_state = executor.get_envelope(command_id).unwrap().lifecycle_state;

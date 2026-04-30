@@ -1,6 +1,6 @@
 # Global Evidence Registry
 
-**Stack version:** `SX-CANON/1.0.24/STACK-v30`
+**Stack version:** `SX-CANON/1.0.28/STACK-v34`
 
 ## Active evidence rows
 | Evidence row | Governing file | What it proves now |
@@ -24,3 +24,40 @@
 | EVID-ROOT-017 | `sdk/79–84` | packet, observation, transaction, replay, and progress catalogs exist for heavy domains |
 | EVID-ROOT-018 | `tooling/83–88` | import/cook/diff/recovery/proof/release routes exist for heavy domains |
 | EVID-ROOT-019 | `editor/118–124` | production-hard operator lanes and release workbench surfaces exist |
+
+---
+
+# V34 mandatory gold gates
+
+Stack version: `SX-CANON/1.0.28/STACK-v34`
+
+## Code gates
+
+- workspace membership gate;
+- layer dependency gate;
+- file size gate;
+- test placement gate;
+- orphan active crate gate;
+- stub crate gate;
+- backend type leak gate;
+- source asset runtime leak gate;
+- fake success gate.
+
+## Documentation gates
+
+- stack marker gate;
+- branch role gate;
+- broken link gate;
+- active index gate;
+- thin doc warning;
+- orphan doc warning;
+- tutorial/reference/troubleshooting coverage gate for every user-visible system.
+
+## Asset gates
+
+- DCC bridge configured or exact blocker;
+- source/cooked split proven;
+- import route evidence;
+- material conversion verdict;
+- collision/LOD verdict;
+- runtime package proof.

@@ -1,4 +1,4 @@
-﻿//! Material Authoring Service
+//! Material Authoring Service
 //!
 //! Domain service for material creation and binding operations.
 //! Abstraction Level: L4 (Authoring Tools)
