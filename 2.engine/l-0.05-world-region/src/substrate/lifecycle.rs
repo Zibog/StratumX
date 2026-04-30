@@ -1,4 +1,5 @@
 use super::RegionSubstrate;
+use crate::validation::validate_state_transition;
 use crate::{RegionDescriptor, RegionPriority, RegionState, RegionVersion};
 use engine_core::Tick;
 use engine_world_spatial::RegionAddress;
@@ -44,64 +45,35 @@ impl RegionSubstrate {
     /// Activate a region for simulation.
     /// **Canon rule**: only active regions participate in tick processing.
     pub fn activate_region(&mut self, region: RegionAddress, priority: RegionPriority) -> bool {
-        if let Some(r) = self.regions.get_mut(&region) {
-            r.state = RegionState::Active;
-            r.priority = priority;
-            true
-        } else {
-            false
-        }
+        self.transition_region(region, RegionState::Active, Some(priority))
     }
 
     /// Deactivate a region — it stops receiving tick updates.
     pub fn deactivate_region(&mut self, region: RegionAddress) -> bool {
-        if let Some(r) = self.regions.get_mut(&region) {
-            r.state = RegionState::Inactive;
-            true
-        } else {
-            false
-        }
+        self.transition_region(region, RegionState::Inactive, None)
     }
 
     /// Set region to streaming-in state — data is being loaded.
     pub fn start_streaming_in(&mut self, region: RegionAddress) -> bool {
-        if let Some(r) = self.regions.get_mut(&region) {
-            r.state = RegionState::StreamingIn;
-            true
-        } else {
-            false
-        }
+        self.transition_region(region, RegionState::StreamingIn, None)
     }
 
     /// Complete streaming — transition to Active if previously streaming.
     pub fn complete_stream_in(&mut self, region: RegionAddress) -> bool {
-        if let Some(r) = self.regions.get_mut(&region) {
-            if r.state == RegionState::StreamingIn {
-                r.state = RegionState::Active;
-                return true;
-            }
+        if self.region_state(region) != Some(RegionState::StreamingIn) {
+            return false;
         }
-        false
+        self.transition_region(region, RegionState::Active, None)
     }
 
     /// Start streaming out — region scheduled for unload.
     pub fn start_streaming_out(&mut self, region: RegionAddress) -> bool {
-        if let Some(r) = self.regions.get_mut(&region) {
-            r.state = RegionState::StreamingOut;
-            true
-        } else {
-            false
-        }
+        self.transition_region(region, RegionState::StreamingOut, None)
     }
 
     /// Freeze a region — preserved but not simulated.
     pub fn freeze_region(&mut self, region: RegionAddress) -> bool {
-        if let Some(r) = self.regions.get_mut(&region) {
-            r.state = RegionState::Frozen;
-            true
-        } else {
-            false
-        }
+        self.transition_region(region, RegionState::Frozen, None)
     }
 
     /// Advance substrate tick — processes all active regions.
@@ -118,5 +90,24 @@ impl RegionSubstrate {
             }
         }
         dirty_regions
+    }
+
+    fn transition_region(
+        &mut self,
+        region: RegionAddress,
+        target: RegionState,
+        priority: Option<RegionPriority>,
+    ) -> bool {
+        let Some(region_descriptor) = self.regions.get_mut(&region) else {
+            return false;
+        };
+        if validate_state_transition(region_descriptor.state, target).is_err() {
+            return false;
+        }
+        region_descriptor.state = target;
+        if let Some(priority) = priority {
+            region_descriptor.priority = priority;
+        }
+        true
     }
 }

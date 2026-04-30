@@ -1,18 +1,21 @@
-//! l0-world-truth: World state authority and ground truth
-//!
-//! Provides the canonical world state substrate as the single source of truth
-//! for all simulation state and entity data.
-//!
-//! ## Crate Invariants
-//! - World state is the single source of truth (no duplicated state)
-//! - World state updates are atomic and consistent
-//! - Entity existence is tracked accurately
-//! - World boundaries are enforced
+#![deny(unused_imports)]
+#![deny(unused_variables)]
+#![deny(dead_code)]
 
-mod types;
-mod runtime;
-mod validation;
-mod queries;
-mod exports;
+pub use material_world_executor::*;
+pub use proof_region_state::*;
+pub use reference_region_bootstrap::*;
+pub use reference_region_scene::*;
+pub use world_manifest::*;
+pub use world_state::*;
+pub use world_streaming::*;
+pub use world_types::*;
 
-pub use exports::*;
+mod material_world_executor;
+mod proof_region_state;
+mod reference_region_bootstrap;
+mod reference_region_scene;
+pub mod world_manifest;
+mod world_state;
+mod world_streaming;
+mod world_types;

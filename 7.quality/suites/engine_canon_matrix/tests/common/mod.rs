@@ -1,6 +1,9 @@
 #![allow(unused_imports, dead_code)]
 pub use engine_acoustics::{AcousticsConfig, AcousticsRequest, AcousticsService};
-pub use engine_agents::{AgentsConfig, AgentsContext, AgentsFamily};
+pub use engine_agents::{
+    AgentId, AgentIntentKind, AgentState, AgentsConfig, AgentsContext, AgentsFamily,
+    AgentsSubstrate,
+};
 pub use engine_content::{
     ContentConfig, ContentDescriptor, ContentLocator, ContentPipeline, ContentRequest,
 };
@@ -12,7 +15,10 @@ pub use engine_ecs_query::{
     QueryLocality,
 };
 pub use engine_ecs_registry::RegistryModel;
-pub use engine_field::{FieldConfig, FieldContext, FieldFamily};
+pub use engine_field::{
+    FieldConfig, FieldContext, FieldFamily, FieldId, FieldSampleRef, FieldUpdateDelta,
+    ScalarFieldSubstrate,
+};
 pub use engine_generation::{
     GenerationConfig, GenerationContext, GenerationRequest, GenerationService, ModelDescriptor,
     ModelWeights,
@@ -23,10 +29,14 @@ pub use engine_handle::{
 pub use engine_identity::{ComponentId, EntityId, IdentityAllocator, IdentityDomain};
 pub use engine_imaging::{ImagingConfig, ImagingRequest, ImagingService};
 pub use engine_inference::{InferenceConfig, InferenceModel, InferenceRequest, InferenceService};
+pub use engine_kinetics::{KinematicBody, KinematicBodyId, KineticsSubstrate};
 pub use engine_kinetics::{KineticsConfig, KineticsContext, KineticsFamily};
 pub use engine_material::{
-    MaterialConfig, MaterialDescriptor, MaterialId, MaterialRegistry, PropertyDomain, ReactionRow,
-    ResponseProfileId,
+    ceramic_tile, concrete, ConsequenceTier, MaterialArchetypeId, MaterialConfig,
+    MaterialDescriptor, MaterialId, MaterialInstanceProfile, MaterialLayer, MaterialRegistry,
+    MaterialResponseProfile, MaterialStack, MaterialStackId, MaterialStateModifier,
+    MaterialTriggerClass, PropertyDomain, ReactionRow, ResponseFamilyGroup, ResponseFamilyRow,
+    ResponseProfileId, SurfaceFamilyProfile, TerritoryFamily,
 };
 pub use engine_memory_control::{
     AllocationDescriptor, MemoryConfig, MemoryControlService, PressureClass,
@@ -42,7 +52,11 @@ pub use engine_net_transport::{
 pub use engine_residency_control::{
     ResidencyConfig, ResidencyControlService, ResidencyDescriptor, ResidencySet,
 };
-pub use engine_runtime::{PresentableFrame, RuntimeConfig, RuntimeKernel, RuntimeProfile};
+pub use engine_runtime::{
+    BudgetEnvelope, DegradeStep, DomainBudgetUsage, PresentableFrame, PressureAxis, PressureBucket,
+    ReplayInputFrame, ReplayOutputDigest, RuntimeConfig, RuntimeKernel, RuntimeMode,
+    RuntimeProfile,
+};
 pub use engine_runtime_headless::{HeadlessRuntimeConfig, HeadlessRuntimeProfile};
 pub use engine_runtime_realtime::{RealtimeRuntimeConfig, RealtimeRuntimeProfile};
 pub use engine_startup::{NetworkRole, ServiceWiring, StartupAssembly, StartupConfig};

@@ -1,12 +1,11 @@
-//! l1-runtime-kernel/runtime: Core simulation runtime kernel
-//!
-//! Provides the main simulation tick loop, frame synchronization, and
-//! scheduling for all runtime behaviors and substrate updates.
+pub use runtime_budget::*;
+pub use runtime_kernel::*;
+pub use runtime_replay::*;
+pub use runtime_types::*;
 
-mod types;
-mod runtime;
-mod validation;
-mod queries;
-mod exports;
-
-pub use exports::*;
+mod runtime_budget;
+mod runtime_budget_policy;
+mod runtime_kernel;
+mod runtime_kernel_digest;
+mod runtime_replay;
+mod runtime_types;

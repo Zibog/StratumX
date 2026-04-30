@@ -10,9 +10,12 @@ pub use crate::hydrology::{FluidContainer, HydrologyState, Leak, Rainfall};
 pub use crate::terrain_response::{TerrainBlastResponse, TerrainMaterialType};
 
 pub use tags::{
-    AcousticSurfaceClass, BuoyancyResponse, FireResponse, FractureMode,
-    MaterialArchetype, MaterialArchetypeId, MaterialBehaviorFlags, MaterialConfig,
-    MaterialDescriptor, MaterialId, MaterialLayer, MaterialLookupResult, MaterialStack,
-    MaterialStackId, MechanicalClass, PropertyDomain, ReactionRow, ResponseProfileId,
-    SegmentationMode, StructuralResponse,
+    AcousticSurfaceClass, AftermathFamilyId, BuoyancyResponse, BurnAftermathPolicy,
+    BurnConsequenceReceipt, BurnResponseFamily, DamageMemory, FireExposureContext, FireResponse,
+    FractureMode, ImpactResponseInput, ImpactResponseSummary, LayerDamageState,
+    LayerImpactResponse, MaterialArchetype, MaterialArchetypeId, MaterialBehaviorFlags,
+    MaterialConfig, MaterialDescriptor, MaterialId, MaterialLayer, MaterialLookupResult,
+    MaterialStack, MaterialStackId, MechanicalClass, PersistentBurnResult, PropertyDomain,
+    ReactionRow, ResponseFamilyId, ResponseProfileId, SegmentationMode, StructuralResponse,
+    SurfaceFamilyId, ThermalContactContext, WetnessModifier,
 };

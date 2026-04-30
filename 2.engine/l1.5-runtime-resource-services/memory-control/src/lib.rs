@@ -1,10 +1,12 @@
-//! Memory resource control and allocation governance
-//! **Owner**: engine_memory_control — Memory allocation and budget enforcement
+mod error;
+mod model;
+mod pressure;
+mod service;
 
-pub mod types;
-pub mod runtime;
-pub mod validation;
-pub mod queries;
-pub mod exports;
-
-pub use exports::*;
+pub use error::{MemoryControlResult, MemoryFailure, MemoryFailureReason};
+pub use model::{
+    AllocationDescriptor, MemoryAllocationId, MemoryAllocationPool, MemoryAllocationRecord,
+    MemoryConfig, MemoryReleaseReceipt, MemoryReservationReceipt,
+};
+pub use pressure::{MemoryDegradeBridge, MemoryMetrics, MemoryPressureSignal, PressureClass};
+pub use service::MemoryControlService;

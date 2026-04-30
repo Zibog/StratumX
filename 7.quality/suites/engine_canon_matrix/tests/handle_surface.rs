@@ -1,9 +1,12 @@
-use engine_handle::*;
 use engine_core::{ComponentTypeId, Generation};
+use engine_handle::*;
 use engine_identity::EntityId;
 
 fn make_entity_id(slot: u32) -> EntityId {
-    EntityId { slot, generation: Generation(0) }
+    EntityId {
+        slot,
+        generation: Generation(0),
+    }
 }
 
 fn make_stable_handle(slot: u32) -> StableEntityHandle {
@@ -24,7 +27,10 @@ fn test_invalidation_state_variants() {
 #[test]
 fn test_invalidation_state_equality() {
     assert_eq!(InvalidationState::Active, InvalidationState::Active);
-    assert_eq!(InvalidationState::Invalidated, InvalidationState::Invalidated);
+    assert_eq!(
+        InvalidationState::Invalidated,
+        InvalidationState::Invalidated
+    );
 }
 
 // === ValidationResult Tests ===
@@ -32,9 +38,15 @@ fn test_invalidation_state_equality() {
 #[test]
 fn test_validation_result_variants() {
     assert!(matches!(ValidationResult::Valid, ValidationResult::Valid));
-    assert!(matches!(ValidationResult::Invalidated, ValidationResult::Invalidated));
+    assert!(matches!(
+        ValidationResult::Invalidated,
+        ValidationResult::Invalidated
+    ));
     assert!(matches!(ValidationResult::Stale, ValidationResult::Stale));
-    assert!(matches!(ValidationResult::IllegalContext, ValidationResult::IllegalContext));
+    assert!(matches!(
+        ValidationResult::IllegalContext,
+        ValidationResult::IllegalContext
+    ));
 }
 
 #[test]

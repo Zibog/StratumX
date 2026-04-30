@@ -1,3 +1,6 @@
+mod archetype;
+mod burn;
+mod catalog;
 mod enums;
 mod ids;
 mod types;

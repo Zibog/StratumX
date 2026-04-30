@@ -73,7 +73,7 @@ fn test_engine_core_error_display() {
 fn test_engine_core_result_ok() {
     let result: EngineCoreResult<i32> = Ok(42);
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), 42);
+    assert!(matches!(result, Ok(42)));
 }
 
 #[test]

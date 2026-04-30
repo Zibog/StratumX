@@ -1,10 +1,11 @@
-//! Acoustic synthesis and spatial audio substrate
-//! **Owner**: engine_acoustics — Audio synthesis and spatialization
+pub mod audio_runtime;
 
-pub mod types;
-pub mod runtime;
-pub mod validation;
-pub mod queries;
-pub mod exports;
+pub use audio_runtime::{
+    AudioRuntime, AudioSource, AudioSourceType, FootstepEvent, FootstepMaterial, Occluder,
+};
+pub use service::*;
+pub use types::*;
 
-pub use exports::*;
+mod policy;
+mod service;
+mod types;

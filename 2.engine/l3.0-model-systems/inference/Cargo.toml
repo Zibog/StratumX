@@ -15,6 +15,3 @@ engine_core = { path = "../../l-1-foundation" }
 engine_world = { path = "../../l0-world-truth" }
 engine_ecs = { path = "../../l-0.2-ecs-assembly" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_inference.rs"

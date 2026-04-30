@@ -1,5 +1,6 @@
-use crate::{NetworkRole, RuntimeLaunchPlan, StartupConfig, StartupReadyAssemblyDecisionSet};
-use engine_core::{EngineCoreError, EngineCoreResult};
+use crate::startup_validation::service_wiring_bitset;
+use crate::{RuntimeLaunchPlan, StartupConfig, StartupReadyAssemblyDecisionSet};
+use engine_core::{EngineCoreError, EngineCoreResult, StableDigestBuilder};
 use engine_runtime::RuntimeProfile;
 use engine_runtime_headless::{HeadlessRuntimeConfig, HeadlessRuntimeProfile};
 use engine_runtime_realtime::{RealtimeRuntimeConfig, RealtimeRuntimeProfile};
@@ -7,7 +8,7 @@ use engine_world::WorldState;
 
 #[derive(Debug, Clone)]
 pub struct StartupAssembly {
-    config: StartupConfig,
+    pub(crate) config: StartupConfig,
 }
 
 impl StartupAssembly {
@@ -15,26 +16,12 @@ impl StartupAssembly {
         Self { config }
     }
 
-    fn validation_reason(&self) -> Option<&'static str> {
-        match (self.config.profile, self.config.network_role) {
-            (RuntimeProfile::Headless20, NetworkRole::InteractiveHostAware) => {
-                Some("headless profile cannot bind interactive host-aware role")
-            }
-            (RuntimeProfile::Interactive60, NetworkRole::HeadlessHost) => {
-                Some("interactive profile cannot bind headless host role")
-            }
-            (RuntimeProfile::ListenHost60, NetworkRole::HeadlessHost) => {
-                Some("listen-host profile cannot bind headless host role")
-            }
-            _ => None,
-        }
-    }
-
     pub fn validate(&self) -> StartupReadyAssemblyDecisionSet {
         let reasons = self
-            .validation_reason()
-            .map(|reason| vec![reason.to_string()])
-            .unwrap_or_default();
+            .validation_reasons()
+            .into_iter()
+            .map(str::to_string)
+            .collect::<Vec<_>>();
         StartupReadyAssemblyDecisionSet {
             accepted: reasons.is_empty(),
             reasons,
@@ -42,10 +29,8 @@ impl StartupAssembly {
     }
 
     pub fn runtime_launch_plan(&self) -> EngineCoreResult<RuntimeLaunchPlan> {
-        if self.validation_reason().is_some() {
-            return Err(EngineCoreError::InvalidDescriptor(
-                "startup validation failed",
-            ));
+        if let Some(reason) = self.validation_reasons().into_iter().next() {
+            return Err(EngineCoreError::InvalidDescriptor(reason));
         }
         let runtime_pack_count: usize = self
             .config
@@ -58,6 +43,37 @@ impl StartupAssembly {
             network_role: self.config.network_role,
             runtime_pack_count,
             service_wiring: self.config.service_wiring,
+        })
+    }
+
+    /// Get service wiring receipt with deterministic digest.
+    pub fn service_wiring_receipt(&self) -> EngineCoreResult<crate::StartupServiceWiringReceipt> {
+        if let Some(reason) = self.validation_reasons().into_iter().next() {
+            return Err(EngineCoreError::InvalidDescriptor(reason));
+        }
+
+        let wiring = &self.config.service_wiring;
+        let service_bits = service_wiring_bitset(*wiring);
+        let required_service_bits = self.required_service_bits();
+        let wired_count = service_bits.count_ones() as usize;
+        let required_count = required_service_bits.count_ones() as usize;
+        let mut digest = StableDigestBuilder::new();
+        digest
+            .write_bytes(b"engine.startup.service_wiring")
+            .write_u8(self.config.profile as u8)
+            .write_u8(self.config.network_role as u8)
+            .write_u64(required_count as u64)
+            .write_u64(wired_count as u64)
+            .write_u16(required_service_bits)
+            .write_u16(service_bits);
+
+        Ok(crate::StartupServiceWiringReceipt {
+            profile_id: self.config.profile as u64,
+            required_service_count: required_count,
+            wired_service_count: wired_count,
+            required_service_bits,
+            wired_service_bits: service_bits,
+            deterministic_digest: digest.finish().0,
         })
     }
 

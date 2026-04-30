@@ -2,6 +2,27 @@ use engine_content::ContentManifest;
 use engine_runtime::RuntimeProfile;
 use serde::{Deserialize, Serialize};
 
+/// Failure reasons for startup operations.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub enum StartupFailureReason {
+    MissingRequiredService,
+    IncompatibleRuntimePack,
+    InvalidStartupProfile,
+    InvalidServiceOrder,
+    DemoSeedNotAllowedInEngineCore,
+}
+
+/// Receipt for startup service wiring with deterministic digest.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct StartupServiceWiringReceipt {
+    pub profile_id: u64,
+    pub required_service_count: usize,
+    pub wired_service_count: usize,
+    pub required_service_bits: u16,
+    pub wired_service_bits: u16,
+    pub deterministic_digest: u64,
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum NetworkRole {
     LocalOnly,

@@ -21,6 +21,3 @@ engine_residency_control = { path = "../../l1.5-runtime-resource-services/reside
 engine_transfer_control = { path = "../../l1.5-runtime-resource-services/transfer-control" }
 engine_memory_control = { path = "../../l1.5-runtime-resource-services/memory-control" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_imaging.rs"

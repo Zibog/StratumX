@@ -18,6 +18,3 @@ serde.workspace = true
 
 [dev-dependencies]
 engine_world = { path = "../../l0-world-truth" }
-
-[lib]
-path = "src/engine_net_transport.rs"

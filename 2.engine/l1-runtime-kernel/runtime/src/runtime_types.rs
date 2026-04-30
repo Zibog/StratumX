@@ -56,6 +56,7 @@ pub struct RuntimeDiagnostics {
     pub transfer_completion_queue_depth: usize,
     pub connection_count: usize,
     pub presentable_frame_depth: usize,
+    pub last_budget_blocking_code: Option<String>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]

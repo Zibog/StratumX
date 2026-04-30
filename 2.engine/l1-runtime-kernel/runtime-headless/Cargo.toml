@@ -16,6 +16,3 @@ engine_world = { path = "../../l0-world-truth" }
 engine_ecs = { path = "../../l-0.2-ecs-assembly" }
 engine_core = { path = "../../l-1-foundation" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_runtime_headless.rs"

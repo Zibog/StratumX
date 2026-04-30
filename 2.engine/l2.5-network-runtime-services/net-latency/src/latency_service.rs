@@ -66,9 +66,17 @@ impl NetLatencyService {
             .0
             .max(context.predicted_tick.0)
             .saturating_sub(context.authoritative_tick.0.min(context.predicted_tick.0));
+        let rewound = context.predicted_tick != context.authoritative_tick;
         ReconcileResult {
-            rewound: context.predicted_tick != context.authoritative_tick,
+            rewound,
             delta_ticks,
+            correction: rewound.then(|| {
+                crate::ReconcileReceipt::new(
+                    context.authoritative_tick.0,
+                    delta_ticks,
+                    crate::CorrectionReason::Misprediction,
+                )
+            }),
         }
     }
 }

@@ -15,6 +15,3 @@ engine_core = { path = "../l-1-foundation" }
 engine_material = { path = "../l0.5-shared-world-property-substrate" }
 engine_world_region = { path = "../l-0.05-world-region" }
 serde.workspace = true
-
-[lib]
-path = "src/engine_content.rs"

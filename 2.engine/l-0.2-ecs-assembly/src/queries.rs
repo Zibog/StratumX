@@ -1,4 +1,5 @@
 use crate::types::EntityDescriptor;
+use engine_core::EngineCoreResult;
 use engine_ecs_query::QueryDescriptor;
 use engine_ecs_registry::RegistryModel;
 
@@ -11,15 +12,14 @@ impl<'a> EcsQuery<'a> {
         Self { registry }
     }
 
-    pub fn execute(&self, descriptor: &QueryDescriptor) -> Option<Vec<EntityDescriptor>> {
-        descriptor.execute(self.registry).ok().map(|matches| {
-            matches
-                .into_iter()
-                .map(|entity| EntityDescriptor {
-                    entity,
-                    membership: self.registry.membership(entity),
-                })
-                .collect()
-        })
+    pub fn execute(&self, descriptor: &QueryDescriptor) -> EngineCoreResult<Vec<EntityDescriptor>> {
+        let matches = descriptor.execute(self.registry)?;
+        Ok(matches
+            .into_iter()
+            .map(|entity| EntityDescriptor {
+                entity,
+                membership: self.registry.membership(entity),
+            })
+            .collect())
     }
 }

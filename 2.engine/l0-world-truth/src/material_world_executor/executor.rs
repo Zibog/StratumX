@@ -1,7 +1,8 @@
 // Material World Executor - главный тип и update loop
 
 use engine_material::{
-    CombustibleObject, DestructionResponse, HydrologyState, SmokeSystem, TerrainBlastResponse,
+    BurnConsequenceReceipt, CombustibleObject, DestructionResponse, HydrologyState,
+    MaterialConsequenceEvent, SmokeSystem, TerrainBlastResponse,
 };
 
 #[derive(Debug)]
@@ -10,6 +11,8 @@ pub struct MaterialWorldExecutor {
     pub destruction_responses: Vec<DestructionResponse>,
     pub hydrology_states: Vec<HydrologyState>,
     pub combustible_objects: Vec<CombustibleObject>,
+    pub burn_receipts: Vec<BurnConsequenceReceipt>,
+    pub material_events: Vec<MaterialConsequenceEvent>,
     pub smoke_system: SmokeSystem,
 }
 
@@ -20,6 +23,8 @@ impl MaterialWorldExecutor {
             destruction_responses: Vec::new(),
             hydrology_states: Vec::new(),
             combustible_objects: Vec::new(),
+            burn_receipts: Vec::new(),
+            material_events: Vec::new(),
             smoke_system: SmokeSystem::new(),
         }
     }
@@ -59,5 +64,13 @@ impl MaterialWorldExecutor {
 
     pub fn get_rainfall_at_position(&self, _position: [f32; 2]) -> f32 {
         0.0
+    }
+
+    pub fn latest_burn_receipt(&self) -> Option<&BurnConsequenceReceipt> {
+        self.burn_receipts.last()
+    }
+
+    pub fn latest_material_event(&self) -> Option<&MaterialConsequenceEvent> {
+        self.material_events.last()
     }
 }

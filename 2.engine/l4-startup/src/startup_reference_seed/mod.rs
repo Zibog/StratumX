@@ -12,4 +12,3 @@ pub mod terrain_seed;
 pub mod world_identity;
 
 pub use bootstrap::{launch_startup_reference_seed, StartupReferenceSeedRuntime};
-pub use world_identity::REFERENCE_SCENE_NAME;

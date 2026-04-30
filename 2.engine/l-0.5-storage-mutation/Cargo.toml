@@ -17,6 +17,3 @@ engine_storage_layout = { path = "../l-0.7-storage-layout" }
 engine_storage_access = { path = "../l-0.6-storage-access" }
 bitflags.workspace = true
 smallvec.workspace = true
-
-[lib]
-path = "src/engine_storage_mutation.rs"

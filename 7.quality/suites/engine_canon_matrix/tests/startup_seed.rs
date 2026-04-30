@@ -8,7 +8,7 @@ mod tests {
     fn test_startup_from_seed() {
         let world = create_world_with_scene();
         let scene = world
-            .vertical_slice_scene()
+            .proof_region_scene()
             .expect("startup fixture should include a scene");
 
         assert_eq!(scene.scene_name, "Test Scene");

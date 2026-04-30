@@ -1,12 +1,7 @@
-//! l2.5-network-runtime-services/net-sync: Network state synchronization
-//!
-//! Provides state replication, dirty tracking, change notifications, and
-//! incremental synchronization for networked game state.
+pub use net_sync_service::*;
+pub use net_sync_types::*;
+pub use net_sync_window::*;
 
-mod types;
-mod runtime;
-mod validation;
-mod queries;
-mod exports;
-
-pub use exports::*;
+mod net_sync_service;
+mod net_sync_types;
+mod net_sync_window;

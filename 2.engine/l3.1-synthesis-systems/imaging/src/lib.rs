@@ -1,10 +1,15 @@
-//! Image synthesis and render target integration
-//! **Owner**: engine_imaging — Image synthesis and visual rendering substrate
+pub mod lighting_runtime;
+pub mod texture_residency;
 
-pub mod types;
-pub mod runtime;
-pub mod validation;
-pub mod queries;
-pub mod exports;
+pub use service::*;
+pub use texture_residency::{
+    TextureDescriptor, TextureFormat, TextureResidencyInfo, TextureResidencyMetrics,
+    TextureResidencyRuntime, TextureResidencyState,
+};
+pub use types::*;
 
-pub use exports::*;
+mod policy;
+mod service;
+mod types;
+
+pub use lighting_runtime::{LightSource, LightType, LightingRuntime, ShadowCaster};

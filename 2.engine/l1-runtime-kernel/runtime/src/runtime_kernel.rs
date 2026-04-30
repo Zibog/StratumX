@@ -1,7 +1,7 @@
 use crate::{
-    ConnectionKey, ExecutionContext, ExecutionResult, PresentableFrame, PublicationRecord,
-    RuntimeConfig, RuntimeDiagnostics, RuntimePhase, RuntimeProfile, TransferCompletion,
-    APPLY_QUEUE_AGGREGATE_CEILING, APPLY_QUEUE_SEGMENT_CEILING,
+    ConnectionKey, DegradeDecision, ExecutionContext, ExecutionResult, PresentableFrame,
+    PublicationRecord, RuntimeConfig, RuntimeDiagnostics, RuntimePhase, RuntimeProfile,
+    TransferCompletion, APPLY_QUEUE_AGGREGATE_CEILING, APPLY_QUEUE_SEGMENT_CEILING,
     CONNECTION_PUBLICATION_BYTES_CEILING, CONNECTION_PUBLICATION_QUEUE_CEILING,
     PRESENTABLE_FRAME_QUEUE_CEILING, TRANSFER_COMPLETION_QUEUE_CEILING,
 };
@@ -11,14 +11,15 @@ use std::collections::{BTreeMap, VecDeque};
 
 #[derive(Debug)]
 pub struct RuntimeKernel {
-    world: WorldState,
-    config: RuntimeConfig,
-    phase: RuntimePhase,
-    apply_queue: VecDeque<ApplySegment>,
-    transfer_completion_queue: VecDeque<TransferCompletion>,
-    connection_publication_queue: BTreeMap<ConnectionKey, VecDeque<PublicationRecord>>,
-    presentable_frame_queue: VecDeque<PresentableFrame>,
-    publication_order: u64,
+    pub(crate) world: WorldState,
+    pub(crate) config: RuntimeConfig,
+    pub(crate) phase: RuntimePhase,
+    pub(crate) apply_queue: VecDeque<ApplySegment>,
+    pub(crate) transfer_completion_queue: VecDeque<TransferCompletion>,
+    pub(crate) connection_publication_queue: BTreeMap<ConnectionKey, VecDeque<PublicationRecord>>,
+    pub(crate) presentable_frame_queue: VecDeque<PresentableFrame>,
+    pub(crate) publication_order: u64,
+    pub(crate) last_degrade_decision: Option<DegradeDecision>,
 }
 
 impl RuntimeKernel {
@@ -32,6 +33,7 @@ impl RuntimeKernel {
             connection_publication_queue: BTreeMap::new(),
             presentable_frame_queue: VecDeque::new(),
             publication_order: 1,
+            last_degrade_decision: None,
         }
     }
     pub fn profile(&self) -> RuntimeProfile {
@@ -120,6 +122,10 @@ impl RuntimeKernel {
             transfer_completion_queue_depth: self.transfer_completion_queue.len(),
             connection_count: self.connection_publication_queue.len(),
             presentable_frame_depth: self.presentable_frame_queue.len(),
+            last_budget_blocking_code: self
+                .last_degrade_decision
+                .as_ref()
+                .map(|decision| decision.first_blocking_code.clone()),
         }
     }
 
