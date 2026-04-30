@@ -1,5 +1,4 @@
 use engine_core::EngineCoreResult;
-use std::cell::RefCell;
 
 use crate::digest::{compute_chunk_digest, compute_content_digest};
 use crate::ledger::ContentLedger;
@@ -14,18 +13,18 @@ use crate::{
 #[derive(Debug, Clone)]
 pub struct ContentPipeline {
     config: ContentConfig,
-    ledger: RefCell<ContentLedger>,
+    ledger: ContentLedger,
 }
 
 impl ContentPipeline {
     pub fn new(config: ContentConfig) -> Self {
         Self {
             config,
-            ledger: RefCell::new(ContentLedger::default()),
+            ledger: ContentLedger::default(),
         }
     }
 
-    pub fn try_ingest(&self, request: ContentRequest) -> ContentPipelineResult<ContentResult> {
+    pub fn try_ingest(&mut self, request: ContentRequest) -> ContentPipelineResult<ContentResult> {
         validate_descriptor(&request.descriptor)?;
         let normalized_locator = validate_locator(&request.locator)?;
         if request.bytes.is_empty() {
@@ -35,7 +34,7 @@ impl ContentPipeline {
         }
 
         let content_digest = self.compute_content_digest(&request.bytes);
-        self.ledger.borrow_mut().record_ingest(
+        self.ledger.record_ingest(
             request.descriptor.content_id,
             &normalized_locator,
             content_digest,
@@ -59,8 +58,16 @@ impl ContentPipeline {
         Ok(ContentResult { pack, manifest })
     }
 
-    pub fn ingest(&self, request: ContentRequest) -> EngineCoreResult<ContentResult> {
+    pub fn ingest(&mut self, request: ContentRequest) -> EngineCoreResult<ContentResult> {
         self.try_ingest(request).map_err(Into::into)
+    }
+
+    pub fn ingested_pack_count(&self) -> usize {
+        self.ledger.ingested_pack_count()
+    }
+
+    pub fn has_ingested_pack(&self, pack_id: u64) -> bool {
+        self.ledger.has_pack(pack_id)
     }
 
     pub fn build_runtime_pack_product(&self, manifest: &ContentManifest) -> RuntimePackProduct {

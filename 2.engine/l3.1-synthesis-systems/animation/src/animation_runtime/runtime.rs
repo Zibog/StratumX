@@ -82,14 +82,14 @@ impl AnimationRuntime {
         sample_time: f32,
         joint_count: usize,
     ) -> EngineCoreResult<AnimationReceipt> {
-        let clip =
-            self.clips
-                .iter()
-                .find(|c| c.name == clip_name)
-                .ok_or(AnimationFailure::new(
-                    AnimationFailureReason::MissingClip,
-                    "animation sample requires registered clip",
-                ))?;
+        let clip = self
+            .clips
+            .iter()
+            .find(|c| c.name == clip_name)
+            .ok_or(AnimationFailure::new(
+                AnimationFailureReason::MissingClip,
+                "animation sample requires registered clip",
+            ))?;
 
         if joint_count == 0 {
             return Err(AnimationFailure::new(

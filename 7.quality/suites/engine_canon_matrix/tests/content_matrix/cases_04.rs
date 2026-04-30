@@ -1,6 +1,6 @@
 #[test]
 fn content_ingest_case_29() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {

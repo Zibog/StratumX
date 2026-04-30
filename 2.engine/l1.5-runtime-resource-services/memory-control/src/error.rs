@@ -49,11 +49,7 @@ impl MemoryFailure {
     }
 
     pub fn into_engine_core_error(self) -> EngineCoreError {
-        let message = match self.reason {
-            MemoryFailureReason::AlreadyReleased => "memory release references unknown allocation",
-            _ => self.message,
-        };
-        EngineCoreError::InvalidDescriptor(message)
+        EngineCoreError::InvalidDescriptor(self.message)
     }
 }
 

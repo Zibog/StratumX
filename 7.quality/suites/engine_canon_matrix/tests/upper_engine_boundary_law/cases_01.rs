@@ -121,8 +121,6 @@ fn acoustic_event_boundary_accepts_valid_event() {
     };
     let service = AcousticsService::new(config);
 
-    let world = WorldState::new();
-    let ecs = EcsSubstrate::new();
     let materials = MaterialRegistry::new(create_test_material_config());
     let residency = ResidencyControlService::new(ResidencyConfig {
         resident_item_budget: 100,
@@ -138,7 +136,7 @@ fn acoustic_event_boundary_accepts_valid_event() {
         stream_upload_bytes: 1024,
     };
 
-    let result = service.synthesize(&world, &ecs, &materials, &residency, &mut transfer, request);
+    let result = synthesize_receipt(&service, &materials, &residency, &mut transfer, request);
     assert!(result.is_ok());
 }
 
@@ -150,8 +148,6 @@ fn acoustic_event_boundary_rejects_missing_source() {
     };
     let service = AcousticsService::new(config);
 
-    let world = WorldState::new();
-    let ecs = EcsSubstrate::new();
     let materials = MaterialRegistry::new(create_test_material_config());
     let residency = ResidencyControlService::new(ResidencyConfig {
         resident_item_budget: 100,
@@ -167,7 +163,7 @@ fn acoustic_event_boundary_rejects_missing_source() {
         stream_upload_bytes: 512,
     };
 
-    let result = service.synthesize(&world, &ecs, &materials, &residency, &mut transfer, request);
+    let result = synthesize_receipt(&service, &materials, &residency, &mut transfer, request);
     assert!(result.is_err());
 }
 

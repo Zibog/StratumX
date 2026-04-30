@@ -21,7 +21,7 @@ fn different_content_bytes_produce_different_digest() {
 
 #[test]
 fn invalid_locator_is_rejected_with_exact_reason() {
-    let pipeline = ContentPipeline::new(ContentConfig { max_packs: 10 });
+    let mut pipeline = ContentPipeline::new(ContentConfig { max_packs: 10 });
 
     let result = pipeline.ingest(ContentRequest {
         descriptor: ContentDescriptor {
@@ -44,7 +44,7 @@ fn invalid_locator_is_rejected_with_exact_reason() {
 
 #[test]
 fn duplicate_content_digest_requires_canonical_reuse() {
-    let pipeline = ContentPipeline::new(ContentConfig { max_packs: 10 });
+    let mut pipeline = ContentPipeline::new(ContentConfig { max_packs: 10 });
 
     pipeline
         .ingest(ContentRequest {
@@ -80,7 +80,7 @@ fn duplicate_content_digest_requires_canonical_reuse() {
 
 #[test]
 fn idempotent_reingest_of_same_resource_is_stable() {
-    let pipeline = ContentPipeline::new(ContentConfig { max_packs: 10 });
+    let mut pipeline = ContentPipeline::new(ContentConfig { max_packs: 10 });
     let request = ContentRequest {
         descriptor: ContentDescriptor {
             content_id: 7,

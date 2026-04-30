@@ -21,10 +21,7 @@ fn conflicting_mutations_are_detected_deterministically() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(6),
-        ApplyTransactionId(6),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(6, 6, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(
@@ -63,10 +60,7 @@ fn duplicate_operations_detected() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(7),
-        ApplyTransactionId(7),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(7, 7, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(
@@ -123,18 +117,12 @@ fn mutation_apply_order_is_stable() {
     let left_receipt = authoritative_apply(
         &mut left,
         &payload1,
-        MutationBatchId(8),
-        ApplyTransactionId(8),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(8, 8, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
     let right_receipt = authoritative_apply(
         &mut right,
         &payload2,
-        MutationBatchId(8),
-        ApplyTransactionId(9),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(8, 9, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert_eq!(left_receipt.after_digest, right_receipt.after_digest);

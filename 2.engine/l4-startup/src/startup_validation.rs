@@ -1,5 +1,5 @@
 use crate::startup_assembly::StartupAssembly;
-use crate::{NetworkRole, ServiceWiring};
+use crate::{NetworkRole, ServiceWiring, StartupFailureReason, StartupServiceId};
 use engine_runtime::RuntimeProfile;
 use std::collections::BTreeSet;
 
@@ -13,7 +13,7 @@ const MODELING_BIT: u16 = 1 << 6;
 const SYNTHESIS_BIT: u16 = 1 << 7;
 
 impl StartupAssembly {
-    pub(crate) fn validation_reasons(&self) -> Vec<&'static str> {
+    pub(crate) fn validation_reasons(&self) -> Vec<StartupFailureReason> {
         let mut reasons = Vec::new();
         if let Some(reason) = self.profile_role_reason() {
             reasons.push(reason);
@@ -25,16 +25,15 @@ impl StartupAssembly {
         reasons
     }
 
-    fn profile_role_reason(&self) -> Option<&'static str> {
+    fn profile_role_reason(&self) -> Option<StartupFailureReason> {
         match (self.config.profile, self.config.network_role) {
-            (RuntimeProfile::Headless20, NetworkRole::InteractiveHostAware) => {
-                Some("headless profile cannot bind interactive host-aware role")
-            }
-            (RuntimeProfile::Interactive60, NetworkRole::HeadlessHost) => {
-                Some("interactive profile cannot bind headless host role")
-            }
-            (RuntimeProfile::ListenHost60, NetworkRole::HeadlessHost) => {
-                Some("listen-host profile cannot bind headless host role")
+            (RuntimeProfile::Headless20, NetworkRole::InteractiveHostAware)
+            | (RuntimeProfile::Interactive60, NetworkRole::HeadlessHost)
+            | (RuntimeProfile::ListenHost60, NetworkRole::HeadlessHost) => {
+                Some(StartupFailureReason::InvalidProfileRoleCombination(
+                    self.config.profile,
+                    self.config.network_role,
+                ))
             }
             _ => None,
         }
@@ -54,56 +53,50 @@ impl StartupAssembly {
         bits
     }
 
-    fn missing_required_service_reasons(&self) -> Vec<&'static str> {
+    fn missing_required_service_reasons(&self) -> Vec<StartupFailureReason> {
         let required_bits = self.required_service_bits();
         let wiring_bits = service_wiring_bitset(self.config.service_wiring);
         let mut reasons = Vec::new();
         for (bit, reason) in [
-            (STREAMING_BIT, "missing required startup service: streaming"),
-            (RESIDENCY_BIT, "missing required startup service: residency"),
-            (MEMORY_BIT, "missing required startup service: memory"),
-            (TRANSFER_BIT, "missing required startup service: transfer"),
-            (
-                SIMULATION_BIT,
-                "missing required startup service: simulation",
-            ),
-            (
-                NETWORKING_BIT,
-                "missing required startup service: networking",
-            ),
-            (MODELING_BIT, "missing required startup service: modeling"),
-            (SYNTHESIS_BIT, "missing required startup service: synthesis"),
+            (STREAMING_BIT, StartupServiceId::Streaming),
+            (RESIDENCY_BIT, StartupServiceId::Residency),
+            (MEMORY_BIT, StartupServiceId::Memory),
+            (TRANSFER_BIT, StartupServiceId::Transfer),
+            (SIMULATION_BIT, StartupServiceId::Simulation),
+            (NETWORKING_BIT, StartupServiceId::Networking),
+            (MODELING_BIT, StartupServiceId::Modeling),
+            (SYNTHESIS_BIT, StartupServiceId::Synthesis),
         ] {
             if required_bits & bit != 0 && wiring_bits & bit == 0 {
-                reasons.push(reason);
+                reasons.push(StartupFailureReason::MissingRequiredService(reason));
             }
         }
         reasons
     }
 
-    fn runtime_pack_compatibility_reason(&self) -> Option<&'static str> {
+    fn runtime_pack_compatibility_reason(&self) -> Option<StartupFailureReason> {
         let mut pack_ids = BTreeSet::new();
         for manifest in &self.config.runtime_manifests {
             if manifest.packs.is_empty() {
-                return Some("runtime pack manifest requires at least one pack");
+                return Some(StartupFailureReason::RuntimePackMissingPack);
             }
             if manifest.locators.is_empty() {
-                return Some("runtime pack manifest requires at least one locator");
+                return Some(StartupFailureReason::RuntimePackMissingLocator);
             }
             for locator in &manifest.locators {
                 if locator.uri.trim().is_empty() {
-                    return Some("runtime pack locator uri must be non-empty");
+                    return Some(StartupFailureReason::RuntimePackLocatorEmpty);
                 }
             }
             for pack in &manifest.packs {
                 if pack.pack_id == 0 {
-                    return Some("runtime pack id must be non-zero");
+                    return Some(StartupFailureReason::RuntimePackIdZero);
                 }
                 if pack.chunk_count == 0 {
-                    return Some("runtime pack chunk count must be non-zero");
+                    return Some(StartupFailureReason::RuntimePackChunkCountZero);
                 }
                 if !pack_ids.insert(pack.pack_id) {
-                    return Some("runtime pack id must be unique across manifests");
+                    return Some(StartupFailureReason::RuntimePackDuplicateId);
                 }
             }
         }

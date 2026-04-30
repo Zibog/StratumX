@@ -1,6 +1,6 @@
 #[test]
 fn content_ingest_case_20() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -18,7 +18,7 @@ fn content_ingest_case_20() {
 }
 #[test]
 fn content_ingest_case_21() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -36,7 +36,7 @@ fn content_ingest_case_21() {
 }
 #[test]
 fn content_ingest_case_22() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -54,7 +54,7 @@ fn content_ingest_case_22() {
 }
 #[test]
 fn content_ingest_case_23() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -72,7 +72,7 @@ fn content_ingest_case_23() {
 }
 #[test]
 fn content_ingest_case_24() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -90,7 +90,7 @@ fn content_ingest_case_24() {
 }
 #[test]
 fn content_ingest_case_25() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -108,7 +108,7 @@ fn content_ingest_case_25() {
 }
 #[test]
 fn content_ingest_case_26() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -126,7 +126,7 @@ fn content_ingest_case_26() {
 }
 #[test]
 fn content_ingest_case_27() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {
@@ -144,7 +144,7 @@ fn content_ingest_case_27() {
 }
 #[test]
 fn content_ingest_case_28() {
-    let p = ContentPipeline::new(ContentConfig { max_packs: 4 });
+    let mut p = ContentPipeline::new(ContentConfig { max_packs: 4 });
     let r = p
         .ingest(ContentRequest {
             descriptor: ContentDescriptor {

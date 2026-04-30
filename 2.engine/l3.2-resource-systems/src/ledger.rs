@@ -16,6 +16,14 @@ pub(crate) struct ContentLedger {
 }
 
 impl ContentLedger {
+    pub(crate) fn ingested_pack_count(&self) -> usize {
+        self.entries_by_pack_id.len()
+    }
+
+    pub(crate) fn has_pack(&self, pack_id: u64) -> bool {
+        self.entries_by_pack_id.contains_key(&pack_id)
+    }
+
     pub(crate) fn record_ingest(
         &mut self,
         pack_id: u64,

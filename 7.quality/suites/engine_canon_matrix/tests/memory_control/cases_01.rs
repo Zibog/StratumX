@@ -92,7 +92,7 @@ fn release_path_rejects_wrong_size_unknown_and_double_release() {
         .unwrap_err();
     assert_eq!(
         double_release,
-        EngineCoreError::InvalidDescriptor("memory release references unknown allocation")
+        EngineCoreError::InvalidDescriptor("memory allocation already released")
     );
 }
 
@@ -166,5 +166,20 @@ fn typed_memory_failures_cover_reservation_and_release_law() {
         already_released.reason(),
         MemoryFailureReason::AlreadyReleased
     );
+}
+
+#[test]
+fn already_released_bridge_message_is_not_unknown_allocation() {
+    let bridge: EngineCoreError = engine_memory_control::MemoryFailure::new(
+        MemoryFailureReason::AlreadyReleased,
+        "memory allocation already released",
+    )
+    .into();
+
+    let EngineCoreError::InvalidDescriptor(message) = bridge else {
+        panic!("expected invalid descriptor bridge");
+    };
+    assert!(message.contains("already released"));
+    assert!(!message.contains("unknown allocation"));
 }
 

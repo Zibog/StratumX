@@ -1,3 +1,4 @@
+mod apply_context;
 mod apply_contract;
 mod apply_payload;
 mod apply_report;
@@ -8,8 +9,10 @@ mod mutation_buffer;
 mod payload_types;
 mod receipt;
 mod target;
+mod transaction;
 mod validation;
 
+pub use apply_context::ApplyContext;
 pub use apply_contract::MutationApplyPlan;
 pub use apply_payload::{authoritative_apply, make_apply_payload, queue_deferred_writes};
 pub use apply_report::{
@@ -25,4 +28,5 @@ pub use receipt::{ApplyReceiptContext, AuthoritativeApplyReceipt};
 pub use target::{
     AppliedJournal, InMemoryMutationApplyTarget, LegacyMutationApplyTarget, MutationApplyTarget,
 };
+pub use transaction::{CloneProjectionApplyTransaction, MutationApplyTransaction};
 pub use validation::MutationError;

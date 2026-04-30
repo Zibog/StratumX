@@ -1,9 +1,13 @@
 use engine_core::EngineCoreError;
 use engine_generation::{
-    GenerationConfig, GenerationContext, GenerationRequest, GenerationService, ModelDescriptor,
-    ModelWeights,
+    GenerationConfig, GenerationContext, GenerationRequest, GenerationService,
+    ModelBoundaryFailure as GenerationFailure,
+    ModelBoundaryFailureReason as GenerationFailureReason, ModelDescriptor, ModelWeights,
 };
-use engine_inference::{InferenceConfig, InferenceModel, InferenceRequest, InferenceService};
+use engine_inference::{
+    InferenceConfig, InferenceModel, InferenceRequest, InferenceService,
+    ModelBoundaryFailure as InferenceFailure, ModelBoundaryFailureReason as InferenceFailureReason,
+};
 
 fn inference(model_id: &str) -> InferenceService {
     InferenceService::new(
@@ -28,6 +32,43 @@ fn generation(model_family: &str, checksum: &str) -> GenerationService {
             },
         },
     )
+}
+
+#[test]
+fn generation_public_api_survives_module_split() {
+    let world = engine_world::WorldState::new();
+    let inference = inference("test");
+    let generation = generation("gen", "abc");
+    let result = generation
+        .generate(
+            &world,
+            &inference,
+            GenerationRequest {
+                prompt: "hello world".to_string(),
+            },
+        )
+        .unwrap();
+
+    assert!(result.output.artifact.contains("gen:abc"));
+}
+
+#[test]
+fn inference_public_api_survives_module_split() {
+    let world = engine_world::WorldState::new();
+    let ecs = engine_ecs::EcsSubstrate::new();
+    let inference = inference("test");
+    let result = inference
+        .infer(
+            &world,
+            &ecs,
+            InferenceRequest {
+                prompt: "hello world".to_string(),
+                batch_size: 1,
+            },
+        )
+        .unwrap();
+
+    assert_eq!(result.tokens[0], "test");
 }
 
 #[test]
@@ -68,14 +109,12 @@ fn generation_policy_change_changes_digest() {
     let request = GenerationRequest {
         prompt: "hello".to_string(),
     };
-
-    let gen_a = generation("gen-a", "abc");
-    let gen_b = generation("gen-b", "abc");
-
-    let receipt_a = gen_a
+    let receipt_a = generation("gen-a", "abc")
         .generate_with_receipt(&inference, request.clone())
         .unwrap();
-    let receipt_b = gen_b.generate_with_receipt(&inference, request).unwrap();
+    let receipt_b = generation("gen-b", "abc")
+        .generate_with_receipt(&inference, request)
+        .unwrap();
 
     assert_ne!(receipt_a.model_policy_id, receipt_b.model_policy_id);
     assert_ne!(
@@ -90,12 +129,10 @@ fn inference_policy_change_changes_digest() {
         prompt: "hello".to_string(),
         batch_size: 1,
     };
-
-    let model_a = inference("test-a");
-    let model_b = inference("test-b");
-
-    let receipt_a = model_a.infer_with_receipt(request.clone()).unwrap();
-    let receipt_b = model_b.infer_with_receipt(request).unwrap();
+    let receipt_a = inference("test-a")
+        .infer_with_receipt(request.clone())
+        .unwrap();
+    let receipt_b = inference("test-b").infer_with_receipt(request).unwrap();
 
     assert_ne!(receipt_a.model_policy_id, receipt_b.model_policy_id);
     assert_ne!(
@@ -105,11 +142,9 @@ fn inference_policy_change_changes_digest() {
 }
 
 #[test]
-fn generation_missing_model_family_is_rejected_with_exact_reason() {
+fn generation_failure_reason_is_typed_primary_api() {
     let inference = inference("test");
-    let generation = generation("", "abc");
-
-    let result = generation.generate_with_receipt(
+    let result = generation("", "abc").generate_with_receipt(
         &inference,
         GenerationRequest {
             prompt: "hello".to_string(),
@@ -117,63 +152,52 @@ fn generation_missing_model_family_is_rejected_with_exact_reason() {
     );
 
     assert_eq!(
-        result,
-        Err(EngineCoreError::InvalidDescriptor(
-            "generation context requires model family",
-        ))
+        result.unwrap_err().reason,
+        GenerationFailureReason::MissingModelFamily
     );
 }
 
 #[test]
-fn generation_missing_weights_are_rejected_with_exact_reason() {
-    let inference = inference("test");
-    let generation = generation("gen", "");
-
-    let result = generation.generate_with_receipt(
-        &inference,
-        GenerationRequest {
-            prompt: "hello".to_string(),
-        },
-    );
-
-    assert_eq!(
-        result,
-        Err(EngineCoreError::InvalidDescriptor(
-            "generation context requires weights checksum",
-        ))
-    );
-}
-
-#[test]
-fn inference_missing_model_is_rejected_with_exact_reason() {
-    let inference = inference("");
-
-    let result = inference.infer_with_receipt(InferenceRequest {
+fn inference_failure_reason_is_typed_primary_api() {
+    let result = inference("").infer_with_receipt(InferenceRequest {
         prompt: "hello".to_string(),
         batch_size: 1,
     });
 
     assert_eq!(
-        result,
-        Err(EngineCoreError::InvalidDescriptor(
-            "inference service requires non-empty model id",
-        ))
+        result.unwrap_err().reason,
+        InferenceFailureReason::MissingModelId
     );
 }
 
 #[test]
-fn inference_empty_prompt_is_rejected_with_exact_reason() {
-    let inference = inference("test");
-
-    let result = inference.infer_with_receipt(InferenceRequest {
-        prompt: "   ".to_string(),
+fn inference_missing_model_is_rejected_with_exact_reason() {
+    let result = inference("").infer_with_receipt(InferenceRequest {
+        prompt: "hello".to_string(),
         batch_size: 1,
     });
 
     assert_eq!(
-        result,
-        Err(EngineCoreError::InvalidDescriptor(
-            "inference request requires non-empty prompt",
-        ))
+        result.unwrap_err().reason,
+        InferenceFailureReason::MissingModelId
+    );
+}
+
+#[test]
+fn legacy_engine_core_error_bridge_preserves_reason_text() {
+    let generation_bridge: EngineCoreError =
+        GenerationFailure::for_reason(GenerationFailureReason::MissingWeightsChecksum).into();
+    let inference_bridge: EngineCoreError =
+        InferenceFailure::for_reason(InferenceFailureReason::InvalidBatchSize).into();
+
+    assert_eq!(
+        generation_bridge,
+        EngineCoreError::InvalidDescriptor("generation context requires weights checksum")
+    );
+    assert_eq!(
+        inference_bridge,
+        EngineCoreError::InvalidDescriptor(
+            "inference batch size is illegal for configured ceiling"
+        )
     );
 }

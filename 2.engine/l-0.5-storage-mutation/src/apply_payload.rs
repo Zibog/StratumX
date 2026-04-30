@@ -4,10 +4,10 @@ use smallvec::SmallVec;
 
 use crate::journal_digest::raw_payload_journal_digest;
 use crate::{
-    AppliedJournal, ApplyFlags, ApplyPayload, ApplyReceiptContext, ApplyTransactionId,
+    AppliedJournal, ApplyContext, ApplyFlags, ApplyPayload, ApplyReceiptContext,
     AuthoritativeApplyReceipt, ChangeSet, FamilyTag, MutationApplyMode, MutationApplyPlan,
-    MutationApplyReport, MutationApplyTarget, MutationBatchId, MutationBuffer,
-    MutationConflictPolicy, MutationFailureReason, RegionTag,
+    MutationApplyReport, MutationApplyTarget, MutationApplyTransaction, MutationBuffer,
+    MutationFailureReason, RegionTag,
 };
 
 pub fn queue_deferred_writes(
@@ -45,19 +45,17 @@ pub fn make_apply_payload(
 pub fn authoritative_apply<T>(
     target: &mut T,
     payload: &ApplyPayload,
-    batch_id: MutationBatchId,
-    transaction_id: ApplyTransactionId,
-    mode: MutationApplyMode,
-    conflict_policy: MutationConflictPolicy,
+    context: ApplyContext,
 ) -> AuthoritativeApplyReceipt
 where
-    T: Clone + MutationApplyTarget,
+    T: MutationApplyTarget + ?Sized,
 {
-    let before_digest = target.deterministic_digest();
+    let before_digest = target.stable_state_digest();
     let fallback_journal_digest = raw_payload_journal_digest(payload);
     let fallback_context = ApplyReceiptContext {
-        batch_id,
-        transaction_id,
+        batch_id: context.batch_id,
+        transaction_id: context.transaction_id,
+        mode: context.mode,
         batch_order: payload.batch_order,
         family_tag: payload.family_tag,
         region_tag: payload.region_tag,
@@ -65,7 +63,11 @@ where
         journal_digest: fallback_journal_digest,
     };
 
-    let plan = match MutationApplyPlan::from_payload_with_policy(payload, conflict_policy, mode) {
+    let plan = match MutationApplyPlan::from_payload_with_policy(
+        payload,
+        context.conflict_policy,
+        context.mode,
+    ) {
         Ok(plan) => plan,
         Err(error) => {
             return AuthoritativeApplyReceipt::validation_failed(
@@ -81,7 +83,7 @@ where
     };
 
     if let Some(receipt) =
-        guarded_replay_receipt(target, &plan, before_digest, mode, receipt_context)
+        guarded_replay_receipt(target, &plan, before_digest, context.mode, receipt_context)
     {
         return receipt;
     }
@@ -93,16 +95,19 @@ where
         );
     }
 
-    let mut projected_target = target.clone();
-    projected_target.apply_structural_removals(plan.structural_components());
-    projected_target.apply_writes(plan.deferred_writes());
+    let mut transaction = target.begin_apply(context);
+    if let Err(reason) = stage_plan(&mut transaction, &plan) {
+        transaction.rollback();
+        return AuthoritativeApplyReceipt::validation_failed(receipt_context, reason);
+    }
 
-    let after_digest = projected_target.deterministic_digest();
+    let after_digest = transaction.projected_state_digest();
     let report = MutationApplyReport::all_applied(plan.operation_count);
 
-    if mode != MutationApplyMode::DryRun {
-        *target = projected_target;
-        target.record_journal(AppliedJournal {
+    if context.mode == MutationApplyMode::DryRun {
+        transaction.rollback();
+    } else {
+        transaction.commit(AppliedJournal {
             journal_digest: plan.journal_digest(),
             before_digest,
             after_digest,
@@ -113,6 +118,19 @@ where
     AuthoritativeApplyReceipt::success(receipt_context, after_digest, report)
 }
 
+fn stage_plan<T>(transaction: &mut T, plan: &MutationApplyPlan) -> Result<(), MutationFailureReason>
+where
+    T: crate::MutationApplyTransaction,
+{
+    for component in plan.structural_components() {
+        transaction.stage_structural_removal(*component)?;
+    }
+    for write in plan.deferred_writes() {
+        transaction.stage_write(write)?;
+    }
+    Ok(())
+}
+
 fn guarded_replay_receipt<T>(
     target: &T,
     plan: &MutationApplyPlan,
@@ -121,7 +139,7 @@ fn guarded_replay_receipt<T>(
     receipt_context: ApplyReceiptContext,
 ) -> Option<AuthoritativeApplyReceipt>
 where
-    T: MutationApplyTarget,
+    T: MutationApplyTarget + ?Sized,
 {
     if mode != MutationApplyMode::Replay || !plan.contains_non_idempotent_write {
         return None;
@@ -148,7 +166,7 @@ where
 
 fn missing_structural_target<T>(target: &T, plan: &MutationApplyPlan) -> bool
 where
-    T: MutationApplyTarget,
+    T: MutationApplyTarget + ?Sized,
 {
     plan.structural_components()
         .iter()

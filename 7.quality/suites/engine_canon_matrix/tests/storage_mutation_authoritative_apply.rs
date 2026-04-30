@@ -1,7 +1,8 @@
 use engine_core::{ComponentTypeId, StableDigest64};
 use engine_storage_mutation::{
-    authoritative_apply, make_apply_payload, ApplyFlags, ApplyOutcome, ApplyTransactionId,
-    DeferredWrite, FamilyTag, IdempotenceClass, InMemoryMutationApplyTarget, MutationApplyMode,
+    authoritative_apply, make_apply_payload, ApplyContext, ApplyFlags, ApplyOutcome,
+    ApplyTransactionId, CloneProjectionApplyTransaction, DeferredWrite, FamilyTag,
+    IdempotenceClass, InMemoryMutationApplyTarget, MutationApplyMode, MutationApplyTarget,
     MutationBatchId, MutationBuffer, MutationConflictPolicy, MutationFailureReason, RegionTag,
 };
 use smallvec::{smallvec, SmallVec};
@@ -30,6 +31,21 @@ fn payload_with_writes(
     .unwrap()
 }
 
+fn apply_context(
+    batch_id: u64,
+    transaction_id: u64,
+    mode: MutationApplyMode,
+    conflict_policy: MutationConflictPolicy,
+) -> ApplyContext {
+    ApplyContext {
+        batch_id: engine_storage_mutation::MutationBatchId(batch_id),
+        transaction_id: engine_storage_mutation::ApplyTransactionId(transaction_id),
+        mode,
+        conflict_policy,
+    }
+}
+
 include!("storage_mutation_authoritative_apply/cases_01.rs");
 include!("storage_mutation_authoritative_apply/cases_02.rs");
 include!("storage_mutation_authoritative_apply/cases_03.rs");
+include!("storage_mutation_authoritative_apply/cases_04.rs");

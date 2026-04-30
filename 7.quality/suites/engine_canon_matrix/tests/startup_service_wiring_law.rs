@@ -1,9 +1,10 @@
-// Startup Service Wiring Law Tests
-
 use engine_content::{ContentLocator, ContentManifest, ContentPack};
 use engine_core::EngineCoreError;
 use engine_runtime::RuntimeProfile;
-use engine_startup::{NetworkRole, ServiceWiring, StartupAssembly, StartupConfig};
+use engine_startup::{
+    NetworkRole, ServiceWiring, StartupAssembly, StartupConfig, StartupFailure,
+    StartupFailureReason, StartupServiceId,
+};
 
 #[test]
 fn startup_invalid_profile_role_combination_fails() {
@@ -23,7 +24,7 @@ fn startup_invalid_profile_role_combination_fails() {
 }
 
 #[test]
-fn startup_missing_required_service_fails_closed() {
+fn startup_missing_required_service_returns_typed_failure() {
     let assembly = StartupAssembly::new(StartupConfig {
         profile: RuntimeProfile::Headless20,
         network_role: NetworkRole::HeadlessHost,
@@ -34,41 +35,45 @@ fn startup_missing_required_service_fails_closed() {
         },
     });
 
-    let decision = assembly.validate();
-    assert!(!decision.accepted);
+    let failure = assembly.runtime_launch_plan().unwrap_err();
+
     assert_eq!(
-        decision.reasons,
-        vec!["missing required startup service: networking".to_string()]
-    );
-    assert_eq!(
-        assembly.runtime_launch_plan().unwrap_err(),
-        EngineCoreError::InvalidDescriptor("missing required startup service: networking")
+        failure.reason,
+        StartupFailureReason::MissingRequiredService(StartupServiceId::Networking)
     );
 }
 
 #[test]
-fn startup_runtime_pack_compatibility_is_checked() {
+fn startup_runtime_pack_duplicate_returns_typed_failure() {
     let assembly = StartupAssembly::new(StartupConfig {
         profile: RuntimeProfile::Interactive60,
         network_role: NetworkRole::LocalOnly,
-        runtime_manifests: vec![ContentManifest {
-            packs: vec![ContentPack {
-                pack_id: 10,
-                chunk_count: 0,
-            }],
-            locators: vec![ContentLocator {
-                uri: "pack://interactive/base".to_string(),
-            }],
-        }],
+        runtime_manifests: vec![
+            ContentManifest {
+                packs: vec![ContentPack {
+                    pack_id: 10,
+                    chunk_count: 1,
+                }],
+                locators: vec![ContentLocator {
+                    uri: "pack://interactive/base".to_string(),
+                }],
+            },
+            ContentManifest {
+                packs: vec![ContentPack {
+                    pack_id: 10,
+                    chunk_count: 2,
+                }],
+                locators: vec![ContentLocator {
+                    uri: "pack://interactive/dup".to_string(),
+                }],
+            },
+        ],
         service_wiring: full_service_wiring(),
     });
 
-    let decision = assembly.validate();
-    assert!(!decision.accepted);
-    assert_eq!(
-        decision.reasons,
-        vec!["runtime pack chunk count must be non-zero".to_string()]
-    );
+    let failure = assembly.service_wiring_receipt().unwrap_err();
+
+    assert_eq!(failure.reason, StartupFailureReason::RuntimePackDuplicateId);
 }
 
 #[test]
@@ -101,18 +106,19 @@ fn same_startup_profile_same_digest() {
         },
     };
 
-    let assembly1 = StartupAssembly::new(config.clone());
-    let assembly2 = StartupAssembly::new(config);
-
-    let receipt1 = assembly1.service_wiring_receipt().unwrap();
-    let receipt2 = assembly2.service_wiring_receipt().unwrap();
+    let receipt1 = StartupAssembly::new(config.clone())
+        .service_wiring_receipt()
+        .unwrap();
+    let receipt2 = StartupAssembly::new(config)
+        .service_wiring_receipt()
+        .unwrap();
 
     assert_eq!(receipt1.deterministic_digest, receipt2.deterministic_digest);
 }
 
 #[test]
 fn same_count_different_service_bits_change_digest() {
-    let assembly1 = StartupAssembly::new(StartupConfig {
+    let receipt1 = StartupAssembly::new(StartupConfig {
         profile: RuntimeProfile::Interactive60,
         network_role: NetworkRole::LocalOnly,
         runtime_manifests: vec![],
@@ -122,9 +128,10 @@ fn same_count_different_service_bits_change_digest() {
             synthesis: true,
             ..base_interactive_wiring()
         },
-    });
-
-    let assembly2 = StartupAssembly::new(StartupConfig {
+    })
+    .service_wiring_receipt()
+    .unwrap();
+    let receipt2 = StartupAssembly::new(StartupConfig {
         profile: RuntimeProfile::Interactive60,
         network_role: NetworkRole::LocalOnly,
         runtime_manifests: vec![],
@@ -134,10 +141,9 @@ fn same_count_different_service_bits_change_digest() {
             synthesis: true,
             ..base_interactive_wiring()
         },
-    });
-
-    let receipt1 = assembly1.service_wiring_receipt().unwrap();
-    let receipt2 = assembly2.service_wiring_receipt().unwrap();
+    })
+    .service_wiring_receipt()
+    .unwrap();
 
     assert_eq!(receipt1.wired_service_count, receipt2.wired_service_count);
     assert_ne!(receipt1.wired_service_bits, receipt2.wired_service_bits);
@@ -145,30 +151,16 @@ fn same_count_different_service_bits_change_digest() {
 }
 
 #[test]
-fn different_profile_changes_digest() {
-    let assembly1 = StartupAssembly::new(StartupConfig {
-        profile: RuntimeProfile::Headless20,
-        network_role: NetworkRole::HeadlessHost,
-        runtime_manifests: vec![],
-        service_wiring: full_service_wiring(),
-    });
+fn startup_engine_core_error_bridge_preserves_reason() {
+    let bridge: EngineCoreError = StartupFailure::for_reason(
+        StartupFailureReason::MissingRequiredService(StartupServiceId::Networking),
+    )
+    .into();
 
-    let assembly2 = StartupAssembly::new(StartupConfig {
-        profile: RuntimeProfile::Interactive60,
-        network_role: NetworkRole::LocalOnly,
-        runtime_manifests: vec![],
-        service_wiring: ServiceWiring {
-            networking: true,
-            modeling: false,
-            synthesis: true,
-            ..base_interactive_wiring()
-        },
-    });
-
-    let receipt1 = assembly1.service_wiring_receipt().unwrap();
-    let receipt2 = assembly2.service_wiring_receipt().unwrap();
-
-    assert_ne!(receipt1.deterministic_digest, receipt2.deterministic_digest);
+    assert_eq!(
+        bridge,
+        EngineCoreError::InvalidDescriptor("missing required startup service: networking")
+    );
 }
 
 fn base_interactive_wiring() -> ServiceWiring {

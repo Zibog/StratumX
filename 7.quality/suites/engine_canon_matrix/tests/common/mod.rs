@@ -1,5 +1,10 @@
 #![allow(unused_imports, dead_code)]
-pub use engine_acoustics::{AcousticsConfig, AcousticsRequest, AcousticsService};
+mod boundary_rendering;
+pub use boundary_rendering::*;
+pub use engine_acoustics::{
+    AcousticInputs, AcousticReceipt, AcousticResult, AcousticsConfig, AcousticsRequest,
+    AcousticsService,
+};
 pub use engine_agents::{
     AgentId, AgentIntentKind, AgentState, AgentsConfig, AgentsContext, AgentsFamily,
     AgentsSubstrate,
@@ -27,7 +32,9 @@ pub use engine_handle::{
     StableComponentHandle, StableEntityHandle, ValidationContext, ValidationResult,
 };
 pub use engine_identity::{ComponentId, EntityId, IdentityAllocator, IdentityDomain};
-pub use engine_imaging::{ImagingConfig, ImagingRequest, ImagingService};
+pub use engine_imaging::{
+    ImagingConfig, ImagingInputs, ImagingReceipt, ImagingRequest, ImagingResult, ImagingService,
+};
 pub use engine_inference::{InferenceConfig, InferenceModel, InferenceRequest, InferenceService};
 pub use engine_kinetics::{KinematicBody, KinematicBodyId, KineticsSubstrate};
 pub use engine_kinetics::{KineticsConfig, KineticsContext, KineticsFamily};

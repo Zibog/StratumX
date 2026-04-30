@@ -20,10 +20,7 @@ fn invalid_batch_order_fails_validation() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(100),
-        ApplyTransactionId(200),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(100, 200, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(
@@ -64,10 +61,12 @@ fn apply_receipt_contains_batch_tick_epoch_region_and_digest() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(100),
-        ApplyTransactionId(200),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::LastWriteWins,
+        apply_context(
+            100,
+            200,
+            MutationApplyMode::Normal,
+            MutationConflictPolicy::LastWriteWins,
+        ),
     );
 
     assert!(receipt.is_success());
@@ -96,10 +95,7 @@ fn empty_batch_is_rejected() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(1),
-        ApplyTransactionId(1),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(1, 1, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(
@@ -138,10 +134,7 @@ fn successful_authoritative_apply_mutates_target() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(7),
-        ApplyTransactionId(8),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(7, 8, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(receipt.is_success());

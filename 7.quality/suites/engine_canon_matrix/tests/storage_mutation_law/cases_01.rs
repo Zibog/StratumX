@@ -29,10 +29,7 @@ fn valid_mutation_batch_applies_authoritatively() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(1),
-        ApplyTransactionId(1),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(1, 1, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(receipt.is_success());
@@ -65,10 +62,7 @@ fn invalid_handle_mutation_is_rejected_without_state_change() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(2),
-        ApplyTransactionId(2),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(2, 2, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(
@@ -118,30 +112,21 @@ fn stale_generation_mutation_is_rejected() {
     let first = authoritative_apply(
         &mut target,
         &guarded_payload,
-        MutationBatchId(3),
-        ApplyTransactionId(3),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(3, 3, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
     assert!(first.is_success());
 
     let drift = authoritative_apply(
         &mut target,
         &drift_payload,
-        MutationBatchId(4),
-        ApplyTransactionId(4),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(4, 4, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
     assert!(drift.is_success());
 
     let replay = authoritative_apply(
         &mut target,
         &guarded_payload,
-        MutationBatchId(5),
-        ApplyTransactionId(5),
-        MutationApplyMode::Replay,
-        MutationConflictPolicy::Reject,
+        apply_context(5, 5, MutationApplyMode::Replay, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(

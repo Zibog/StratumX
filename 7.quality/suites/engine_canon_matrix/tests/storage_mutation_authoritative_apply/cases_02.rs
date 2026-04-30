@@ -20,10 +20,7 @@ fn failed_validation_does_not_mutate_target() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(9),
-        ApplyTransactionId(9),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(9, 9, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(
@@ -62,10 +59,12 @@ fn conflicting_non_idempotent_write_rejected() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(10),
-        ApplyTransactionId(11),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::LastWriteWins,
+        apply_context(
+            10,
+            11,
+            MutationApplyMode::Normal,
+            MutationConflictPolicy::LastWriteWins,
+        ),
     );
 
     assert!(matches!(
@@ -94,20 +93,14 @@ fn idempotent_replay_is_stable() {
     let receipt1 = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(1),
-        ApplyTransactionId(1),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::LastWriteWins,
+        apply_context(1, 1, MutationApplyMode::Normal, MutationConflictPolicy::LastWriteWins),
     );
     let digest_after_first = target.deterministic_digest();
 
     let receipt2 = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(1),
-        ApplyTransactionId(2),
-        MutationApplyMode::Replay,
-        MutationConflictPolicy::LastWriteWins,
+        apply_context(1, 2, MutationApplyMode::Replay, MutationConflictPolicy::LastWriteWins),
     );
 
     assert!(receipt1.is_success());
@@ -134,10 +127,7 @@ fn non_idempotent_replay_without_guard_rejected() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(2),
-        ApplyTransactionId(3),
-        MutationApplyMode::Replay,
-        MutationConflictPolicy::Reject,
+        apply_context(2, 3, MutationApplyMode::Replay, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(

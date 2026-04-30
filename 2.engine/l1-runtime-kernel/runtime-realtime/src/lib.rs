@@ -1,17 +1,62 @@
+use engine_core::{StableDigest64, StableDigestBuilder};
 use engine_runtime::{
-    EngineCoreError, EngineCoreResult, ExecutionResult, PresentableFrame, RuntimeConfig,
-    RuntimeKernel, RuntimeProfile,
+    EngineCoreError, ExecutionResult, PresentableFrame, RuntimeConfig, RuntimeKernel,
+    RuntimeProfile,
 };
 use engine_world::WorldState;
 use serde::{Deserialize, Serialize};
 
 pub const REALTIME_TARGET_FPS: u16 = 60;
 
-/// Unique identifier for a realtime frame.
+pub type RealtimeRuntimeResult<T> = Result<T, RealtimeRuntimeFailure>;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum RealtimeRuntimeFailureReason {
+    InvalidTargetFps,
+    InvalidFrameCadence,
+    PresentationBudgetExceeded,
+    InvalidRuntimeState,
+}
+
+impl RealtimeRuntimeFailureReason {
+    pub const fn message(self) -> &'static str {
+        match self {
+            Self::InvalidTargetFps => "realtime target_fps must be non-zero",
+            Self::InvalidFrameCadence => "realtime visibility freshness must be non-zero",
+            Self::PresentationBudgetExceeded => "realtime presentation budget exceeded",
+            Self::InvalidRuntimeState => "realtime runtime state is invalid",
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub struct RealtimeRuntimeFailure {
+    pub reason: RealtimeRuntimeFailureReason,
+    pub digest: StableDigest64,
+}
+
+impl RealtimeRuntimeFailure {
+    pub fn for_reason(reason: RealtimeRuntimeFailureReason) -> Self {
+        let mut digest = StableDigestBuilder::new();
+        digest
+            .write_bytes(b"engine.runtime.realtime.failure")
+            .write_u8(reason as u8);
+        Self {
+            reason,
+            digest: digest.finish(),
+        }
+    }
+}
+
+impl From<RealtimeRuntimeFailure> for EngineCoreError {
+    fn from(failure: RealtimeRuntimeFailure) -> Self {
+        EngineCoreError::InvalidDescriptor(failure.reason.message())
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct RealtimeFrameId(pub u64);
 
-/// Cadence control for realtime frame execution.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RealtimeFrameCadence {
     pub target_fps: u16,
@@ -19,10 +64,10 @@ pub struct RealtimeFrameCadence {
 }
 
 impl RealtimeFrameCadence {
-    pub fn from_fps(fps: u16) -> EngineCoreResult<Self> {
+    pub fn from_fps(fps: u16) -> RealtimeRuntimeResult<Self> {
         if fps == 0 {
-            return Err(EngineCoreError::InvalidDescriptor(
-                "realtime target_fps must be non-zero",
+            return Err(RealtimeRuntimeFailure::for_reason(
+                RealtimeRuntimeFailureReason::InvalidTargetFps,
             ));
         }
         Ok(Self {
@@ -32,7 +77,6 @@ impl RealtimeFrameCadence {
     }
 }
 
-/// Receipt confirming a realtime frame execution.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct RealtimeFrameReceipt {
     pub frame_id: RealtimeFrameId,
@@ -41,7 +85,6 @@ pub struct RealtimeFrameReceipt {
     pub frame_budget_micros: u32,
 }
 
-/// Decision on presentation budget allocation.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum PresentationBudgetDecision {
     Present,
@@ -71,10 +114,15 @@ pub struct RealtimeRuntimeProfile {
 }
 
 impl RealtimeRuntimeProfile {
-    pub fn new(world: WorldState, config: RealtimeRuntimeConfig) -> EngineCoreResult<Self> {
+    pub fn new(world: WorldState, config: RealtimeRuntimeConfig) -> RealtimeRuntimeResult<Self> {
         if config.target_fps == 0 {
-            return Err(EngineCoreError::InvalidDescriptor(
-                "realtime target_fps must be non-zero",
+            return Err(RealtimeRuntimeFailure::for_reason(
+                RealtimeRuntimeFailureReason::InvalidTargetFps,
+            ));
+        }
+        if config.visibility_freshness_frames == 0 {
+            return Err(RealtimeRuntimeFailure::for_reason(
+                RealtimeRuntimeFailureReason::InvalidFrameCadence,
             ));
         }
         let kernel = RuntimeKernel::new(
@@ -91,22 +139,33 @@ impl RealtimeRuntimeProfile {
             next_frame_id: 1,
         })
     }
+
     pub fn kernel(&self) -> &RuntimeKernel {
         &self.kernel
     }
+
     pub fn kernel_mut(&mut self) -> &mut RuntimeKernel {
         &mut self.kernel
     }
-    pub fn step(&mut self) -> EngineCoreResult<RealtimeExecutionResult> {
+
+    pub fn step(&mut self) -> RealtimeRuntimeResult<RealtimeExecutionResult> {
         let frame_id = RealtimeFrameId(self.next_frame_id);
         self.next_frame_id = self.next_frame_id.saturating_add(1);
         if self.config.enqueue_presentable_frames {
-            self.kernel.enqueue_presentable_frame(PresentableFrame {
-                frame_id: frame_id.0,
-                visibility_freshness_frames: self.config.visibility_freshness_frames,
-            })?;
+            self.kernel
+                .enqueue_presentable_frame(PresentableFrame {
+                    frame_id: frame_id.0,
+                    visibility_freshness_frames: self.config.visibility_freshness_frames,
+                })
+                .map_err(|_| {
+                    RealtimeRuntimeFailure::for_reason(
+                        RealtimeRuntimeFailureReason::InvalidRuntimeState,
+                    )
+                })?;
         }
-        let kernel_result = self.kernel.run_tick()?;
+        let kernel_result = self.kernel.run_tick().map_err(|_| {
+            RealtimeRuntimeFailure::for_reason(RealtimeRuntimeFailureReason::InvalidRuntimeState)
+        })?;
         Ok(RealtimeExecutionResult {
             frame_presented: kernel_result.presented_frame,
             frame_id,
@@ -114,8 +173,7 @@ impl RealtimeRuntimeProfile {
         })
     }
 
-    /// Execute frame with receipt.
-    pub fn step_with_receipt(&mut self) -> EngineCoreResult<RealtimeFrameReceipt> {
+    pub fn step_with_receipt(&mut self) -> RealtimeRuntimeResult<RealtimeFrameReceipt> {
         let cadence = self.cadence()?;
         let result = self.step()?;
         Ok(RealtimeFrameReceipt {
@@ -126,16 +184,14 @@ impl RealtimeRuntimeProfile {
         })
     }
 
-    /// Get frame cadence.
-    pub fn cadence(&self) -> EngineCoreResult<RealtimeFrameCadence> {
+    pub fn cadence(&self) -> RealtimeRuntimeResult<RealtimeFrameCadence> {
         RealtimeFrameCadence::from_fps(self.config.target_fps)
     }
 
-    /// Make presentation budget decision.
     pub fn presentation_budget_decision(
         &self,
         frame_time_micros: u32,
-    ) -> EngineCoreResult<PresentationBudgetDecision> {
+    ) -> RealtimeRuntimeResult<PresentationBudgetDecision> {
         let cadence = self.cadence()?;
         Ok(if frame_time_micros <= cadence.frame_budget_micros {
             PresentationBudgetDecision::Present

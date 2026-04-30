@@ -154,9 +154,6 @@ fn realtime_cadence_from_fps_is_deterministic_and_zero_rejected() {
     assert_eq!(cadence30.frame_budget_micros, 33_333);
 
     let zero = RealtimeFrameCadence::from_fps(0).unwrap_err();
-    assert_eq!(
-        zero,
-        EngineCoreError::InvalidDescriptor("realtime target_fps must be non-zero")
-    );
+    assert_eq!(zero.reason, RealtimeRuntimeFailureReason::InvalidTargetFps);
 }
 

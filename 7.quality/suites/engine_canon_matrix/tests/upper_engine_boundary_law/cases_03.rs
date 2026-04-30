@@ -60,7 +60,7 @@ fn startup_realtime_launch_rejects_headless_profile() {
 #[test]
 fn content_runtime_pack_product_deterministic() {
     let config = ContentConfig { max_packs: 100 };
-    let pipeline = ContentPipeline::new(config);
+    let mut pipeline = ContentPipeline::new(config);
 
     let request = ContentRequest {
         descriptor: ContentDescriptor {

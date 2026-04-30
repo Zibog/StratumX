@@ -11,11 +11,15 @@ fn realtime_zero_fps_rejected() {
     );
 
     assert!(result.is_err());
-    match result.unwrap_err() {
-        EngineCoreError::InvalidDescriptor(msg) => {
-            assert!(msg.contains("non-zero"));
-        }
-        _ => panic!("Expected InvalidDescriptor error"),
+    let failure = result.unwrap_err();
+    assert_eq!(
+        failure.reason,
+        engine_runtime_realtime::RealtimeRuntimeFailureReason::InvalidTargetFps
+    );
+    let bridge: EngineCoreError = failure.into();
+    match bridge {
+        EngineCoreError::InvalidDescriptor(msg) => assert!(msg.contains("non-zero")),
+        _ => panic!("Expected InvalidDescriptor bridge"),
     }
 }
 

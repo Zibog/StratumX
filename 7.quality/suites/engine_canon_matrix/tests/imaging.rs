@@ -17,18 +17,21 @@ fn render_pipeline() {
 
     let result = service
         .render(
-            &WorldState::new(),
-            &EcsSubstrate::new(),
-            &materials(),
-            &ResidencyControlService::new(ResidencyConfig {
-                resident_item_budget: 4,
-                streaming_item_budget: 4,
-            }),
-            &mut transfer,
             ImagingRequest {
                 render_target_id: 2,
                 view_region: (0, 0, 0),
                 upload_bytes: 16,
+            },
+            ImagingInputs {
+                world: &WorldState::new(),
+                ecs: &EcsSubstrate::new(),
+                materials: &materials(),
+                residency: &ResidencyControlService::new(ResidencyConfig {
+                    resident_item_budget: 4,
+                    streaming_item_budget: 4,
+                }),
+                transfer: &mut transfer,
+                material_id: MaterialId(1),
             },
         )
         .unwrap();

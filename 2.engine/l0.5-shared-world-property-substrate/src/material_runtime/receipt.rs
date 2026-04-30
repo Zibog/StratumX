@@ -1,4 +1,4 @@
-use super::MaterialConsequenceEvent;
+use super::{BurnMaterialPublicationPolicy, MaterialConsequenceEvent};
 use crate::material_response::ConsequenceTier;
 use crate::{
     BurnAftermathPolicy, BurnConsequenceReceipt, BurnResponseFamily, MaterialId,
@@ -39,14 +39,21 @@ impl BurnConsequenceReceipt {
     }
 
     pub fn to_material_consequence_event(&self) -> MaterialConsequenceEvent {
+        let publication = self.publication_policy();
         MaterialConsequenceEvent::from_burn(
-            SurfaceFamilyId::from_material_id(self.material_id),
-            ResponseFamilyId::physical_thermal(self.burn_family.response_suffix()),
+            publication,
             self.next_tier(),
             self.ignited,
             self.state_modifiers(),
-            self.persistent_result.aftermath_family_id(),
         )
+    }
+
+    pub fn publication_policy(&self) -> BurnMaterialPublicationPolicy {
+        BurnMaterialPublicationPolicy {
+            surface_family: SurfaceFamilyId::from_material_id(self.material_id),
+            response_family: ResponseFamilyId::physical_thermal(self.burn_family.response_suffix()),
+            aftermath_family: self.persistent_result.aftermath_family_id(),
+        }
     }
 
     fn state_modifiers(&self) -> Vec<MaterialStateModifier> {

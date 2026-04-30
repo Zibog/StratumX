@@ -2,7 +2,7 @@ use engine_core::{ComponentTypeId, StableDigest64, StableDigestBuilder};
 use smallvec::SmallVec;
 use std::collections::BTreeMap;
 
-use crate::DeferredWrite;
+use crate::{ApplyContext, CloneProjectionApplyTransaction, MutationApplyTransaction};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct AppliedJournal {
@@ -13,19 +13,21 @@ pub struct AppliedJournal {
 }
 
 pub trait MutationApplyTarget {
+    type Transaction<'a>: MutationApplyTransaction
+    where
+        Self: 'a;
+
     fn component_bytes(&self, component: ComponentTypeId) -> Option<&[u8]>;
     fn has_component(&self, component: ComponentTypeId) -> bool;
-    fn deterministic_digest(&self) -> StableDigest64;
+    fn stable_state_digest(&self) -> StableDigest64;
     fn applied_journal(&self, journal_digest: StableDigest64) -> Option<AppliedJournal>;
-    fn apply_structural_removals(&mut self, components: &[ComponentTypeId]);
-    fn apply_writes(&mut self, writes: &[DeferredWrite]);
-    fn record_journal(&mut self, journal: AppliedJournal);
+    fn begin_apply<'a>(&'a mut self, context: ApplyContext) -> Self::Transaction<'a>;
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct InMemoryMutationApplyTarget {
-    components: BTreeMap<ComponentTypeId, SmallVec<[u8; 32]>>,
-    applied_journals: BTreeMap<StableDigest64, AppliedJournal>,
+    pub(crate) components: BTreeMap<ComponentTypeId, SmallVec<[u8; 32]>>,
+    pub(crate) applied_journals: BTreeMap<StableDigest64, AppliedJournal>,
 }
 
 impl InMemoryMutationApplyTarget {
@@ -52,12 +54,21 @@ impl InMemoryMutationApplyTarget {
         <Self as MutationApplyTarget>::has_component(self, component)
     }
 
+    pub fn stable_state_digest(&self) -> StableDigest64 {
+        <Self as MutationApplyTarget>::stable_state_digest(self)
+    }
+
     pub fn deterministic_digest(&self) -> StableDigest64 {
-        <Self as MutationApplyTarget>::deterministic_digest(self)
+        self.stable_state_digest()
     }
 }
 
 impl MutationApplyTarget for InMemoryMutationApplyTarget {
+    type Transaction<'a>
+        = CloneProjectionApplyTransaction<'a>
+    where
+        Self: 'a;
+
     fn component_bytes(&self, component: ComponentTypeId) -> Option<&[u8]> {
         self.components.get(&component).map(SmallVec::as_slice)
     }
@@ -66,7 +77,7 @@ impl MutationApplyTarget for InMemoryMutationApplyTarget {
         self.components.contains_key(&component)
     }
 
-    fn deterministic_digest(&self) -> StableDigest64 {
+    fn stable_state_digest(&self) -> StableDigest64 {
         let mut builder = StableDigestBuilder::new();
         builder.write_bytes(b"engine_storage_mutation.target.v1");
         builder.write_u64(self.components.len() as u64);
@@ -81,21 +92,8 @@ impl MutationApplyTarget for InMemoryMutationApplyTarget {
         self.applied_journals.get(&journal_digest).copied()
     }
 
-    fn apply_structural_removals(&mut self, components: &[ComponentTypeId]) {
-        for component in components {
-            self.components.remove(component);
-        }
-    }
-
-    fn apply_writes(&mut self, writes: &[DeferredWrite]) {
-        for write in writes {
-            self.components.insert(write.component, write.bytes.clone());
-        }
-    }
-
-    fn record_journal(&mut self, journal: AppliedJournal) {
-        self.applied_journals
-            .insert(journal.journal_digest, journal);
+    fn begin_apply<'a>(&'a mut self, context: ApplyContext) -> Self::Transaction<'a> {
+        CloneProjectionApplyTransaction::new(self, context)
     }
 }
 

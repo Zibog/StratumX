@@ -38,7 +38,7 @@ pub use crate::material_response::{
     MaterialTriggerClass, ResponseFamilyGroup, ResponseFamilyRow, SurfaceFamilyProfile,
     TerritoryFamily,
 };
-pub use crate::material_runtime::MaterialConsequenceEvent;
+pub use crate::material_runtime::{BurnMaterialPublicationPolicy, MaterialConsequenceEvent};
 
 // Sky/weather state
 pub use crate::storm_celestial::cloud_field::{

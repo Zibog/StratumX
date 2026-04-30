@@ -1,7 +1,6 @@
 use crate::AcousticTier;
-use engine_core::{EngineCoreResult, StableDigestBuilder};
-use engine_material::{MaterialId, MaterialLookupResult};
-use engine_transfer_control::{TransferConfig, TransferControlService, TransferRequest};
+use engine_core::StableDigestBuilder;
+use engine_material::MaterialLookupResult;
 
 pub(crate) fn stable_acoustic_policy_id(lookup: &MaterialLookupResult) -> u64 {
     let mut digest = StableDigestBuilder::new();
@@ -20,6 +19,9 @@ pub(crate) fn select_acoustic_tier(
     source_count: usize,
     max_sources: usize,
 ) -> AcousticTier {
+    if source_count == 0 {
+        return AcousticTier::Disabled;
+    }
     if lookup.used_fallback {
         return AcousticTier::EventOnly;
     }
@@ -36,26 +38,4 @@ pub(crate) fn select_acoustic_tier(
     } else {
         AcousticTier::FullPropagation
     }
-}
-
-pub(crate) fn stage_stream_upload(
-    material_id: MaterialId,
-    stream_upload_bytes: usize,
-) -> EngineCoreResult<Option<engine_transfer_control::TransferResult>> {
-    if stream_upload_bytes == 0 {
-        return Ok(None);
-    }
-
-    let mut transfer = TransferControlService::new(TransferConfig {
-        max_inflight_decodes: 1,
-        max_inflight_uploads: 1,
-    });
-    transfer
-        .submit(TransferRequest {
-            asset_key: u64::from(material_id.0),
-            compressed_bytes: stream_upload_bytes,
-            decoded_bytes: stream_upload_bytes,
-            upload_bytes: stream_upload_bytes,
-        })
-        .map(Some)
 }

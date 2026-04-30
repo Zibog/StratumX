@@ -4,4 +4,6 @@ mod registry;
 mod response_validation;
 mod tier;
 
-pub use event::{MaterialConsequenceEvent, MaterialConsequenceSelection};
+pub use event::{
+    BurnMaterialPublicationPolicy, MaterialConsequenceEvent, MaterialConsequenceSelection,
+};

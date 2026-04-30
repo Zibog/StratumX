@@ -49,8 +49,6 @@ fn imaging_frame_policy_accepts_valid_resource_state() {
     };
     let service = ImagingService::new(config);
 
-    let world = WorldState::new();
-    let ecs = EcsSubstrate::new();
     let materials = MaterialRegistry::new(create_test_material_config());
     let residency = ResidencyControlService::new(ResidencyConfig {
         resident_item_budget: 100,
@@ -67,7 +65,7 @@ fn imaging_frame_policy_accepts_valid_resource_state() {
         upload_bytes: 1024,
     };
 
-    let result = service.render(&world, &ecs, &materials, &residency, &mut transfer, request);
+    let result = render_receipt(&service, &materials, &residency, &mut transfer, request);
     assert!(result.is_ok());
 }
 
@@ -79,8 +77,6 @@ fn imaging_frame_policy_rejects_illegal_resource_state() {
     };
     let service = ImagingService::new(config);
 
-    let world = WorldState::new();
-    let ecs = EcsSubstrate::new();
     let materials = MaterialRegistry::new(create_test_material_config());
     let residency = ResidencyControlService::new(ResidencyConfig {
         resident_item_budget: 100,
@@ -98,7 +94,7 @@ fn imaging_frame_policy_rejects_illegal_resource_state() {
         upload_bytes: 512,
     };
 
-    let result = service.render(&world, &ecs, &materials, &residency, &mut transfer, request);
+    let result = render_receipt(&service, &materials, &residency, &mut transfer, request);
     assert!(result.is_err());
 
     // Exceeds max upload bytes
@@ -108,14 +104,14 @@ fn imaging_frame_policy_rejects_illegal_resource_state() {
         upload_bytes: 2048,
     };
 
-    let result = service.render(&world, &ecs, &materials, &residency, &mut transfer, request);
+    let result = render_receipt(&service, &materials, &residency, &mut transfer, request);
     assert!(result.is_err());
 }
 
 #[test]
 fn content_policy_accepts_valid_resource() {
     let config = ContentConfig { max_packs: 100 };
-    let pipeline = ContentPipeline::new(config);
+    let mut pipeline = ContentPipeline::new(config);
 
     let request = ContentRequest {
         descriptor: ContentDescriptor {
@@ -135,7 +131,7 @@ fn content_policy_accepts_valid_resource() {
 #[test]
 fn content_policy_rejects_missing_resource_id() {
     let config = ContentConfig { max_packs: 100 };
-    let pipeline = ContentPipeline::new(config);
+    let mut pipeline = ContentPipeline::new(config);
 
     let request = ContentRequest {
         descriptor: ContentDescriptor {

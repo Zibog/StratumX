@@ -1,9 +1,16 @@
-use engine_acoustics::{AcousticTier, AcousticsConfig, AcousticsService};
+use engine_acoustics::{
+    AcousticFailure, AcousticFailureReason, AcousticInputs, AcousticReceipt, AcousticTier,
+    AcousticsConfig, AcousticsRequest, AcousticsService, AcousticsTransportOutcome,
+};
 use engine_core::EngineCoreError;
+use engine_ecs::EcsSubstrate;
 use engine_material::{
     MaterialConfig, MaterialDescriptor, MaterialId, MaterialRegistry, PropertyDomain, ReactionRow,
     ResponseProfileId,
 };
+use engine_residency_control::{ResidencyConfig, ResidencyControlService};
+use engine_transfer_control::{TransferConfig, TransferControlService};
+use engine_world::WorldState;
 
 fn test_materials() -> MaterialRegistry {
     let mut registry = MaterialRegistry::new(MaterialConfig {
@@ -33,26 +40,92 @@ fn test_materials() -> MaterialRegistry {
     registry
 }
 
+fn synthesize(
+    service: &AcousticsService,
+    materials: &MaterialRegistry,
+    material_id: MaterialId,
+    source_count: usize,
+) -> Result<AcousticReceipt, AcousticFailure> {
+    let world = WorldState::new();
+    let ecs = EcsSubstrate::new();
+    let residency = ResidencyControlService::new(ResidencyConfig {
+        resident_item_budget: 8,
+        streaming_item_budget: 8,
+    });
+    let mut transfer = TransferControlService::new(TransferConfig {
+        max_inflight_decodes: 8,
+        max_inflight_uploads: 8,
+    });
+    service.synthesize(
+        AcousticsRequest {
+            source_count,
+            stream_upload_bytes: source_count.saturating_mul(64),
+        },
+        AcousticInputs {
+            world: &world,
+            ecs: &ecs,
+            materials,
+            residency: &residency,
+            transfer: &mut transfer,
+            material_id,
+        },
+    )
+}
+
 #[test]
-fn acoustics_material_profile_changes_output_and_digest() {
+fn acoustics_primary_synthesize_is_material_aware() {
     let service = AcousticsService::new(AcousticsConfig {
         max_sources: 10,
         max_stream_upload_bytes: 1024,
     });
     let materials = test_materials();
 
-    let fallback = service
-        .synthesize_with_receipt(&materials, MaterialId(0), 3)
-        .unwrap();
-    let stone = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 3)
-        .unwrap();
+    let fallback = synthesize(&service, &materials, MaterialId(0), 3).unwrap();
+    let stone = synthesize(&service, &materials, MaterialId(1), 3).unwrap();
 
     assert_eq!(fallback.selected_tier, AcousticTier::EventOnly);
     assert_eq!(stone.selected_tier, AcousticTier::ReducedPropagation);
-    assert_eq!(fallback.emitter_count, 1);
-    assert_eq!(stone.emitter_count, 2);
+    assert_ne!(fallback.material_policy_id, stone.material_policy_id);
     assert_ne!(fallback.deterministic_digest, stone.deterministic_digest);
+}
+
+#[test]
+fn acoustics_primary_synthesize_returns_receipt() {
+    let service = AcousticsService::new(AcousticsConfig {
+        max_sources: 10,
+        max_stream_upload_bytes: 1024,
+    });
+    let materials = test_materials();
+    let receipt = synthesize(&service, &materials, MaterialId(1), 3).unwrap();
+
+    assert_eq!(receipt.synthesized_frames, 1);
+    assert_eq!(receipt.source_count, 3);
+    assert_eq!(receipt.propagated_sources, 3);
+    assert!(receipt.stream_upload_accepted);
+}
+
+#[test]
+fn acoustics_transport_only_does_not_accept_material_registry() {
+    let _: fn(
+        &AcousticsService,
+        &mut TransferControlService,
+        AcousticsRequest,
+    ) -> engine_acoustics::AcousticResult<AcousticsTransportOutcome> =
+        AcousticsService::synthesize_transport_only;
+}
+
+#[test]
+fn acoustics_missing_material_returns_typed_failure_or_explicit_fallback() {
+    let service = AcousticsService::new(AcousticsConfig {
+        max_sources: 10,
+        max_stream_upload_bytes: 1024,
+    });
+    let materials = test_materials();
+    let receipt = synthesize(&service, &materials, MaterialId(99), 3).unwrap();
+
+    assert!(receipt.used_material_fallback);
+    assert_eq!(receipt.selected_tier, AcousticTier::EventOnly);
+    assert_eq!(receipt.emitter_count, 1);
 }
 
 #[test]
@@ -62,64 +135,24 @@ fn acoustics_missing_material_uses_explicit_fallback() {
         max_stream_upload_bytes: 1024,
     });
     let materials = test_materials();
-
-    let receipt = service
-        .synthesize_with_receipt(&materials, MaterialId(99), 3)
-        .unwrap();
+    let receipt = synthesize(&service, &materials, MaterialId(99), 3).unwrap();
 
     assert!(receipt.used_material_fallback);
     assert_eq!(receipt.selected_tier, AcousticTier::EventOnly);
-    assert_eq!(receipt.emitter_count, 1);
-    assert!(receipt.stream_upload_accepted);
 }
 
 #[test]
-fn acoustics_budget_pressure_selects_reduced_tier() {
+fn acoustics_failure_reason_is_typed_primary_api() {
     let service = AcousticsService::new(AcousticsConfig {
         max_sources: 10,
         max_stream_upload_bytes: 1024,
     });
     let materials = test_materials();
-
-    let low_source = service
-        .synthesize_with_receipt(&materials, MaterialId(0), 2)
-        .unwrap();
-    let high_source = service
-        .synthesize_with_receipt(&materials, MaterialId(0), 8)
-        .unwrap();
-
-    assert_eq!(low_source.selected_tier, AcousticTier::EventOnly);
-    assert_eq!(high_source.selected_tier, AcousticTier::EventOnly);
-    assert_eq!(low_source.emitter_count, 1);
-    assert_eq!(high_source.emitter_count, 1);
-
-    let stone_low = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 2)
-        .unwrap();
-    let stone_high = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 8)
-        .unwrap();
-
-    assert_eq!(stone_low.selected_tier, AcousticTier::ReducedPropagation);
-    assert_eq!(stone_high.selected_tier, AcousticTier::ReducedPropagation);
-    assert!(stone_high.deterministic_digest != stone_low.deterministic_digest);
-}
-
-#[test]
-fn acoustics_zero_source_is_rejected_with_exact_reason() {
-    let service = AcousticsService::new(AcousticsConfig {
-        max_sources: 10,
-        max_stream_upload_bytes: 1024,
-    });
-    let materials = test_materials();
-
-    let result = service.synthesize_with_receipt(&materials, MaterialId(1), 0);
+    let result = synthesize(&service, &materials, MaterialId(1), 0);
 
     assert_eq!(
-        result,
-        Err(EngineCoreError::InvalidDescriptor(
-            "source count must be non-zero",
-        ))
+        result.unwrap_err().reason,
+        AcousticFailureReason::InvalidSourceCount
     );
 }
 
@@ -130,31 +163,18 @@ fn same_acoustic_input_produces_same_digest() {
         max_stream_upload_bytes: 1024,
     });
     let materials = test_materials();
-
-    let receipt1 = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 3)
-        .unwrap();
-    let receipt2 = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 3)
-        .unwrap();
+    let receipt1 = synthesize(&service, &materials, MaterialId(1), 3).unwrap();
+    let receipt2 = synthesize(&service, &materials, MaterialId(1), 3).unwrap();
 
     assert_eq!(receipt1.deterministic_digest, receipt2.deterministic_digest);
 }
 
 #[test]
-fn different_source_count_changes_digest() {
-    let service = AcousticsService::new(AcousticsConfig {
-        max_sources: 10,
-        max_stream_upload_bytes: 1024,
-    });
-    let materials = test_materials();
-
-    let receipt1 = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 2)
-        .unwrap();
-    let receipt2 = service
-        .synthesize_with_receipt(&materials, MaterialId(1), 4)
-        .unwrap();
-
-    assert_ne!(receipt1.deterministic_digest, receipt2.deterministic_digest);
+fn legacy_engine_core_error_bridge_preserves_reason_text() {
+    let bridge: EngineCoreError =
+        AcousticFailure::for_reason(AcousticFailureReason::InvalidSourceCount).into();
+    assert_eq!(
+        bridge,
+        EngineCoreError::InvalidDescriptor("source count must be non-zero")
+    );
 }

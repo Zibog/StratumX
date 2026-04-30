@@ -27,10 +27,7 @@ fn partial_failure_does_not_report_fake_success() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(9),
-        ApplyTransactionId(9),
-        MutationApplyMode::Normal,
-        MutationConflictPolicy::Reject,
+        apply_context(9, 9, MutationApplyMode::Normal, MutationConflictPolicy::Reject),
     );
 
     assert!(matches!(

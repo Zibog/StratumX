@@ -1,7 +1,6 @@
 use crate::ImagingTier;
-use engine_core::{EngineCoreResult, StableDigestBuilder};
-use engine_material::{MaterialId, MaterialLookupResult};
-use engine_transfer_control::{TransferConfig, TransferControlService, TransferRequest};
+use engine_core::StableDigestBuilder;
+use engine_material::MaterialLookupResult;
 
 pub(crate) fn stable_material_policy_id(lookup: &MaterialLookupResult) -> u64 {
     let mut digest = StableDigestBuilder::new();
@@ -37,26 +36,4 @@ pub(crate) fn select_imaging_tier(
     } else {
         ImagingTier::Impostor
     }
-}
-
-pub(crate) fn stage_imaging_upload(
-    material_id: MaterialId,
-    upload_bytes: usize,
-) -> EngineCoreResult<Option<engine_transfer_control::TransferResult>> {
-    if upload_bytes == 0 {
-        return Ok(None);
-    }
-
-    let mut transfer = TransferControlService::new(TransferConfig {
-        max_inflight_decodes: 1,
-        max_inflight_uploads: 1,
-    });
-    transfer
-        .submit(TransferRequest {
-            asset_key: u64::from(material_id.0),
-            compressed_bytes: upload_bytes,
-            decoded_bytes: upload_bytes,
-            upload_bytes,
-        })
-        .map(Some)
 }

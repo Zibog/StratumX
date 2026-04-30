@@ -14,10 +14,7 @@ fn dry_run_does_not_mutate() {
     let receipt = authoritative_apply(
         &mut target,
         &payload,
-        MutationBatchId(3),
-        ApplyTransactionId(4),
-        MutationApplyMode::DryRun,
-        MutationConflictPolicy::Reject,
+        apply_context(3, 4, MutationApplyMode::DryRun, MutationConflictPolicy::Reject),
     );
 
     assert!(receipt.is_success());
